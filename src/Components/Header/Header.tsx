@@ -1,6 +1,6 @@
 function Header(): JSX.Element {
    return (
-      <header>
+      <header className="bg-black w-full text-center text-red-500">
          Header
       </header>
    );

@@ -1,6 +1,6 @@
 function Home(): JSX.Element {
    return (
-      <div>
+      <div className="text-primaryBly">
          Home
       </div>
    );
