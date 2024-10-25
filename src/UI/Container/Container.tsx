@@ -5,9 +5,13 @@ interface IContainerProps {
 }
 
 function Container({ children }: IContainerProps): JSX.Element {
-   return (<div>
-      {children}
-   </div>);
+   return (
+      <>
+         <div className="w-full static" style={{ padding: "18px 36px" }}>
+            {children}
+         </div>
+      </>
+   );
 }
 
 export default Container;

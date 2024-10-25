@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         primaryBly: "#0056d6",
-        primaryPink: "##E32F70",
+        primaryPink: "#E32F70",
         primaryDarkGrey: "#1F2022",
         primaryLightGrey: "#F7F9FE",
       }
