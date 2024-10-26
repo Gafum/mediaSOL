@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Error404 from "../Components/Errors/Error404";
-import Container from "../UI/Container/Container";
 import { screenList } from "./RoutingList";
 import Header from "../Components/Header/Header";
 
@@ -15,9 +14,9 @@ function Router(): JSX.Element {
                   key={path}
                   path={path}
                   element={
-                     <Container>
+                     <div className="container">
                         {component}
-                     </Container>
+                     </div>
                   }
                />
             )
