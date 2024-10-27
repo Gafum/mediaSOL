@@ -16,5 +16,10 @@ export const screenList: IRoutingList[] = [
       path: "/about",
       name: "about",
       component: <div>About</div>,
+   },
+   {
+      path: "/catalog",
+      name: "catalog",
+      component: <div>Catalog</div>,
    }
 ];
