@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
-import { screenList } from "../../Routing/RoutingList";
+import { screenList, screenNavList } from "../../Routing/RoutingList";
+import CustomNavLink from "./MyComponents/CustomNavLink";
 
 function Header(): JSX.Element {
    return (<>
@@ -12,33 +13,9 @@ function Header(): JSX.Element {
                <img src="/mainIcon.svg" alt="M" className="h-[15px]" />
                <span className="font-semibold">MediaSOL</span>
             </Link>
+
             <nav className="flex gap-4 justify-center items-center font-semibold">
-               <NavLink
-                  className={({ isActive }: { isActive: boolean }) =>
-                     "font-medium " + (isActive ? "underline" : "")
-                  }
-                  to={screenList.find((e) => e.name == "contact")?.path || "/"}
-               >
-                  Contact
-               </NavLink>
-
-               <NavLink
-                  className={({ isActive }: { isActive: boolean }) =>
-                     "font-medium " + (isActive ? "underline" : "")
-                  }
-                  to={screenList.find((e) => e.name == "about")?.path || "/"}
-               >
-                  About
-               </NavLink>
-
-               <NavLink
-                  className={({ isActive }: { isActive: boolean }) =>
-                     "font-medium " + (isActive ? "underline" : "")
-                  }
-                  to={screenList.find((e) => e.name == "catalog")?.path || "/"}
-               >
-                  Catalog
-               </NavLink>
+               {screenNavList.map((path) => { return <CustomNavLink myPath={path} /> })}
             </nav>
          </div >
       </header >

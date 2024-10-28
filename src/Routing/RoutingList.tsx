@@ -1,6 +1,8 @@
 import Home from "../Screens/Home/Home";
 import { IRoutingList } from "./Routing.types";
 
+export const screenNavList: string[] = ["contact", "about", "catalog"]
+
 export const screenList: IRoutingList[] = [
    {
       path: "/",

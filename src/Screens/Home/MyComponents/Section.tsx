@@ -1,4 +1,5 @@
 import { MouseEvent } from "react";
+import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
 
 interface ISectionProps {
    headline: string;
@@ -23,12 +24,11 @@ function Section({ headline, description, btnText, imgSrc, onClick }: ISectionPr
                {description}
             </p>
 
-            <button
+            <CustomBtn
                onClick={onClick}
-               className="bg-primaryBlue w-2/5 rounded-md text-white py-2 px-1 mt-5 transition duration-300 hover:brightness-110 hover:shadow-lg"
-            >
-               {btnText}
-            </button>
+               btnText={btnText}
+               className="w-2/5 mt-5"
+            />
          </div>
 
          <img className="max-w-1/2 w-[400px]"
