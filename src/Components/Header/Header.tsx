@@ -1,5 +1,5 @@
-import { Link, NavLink } from "react-router-dom";
-import { screenList, screenNavList } from "../../Routing/RoutingList";
+import { Link } from "react-router-dom";
+import { screenNavList } from "../../Routing/RoutingList";
 import CustomNavLink from "./MyComponents/CustomNavLink";
 
 function Header(): JSX.Element {
