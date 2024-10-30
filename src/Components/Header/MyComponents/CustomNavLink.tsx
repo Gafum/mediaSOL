@@ -1,14 +1,16 @@
 import { NavLink } from "react-router-dom";
+import styles from "./CustomNavLink.module.css";
 
 function CustomNavLink({ myPath }: { myPath: string }): JSX.Element {
    return (
       <NavLink
          className={({ isActive }: { isActive: boolean }) =>
-            "font-medium capitalize transition-transform duration-300 " + (isActive ? "translate-y-[-3px]" : "")
+            styles.navLink + " " + (isActive ? (styles.active) : "")
          }
          to={myPath || "/"}
       >
-         {myPath}
+         <div className={"bg-primaryBlue " + styles.linkBack} />
+         <span>{myPath}</span>
       </NavLink>
    );
 }
