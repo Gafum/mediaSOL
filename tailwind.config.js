@@ -17,7 +17,7 @@ export default {
       addComponents({
         '.container': {
           maxWidth: '1400px',
-          padding: "0 24px",
+          padding: "0 24px 100px",
           margin: "0 auto"
         }
       })
