@@ -1,4 +1,5 @@
 import About from "../Screens/About/About";
+import Contact from "../Screens/Contact/Contact";
 import Home from "../Screens/Home/Home";
 import { IRoutingList } from "./Routing.types";
 
@@ -13,7 +14,7 @@ export const screenList: IRoutingList[] = [
    {
       path: "/contact",
       name: "contact",
-      component: <div>Contact</div>,
+      component: <Contact />,
    },
    {
       path: "/about",
