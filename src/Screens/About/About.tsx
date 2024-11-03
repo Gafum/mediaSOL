@@ -1,3 +1,59 @@
+import { ReactNode } from "react";
+
+interface IAboutSectionData {
+   name: string;
+   title: string;
+   description: string | string[];
+}
+
+const aboutSectionData: IAboutSectionData[] = [
+   {
+      name: "services",
+      title: "Leistungsspektrum",
+      description: [
+         "Verkauf von technischen Produkten (PCs, Apple Produkte, Drucker, Scanner, Server, Beamer, usw.)",
+         "Beratung von Firmen und Schulen",
+         "Wartung der Rechner und Server",
+         "Netzwerk-Einrichtung",
+         "Technischer Support"
+      ]
+   },
+   {
+      name: "director",
+      title: "Über unseren Geschäftsführer",
+      description: "Unser Geschäftsführer Tim Baumann ist ein dynamischer und visionärer IT-Fachmann, der mit frischen Ideen und einer klaren Vorstellung für die Zukunft die MediaSOL GmbH leitet. Mit einem jungen, modernen Ansatz führt er das Unternehmen in eine neue Ära, die sowohl technische Innovation als auch kundenorientierte Services fördert. Sein Ziel ist es, MediaSOL ein zeitgemäßes Image zu verleihen, das junge Kunden anspricht und bestehende Partnerschaften stärkt. Tim hat das Unternehmen von seinem Vater übernommen und mit seinem Engagement und seiner Leidenschaft für IT den Betrieb erweitert und modernisiert.Mit Tim an der Spitze ist MediaSOL auf einem stabilen, zukunftsorientierten Weg, der die Stärken der Vergangenheit bewahrt und neue Potenziale eröffnet."
+   },
+   {
+      name: "ourColleagues",
+      title: "Mitarbeiter",
+      description: "Unser Team besteht aus engagierten Fachleuten, die sich in verschiedenen Bereichen spezialisiert haben. Dazu gehören mehrere erfahrene Verkäuferinnen und Verkäufer, die ihre Expertise aus dem früheren Betrieb des Unternehmens übernommen haben. Hinzu kommen sechs technische Spezialisten, darunter IT-System-Elektroniker, Servicetechniker und Fachinformatiker, die für die technische Unterstützung unserer Kunden sorgen. Das Team wird in naher Zukunft durch drei zusätzliche Techniker erweitert. Zusätzlich bieten wir jungen Talenten Ausbildungsplätze als IT-System-Elektroniker und Fachinformatiker an."
+   },
+   {
+      name: "location",
+      title: "Standort und internationale Kontakte",
+      description: "MediaSOL ist ein Unternehmen mit internationalen Kontakten nach England, Spanien, China und den USA. Der Firmenstandort sowie der ehemalige Elektrogroßhandel befinden sich in einem Gewerbegebiet in Dinslaken."
+   },
+
+]
+
+function SectionAboutPage({ title, description }: IAboutSectionData): JSX.Element {
+
+   function createDescription(): ReactNode {
+      if (typeof description == "string") {
+         return description;
+      } else {
+         return description.map((text) => <li> {text}</li>)
+      }
+   }
+
+   return (
+      <section className={"About__" + title}>
+         <h2 className="text-xl font-semibold pt-2">{title}</h2>
+         <p className="text-sm">{createDescription()}</p>
+      </section>
+   )
+}
+
 function About() {
    return (
       <div className="max-w-[800px] m-auto flex flex-col gap-4">
@@ -9,38 +65,11 @@ function About() {
             </p>
          </section>
 
-         <section className="About__services">
-            <h2 className="text-xl font-semibold pt-2">Leistungsspektrum</h2>
-            <ol className="text-sm">
-               <li>1. Verkauf von technischen Produkten (PCs, Apple Produkte, Drucker, Scanner, Server, Beamer, usw.)</li>
-               <li>2. Beratung von Firmen und Schulen</li>
-               <li>3. Wartung der Rechner und Server</li>
-               <li>4. Netzwerk-Einrichtung</li>
-               <li>5. Technischer Support</li>
-            </ol>
-         </section>
-
-         <section className="About__leadership">
-            <h2 className="text-xl font-semibold pt-2">Über unseren Geschäftsführer</h2>
-            <p className="text-sm">
-               Unser Geschäftsführer Tim Baumann ist ein dynamischer und visionärer IT-Fachmann, der mit frischen Ideen und einer klaren Vorstellung für die Zukunft die MediaSOL GmbH leitet. Mit einem jungen, modernen Ansatz führt er das Unternehmen in eine neue Ära, die sowohl technische Innovation als auch kundenorientierte Services fördert. Sein Ziel ist es, MediaSOL ein zeitgemäßes Image zu verleihen, das junge Kunden anspricht und bestehende Partnerschaften stärkt.
-               Tim hat das Unternehmen von seinem Vater übernommen und mit seinem Engagement und seiner Leidenschaft für IT den Betrieb erweitert und modernisiert. Mit Tim an der Spitze ist MediaSOL auf einem stabilen, zukunftsorientierten Weg, der die Stärken der Vergangenheit bewahrt und neue Potenziale eröffnet.
-            </p>
-         </section>
-
-         <section className="About__team">
-            <h2 className="text-xl font-semibold pt-2">Mitarbeiter</h2>
-            <p className="text-sm">
-               Unser Team besteht aus engagierten Fachleuten, die sich in verschiedenen Bereichen spezialisiert haben. Dazu gehören mehrere erfahrene Verkäuferinnen und Verkäufer, die ihre Expertise aus dem früheren Betrieb des Unternehmens übernommen haben. Hinzu kommen sechs technische Spezialisten, darunter IT-System-Elektroniker, Servicetechniker und Fachinformatiker, die für die technische Unterstützung unserer Kunden sorgen. Das Team wird in naher Zukunft durch drei zusätzliche Techniker erweitert. Zusätzlich bieten wir jungen Talenten Ausbildungsplätze als IT-System-Elektroniker und Fachinformatiker an.
-            </p>
-         </section>
-
-         <section className="About__location">
-            <h2 className="text-xl font-semibold pt-2">Standort und internationale Kontakte</h2>
-            <p className="text-sm">
-               MediaSOL ist ein Unternehmen mit internationalen Kontakten nach England, Spanien, China und den USA. Der Firmenstandort sowie der ehemalige Elektrogroßhandel befinden sich in einem Gewerbegebiet in Dinslaken.
-            </p>
-         </section>
+         {
+            aboutSectionData.map((sectionData) => {
+               return (<SectionAboutPage {...sectionData} />)
+            })
+         }
       </div>
    );
 }

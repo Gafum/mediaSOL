@@ -1,0 +1,26 @@
+.navLink {
+   @apply font-medium capitalize transition-transform duration-300 relative;
+}
+
+.active {
+   transform: translateY(-6px);
+}
+
+.linkBack {
+   transition: all 0.3s;
+   transform: translateY(2px) scaleY(0);
+   z-index: 0;
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   height: 6px;
+}
+
+.active > .linkBack {
+   transform: translateY(2px) scaleY(1);
+}
+
+.active > span {
+   z-index: 2;
+   position: relative;
+}
