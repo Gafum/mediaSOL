@@ -1,0 +1,9 @@
+{
+   "importOrder": ["^components/(.*)$", "^[./]"],
+   "importOrderSeparation": true,
+   "importOrderSortSpecifiers": true,
+   "trailingComma": "es5",
+   "tabWidth": 3,
+   "semi": false,
+   "singleQuote": false
+}

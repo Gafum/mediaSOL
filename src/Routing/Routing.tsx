@@ -8,19 +8,14 @@ function Router(): JSX.Element {
    const location = useLocation()
    return (
       <Routes location={location} key={location.pathname}>
-         {screenList.map(({ component, path }) => {
-            return (
-               <Route
-                  key={path}
-                  path={path}
-                  element={
-                     <div className="container">
-                        {component}
-                     </div>
-                  }
-               />
-            )
-         })}
+
+         {Object.values(screenList).map((screen) => (
+            <Route key={screen.path} path={screen.path} element={
+               <div className="container">
+                  {screen.component}
+               </div>
+            } />
+         ))}
 
          <Route path="*" element={<Error404 />} />
       </Routes>

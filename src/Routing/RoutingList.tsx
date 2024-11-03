@@ -1,29 +1,11 @@
 import About from "../Screens/About/About";
 import Contact from "../Screens/Contact/Contact";
 import Home from "../Screens/Home/Home";
-import { IRoutingList } from "./Routing.types";
+import { IScreenList } from "./Routing.types";
 
-export const screenNavList: string[] = ["contact", "about", "catalog"]
-
-export const screenList: IRoutingList[] = [
-   {
-      path: "/",
-      name: "home",
-      component: <Home />,
-   },
-   {
-      path: "/contact",
-      name: "contact",
-      component: <Contact />,
-   },
-   {
-      path: "/about",
-      name: "about",
-      component: <About />,
-   },
-   {
-      path: "/catalog",
-      name: "catalog",
-      component: <div>Catalog</div>,
-   }
-];
+export const screenList: IScreenList = {
+   home: { path: '/', component: <Home /> },
+   about: { path: '/about', component: <About /> },
+   contact: { path: '/contact', component: <Contact /> },
+   catalog: { path: "/catalog", component: <div>Catalog</div> }
+};

@@ -1,5 +1,5 @@
 .navLink {
-   @apply font-medium capitalize transition-transform duration-300 relative;
+   @apply font-medium capitalize transition-transform duration-300 relative brightness-125;
 }
 
 .active {
