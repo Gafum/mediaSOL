@@ -23,7 +23,7 @@ function Header(): JSX.Element {
                   className="flex justify-center items-center gap-2 text-2xl"
                >
                   <img src="/mainIcon.svg" alt="M" className="h-[15px]" />
-                  <span className="font-semibold whitespace-nowrap">
+                  <span className="font-semibold whitespace-nowrap transition-opacity duration-300 hover:opacity-70">
                      MediaSOL
                   </span>
                </Link>
