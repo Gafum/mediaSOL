@@ -16,7 +16,7 @@ function Header(): JSX.Element {
             {/* background header */}
             MediaSOL
          </div>
-         <header className="fixed top-0 left-0 w-full container pt-6 pb-2 bg-white">
+         <header className="fixed top-0 left-0 w-full container pt-6 pb-2 bg-white z-20">
             <div className="flex gap-4 justify-between w-full">
                <Link
                   to={"/"}
