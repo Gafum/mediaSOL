@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { screenList } from "../../Routing/RoutingList"
 import StandardSection from "./MyComponents/StandardSection"
 import ServicesSection from "./MyComponents/ServicesSection"
+import ReviewsSection from "./MyComponents/ReviewsSection"
 
 function Home(): JSX.Element {
    let navigate = useNavigate()
@@ -18,6 +19,7 @@ function Home(): JSX.Element {
          />
 
          <ServicesSection />
+         <ReviewsSection />
       </div>
    )
 }

@@ -5,11 +5,11 @@ function ServicesSection(): JSX.Element {
       <section className="flex gap-4 mt-4">
          <div className="w-1/2 flex flex-col gap-4">
             <div className="text__bloc relative bg-primaryDarkGrey p-5 rounded-lg">
-               <div className="text__block absolute max-w-350px] w-1/2">
+               <div className="text__block absolute max-w-[350px] w-1/2">
                   <h1 className=" text-white text-2xl">
                      Consultation schools and companies
                   </h1>
-                  <button className="h-10 w-10 bg-[#444444] flex justify-center items-center mt-3 rounded-[4px]">
+                  <button className="h-10 w-10 bg-[#ffffff44] flex justify-center items-center mt-3 rounded-[4px] duration-300 transition-colors hover:bg-[#ffffff55]">
                      <ChevronRight color="#ffffff" />
                   </button>
                </div>
@@ -33,10 +33,10 @@ function ServicesSection(): JSX.Element {
             </div>
             <div className="text__bloc relative bg-primaryPink flex flex-col gap-4 p-5 rounded-lg">
                <div className="text__block absolute max-w-350px] w-1/2">
-                  <h1 className=" text-white text-2xl">
+                  <h1 className="text-white text-2xl">
                      Network settings and setup
                   </h1>
-                  <button className="h-10 w-10 bg-[#444444] flex justify-center items-center mt-3 rounded-[4px]">
+                  <button className="h-10 w-10 bg-[#ffffff44] flex justify-center items-center mt-3 rounded-[4px] duration-300 transition-colors hover:bg-[#ffffff55]">
                      <ChevronRight color="#ffffff" />
                   </button>
                </div>
@@ -88,7 +88,7 @@ function ServicesSection(): JSX.Element {
                   <h1 className="text-white text-2xl">
                      Maintenance of computers and servers
                   </h1>
-                  <button className="h-10 w-10 bg-[#444444] flex justify-center items-center mt-3 rounded-[4px]">
+                  <button className="h-10 w-10 bg-[#ffffff44] transition-colors hover:bg-[#ffffff55] duration-300 flex justify-center items-center mt-3 rounded-[4px]">
                      <ChevronRight color="#ffffff" />
                   </button>
                </div>
@@ -118,7 +118,7 @@ function ServicesSection(): JSX.Element {
                   <h1 className="text-white text-2xl">
                      Technical support and service
                   </h1>
-                  <button className="h-10 w-10 bg-[#444444] flex justify-center items-center mt-3 rounded-[4px]">
+                  <button className="h-10 w-10 bg-[#ffffff44] transition-colors hover:bg-[#ffffff55] duration-300 flex justify-center items-center mt-3 rounded-[4px]">
                      <ChevronRight color="#ffffff" />
                   </button>
                </div>
