@@ -23,7 +23,7 @@ This project is organized into various components for maintainability and scalab
 
 To run the project locally, follow these steps:
 
-1. **Clone the repository**
+1. **Clone or download the repository**
 2. **Install dependencies**:
 
 ```bash
@@ -33,5 +33,5 @@ yarn install
 3. **Run the development server**:
 
 ```bash
-   yarn dev
+yarn dev
 ```

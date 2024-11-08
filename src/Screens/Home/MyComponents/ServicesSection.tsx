@@ -2,7 +2,7 @@ import { ChevronRight } from "lucide-react"
 
 function ServicesSection(): JSX.Element {
    return (
-      <section className="flex gap-4 mt-4">
+      <section className="flex gap-4 mt-9">
          <div className="w-1/2 flex flex-col gap-4">
             <div className="text__bloc relative bg-primaryDarkGrey p-5 rounded-lg">
                <div className="text__block absolute max-w-[350px] w-1/2">
