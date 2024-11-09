@@ -34,6 +34,12 @@ const reviewsList: IReviews[] = [
          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum blanditiis tempora quisquam hic officiis, suscipit, sequi obcaecati deserunt possimus, neque maxime repudiandae mollitia enim doloribus soluta. Explicabo, obcaecati. Officia accusamus dicta nam laudantium doloribus quam dolores error quasi sint.",
       stars: 1,
    },
+   {
+      userName: "user 4",
+      comment:
+         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum blanditiis tempora quisquam hic officiis, suscipit, sequi obcaecati deserunt possimus, neque maxime repudiandae mollitia enim doloribus soluta. Explicabo, obcaecati. Officia accusamus dicta nam laudantium doloribus quam dolores error quasi sint.",
+      stars: 0,
+   },
 ]
 
 function ReviewsSection(): JSX.Element {

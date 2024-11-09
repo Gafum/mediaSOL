@@ -4,6 +4,7 @@ import { screenList } from "../../Routing/RoutingList"
 import StandardSection from "./MyComponents/StandardSection"
 import ServicesSection from "./MyComponents/ServicesSection"
 import ReviewsSection from "./MyComponents/ReviewsSection"
+import OurPartners from "./MyComponents/OurPartners"
 
 function Home(): JSX.Element {
    let navigate = useNavigate()
@@ -19,6 +20,7 @@ function Home(): JSX.Element {
          />
 
          <ServicesSection />
+         <OurPartners />
          <ReviewsSection />
       </div>
    )
