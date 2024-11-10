@@ -1,15 +1,23 @@
-import { LandPlot, Mail, Phone, SquareChartGantt } from "lucide-react";
+import { LandPlot, Mail, Phone, SquareChartGantt } from "lucide-react"
+import { contactData } from "./ContactData"
 
 interface IParagraphWithTitleProps {
-   title: string;
-   text: string;
-   icon: JSX.Element;
+   title: string
+   text: string
+   icon: JSX.Element
 }
 
-function ParagraphWithTitle({ icon, title, text }: IParagraphWithTitleProps): JSX.Element {
+function ParagraphWithTitle({
+   icon,
+   title,
+   text,
+}: IParagraphWithTitleProps): JSX.Element {
    return (
       <p className="w-full flex justify-start gap-2">
-         <strong className="flex gap-1">{icon}{title}:</strong>
+         <strong className="flex gap-1">
+            {icon}
+            {title}:
+         </strong>
          <span>{text}</span>
       </p>
    )
@@ -18,28 +26,27 @@ function ParagraphWithTitle({ icon, title, text }: IParagraphWithTitleProps): JS
 const paragraphsInContacts: IParagraphWithTitleProps[] = [
    {
       title: "Adresse",
-      text: "Hauptstraße 123, 46535 HaupStadt, Deutschland",
-      icon: <LandPlot width={20} />
+      text: contactData.address,
+      icon: <LandPlot width={20} />,
    },
    {
       title: "Telefon",
-      text: "+49 000 0000000",
-      icon: <Phone width={20} />
+      text: contactData.telephone,
+      icon: <Phone width={20} />,
    },
    {
       title: "E-Mail",
-      text: "kontakt@mediasol.de",
-      icon: <Mail width={20} />
+      text: contactData.email,
+      icon: <Mail width={20} />,
    },
    {
       title: "Öffnungszeiten",
-      text: "Montag - Freitag, 9:00 - 18:00 Uhr",
-      icon: <SquareChartGantt width={20} />
+      text: contactData.openTime,
+      icon: <SquareChartGantt width={20} />,
    },
 ]
 
 function Contact(): JSX.Element {
-
    return (
       <div>
          <div className="w-full flex justify-start items-center gap-5 min-h-[180px]">
@@ -55,7 +62,7 @@ function Contact(): JSX.Element {
             })}
          </div>
       </div>
-   );
+   )
 }
 
-export default Contact;
+export default Contact

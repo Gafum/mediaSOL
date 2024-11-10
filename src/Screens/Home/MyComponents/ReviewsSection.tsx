@@ -44,7 +44,7 @@ const reviewsList: IReviews[] = [
 
 function ReviewsSection(): JSX.Element {
    return (
-      <div className="w-full flex flex-col justify-center items-start mt-4">
+      <div className="w-full flex flex-col justify-center items-start mt-6">
          <h3 className="font-semibold text-xl">Popular Reviews</h3>
          <div className="max-w-full w-full mt-4">
             <Slider {...sliderSettings}>
