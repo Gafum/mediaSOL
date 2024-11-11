@@ -2,7 +2,7 @@ function OurPartners(): JSX.Element {
    return (
       <div className="mt-6 ">
          <h3 className="font-semibold text-xl">Our Partners</h3>
-         <div className="flex justify-between h-[100px] px-5 items-center max-w-[1000px] m-auto">
+         <div className="flex justify-between h-[100px] px-5 items-center max-w-[1000px] m-auto gap-2">
             <svg
                width="166"
                height="63"

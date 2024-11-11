@@ -50,7 +50,7 @@ function Contact(): JSX.Element {
    return (
       <div>
          <div className="w-full flex justify-start items-center gap-5 min-h-[180px]">
-            <img src="./mainIcon.svg" alt="M" className="w-1/2 max-w-[300px]" />
+            <img src="/mainIcon.svg" alt="M" className="w-1/2 max-w-[300px]" />
             <div className="w-full flex flex-col gap-2">
                <h1 className="font-bold text-[80px]">MediaSOL</h1>
             </div>
@@ -58,7 +58,7 @@ function Contact(): JSX.Element {
 
          <div className="mt-4 flex flex-col w-full gap-1">
             {paragraphsInContacts.map((paragraphData) => {
-               return <ParagraphWithTitle {...paragraphData} />
+               return <ParagraphWithTitle {...paragraphData} key={paragraphData.text}/>
             })}
          </div>
       </div>

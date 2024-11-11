@@ -4,9 +4,9 @@ import CustomNavLink from "./MyComponents/CustomNavLink"
 import { IRoutingList } from "../../Routing/Routing.types"
 
 const screenNavList: IRoutingList[] = [
-   { ...screenList.contact, name: "Contact" },
-   { ...screenList.about, name: "About" },
-   { ...screenList.catalog, name: "Catalog" },
+   screenList.contact,
+   screenList.about,
+   screenList.catalog,
 ]
 
 function Header(): JSX.Element {

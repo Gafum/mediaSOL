@@ -3,9 +3,19 @@ import Error404 from "../Components/Errors/Error404"
 import { screenList } from "./RoutingList"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
+import { useEffect } from "react"
 
 function Router(): JSX.Element {
    const location = useLocation()
+   useEffect(() => {
+      let screenName: string | undefined = Object.values(screenList).find(
+         (e) => {
+            return e.path == location.pathname
+         }
+      )?.name
+
+      document.title = `${screenName} - MediaSOL - Computer care`
+   }, [location])
    return (
       <Routes location={location} key={location.pathname}>
          {Object.values(screenList).map((screen) => (

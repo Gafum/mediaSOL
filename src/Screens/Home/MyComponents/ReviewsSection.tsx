@@ -50,11 +50,8 @@ function ReviewsSection(): JSX.Element {
             <Slider {...sliderSettings}>
                {reviewsList.map(({ userName, comment, stars }) => {
                   return (
-                     <div className="pr-4 w-1/3">
-                        <div
-                           key={comment}
-                           className="bg-primaryLightGrey rounded-md p-4"
-                        >
+                     <div className="pr-4 w-1/3" key={comment}>
+                        <div className="bg-primaryLightGrey rounded-md p-4">
                            <div className="flex justify-between">
                               <div className="Stars flex flex-col items-start">
                                  <h4 className="capitalize font-semibold">
