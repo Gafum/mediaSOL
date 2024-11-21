@@ -1,6 +1,10 @@
+import Slider from "react-slick"
+import { IGadget } from "../../../MainTypes/Gadget"
+import { sliderSettings } from "../../../UI/CustomData/sliderSettings"
+
 interface OneGoodsListProps {
    name: string
-   list: string[]
+   list: IGadget[]
 }
 
 export const OneGoodsList = ({
@@ -10,20 +14,35 @@ export const OneGoodsList = ({
    return (
       <div className="w-full">
          <h2 className="font-semibold text-[21px]">{name}</h2>
-         <div className="overflow-x-scroll mt-2">
-            <div className="min-w-max w-full flex gap-4">
-               {list.map((e) => {
-                  return (
+         <Slider
+            {...{ ...sliderSettings, ...{ slidesToShow: 4 } }}
+            className="mt-3"
+         >
+            {list.map((e) => {
+               return (
+                  <div>
                      <div
-                        className="h-[220px] w-[20vw] bg-gray-100 rounded-md inline-block"
-                        key={e}
+                        className="h-[400px] w-[20vw] max-w-[300px] bg-gray-100 rounded-md text-left p-5 flex flex-col justify-between relative min-w-[250px]"
+                        key={e.id}
                      >
-                        {e}
+                        {e.action && (
+                           <span className="w-1/4 bg-primaryPink absolute">
+                              {e.action}%
+                           </span>
+                        )}
+                        <img src={e.img} alt={e.img} className="rounded-md" />
+                        <div>
+                           <h4 className="text-lg font-bold">{e.name}</h4>
+                           <h6 className="text-sm">{e.type}</h6>
+                           <h4 className="font-semibold">
+                              $ {e.price.toFixed(2)}
+                           </h4>
+                        </div>
                      </div>
-                  )
-               })}
-            </div>
-         </div>
+                  </div>
+               )
+            })}
+         </Slider>
       </div>
    )
 }

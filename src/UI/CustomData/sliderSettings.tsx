@@ -6,3 +6,5 @@ export const sliderSettings = {
    nextArrow: <></>,
    prevArrow: <></>,
 }
+
+
