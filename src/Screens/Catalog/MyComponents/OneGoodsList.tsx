@@ -15,24 +15,29 @@ export const OneGoodsList = ({
       <div className="w-full">
          <h2 className="font-semibold text-[21px]">{name}</h2>
          <Slider
-            {...{ ...sliderSettings, ...{ slidesToShow: 4 } }}
+            {...{ ...sliderSettings, ...{ slidesToShow: 4, dots: false } }}
             className="mt-3"
          >
             {list.map((e) => {
                return (
                   <div>
                      <div
-                        className="h-[400px] w-[20vw] max-w-[300px] bg-gray-100 rounded-md text-left p-5 flex flex-col justify-between relative min-w-[250px]"
+                        className="w-[20vw] max-w-[300px] min-w-[250px] bg-gray-100 rounded-md text-left p-5 flex flex-col justify-between relative gap-1"
                         key={e.id}
                      >
                         {e.action && (
-                           <span className="w-1/4 bg-primaryPink absolute">
-                              {e.action}%
+                           <span className="text-base w-1/4 top-2 left-2 rounded-xl bg-primaryPink absolute text-white text-center">
+                              - {e.action}%
                            </span>
                         )}
-                        <img src={e.img} alt={e.img} className="rounded-md" />
+                        <div
+                           className="rounded-md h-[200px] w-full bg-center bg-contain"
+                           style={{ backgroundImage: `url(${e.img})` }}
+                        />
                         <div>
-                           <h4 className="text-lg font-bold">{e.name}</h4>
+                           <h4 className="text-base font-bold overflow-clip text-ellipsis">
+                              {e.name}
+                           </h4>
                            <h6 className="text-sm">{e.type}</h6>
                            <h4 className="font-semibold">
                               $ {e.price.toFixed(2)}
