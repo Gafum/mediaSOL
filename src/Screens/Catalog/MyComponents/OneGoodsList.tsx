@@ -15,14 +15,22 @@ export const OneGoodsList = ({
       <div className="w-full">
          <h2 className="font-semibold text-[21px]">{name}</h2>
          <Slider
-            {...{ ...sliderSettings, ...{ slidesToShow: 4, dots: false } }}
+            {...{
+               ...sliderSettings,
+               ...{
+                  slidesToShow: 1,
+                  dots: false,
+                  slidesToScroll: 1,
+                  variableWidth: true,
+               },
+            }}
             className="mt-3"
          >
             {list.map((e) => {
                return (
                   <div>
                      <div
-                        className="w-[20vw] max-w-[300px] min-w-[250px] bg-gray-100 rounded-md text-left p-5 flex flex-col justify-between relative gap-1"
+                        className="mr-4 w-[20vw] max-w-[300px] min-w-[250px] bg-gray-100 rounded-md text-left p-5 flex flex-col justify-between relative gap-1"
                         key={e.id}
                      >
                         {e.action && (

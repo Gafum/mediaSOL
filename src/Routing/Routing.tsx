@@ -14,6 +14,10 @@ function Router(): JSX.Element {
          }
       )?.name
 
+      if(!screenName){
+         screenName = "error"
+      }
+
       document.title = `${screenName} - MediaSOL - Computer care`
    }, [location])
    return (
