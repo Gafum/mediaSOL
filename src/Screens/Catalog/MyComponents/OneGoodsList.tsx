@@ -34,7 +34,7 @@ export const OneGoodsList = ({
                         key={e.id}
                      >
                         {e.action && (
-                           <span className="text-base w-1/4 top-2 left-2 rounded-xl bg-primaryPink absolute text-white text-center">
+                           <span className="text-base w-1/4 top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
                               - {e.action}%
                            </span>
                         )}
@@ -48,7 +48,20 @@ export const OneGoodsList = ({
                            </h4>
                            <h6 className="text-sm">{e.type}</h6>
                            <h4 className="font-semibold">
-                              $ {e.price.toFixed(2)}
+                              {e.action ? (
+                                 <>
+                                    $
+                                    {(
+                                       e.price -
+                                       (e.price / 100) * e.action
+                                    ).toFixed(2)}
+                                    <span className="line-through ml-2 font-semibold text-[#aaa]">
+                                       {"$" + e.price.toFixed(2).toString()}
+                                    </span>
+                                 </>
+                              ) : (
+                                 "$" + e.price.toFixed(2).toString()
+                              )}
                            </h4>
                         </div>
                      </div>
