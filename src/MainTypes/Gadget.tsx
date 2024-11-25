@@ -4,6 +4,6 @@ export interface IGadget {
    price: number
    description: string
    img: string
-   action?: number
    type: "PC" | "Laptop" | "Handy" | "Musik" | "Kamera" | "Gaming Gärate"
+   action?: number
 }

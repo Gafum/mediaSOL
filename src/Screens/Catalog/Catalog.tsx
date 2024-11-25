@@ -5,7 +5,7 @@ const DATALIST: IGadget[] = [
    {
       id: "123",
       name: "a",
-      price: 200,
+      price: 199.99,
       description: "tablet",
       img: "https://d10mhq06fikmnr.cloudfront.net/catalog/product/thumbnail/aa96dbfb87e4f8c7e875f02bac65f4459a20d733170ad048abc7fc95/image/308204/1000x1000/110/0/n/e/nero_rev2_os-min_1_1.jpg",
       type: "PC",
@@ -13,8 +13,8 @@ const DATALIST: IGadget[] = [
    },
    {
       id: "231",
-      name: "a",
-      price: 200,
+      name: "Best Tablet und grau screen",
+      price: 99.99,
       description: "tablet",
       img: "https://d10mhq06fikmnr.cloudfront.net/catalog/product/thumbnail/aa96dbfb87e4f8c7e875f02bac65f4459a20d733170ad048abc7fc95/image/308204/1000x1000/110/0/n/e/nero_rev2_os-min_1_1.jpg",
       type: "Kamera",
@@ -29,7 +29,7 @@ const DATALIST: IGadget[] = [
    },
    {
       id: "454564",
-      name: "Asdasdasdasdasdasdasdasdasdasd",
+      name: "Asdasdasdasdasdasdas dasdasdasd",
       price: 2000000,
       description: "tablet",
       img: "https://d10mhq06fikmnr.cloudfront.net/catalog/product/thumbnail/aa96dbfb87e4f8c7e875f02bac65f4459a20d733170ad048abc7fc95/image/308204/1000x1000/110/0/n/e/nero_rev2_os-min_1_1.jpg",
@@ -38,7 +38,7 @@ const DATALIST: IGadget[] = [
    {
       id: "43345",
       name: "a",
-      price: 200,
+      price: 199.99,
       description: "tablet",
       img: "https://d10mhq06fikmnr.cloudfront.net/catalog/product/thumbnail/aa96dbfb87e4f8c7e875f02bac65f4459a20d733170ad048abc7fc95/image/308204/1000x1000/110/0/n/e/nero_rev2_os-min_1_1.jpg",
       type: "Handy",
