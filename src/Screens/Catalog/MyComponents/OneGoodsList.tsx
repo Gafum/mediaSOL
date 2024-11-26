@@ -33,8 +33,8 @@ export const OneGoodsList = ({
          >
             {list.map((e) => {
                return (
-                  <div key={e.id}>
-                     <div className="mr-4 w-[20vw] max-w-[300px] min-w-[250px] bg-gray-100 rounded-md text-left p-5 flex flex-col justify-between relative gap-1">
+                  <div key={e.id} className="pb-10">
+                     <div className="mr-4 w-[20vw] max-w-[300px] min-w-[250px] bg-[#f8f9fe] rounded-md text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-shadow duration-300">
                         {e.action && (
                            <span className="text-base w-1/4 top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
                               - {e.action}%
@@ -42,18 +42,27 @@ export const OneGoodsList = ({
                         )}
                         {
                            <span
-                              className="text-base w-1/8 top-2 right-2 absolute text-white text-center cursor-pointer"
+                              className="text-base w-1/8 top-2 right-2 absolute text-white text-center cursor-pointer "
                               onClick={() =>
                                  setLikedList((prev) =>
                                     toggleListElement(prev, e.id.toString())
                                  )
                               }
                            >
-                              {likedList.includes(e.id) ? (
-                                 <Heart fill="#E32F70" color="#E32F70" />
-                              ) : (
-                                 <Heart color="#666" strokeWidth={2} />
-                              )}
+                              <Heart
+                                 size={24}
+                                 fill={
+                                    likedList.includes(e.id)
+                                       ? "#E32F70"
+                                       : "#f8f9fe"
+                                 }
+                                 color={
+                                    likedList.includes(e.id)
+                                       ? "#E32F70"
+                                       : "#666"
+                                 }
+                                 className="hover:drop-shadow-md transition-all duration-300"
+                              />
                            </span>
                         }
                         <div
