@@ -4,6 +4,7 @@ import { sliderSettings } from "../../../UI/CustomData/sliderSettings"
 import { Heart } from "lucide-react"
 import { useState } from "react"
 import { toggleListElement } from "../../../Funktion/toggleListElemnt"
+import { Link } from "react-router-dom"
 
 interface OneGoodsListProps {
    name: string
@@ -33,7 +34,7 @@ export const OneGoodsList = ({
          >
             {list.map((e) => {
                return (
-                  <div key={e.id} className="pb-10">
+                  <Link to={"/item/" + e.id} key={e.id} className="pb-10">
                      <div className="mr-4 w-[20vw] max-w-[300px] min-w-[250px] bg-[#f8f9fe] rounded-md text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-shadow duration-300">
                         {e.action && (
                            <span className="text-base w-1/4 top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
@@ -66,7 +67,7 @@ export const OneGoodsList = ({
                            </span>
                         }
                         <div
-                           className="rounded-md h-[200px] w-full bg-center bg-contain"
+                           className="rounded-md h-[200px] w-full bg-center bg-contain bg-no-repeat"
                            style={{ backgroundImage: `url(${e.img})` }}
                         />
                         <div>
@@ -92,7 +93,7 @@ export const OneGoodsList = ({
                            </h4>
                         </div>
                      </div>
-                  </div>
+                  </Link>
                )
             })}
          </Slider>
