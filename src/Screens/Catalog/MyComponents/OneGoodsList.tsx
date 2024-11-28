@@ -32,33 +32,34 @@ export const OneGoodsList = ({
             }}
             className="mt-3"
          >
-            {list.map((e) => {
+            {list.map((elem) => {
                return (
-                  <Link to={"/item/" + e.id} key={e.id} className="pb-10">
+                  <Link to={"/item/" + elem.id} key={elem.id} className="pb-10">
                      <div className="mr-4 w-[20vw] max-w-[300px] min-w-[250px] bg-[#f8f9fe] rounded-md text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-shadow duration-300">
-                        {e.action && (
+                        {elem.action && (
                            <span className="text-base w-1/4 top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
-                              - {e.action}%
+                              - {elem.action}%
                            </span>
                         )}
                         {
                            <span
                               className="text-base w-1/8 top-2 right-2 absolute text-white text-center cursor-pointer "
-                              onClick={() =>
+                              onClick={(event) => {
+                                 event.stopPropagation()
                                  setLikedList((prev) =>
-                                    toggleListElement(prev, e.id.toString())
+                                    toggleListElement(prev, elem.id.toString())
                                  )
-                              }
+                              }}
                            >
                               <Heart
                                  size={24}
                                  fill={
-                                    likedList.includes(e.id)
+                                    likedList.includes(elem.id)
                                        ? "#E32F70"
                                        : "#f8f9fe"
                                  }
                                  color={
-                                    likedList.includes(e.id)
+                                    likedList.includes(elem.id)
                                        ? "#E32F70"
                                        : "#666"
                                  }
@@ -68,27 +69,27 @@ export const OneGoodsList = ({
                         }
                         <div
                            className="rounded-md h-[200px] w-full bg-center bg-contain bg-no-repeat"
-                           style={{ backgroundImage: `url(${e.img})` }}
+                           style={{ backgroundImage: `url(${elem.img})` }}
                         />
                         <div>
                            <h4 className="text-base font-bold overflow-clip text-ellipsis whitespace-nowrap">
-                              {e.name}
+                              {elem.name}
                            </h4>
-                           <h6 className="text-sm">{e.type}</h6>
+                           <h6 className="text-sm">{elem.type}</h6>
                            <h4 className="font-semibold">
-                              {e.action ? (
+                              {elem.action ? (
                                  <>
                                     $
                                     {(
-                                       e.price -
-                                       (e.price / 100) * e.action
+                                       elem.price -
+                                       (elem.price / 100) * elem.action
                                     ).toFixed(2)}
                                     <span className="line-through ml-2 font-semibold text-[#aaa]">
-                                       {"$" + e.price.toFixed(2).toString()}
+                                       {"$" + elem.price.toFixed(2).toString()}
                                     </span>
                                  </>
                               ) : (
-                                 "$" + e.price.toFixed(2).toString()
+                                 "$" + elem.price.toFixed(2).toString()
                               )}
                            </h4>
                         </div>
