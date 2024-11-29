@@ -5,5 +5,6 @@ export interface IGadget {
    description: string
    img: string
    type: "PC" | "Laptop" | "Handy" | "Musik" | "Kamera" | "Gaming Gärate"
+   comentsList?: string[]
    action?: number
 }

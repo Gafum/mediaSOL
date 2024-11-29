@@ -3,6 +3,7 @@ import { IGadget } from "../../MainTypes/Gadget"
 import { CatalogContent } from "../../DevData/CatalogContent"
 import CustomBtn from "../../UI/CustomBtn/CustomBtn"
 import { OneGoodsList } from "../Catalog/MyComponents/OneGoodsList"
+import ReviewsSection from "../Home/MyComponents/ReviewsSection"
 
 export const Item = (): JSX.Element => {
    const { itemId } = useParams()
@@ -34,8 +35,12 @@ export const Item = (): JSX.Element => {
             </div>
          </div>
 
+         <div className="my-5">
+            <ReviewsSection />
+         </div>
+
          <OneGoodsList
-            name="Änlich"
+            name="Änliche Gadgets"
             list={CatalogContent.filter((elem) => {
                return (
                   elem.type == elementData.type && elem.id !== elementData.id
