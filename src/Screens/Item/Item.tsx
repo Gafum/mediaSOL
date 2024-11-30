@@ -25,12 +25,12 @@ export const Item = (): JSX.Element => {
 
             <div className="p-4 rounded-md bg-primaryLightGrey flex flex-col shadow-sm">
                <h2 className="font-semibold text-xl">{elementData.name}</h2>
-               <p className="mt-3">{elementData.description}</p>
-               <div className="flex-1" />
+               <p className="mt-2 text-[#777]">{elementData.description}</p>
+               <div className="flex-1 min-h-3" />
                <CustomBtn
                   btnText={"$" + elementData.price}
                   onClick={() => "sad-"}
-                  className="w-full"
+                  className="w-full font-semibold"
                />
             </div>
          </div>
