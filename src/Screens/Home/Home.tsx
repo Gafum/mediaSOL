@@ -17,6 +17,7 @@ function Home(): JSX.Element {
             btnText="Buy some gadgets"
             imgSrc="https://www.mifcom.de/media/catalog/product/i/m/img_0011_10.jpg"
             onClick={() => navigate(screenList.catalog.path)}
+            eventOnImgClick={() => navigate("/item/mainId")}
          />
 
          <ServicesSection />

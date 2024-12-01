@@ -7,6 +7,7 @@ interface ISectionProps {
    btnText: string
    imgSrc: string
    onClick: (event: MouseEvent) => void
+   eventOnImgClick?: (event: MouseEvent) => void
 }
 
 function StandardSection({
@@ -15,6 +16,7 @@ function StandardSection({
    btnText,
    imgSrc,
    onClick,
+   eventOnImgClick,
 }: ISectionProps): JSX.Element {
    return (
       <section className="w-full flex justify-between items-start gap-2 pt-7">
@@ -33,7 +35,12 @@ function StandardSection({
             />
          </div>
 
-         <img className="max-w-1/2 w-[400px]" src={imgSrc} alt="comp" />
+         <img
+            onClick={eventOnImgClick}
+            className="max-w-1/2 w-[400px]"
+            src={imgSrc}
+            alt="comp"
+         />
       </section>
    )
 }

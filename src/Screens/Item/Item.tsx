@@ -19,14 +19,14 @@ export const Item = (): JSX.Element => {
       <div>
          <div className="grid grid-cols-2 gap-2">
             <div
-               className="rounded-md bg-center bg-contain h-[300px] bg-no-repeat"
+               className="rounded-md bg-center bg-contain min-h-[300px] bg-no-repeat"
                style={{ backgroundImage: `url(${elementData.img})` }}
             />
 
             <div className="p-4 rounded-md bg-primaryLightGrey flex flex-col shadow-sm">
                <h2 className="font-semibold text-xl">{elementData.name}</h2>
                <p className="mt-2 text-[#777]">{elementData.description}</p>
-               <div className="flex-1 min-h-3" />
+               <div className="flex-1 min-h-5" />
                <CustomBtn
                   btnText={"$" + elementData.price}
                   onClick={() => "sad-"}

@@ -1,6 +1,16 @@
 import { IGadget } from "../MainTypes/Gadget"
 export const CatalogContent: IGadget[] = [
    {
+      id: "mainId",
+      name: "Monster Gaming PC - Intel i7 3,90Ghz | 32GB RAM | 1TB SSD | Nvidia RTX 3050 8GB",
+      price: 149.99,
+      description:
+         "Der ERAZER Bandit P20 ist Deine kompakte Gaming-Maschine. Seinem Namen macht er alle Ehre, indem er schurkenhaft im kleinen Gehäuse verbirgt, was in ihm steckt: Auf minimalem Raum liefert er beeindruckende Leistung für Dein Spielerlebnis. Das Spielgenre ist dabei nebensächlich: Komplexe strategische Zusammenhänge berechnet der mächtige Intel Core i7 Prozessor. Grafisch aufwendige virtuelle Welten stellt der Bandit P20 mit seiner NVIDIA GeForce RTX 4070 flüssig und ohne Ruckeln dar.",
+      img: "https://www.mifcom.de/media/catalog/product/i/m/img_0011_10.jpg",
+      type: "PC",
+      action: 20,
+   },
+   {
       id: "123",
       name: "High-Performance Tablet",
       price: 199.99,
