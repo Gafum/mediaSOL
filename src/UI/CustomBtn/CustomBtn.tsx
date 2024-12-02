@@ -2,7 +2,7 @@ import { MouseEvent } from "react";
 
 interface ICustomBtnProps {
    onClick: (event: MouseEvent) => void;
-   btnText: string;
+   btnText: string|JSX.Element;
    className?: string;
 }
 

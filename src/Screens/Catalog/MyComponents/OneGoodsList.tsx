@@ -5,6 +5,7 @@ import { Heart } from "lucide-react"
 import { useState } from "react"
 import { toggleListElement } from "../../../Funktion/toggleListElemnt"
 import { Link } from "react-router-dom"
+import { PriceShower } from "../../../Components/PriceShower/PriceShower"
 
 interface OneGoodsListProps {
    name: string
@@ -77,20 +78,10 @@ export const OneGoodsList = ({
                            </h4>
                            <h6 className="text-sm">{elem.type}</h6>
                            <h4 className="font-semibold">
-                              {elem.action ? (
-                                 <>
-                                    $
-                                    {(
-                                       elem.price -
-                                       (elem.price / 100) * elem.action
-                                    ).toFixed(2)}
-                                    <span className="line-through ml-2 font-semibold text-[#aaa]">
-                                       {"$" + elem.price.toFixed(2).toString()}
-                                    </span>
-                                 </>
-                              ) : (
-                                 "$" + elem.price.toFixed(2).toString()
-                              )}
+                              <PriceShower
+                                 price={elem.price}
+                                 action={elem.action}
+                              />
                            </h4>
                         </div>
                      </div>

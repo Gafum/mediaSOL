@@ -4,6 +4,7 @@ import { CatalogContent } from "../../DevData/CatalogContent"
 import CustomBtn from "../../UI/CustomBtn/CustomBtn"
 import { OneGoodsList } from "../Catalog/MyComponents/OneGoodsList"
 import ReviewsSection from "../Home/MyComponents/ReviewsSection"
+import { PriceShower } from "../../Components/PriceShower/PriceShower"
 
 export const Item = (): JSX.Element => {
    const { itemId } = useParams()
@@ -28,7 +29,12 @@ export const Item = (): JSX.Element => {
                <p className="mt-2 text-[#777]">{elementData.description}</p>
                <div className="flex-1 min-h-5" />
                <CustomBtn
-                  btnText={"$" + elementData.price}
+                  btnText={
+                     <PriceShower
+                        price={elementData.price}
+                        action={elementData.action}
+                     />
+                  }
                   onClick={() => "sad-"}
                   className="w-full font-semibold"
                />
