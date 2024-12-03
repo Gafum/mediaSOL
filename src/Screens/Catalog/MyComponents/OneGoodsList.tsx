@@ -3,7 +3,7 @@ import { IGadget } from "../../../MainTypes/Gadget"
 import { sliderSettings } from "../../../UI/CustomData/sliderSettings"
 import { Heart } from "lucide-react"
 import { useState } from "react"
-import { toggleListElement } from "../../../Funktion/toggleListElemnt"
+import { toggleListElement } from "../../../Function/toggleListElemnt"
 import { Link } from "react-router-dom"
 import { PriceShower } from "../../../Components/PriceShower/PriceShower"
 
