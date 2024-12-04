@@ -5,6 +5,7 @@ import CustomBtn from "../../UI/CustomBtn/CustomBtn"
 import { OneGoodsList } from "../Catalog/MyComponents/OneGoodsList"
 import ReviewsSection from "../Home/MyComponents/ReviewsSection"
 import { calculatePriceWithAction } from "../../Function/calculatePriceWithAction"
+import { Heart } from "lucide-react"
 
 export const Item = (): JSX.Element => {
    const { itemId } = useParams()
@@ -18,9 +19,9 @@ export const Item = (): JSX.Element => {
 
    return (
       <div>
-         <div className="grid grid-cols-2 gap-2">
+         <div className="grid grid-cols-2 gap-2 items-start justify-items-center">
             <div
-               className="rounded-md bg-center bg-contain min-h-[300px] bg-no-repeat"
+               className="w-[calc(100%-20px)] aspect-square rounded-md bg-center bg-contain min-h-[200px] bg-no-repeat"
                style={{ backgroundImage: `url(${elementData.img})` }}
             />
 
@@ -49,9 +50,25 @@ export const Item = (): JSX.Element => {
                <div className="flex-1 min-h-5" />
 
                <CustomBtn
-                  btnText="Kaufen"
-                  onClick={() => "sad-"}
-                  className="w-full font-semibold"
+                  btnText="In den Warenkorb"
+                  onClick={() => console.log("basket" + elementData.id)}
+                  className="w-full font-medium uppercase"
+               />
+               <CustomBtn
+                  btnText={
+                     <div className="flex justify-center items-center gap-2 font-medium text-white">
+                        <Heart
+                           size={18}
+                           fill={false ? "white" : "transparent"}
+                           color="white"
+                           strokeWidth="2.5px"
+                           className="hover:drop-shadow-md transition-all duration-300"
+                        />
+                        Zu Favoriten
+                     </div>
+                  }
+                  onClick={() => console.log("favorites" + elementData.id)}
+                  className="w-full font-medium uppercase bg-primaryPink mt-2"
                />
             </div>
          </div>
