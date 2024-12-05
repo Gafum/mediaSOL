@@ -7,7 +7,7 @@ function ServicesSection(): JSX.Element {
             <div className="text__bloc relative bg-primaryDarkGrey p-5 rounded-lg">
                <div className="text__block absolute max-w-[350px] w-1/2">
                   <h1 className=" text-white text-2xl">
-                     Consultation schools and companies
+                     Beratung von Firmen und Schulen
                   </h1>
                   <button className="h-10 w-10 bg-[#ffffff44] flex justify-center items-center mt-3 rounded-[4px] duration-300 transition-colors hover:bg-[#ffffff55]">
                      <ChevronRight color="#ffffff" />
@@ -34,7 +34,7 @@ function ServicesSection(): JSX.Element {
             <div className="text__bloc relative bg-primaryPink flex flex-col gap-4 p-5 rounded-lg">
                <div className="text__block absolute max-w-350px] w-1/2">
                   <h1 className="text-white text-2xl">
-                     Network settings and setup
+                     Netzwerkeinstellungen und Einrichtung
                   </h1>
                   <button className="h-10 w-10 bg-[#ffffff44] flex justify-center items-center mt-3 rounded-[4px] duration-300 transition-colors hover:bg-[#ffffff55]">
                      <ChevronRight color="#ffffff" />
@@ -86,7 +86,7 @@ function ServicesSection(): JSX.Element {
             <div className="relative bg-primaryDarkGrey flex flex-col gap-4 p-5 rounded-lg">
                <div className="text__block absolute max-w-[350px] w-2/5">
                   <h1 className="text-white text-2xl">
-                     Maintenance of computers and servers
+                     Wartung der Rechner und Server
                   </h1>
                   <button className="h-10 w-10 bg-[#ffffff44] transition-colors hover:bg-[#ffffff55] duration-300 flex justify-center items-center mt-3 rounded-[4px]">
                      <ChevronRight color="#ffffff" />
@@ -116,7 +116,7 @@ function ServicesSection(): JSX.Element {
             <div className="relative bg-primaryBlue flex flex-col gap-4 p-5 rounded-lg">
                <div className="text__block absolute max-w-[350px] w-2/5">
                   <h1 className="text-white text-2xl">
-                     Technical support and service
+                     Technischer Support und Service
                   </h1>
                   <button className="h-10 w-10 bg-[#ffffff44] transition-colors hover:bg-[#ffffff55] duration-300 flex justify-center items-center mt-3 rounded-[4px]">
                      <ChevronRight color="#ffffff" />

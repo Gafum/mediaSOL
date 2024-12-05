@@ -7,37 +7,43 @@ interface IReviews {
    stars: 0 | 1 | 2 | 3 | 4
 }
 
-const starsName: string[] = ["Bad", "Not good", "Not bad", "Good", "Excellent"]
+const starsName: string[] = [
+   "Nicht gut",
+   "Könnte besser sein",
+   "Okay",
+   "Gut",
+   "Ausgezeichnet",
+]
 
 const reviewsList: IReviews[] = [
    {
       userName: "user 1",
       comment:
-         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum blanditiis tempora quisquam hic officiis, suscipit, sequi obcaecati deserunt possimus, neque maxime repudiandae mollitia enim doloribus soluta. Explicabo, obcaecati. Officia accusamus dicta nam laudantium doloribus quam dolores error quasi sint.",
+         "Die Firma ist führend in ihrem Bereich und bietet außergewöhnliche Dienstleistungen und Produkte. Ihre Gadgets sind innovativ und von höchster Qualität, ihre Netzwerkstationen erfüllen auch anspruchsvollste Anforderungen, und der technische Support ist unschlagbar: freundlich, schnell und äußerst fachkundig. ",
       stars: 3,
    },
    {
       userName: "Adam Hoph",
       comment:
-         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum blanditiis tempora quisquam hic officiis, suscipit, sequi obcaecati deserunt possimus, neque maxime repudiandae mollitia enim doloribus soluta. Explicabo, obcaecati. Officia accusamus dicta nam laudantium doloribus quam dolores error quasi sint.",
+         'Die Firma bietet akzeptable Dienstleistungen und Produkte, ohne jedoch besonders hervorzustechen. Gadgets und Netzwerkstationen funktionieren wie beworben, aber es fehlt das "gewisse Etwa", das sie von der Konkurrenz abhebt. ',
       stars: 2,
    },
    {
       userName: "user 2",
       comment:
-         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum blanditiis tempora quisquam hic officiis, suscipit, sequi obcaecati deserunt possimus, neque maxime repudiandae mollitia enim doloribus soluta. Explicabo, obcaecati. Officia accusamus dicta nam laudantium doloribus quam dolores error quasi sint.",
+         "Diese Bewertung zeigt, dass die Firma in den meisten Bereichen überzeugt. Gadgets sind hochwertig, Lieferungen erfolgen pünktlich, und der technische Support ist kompetent und hilfsbereit. Auch die Netzwerkstationen sind zuverlässig und gut konfigurierbar. Es handelt sich um einen Anbieter, der das Vertrauen seiner Kunden größtenteils verdient hat, auch wenn es immer Raum für Verbesserungen gibt, wie z. B. noch mehr innovative Produkte.",
       stars: 4,
    },
    {
       userName: "user 3",
       comment:
-         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum blanditiis tempora quisquam hic officiis, suscipit, sequi obcaecati deserunt possimus, neque maxime repudiandae mollitia enim doloribus soluta. Explicabo, obcaecati. Officia accusamus dicta nam laudantium doloribus quam dolores error quasi sint.",
+         "Das Angebot ist akzeptabel, aber die Geräteauswahl ist begrenzt, und die Installation der Netzwerklösungen dauert länger als versprochen.",
       stars: 1,
    },
    {
       userName: "user 4",
       comment:
-         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum blanditiis tempora quisquam hic officiis, suscipit, sequi obcaecati deserunt possimus, neque maxime repudiandae mollitia enim doloribus soluta. Explicabo, obcaecati. Officia accusamus dicta nam laudantium doloribus quam dolores error quasi sint.",
+         "Der Service ist unzuverlässig, Lieferzeiten werden oft nicht eingehalten, und die technische Unterstützung ist schwer erreichbar.",
       stars: 0,
    },
 ]
@@ -45,13 +51,13 @@ const reviewsList: IReviews[] = [
 function ReviewsSection(): JSX.Element {
    return (
       <div className="w-full flex flex-col justify-center items-start mt-6">
-         <h3 className="font-semibold text-xl">Popular Reviews</h3>
+         <h3 className="font-semibold text-xl">Neueste Bewertungen</h3>
          <div className="max-w-full w-full mt-4">
             <Slider {...sliderSettings}>
                {reviewsList.map(({ userName, comment, stars }) => {
                   return (
                      <div className="pr-4 w-1/3" key={comment}>
-                        <div className="bg-primaryLightGrey rounded-md p-4">
+                        <div className="bg-primaryLightGrey rounded-md p-4 h-[210px]">
                            <div className="flex justify-between">
                               <div className="Stars flex flex-col items-start">
                                  <h4 className="capitalize font-semibold">
