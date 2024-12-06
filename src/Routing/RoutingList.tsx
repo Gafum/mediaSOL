@@ -4,12 +4,12 @@ import Home from "../Screens/Home/Home"
 import { IScreenList } from "./Routing.types"
 
 export const screenList: IScreenList = {
-   home: { path: "/", component: <Home />, name: "Home" },
-   about: { path: "/about", component: <About />, name: "About" },
-   contact: { path: "/contact", component: <Contact />, name: "Contact" },
+   home: { path: "/", component: <Home />, name: "Startseite" },
+   about: { path: "/about", component: <About />, name: "Über uns" },
+   contact: { path: "/contact", component: <Contact />, name: "Kontakt" },
    catalog: {
       path: "/catalog",
       component: <div>Catalog</div>,
-      name: "Catalog",
+      name: "Katalog",
    },
 }

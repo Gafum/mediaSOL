@@ -1,20 +1,25 @@
-import { MouseEvent } from "react";
+import { ButtonHTMLAttributes } from "react"
 
-interface ICustomBtnProps {
-   onClick: (event: MouseEvent) => void;
-   btnText: string;
-   className?: string;
+interface ICustomBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+   btnText: string
 }
 
-function CustomBtn({ onClick, btnText, className }: ICustomBtnProps): JSX.Element {
+function CustomBtn({
+   onClick,
+   btnText,
+   className,
+}: ICustomBtnProps): JSX.Element {
    return (
       <button
          onClick={onClick}
-         className={"bg-primaryBlue rounded-md text-white py-2 px-1 transition duration-300 hover:brightness-110 hover:shadow-lg " + (className ? className : "")}
+         className={
+            "bg-primaryBlue rounded-md text-white py-2 px-1 transition duration-300 hover:brightness-110 hover:shadow-lg " +
+            (className ? className : "")
+         }
       >
          {btnText}
       </button>
-   );
+   )
 }
 
-export default CustomBtn;
+export default CustomBtn

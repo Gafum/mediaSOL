@@ -14,7 +14,7 @@ function Router(): JSX.Element {
          }
       )?.name
 
-      document.title = `${screenName} - MediaSOL - Computer care`
+      document.title = `${screenName} - MediaSOL - Computerpflege`
    }, [location])
    return (
       <Routes location={location} key={location.pathname}>
