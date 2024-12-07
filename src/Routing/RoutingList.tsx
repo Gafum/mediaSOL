@@ -1,7 +1,8 @@
-import About from "../Screens/About/About"
-import Contact from "../Screens/Contact/Contact"
-import Home from "../Screens/Home/Home"
-import { IScreenList } from "./Routing.types"
+import About from "../Screens/About/About";
+import Contact from "../Screens/Contact/Contact";
+import Home from "../Screens/Home/Home";
+import { ConsultationService } from "../Screens/Services/Consultation/Consultation";
+import { IScreenList } from "./Routing.types";
 
 export const screenList: IScreenList = {
    home: { path: "/", component: <Home />, name: "Startseite" },
@@ -12,4 +13,9 @@ export const screenList: IScreenList = {
       component: <div>Catalog</div>,
       name: "Katalog",
    },
-}
+   contationService: {
+      path: "/service/consultation",
+      component: <ConsultationService />,
+      name: "Beratung",
+   },
+};
