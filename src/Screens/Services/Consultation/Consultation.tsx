@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { screenList } from "../../../Routing/RoutingList";
+import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
 
 export const ConsultationService = (): JSX.Element => {
+   const navigate = useNavigate();
+
    return (
       <div className=" text-gray-800">
          {/* Hero Section */}
@@ -12,12 +15,14 @@ export const ConsultationService = (): JSX.Element => {
             <p className="text-lg mb-6 text-white">
                Innovative Lösungen für eine bessere Zukunft
             </p>
-            <Link
-               to={screenList.contact.path}
-               className="inline-block bg-white text-primaryBlue w-1/2 min-w-200px font-semibold py-3 px-2 rounded-lg hover:bg-gray-100"
-            >
-               Jetzt Kontakt aufnehmen
-            </Link>
+
+            <CustomBtn
+               onClick={() => navigate(screenList.contact.path)}
+               btnText="Jetzt Kontakt aufnehmen"
+               className="w-1/2 min-w-200px font-semibold"
+               bgColor="white"
+               color="primaryBlue"
+            />
          </section>
 
          {/* Überblick */}
@@ -75,12 +80,13 @@ export const ConsultationService = (): JSX.Element => {
                Lassen Sie uns gemeinsam Ihre Ziele erreichen. Kontaktieren Sie
                uns, um mehr über unsere Dienstleistungen zu erfahren.
             </p>
-            <Link
-               to={screenList.contact.path}
-               className="inline-block bg-white text-primaryPink w-1/2 min-w-200px font-semibold py-3 px-2 rounded-lg hover:bg-gray-100"
-            >
-               Zur Kontaktseite
-            </Link>
+            <CustomBtn
+               onClick={() => navigate(screenList.contact.path)}
+               btnText="Jetzt Kontakt aufnehmen"
+               className="w-1/2 min-w-200px font-semibold"
+               bgColor="white"
+               color="primaryPink"
+            />
          </section>
       </div>
    );
