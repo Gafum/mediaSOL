@@ -86,37 +86,40 @@ function ServicesSection(): JSX.Element {
                </svg>
             </div>
          </div>
+
          <div className="w-1/2 flex flex-col gap-4">
-            <div className="relative bg-primaryDarkGrey flex flex-col gap-4 p-5 rounded-lg">
-               <div className="text__block absolute max-w-[350px] w-2/5">
-                  <h1 className="text-white text-2xl">
-                     Wartung der Rechner und Server
-                  </h1>
-                  <button className="h-10 w-10 bg-[#ffffff44] transition-colors hover:bg-[#ffffff55] duration-300 flex justify-center items-center mt-3 rounded-[4px]">
-                     <ChevronRight color="#ffffff" />
-                  </button>
+            <Link to={screenList.maintenanceService.path}>
+               <div className="relative bg-primaryDarkGrey flex flex-col gap-4 p-5 rounded-lg">
+                  <div className="text__block absolute max-w-[350px] w-2/5">
+                     <h1 className="text-white text-2xl">
+                        Wartung der Rechner und Server
+                     </h1>
+                     <button className="h-10 w-10 bg-[#ffffff44] transition-colors hover:bg-[#ffffff55] duration-300 flex justify-center items-center mt-3 rounded-[4px]">
+                        <ChevronRight color="#ffffff" />
+                     </button>
+                  </div>
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     className="w-3/5 ml-auto"
+                     fill="none"
+                     viewBox="0 0 96 96"
+                     id="computer-tower"
+                  >
+                     <path
+                        stroke="#eee"
+                        stroke-linecap="round"
+                        stroke-width="5"
+                        d="M36 19L59 19M36 28L59 28M32 84L32 87M63 84L63 87"
+                     ></path>
+                     <path
+                        stroke="#eee"
+                        stroke-width="5"
+                        d="M61 9H34C29.5817 9 26 12.5817 26 17V76C26 80.4183 29.5817 84 34 84H61C65.4183 84 69 80.4183 69 76V60.4423V17C69 12.5817 65.4183 9 61 9Z"
+                     ></path>
+                     <circle cx="48" cy="74" r="3" fill="#eee"></circle>
+                  </svg>
                </div>
-               <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-3/5 ml-auto"
-                  fill="none"
-                  viewBox="0 0 96 96"
-                  id="computer-tower"
-               >
-                  <path
-                     stroke="#eee"
-                     stroke-linecap="round"
-                     stroke-width="5"
-                     d="M36 19L59 19M36 28L59 28M32 84L32 87M63 84L63 87"
-                  ></path>
-                  <path
-                     stroke="#eee"
-                     stroke-width="5"
-                     d="M61 9H34C29.5817 9 26 12.5817 26 17V76C26 80.4183 29.5817 84 34 84H61C65.4183 84 69 80.4183 69 76V60.4423V17C69 12.5817 65.4183 9 61 9Z"
-                  ></path>
-                  <circle cx="48" cy="74" r="3" fill="#eee"></circle>
-               </svg>
-            </div>
+            </Link>
             <div className="relative bg-primaryBlue flex flex-col gap-4 p-5 rounded-lg">
                <div className="text__block absolute max-w-[350px] w-2/5">
                   <h1 className="text-white text-2xl">

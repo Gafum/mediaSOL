@@ -2,6 +2,7 @@ import About from "../Screens/About/About";
 import Contact from "../Screens/Contact/Contact";
 import Home from "../Screens/Home/Home";
 import { ConsultationService } from "../Screens/Services/Consultation/Consultation";
+import { Maintenance } from "../Screens/Services/Maintenance/Maintenance";
 import { IScreenList } from "./Routing.types";
 
 export const screenList: IScreenList = {
@@ -17,5 +18,10 @@ export const screenList: IScreenList = {
       path: "/service/consultation",
       component: <ConsultationService />,
       name: "Beratung",
+   },
+   maintenanceService: {
+      path: "/service/maintenance",
+      component: <Maintenance />,
+      name: "Wartung der Rechner",
    },
 };

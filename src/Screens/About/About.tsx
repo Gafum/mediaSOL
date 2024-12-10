@@ -100,7 +100,7 @@ function About() {
    const navigate = useNavigate();
 
    return (
-      <div className="max-w-[800px] m-auto flex flex-col">
+      <div className="max-w-[900px] m-auto flex flex-col">
          <section className="About__description flex gap-4 justify-start items-center flex-col lg:flex-row">
             <img
                src="/mainIcon.svg"

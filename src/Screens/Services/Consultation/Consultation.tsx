@@ -6,7 +6,7 @@ export const ConsultationService = (): JSX.Element => {
    const navigate = useNavigate();
 
    return (
-      <div className=" text-gray-800">
+      <>
          {/* Hero Section */}
          <section className="bg-primaryBlue text-white py-20 px-4 text-center rounded-md">
             <h1 className="text-4xl font-bold mb-4 text-white">
@@ -45,21 +45,21 @@ export const ConsultationService = (): JSX.Element => {
                Unsere Dienstleistungen
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-               <div className="bg-primaryLightGrey rounded-lg px-6 py-10 text-center">
+               <div className="bg-primaryLightGrey shadow-sm rounded-lg px-6 py-10 text-center">
                   <h3 className="text-xl font-semibold mb-4">Schulberatung</h3>
                   <p>
                      Unterstützung bei der Entwicklung moderner Lehrpläne und
                      digitaler Tools.
                   </p>
                </div>
-               <div className="bg-primaryLightGrey rounded-lg px-6 py-10 text-center">
+               <div className="bg-primaryLightGrey shadow-sm rounded-lg px-6 py-10 text-center">
                   <h3 className="text-xl font-semibold mb-4">Firmenberatung</h3>
                   <p>
                      Beratung zu Teammanagement, Digitalisierung und
                      Geschäftsoptimierung.
                   </p>
                </div>
-               <div className="bg-primaryLightGrey rounded-lg px-6 py-10 text-center">
+               <div className="bg-primaryLightGrey shadow-sm rounded-lg px-6 py-10 text-center">
                   <h3 className="text-xl font-semibold mb-4">
                      Workshops und Seminare
                   </h3>
@@ -88,6 +88,6 @@ export const ConsultationService = (): JSX.Element => {
                color="primaryPink"
             />
          </section>
-      </div>
+      </>
    );
 };
