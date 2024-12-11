@@ -1,8 +1,9 @@
 import About from "../Screens/About/About";
 import Contact from "../Screens/Contact/Contact";
 import Home from "../Screens/Home/Home";
-import { ConsultationService } from "../Screens/Services/Consultation/Consultation";
-import { Maintenance } from "../Screens/Services/Maintenance/Maintenance";
+import { ConsultationService } from "../Screens/ServicesScreen/Consultation/Consultation";
+import { Maintenance } from "../Screens/ServicesScreen/Maintenance/Maintenance";
+
 import { IScreenList } from "./Routing.types";
 
 export const screenList: IScreenList = {

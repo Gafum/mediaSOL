@@ -2,15 +2,14 @@ import { ButtonHTMLAttributes } from "react";
 
 interface ICustomBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    btnText?: string;
-   bgColor?: "primaryBlue" | "white" | string;
-   color?: "primaryBlue" | "white" | string;
+   bgColor?: "primaryBlue" | "PrimaryPink" | "white" | string;
+   color?: "primaryBlue" | "primaryPink" | "white" | string;
 }
 
 function CustomBtn({
    onClick,
    btnText,
    className,
-   children,
    bgColor = "primaryBlue",
    color = "white",
 }: ICustomBtnProps): JSX.Element {
@@ -18,11 +17,11 @@ function CustomBtn({
       <button
          onClick={onClick}
          className={
-            `bg-${bgColor} rounded-md text-${color} py-2 px-1 transition duration-300 hover:brightness-110 hover:shadow-lg ` +
+            `bg-${bgColor} rounded-md py-2 px-1 transition duration-300 hover:brightness-110 hover:shadow-lg text-${color} ` +
             (className ? className : "")
          }
       >
-         {btnText ? btnText : children}
+         {btnText}
       </button>
    );
 }
