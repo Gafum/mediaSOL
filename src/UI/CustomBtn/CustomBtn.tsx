@@ -13,6 +13,8 @@ function CustomBtn({
    bgColor = "primaryBlue",
    color = "white",
 }: ICustomBtnProps): JSX.Element {
+   console.log(color);
+
    return (
       <button
          onClick={onClick}
