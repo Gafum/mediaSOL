@@ -1,8 +1,9 @@
 import About from "../Screens/About/About";
 import Contact from "../Screens/Contact/Contact";
 import Home from "../Screens/Home/Home";
-import { ConsultationService } from "../Screens/ServicesScreen/Consultation/Consultation";
-import { Maintenance } from "../Screens/ServicesScreen/Maintenance/Maintenance";
+import { ConsultationServiceData } from "../Screens/ServicesScreen/ServicesData/Consultation";
+import { MaintenanceServiceData } from "../Screens/ServicesScreen/ServicesData/Maintenance";
+import { ServicesScreenGenerator } from "../Screens/ServicesScreen/ServicesScreenGenerator";
 
 import { IScreenList } from "./Routing.types";
 
@@ -17,12 +18,16 @@ export const screenList: IScreenList = {
    },
    contationService: {
       path: "/service/consultation",
-      component: <ConsultationService />,
+      component: (
+         <ServicesScreenGenerator ServicesList={ConsultationServiceData} />
+      ),
       name: "Beratung",
    },
    maintenanceService: {
       path: "/service/maintenance",
-      component: <Maintenance />,
+      component: (
+         <ServicesScreenGenerator ServicesList={MaintenanceServiceData} />
+      ),
       name: "Wartung der Rechner",
    },
 };

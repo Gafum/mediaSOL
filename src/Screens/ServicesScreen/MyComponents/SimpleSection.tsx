@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { IOneSection } from "../ServicesScreen";
+import { IOneSection } from "./ServicesScreenGenerator";
 import { screenList } from "../../../Routing/RoutingList";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
 

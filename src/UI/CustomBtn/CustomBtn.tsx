@@ -17,7 +17,7 @@ function CustomBtn({
       <button
          onClick={onClick}
          className={
-            `bg-${bgColor} rounded-md py-2 px-1 transition duration-300 hover:brightness-110 hover:shadow-lg text-${color} ` +
+            `bg-${bgColor} rounded-md py-2 px-1 transition duration-300 hover:brightness-110 hover:shadow-lg ${"text-" + color} ` +
             (className ? className : "")
          }
       >

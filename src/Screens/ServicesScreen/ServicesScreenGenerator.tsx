@@ -12,7 +12,7 @@ interface ServicesScreenProps {
    ServicesList: IOneSection[];
 }
 
-export const ServicesScreen = ({
+export const ServicesScreenGenerator = ({
    ServicesList,
 }: ServicesScreenProps): JSX.Element => {
    return (
