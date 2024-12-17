@@ -3,8 +3,10 @@ type RouteKeys =
    | "contact"
    | "about"
    | "catalog"
-   | "contationService"
-   | "maintenanceService";
+   | "consultationService"
+   | "maintenanceService"
+   | "networkSetupService"
+   | "technicalSupportService";
 
 export interface IRoutingList {
    path: string;

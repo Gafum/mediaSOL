@@ -16,7 +16,7 @@ export const screenList: IScreenList = {
       component: <div>Catalog</div>,
       name: "Katalog",
    },
-   contationService: {
+   consultationService: {
       path: "/service/consultation",
       component: (
          <ServicesScreenGenerator ServicesList={ConsultationServiceData} />
@@ -24,6 +24,20 @@ export const screenList: IScreenList = {
       name: "Beratung",
    },
    maintenanceService: {
+      path: "/service/maintenance",
+      component: (
+         <ServicesScreenGenerator ServicesList={MaintenanceServiceData} />
+      ),
+      name: "Wartung der Rechner",
+   },
+   networkSetupService: {
+      path: "/service/maintenance",
+      component: (
+         <ServicesScreenGenerator ServicesList={MaintenanceServiceData} />
+      ),
+      name: "Wartung der Rechner",
+   },
+   technicalSupportService: {
       path: "/service/maintenance",
       component: (
          <ServicesScreenGenerator ServicesList={MaintenanceServiceData} />
