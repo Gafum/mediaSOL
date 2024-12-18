@@ -1,4 +1,4 @@
-export const ConsultationServiceData = [
+export const ConsultationServiceContent = [
    {
       title: "Professionelle Beratung für Firmen und Schulen",
       description: "Innovative Lösungen für eine bessere Zukunft",

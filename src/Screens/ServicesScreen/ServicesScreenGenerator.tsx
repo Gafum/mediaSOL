@@ -22,12 +22,15 @@ export const ServicesScreenGenerator = ({
                !elem.bg &&
                !ServicesList[index - 1]?.bg &&
                ServicesList[index - 1];
+            // Check that this and the previous element have no background
 
             return (
                <div key={elem.title + "_block"}>
                   {showLine && (
                      // Show blue line
-                     <div className="w-1/4 h-[3px] bg-primaryBlue m-auto" />
+                     <div
+                        className={`w-1/4 h-[3px] bg-primaryBlue m-auto rounded-sm`}
+                     />
                   )}
                   <OneSection
                      title={elem.title}

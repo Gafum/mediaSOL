@@ -1,8 +1,9 @@
 import About from "../Screens/About/About";
 import Contact from "../Screens/Contact/Contact";
 import Home from "../Screens/Home/Home";
-import { ConsultationServiceData } from "../Screens/ServicesScreen/ServicesData/Consultation";
-import { MaintenanceServiceData } from "../Screens/ServicesScreen/ServicesData/Maintenance";
+import { ConsultationServiceContent } from "../Screens/ServicesScreen/ServicesData/Consultation";
+import { MaintenanceServiceContent } from "../Screens/ServicesScreen/ServicesData/Maintenance";
+import { NetworkSetupContent } from "../Screens/ServicesScreen/ServicesData/NetworkSetup";
 import { ServicesScreenGenerator } from "../Screens/ServicesScreen/ServicesScreenGenerator";
 
 import { IScreenList } from "./Routing.types";
@@ -19,28 +20,26 @@ export const screenList: IScreenList = {
    consultationService: {
       path: "/service/consultation",
       component: (
-         <ServicesScreenGenerator ServicesList={ConsultationServiceData} />
+         <ServicesScreenGenerator ServicesList={ConsultationServiceContent} />
       ),
       name: "Beratung",
    },
    maintenanceService: {
       path: "/service/maintenance",
       component: (
-         <ServicesScreenGenerator ServicesList={MaintenanceServiceData} />
+         <ServicesScreenGenerator ServicesList={MaintenanceServiceContent} />
       ),
       name: "Wartung der Rechner",
    },
    networkSetupService: {
-      path: "/service/maintenance",
-      component: (
-         <ServicesScreenGenerator ServicesList={MaintenanceServiceData} />
-      ),
-      name: "Wartung der Rechner",
+      path: "/service/networkSetup",
+      component: <ServicesScreenGenerator ServicesList={NetworkSetupContent} />,
+      name: "Netzwerkeinstellungen und Einrichtung",
    },
    technicalSupportService: {
       path: "/service/maintenance",
       component: (
-         <ServicesScreenGenerator ServicesList={MaintenanceServiceData} />
+         <ServicesScreenGenerator ServicesList={ConsultationServiceContent} />
       ),
       name: "Wartung der Rechner",
    },

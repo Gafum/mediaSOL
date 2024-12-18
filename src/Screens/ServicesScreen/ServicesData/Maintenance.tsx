@@ -1,4 +1,4 @@
-export const MaintenanceServiceData = [
+export const MaintenanceServiceContent = [
    {
       title: "Wartung der Rechner und Server",
       description:
