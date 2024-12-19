@@ -2,38 +2,45 @@ export const MaintenanceServiceContent = [
    {
       title: "Wartung der Rechner und Server",
       description:
-         "Ihre Rechner und Server in sicheren Händen – zuverlässig, professionell und effizient.",
+         "Professionelle IT-Wartung für eine stabile und sichere Infrastruktur. Mit uns sind Ihre Systeme in besten Händen.",
+      button: true,
+      bg: "primaryBlue",
    },
    {
-      title: "Warum regelmäßige Wartung?",
+      title: "Warum ist IT-Wartung wichtig?",
+      description:
+         "Regelmäßige Wartung sorgt nicht nur für eine längere Lebensdauer Ihrer Systeme, sondern schützt auch vor unerwarteten Ausfällen und Sicherheitsrisiken. Mit unserem Service bleiben Ihre Geräte stets einsatzbereit.",
+   },
+   {
+      title: "Vorteile unserer Wartungsservices",
       list: [
          {
-            title: "Maximale Leistung",
+            title: "Kosteneffizienz",
             description:
-               "Optimieren Sie die Leistung Ihrer Geräte durch regelmäßige Wartung und verhindern Sie unnötige Ausfallzeiten.",
+               "Reduzieren Sie langfristige Kosten durch eine regelmäßige Wartung Ihrer Systeme.",
          },
          {
-            title: "Längere Lebensdauer",
+            title: "Zuverlässigkeit",
             description:
-               "Regelmäßige Wartung verlängert die Lebensdauer Ihrer Hardware und spart langfristig Kosten.",
+               "Wir sorgen dafür, dass Ihre IT-Infrastruktur stabil und sicher bleibt.",
          },
          {
-            title: "Datensicherheit",
+            title: "Flexibilität",
             description:
-               "Schützen Sie Ihre sensiblen Daten durch regelmäßige Updates und Sicherheitschecks.",
+               "Unsere Wartungspläne sind individuell auf die Bedürfnisse Ihres Unternehmens zugeschnitten.",
          },
          {
-            title: "Effiziente Arbeitsprozesse",
+            title: "Kompetente Experten",
             description:
-               "Minimieren Sie Unterbrechungen im Arbeitsalltag durch proaktive Wartung Ihrer IT-Systeme.",
+               "Unser Team aus erfahrenen IT-Fachleuten garantiert einen professionellen Service.",
          },
       ],
    },
    {
-      title: "Bereit für sichere IT-Systeme?",
+      title: "Bereit für den nächsten Schritt?",
       description:
-         "Kontaktieren Sie uns, um mehr über unsere Wartungsservices zu erfahren. Unser Team steht Ihnen zur Seite!",
-      bg: "primaryPink",
+         "Kontaktieren Sie uns und erfahren Sie, wie wir Ihre IT-Systeme sichern und optimieren können. Unser Team freut sich auf Ihre Anfrage!",
       button: true,
+      bg: "primaryPink",
    },
 ];
