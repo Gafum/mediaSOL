@@ -1,4 +1,6 @@
-export const MaintenanceServiceContent = [
+import { IOneSection } from "../ServicesScreenGenerator";
+
+export const MaintenanceServiceContent: IOneSection[] = [
    {
       title: "Wartung der Rechner und Server",
       description:

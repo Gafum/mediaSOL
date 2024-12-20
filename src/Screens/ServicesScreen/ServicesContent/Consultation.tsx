@@ -1,4 +1,6 @@
-export const ConsultationServiceContent = [
+import { IOneSection } from "../ServicesScreenGenerator";
+
+export const ConsultationServiceContent: IOneSection[] = [
    {
       title: "Professionelle Beratung für Firmen und Schulen",
       description: "Innovative Lösungen für eine bessere Zukunft",

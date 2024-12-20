@@ -1,4 +1,6 @@
-export const NetworkSetupContent = [
+import { IOneSection } from "../ServicesScreenGenerator";
+
+export const NetworkSetupContent: IOneSection[] = [
    {
       title: "Netzwerkeinstellungen und Einrichtung",
       description:

@@ -1,9 +1,10 @@
 import About from "../Screens/About/About";
 import Contact from "../Screens/Contact/Contact";
 import Home from "../Screens/Home/Home";
-import { ConsultationServiceContent } from "../Screens/ServicesScreen/ServicesData/Consultation";
-import { MaintenanceServiceContent } from "../Screens/ServicesScreen/ServicesData/Maintenance";
-import { NetworkSetupContent } from "../Screens/ServicesScreen/ServicesData/NetworkSetup";
+import { ConsultationServiceContent } from "../Screens/ServicesScreen/ServicesContent/Consultation";
+import { MaintenanceServiceContent } from "../Screens/ServicesScreen/ServicesContent/Maintenance";
+import { NetworkSetupContent } from "../Screens/ServicesScreen/ServicesContent/NetworkSetup";
+import { TechnicalSupportContent } from "../Screens/ServicesScreen/ServicesContent/TechnicalSupport";
 import { ServicesScreenGenerator } from "../Screens/ServicesScreen/ServicesScreenGenerator";
 
 import { IScreenList } from "./Routing.types";
@@ -37,10 +38,10 @@ export const screenList: IScreenList = {
       name: "Netzwerkeinstellungen und Einrichtung",
    },
    technicalSupportService: {
-      path: "/service/maintenance",
+      path: "/service/technicalSupport",
       component: (
-         <ServicesScreenGenerator ServicesList={ConsultationServiceContent} />
+         <ServicesScreenGenerator ServicesList={TechnicalSupportContent} />
       ),
-      name: "Wartung der Rechner",
+      name: "Technischer Support und Service",
    },
 };

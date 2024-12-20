@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { screenList } from "../../Routing/RoutingList";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 
 interface IAboutSectionData {
@@ -77,7 +77,7 @@ function SectionAboutPage({
                {description.map((text) => (
                   <div
                      key={text.title}
-                     className="bg-primaryLightGrey p-4 rounded-md"
+                     className="bg-primaryLightGrey p-4 rounded-md shadow-sm"
                   >
                      <h3 className="text-md font-semibold">{text.title}</h3>
                      <p className="text-sm mt-1">{text.text}</p>
@@ -102,11 +102,12 @@ function About() {
    return (
       <div className="max-w-[900px] m-auto flex flex-col">
          <section className="About__description flex gap-4 justify-start items-center flex-col lg:flex-row">
-            <img
-               src="/mainIcon.svg"
-               alt="M"
+            <Link
+               to={screenList.home.path}
                className="w-full max-w-[200px] lg:w-1/2"
-            />
+            >
+               <img src="/mainIcon.svg" alt="M" />
+            </Link>
             <div className="text-left py-6">
                <h1 className="text-2xl font-bold">Über MediaSOL GmbH</h1>
                <p className="text-sm text-gray-600">
