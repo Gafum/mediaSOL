@@ -1,4 +1,13 @@
-type RouteKeys = "home" | "contact" | "about" | "catalog" | "item"
+type RouteKeys =
+   | "home"
+   | "contact"
+   | "about"
+   | "catalog"
+   | "item"
+   | "consultationService"
+   | "maintenanceService"
+   | "networkSetupService"
+   | "technicalSupportService";
 
 export interface IRoutingList {
    path: string
