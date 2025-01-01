@@ -4,6 +4,9 @@ export default {
   theme: {
     container: false,
     extend: {
+      dropShadow: {
+        md: "0 0 3px #666"
+      },
       colors: {
         primaryBlue: "#0056d6",
         primaryPink: "#E32F70",

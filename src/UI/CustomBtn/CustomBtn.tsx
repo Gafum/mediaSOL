@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from "react"
 
 interface ICustomBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-   btnText: string
+   btnText: string|JSX.Element
 }
 
 function CustomBtn({
