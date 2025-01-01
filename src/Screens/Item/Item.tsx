@@ -6,6 +6,7 @@ import { OneGoodsList } from "../Catalog/MyComponents/OneGoodsList"
 import ReviewsSection from "../Home/MyComponents/ReviewsSection"
 import { calculatePriceWithAction } from "../../Function/calculatePriceWithAction"
 import { Heart } from "lucide-react"
+import Error404 from "../../Components/Errors/Error404"
 
 export const Item = (): JSX.Element => {
    const { itemId } = useParams()
@@ -14,7 +15,7 @@ export const Item = (): JSX.Element => {
    })
 
    if (!elementData) {
-      return <div>error</div>
+      return <Error404 />
    }
 
    return (
