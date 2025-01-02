@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom"
-import { screenList } from "../../Routing/RoutingList"
-import { contactData } from "../../Screens/Contact/ContactData"
+import { Link } from "react-router-dom";
+import { screenList } from "../../Routing/RoutingList";
+import { contactData } from "../../Screens/Contact/ContactData";
 
-function Footer(): JSX.Element {
+export const Footer = (): JSX.Element => {
    return (
       <footer className="bg-primaryLightGrey">
          <div className="flex justify-start px-9 py-4 gap-6 items-start container">
@@ -54,7 +54,5 @@ function Footer(): JSX.Element {
             </div>
          </div>
       </footer>
-   )
-}
-
-export default Footer
+   );
+};

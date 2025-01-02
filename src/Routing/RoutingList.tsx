@@ -1,7 +1,7 @@
-import About from "../Screens/About/About";
+import { About } from "../Screens/About/About";
 import { Catalog } from "../Screens/Catalog/Catalog";
-import Contact from "../Screens/Contact/Contact";
-import Home from "../Screens/Home/Home";
+import { Contact } from "../Screens/Contact/Contact";
+import { Home } from "../Screens/Home/Home";
 import { ConsultationServiceContent } from "../Screens/ServicesScreen/ServicesContent/Consultation";
 import { MaintenanceServiceContent } from "../Screens/ServicesScreen/ServicesContent/Maintenance";
 import { NetworkSetupContent } from "../Screens/ServicesScreen/ServicesContent/NetworkSetup";

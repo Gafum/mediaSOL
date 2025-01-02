@@ -1,25 +1,25 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
-import Error404 from "../Components/Errors/Error404"
-import { screenList } from "./RoutingList"
-import Header from "../Components/Header/Header"
-import Footer from "../Components/Footer/Footer"
-import { useEffect } from "react"
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { Error404 } from "../Components/Errors/Error404";
+import { screenList } from "./RoutingList";
+import { Header } from "../Components/Header/Header";
+import { Footer } from "../Components/Footer/Footer";
+import { useEffect } from "react";
 
-function Router(): JSX.Element {
-   const location = useLocation()
+export const Router = (): JSX.Element => {
+   const location = useLocation();
    useEffect(() => {
       let screenName: string | undefined = Object.values(screenList).find(
          (e) => {
-            return e.path == location.pathname
+            return e.path == location.pathname;
          }
-      )?.name
+      )?.name;
 
-      if(!screenName){
-         screenName = "error"
+      if (!screenName) {
+         screenName = "error";
       }
 
-      document.title = `${screenName} - MediaSOL - Computerpflege`
-   }, [location])
+      document.title = `${screenName} - MediaSOL - Computerpflege`;
+   }, [location]);
    return (
       <Routes location={location} key={location.pathname}>
          {Object.values(screenList).map((screen) => (
@@ -32,10 +32,10 @@ function Router(): JSX.Element {
 
          <Route path="*" element={<Error404 />} />
       </Routes>
-   )
-}
+   );
+};
 
-function MainRouter(): JSX.Element {
+export const MainRouter = (): JSX.Element => {
    return (
       <BrowserRouter>
          <div className="flex flex-col h-full">
@@ -48,7 +48,5 @@ function MainRouter(): JSX.Element {
             </div>
          </div>
       </BrowserRouter>
-   )
-}
-
-export default MainRouter
+   );
+};

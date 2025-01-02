@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { screenList } from "../../Routing/RoutingList";
 import { Link, useNavigate } from "react-router-dom";
-import CustomBtn from "../../UI/CustomBtn/CustomBtn";
+import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 
 interface IAboutSectionData {
    name: string;
@@ -64,10 +64,10 @@ const aboutSectionData: IAboutSectionData[] = [
    },
 ];
 
-function SectionAboutPage({
+const SectionAboutPage = ({
    title,
    description,
-}: IAboutSectionData): JSX.Element {
+}: IAboutSectionData): JSX.Element => {
    function createDescription(): ReactNode {
       if (typeof description == "string") {
          return <p className="text-sm">{description}</p>;
@@ -94,9 +94,9 @@ function SectionAboutPage({
          {createDescription()}
       </section>
    );
-}
+};
 
-function About() {
+export const About = (): JSX.Element => {
    const navigate = useNavigate();
 
    return (
@@ -128,6 +128,4 @@ function About() {
          />
       </div>
    );
-}
-
-export default About;
+};

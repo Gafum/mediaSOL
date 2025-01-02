@@ -1,13 +1,13 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
-import { screenList } from "../../Routing/RoutingList"
-import StandardSection from "./MyComponents/StandardSection"
-import ServicesSection from "./MyComponents/ServicesSection"
-import ReviewsSection from "./MyComponents/ReviewsSection"
-import OurPartners from "./MyComponents/OurPartners"
+import { screenList } from "../../Routing/RoutingList";
+import { StandardSection } from "./MyComponents/StandardSection";
+import { ServicesSection } from "./MyComponents/ServicesSection";
+import { ReviewsSection } from "./MyComponents/ReviewsSection";
+import { OurPartners } from "./MyComponents/OurPartners";
 
-function Home(): JSX.Element {
-   let navigate = useNavigate()
+export const Home = (): JSX.Element => {
+   let navigate = useNavigate();
 
    return (
       <div className="text-primaryBlue">
@@ -24,7 +24,5 @@ function Home(): JSX.Element {
          <OurPartners />
          <ReviewsSection />
       </div>
-   )
-}
-
-export default Home
+   );
+};

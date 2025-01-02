@@ -2,7 +2,7 @@ import { ChevronRight } from "lucide-react";
 import { screenList } from "../../../Routing/RoutingList";
 import { Link } from "react-router-dom";
 
-function ServicesSection(): JSX.Element {
+export const ServicesSection = (): JSX.Element => {
    return (
       <section className="flex gap-4 mt-9">
          {/* Left Side */}
@@ -84,6 +84,4 @@ function ServicesSection(): JSX.Element {
          </div>
       </section>
    );
-}
-
-export default ServicesSection;
+};

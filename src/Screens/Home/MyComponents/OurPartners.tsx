@@ -1,4 +1,4 @@
-function OurPartners(): JSX.Element {
+export const OurPartners = (): JSX.Element => {
    return (
       <div className="mt-6 ">
          <h3 className="font-semibold text-xl">Unsere Partner</h3>
@@ -26,6 +26,4 @@ function OurPartners(): JSX.Element {
          </div>
       </div>
    );
-}
-
-export default OurPartners;
+};

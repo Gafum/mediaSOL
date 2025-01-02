@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import CustomBtn from "../../UI/CustomBtn/CustomBtn";
+import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 import { screenList } from "../../Routing/RoutingList";
 
-function Error404(): JSX.Element {
+export const Error404 = (): JSX.Element => {
    let navigate = useNavigate();
 
    return (
@@ -15,6 +15,4 @@ function Error404(): JSX.Element {
          />
       </div>
    );
-}
-
-export default Error404;
+};

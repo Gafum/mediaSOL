@@ -1,18 +1,18 @@
 import { ButtonHTMLAttributes } from "react";
 
 interface ICustomBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-   btnText?: string|JSX.Element;
+   btnText?: string | JSX.Element;
    bgColor?: "primaryBlue" | "PrimaryPink" | "white" | string;
    color?: "primaryBlue" | "primaryPink" | "white" | string;
 }
 
-function CustomBtn({
+export const CustomBtn = ({
    onClick,
    btnText,
    className,
    bgColor = "primaryBlue",
    color = "white",
-}: ICustomBtnProps): JSX.Element {
+}: ICustomBtnProps): JSX.Element => {
    return (
       <button
          onClick={onClick}
@@ -24,6 +24,4 @@ function CustomBtn({
          {btnText}
       </button>
    );
-}
-
-export default CustomBtn;
+};

@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom"
-import { screenList } from "../../Routing/RoutingList"
-import CustomNavLink from "./MyComponents/CustomNavLink"
-import { IRoutingList } from "../../Routing/Routing.types"
+import { Link } from "react-router-dom";
+import { screenList } from "../../Routing/RoutingList";
+import { CustomNavLink } from "./MyComponents/CustomNavLink";
+import { IRoutingList } from "../../Routing/Routing.types";
 
 const screenNavList: IRoutingList[] = [
    screenList.contact,
    screenList.about,
    screenList.catalog,
-]
+];
 
-function Header(): JSX.Element {
+export const Header = (): JSX.Element => {
    return (
       <>
          <div className="container py-6 opacity-0 text-2xl w-full ">
@@ -37,14 +37,12 @@ function Header(): JSX.Element {
                            myPath={screen.path}
                            myName={screen.name}
                         />
-                     )
+                     );
                   })}
                </nav>
             </div>
             <div className="bg-gradient-to-b from-white to-transparent h-4 absolute bottom-[-16px] w-full left-0" />
          </header>
       </>
-   )
-}
-
-export default Header
+   );
+};

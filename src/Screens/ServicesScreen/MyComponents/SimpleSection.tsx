@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { IOneSection } from "./ServicesScreenGenerator";
+import { IOneSection } from "../ServicesScreenGenerator";
 import { screenList } from "../../../Routing/RoutingList";
-import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
+import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 
 export const SimpleSection = ({
    title,

@@ -1,17 +1,17 @@
-import { LandPlot, Mail, Phone, SquareChartGantt } from "lucide-react"
-import { contactData } from "./ContactData"
+import { LandPlot, Mail, Phone, SquareChartGantt } from "lucide-react";
+import { contactData } from "./ContactData";
 
 interface IParagraphWithTitleProps {
-   title: string
-   text: string
-   icon: JSX.Element
+   title: string;
+   text: string;
+   icon: JSX.Element;
 }
 
-function ParagraphWithTitle({
+export const ParagraphWithTitle = ({
    icon,
    title,
    text,
-}: IParagraphWithTitleProps): JSX.Element {
+}: IParagraphWithTitleProps): JSX.Element => {
    return (
       <p className="w-full flex justify-start gap-2">
          <strong className="flex gap-1">
@@ -20,8 +20,8 @@ function ParagraphWithTitle({
          </strong>
          <span>{text}</span>
       </p>
-   )
-}
+   );
+};
 
 const paragraphsInContacts: IParagraphWithTitleProps[] = [
    {
@@ -44,9 +44,9 @@ const paragraphsInContacts: IParagraphWithTitleProps[] = [
       text: contactData.openTime,
       icon: <SquareChartGantt width={20} />,
    },
-]
+];
 
-function Contact(): JSX.Element {
+export const Contact = (): JSX.Element => {
    return (
       <div>
          <div className="w-full flex justify-start items-center gap-5 min-h-[180px]">
@@ -58,11 +58,14 @@ function Contact(): JSX.Element {
 
          <div className="mt-4 flex flex-col w-full gap-1">
             {paragraphsInContacts.map((paragraphData) => {
-               return <ParagraphWithTitle {...paragraphData} key={paragraphData.text}/>
+               return (
+                  <ParagraphWithTitle
+                     {...paragraphData}
+                     key={paragraphData.text}
+                  />
+               );
             })}
          </div>
       </div>
-   )
-}
-
-export default Contact
+   );
+};

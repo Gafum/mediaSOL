@@ -49,7 +49,7 @@ const reviewsList: IReviews[] = [
    },
 ];
 
-function ReviewsSection(): JSX.Element {
+export const ReviewsSection = (): JSX.Element => {
    return (
       <div className="w-full flex flex-col justify-center items-start mt-6">
          <h3 className="font-semibold text-xl">Neueste Bewertungen</h3>
@@ -99,6 +99,4 @@ function ReviewsSection(): JSX.Element {
          </div>
       </div>
    );
-}
-
-export default ReviewsSection;
+};

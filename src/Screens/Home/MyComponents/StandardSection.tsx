@@ -1,23 +1,23 @@
-import { MouseEvent } from "react"
-import CustomBtn from "../../../UI/CustomBtn/CustomBtn"
+import { MouseEvent } from "react";
+import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 
 interface ISectionProps {
-   headline: string
-   description: string
-   btnText: string
-   imgSrc: string
-   onClick: (event: MouseEvent) => void
-   eventOnImgClick?: (event: MouseEvent) => void
+   headline: string;
+   description: string;
+   btnText: string;
+   imgSrc: string;
+   onClick: (event: MouseEvent) => void;
+   eventOnImgClick?: (event: MouseEvent) => void;
 }
 
-function StandardSection({
+export const StandardSection = ({
    headline,
    description,
    btnText,
    imgSrc,
    onClick,
    eventOnImgClick,
-}: ISectionProps): JSX.Element {
+}: ISectionProps): JSX.Element => {
    return (
       <section className="w-full flex justify-between items-start gap-2 pt-7">
          <div className="w-1/2 flex justify-start flex-col gap-5">
@@ -42,7 +42,5 @@ function StandardSection({
             alt="comp"
          />
       </section>
-   )
-}
-
-export default StandardSection
+   );
+};
