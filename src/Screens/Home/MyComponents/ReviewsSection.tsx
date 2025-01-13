@@ -1,6 +1,5 @@
-import Slider from "react-slick";
-import { sliderSettings } from "../../../UI/CustomData/sliderSettings";
 import { Star } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 interface IReviews {
    userName: string;
@@ -54,10 +53,16 @@ export const ReviewsSection = (): JSX.Element => {
       <div className="w-full flex flex-col justify-center items-start mt-6">
          <h3 className="font-semibold text-xl">Neueste Bewertungen</h3>
          <div className="max-w-full w-full mt-4">
-            <Slider {...sliderSettings}>
+            <Swiper
+               slidesPerView={3}
+               spaceBetween={5}
+               pagination={{
+                  clickable: true,
+               }}
+            >
                {reviewsList.map(({ userName, comment, stars }) => {
                   return (
-                     <div className="pr-4 w-1/3" key={comment}>
+                     <SwiperSlide className="pr-4 w-1/3" key={comment}>
                         <div className="bg-primaryLightGrey shadow-sm rounded-md p-4 h-[210px]">
                            <div className="flex justify-between">
                               <div className="Stars flex flex-col items-start">
@@ -92,10 +97,10 @@ export const ReviewsSection = (): JSX.Element => {
                               {comment}
                            </p>
                         </div>
-                     </div>
+                     </SwiperSlide>
                   );
                })}
-            </Slider>
+            </Swiper>
          </div>
       </div>
    );
