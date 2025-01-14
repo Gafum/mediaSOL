@@ -21,17 +21,17 @@ export const OneGoodsList = ({
       <div className="w-full">
          <h2 className="font-semibold text-[21px]">{name}</h2>
          <Swiper
-            slidesPerView={"auto"}
+            slidesPerView={"auto"}    
             spaceBetween={5}
             pagination={{
                clickable: true,
             }}
-            className="mt-3"
+            className="mt-3 overflow-visible"
          >
             {list.map((elem) => {
                return (
                   <SwiperSlide key={elem.id} className="w-fit">
-                     <div className="mr-4 w-[20vw] max-w-[300px] min-w-[250px] bg-[#f8f9fe] rounded-md text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                     <div className="mr-4 w-[20vw] max-w-[300px] min-w-[250px] bg-[#f8f9fe] rounded-md text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-xl hover:scale-[102%] transition-all duration-300 origin-top">
                         <Link to={"/item/" + elem.id}>
                            {elem.action && (
                               <span className="text-base w-1/4 top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
@@ -39,10 +39,11 @@ export const OneGoodsList = ({
                               </span>
                            )}
                            {
-                              <span
+                              <button
                                  className="text-base w-1/8 top-2 right-2 absolute text-white text-center cursor-pointer "
                                  onClick={(event) => {
                                     event.stopPropagation();
+                                    event.preventDefault();
                                     setLikedList((prev) =>
                                        toggleListElement(
                                           prev,
@@ -65,7 +66,7 @@ export const OneGoodsList = ({
                                     }
                                     className="hover:drop-shadow-md transition-all duration-300"
                                  />
-                              </span>
+                              </button>
                            }
                            <div
                               className="rounded-md h-[200px] w-full bg-center bg-contain bg-no-repeat"
