@@ -1,4 +1,4 @@
-import { IGadget } from "../MainTypes/Gadget"
+import { IGadget } from "../MainTypes/Gadget";
 export const CatalogContent: IGadget[] = [
    {
       id: "mainId",
@@ -41,7 +41,7 @@ export const CatalogContent: IGadget[] = [
    {
       id: "454564",
       name: "Premium Musiksystem",
-      price: 2_000_000.0,
+      price: 1_999_999.99,
       description:
          "Das ultimative Musiksystem für professionelle Ansprüche. Mit kristallklarem Sound, hoher Lautstärke und außergewöhnlicher Bassqualität ist dieses System perfekt für Konzerte, Studios und anspruchsvolle Musikliebhaber. Es verbindet modernste Technologie mit ästhetischem Design.",
       img: "https://static0.xdaimages.com/wordpress/wp-content/uploads/2023/09/logitech-g432-wired.png",
@@ -83,4 +83,4 @@ export const CatalogContent: IGadget[] = [
       img: "https://www-cdn.djiits.com/cms/uploads/892e39b4b76dc5a83b267ed12ce69b97@374*374.png",
       type: "Kamera",
    },
-]
+];

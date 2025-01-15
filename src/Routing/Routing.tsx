@@ -17,8 +17,9 @@ export const Router = (): JSX.Element => {
       if (!screenName) {
          screenName = "error";
       }
-
       document.title = `${screenName} - MediaSOL - Computerpflege`;
+
+      window.scrollTo(0, 0);
    }, [location]);
    return (
       <Routes location={location} key={location.pathname}>
