@@ -71,7 +71,7 @@ export const CatalogContent: IGadget[] = [
       price: 399.99,
       description:
          "Kristallklare Bildqualität für Arbeit und Unterhaltung. Mit lebendigen Farben, hoher Bildwiederholrate und einem schlanken Design ist dieser Monitor ideal für kreative Profis, Gamer und Filmfans. Perfekte Kombination aus Stil und Funktionalität.",
-      img: "https://shop.gfdb.de/media/image/89/9b/88/imac-27-retina-selection-hero-201903_600x600@2x.jpg",
+      img: "https://re-macs.com/cdn/shop/products/iMac27Slimline1_ca3942bc-69d9-4b81-b03d-32ecf1466126_800x.jpg?v=1665496297",
       type: "PC",
    },
    {

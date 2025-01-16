@@ -21,8 +21,9 @@ export const OneGoodsList = ({
       <div className="w-full">
          <h2 className="font-semibold text-[21px]">{name}</h2>
          <Swiper
+            updateOnWindowResize={true}
             slidesPerView={"auto"}
-            spaceBetween={5}
+            spaceBetween={30}
             pagination={{
                clickable: true,
             }}
@@ -31,7 +32,7 @@ export const OneGoodsList = ({
             {list.map((elem) => {
                return (
                   <SwiperSlide key={elem.id} className="w-fit">
-                     <div className="mr-4 w-[20vw] max-w-[300px] min-w-[250px] bg-[#f8f9fe] rounded-md text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-all duration-300 origin-top">
+                     <div className="w-[20vw] max-w-[300px] min-w-[250px] bg-[#f8f9fe] text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-all duration-300 origin-top">
                         <Link to={"/item/" + elem.id}>
                            {elem.action && (
                               <span className="text-base w-1/4 top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
@@ -69,7 +70,7 @@ export const OneGoodsList = ({
                               </button>
                            }
                            <div
-                              className="rounded-md h-[200px] w-full bg-center bg-contain bg-no-repeat"
+                              className="rounded-md h-[200px] w-full bg-center bg-contain bg-no-repeat "
                               style={{ backgroundImage: `url(${elem.img})` }}
                            />
                            <div>
