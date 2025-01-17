@@ -7,6 +7,7 @@ import { ReviewsSection } from "../Home/MyComponents/ReviewsSection";
 import { calculatePriceWithAction } from "../../Function/calculatePriceWithAction";
 import { Heart } from "lucide-react";
 import { Error404 } from "../../Components/Errors/Error404";
+import { useEffect } from "react";
 
 export const Item = (): JSX.Element => {
    const { itemId } = useParams();
@@ -17,6 +18,10 @@ export const Item = (): JSX.Element => {
    if (!elementData) {
       return <Error404 />;
    }
+
+   useEffect(() => {
+      document.title = elementData.name;
+   }, [elementData]);
 
    return (
       <div>
