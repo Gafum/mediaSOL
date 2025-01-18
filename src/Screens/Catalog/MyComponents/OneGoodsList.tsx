@@ -5,6 +5,7 @@ import { toggleListElement } from "../../../Function/toggleListElemnt";
 import { Link } from "react-router-dom";
 import { PriceShower } from "../../../Components/PriceShower/PriceShower";
 import { Swiper, SwiperSlide } from "swiper/react";
+// import 'swiper/css/scrollbar';
 
 interface OneGoodsListProps {
    name: string;
@@ -17,8 +18,12 @@ export const OneGoodsList = ({
 }: OneGoodsListProps): JSX.Element => {
    const [likedList, setLikedList] = useState<string[]>([]);
 
+   if (list.length == 0) {
+      return <></>;
+   }
+
    return (
-      <div className="w-full">
+      <div className="w-full pb-3 overflow-hidden">
          <h2 className="font-semibold text-[21px]">{name}</h2>
          <Swiper
             updateOnWindowResize={true}
@@ -27,12 +32,14 @@ export const OneGoodsList = ({
             pagination={{
                clickable: true,
             }}
-            className="mt-3 pb-10 pl-2"
+            className="mt-3 pl-2 pb-7 overflow-visible"
+            // scrollbar={{ draggable: true, hide: true }}
+            // modules={[Scrollbar]}
          >
             {list.map((elem) => {
                return (
                   <SwiperSlide key={elem.id} className="w-fit">
-                     <div className="w-[20vw] max-w-[300px] min-w-[250px] bg-[#f8f9fe] text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-all duration-300 origin-top">
+                     <div className="w-[20vw] max-w-[300px] min-w-[250px] bg-[#f8f9fe] text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-all duration-300 origin-top rounded-md">
                         <Link to={"/item/" + elem.id}>
                            {elem.action && (
                               <span className="text-base w-1/4 top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">

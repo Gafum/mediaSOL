@@ -27,7 +27,7 @@ export const Item = (): JSX.Element => {
       <div>
          <div className="grid grid-cols-2 gap-2 items-start justify-items-center">
             <div
-               className="w-[calc(100%-20px)] aspect-square rounded-md bg-center bg-contain min-h-[200px] bg-no-repeat"
+               className="w-[calc(100%-20px)] aspect-square rounded-md bg-top bg-cover min-h-[200px] bg-no-repeat"
                style={{ backgroundImage: `url(${elementData.img})` }}
             />
 

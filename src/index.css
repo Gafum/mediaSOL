@@ -14,7 +14,7 @@ body{
 
 #root{
    height:100%;
-   --swiper-pagination-bottom: -25px;
+   --swiper-pagination-bottom: -32px;
    --swiper-pagination-color: #1F2022;
    --swiper-pagination-bullet-size: 8px;
    --swiper-pagination-bullet-width: 8px;
