@@ -1,4 +1,5 @@
 import { IGadget } from "../MainTypes/Gadget";
+
 export const CatalogContent: IGadget[] = [
    {
       id: "mainId",

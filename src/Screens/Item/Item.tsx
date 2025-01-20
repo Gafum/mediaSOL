@@ -3,11 +3,11 @@ import { IGadget } from "../../MainTypes/Gadget";
 import { CatalogContent } from "../../DevData/CatalogContent";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 import { OneGoodsList } from "../Catalog/MyComponents/OneGoodsList";
-import { ReviewsSection } from "../Home/MyComponents/ReviewsSection";
 import { calculatePriceWithAction } from "../../Function/calculatePriceWithAction";
 import { Heart } from "lucide-react";
 import { Error404 } from "../../Components/Errors/Error404";
 import { useEffect } from "react";
+import { reviewsList } from "../../DevData/ReviewsList";
 
 export const Item = (): JSX.Element => {
    const { itemId } = useParams();
@@ -80,7 +80,15 @@ export const Item = (): JSX.Element => {
          </div>
 
          <div className="my-5">
-            <ReviewsSection />
+            {reviewsList.map((elem) => {
+               return (
+                  <div className="mt-3 bg-gray-100 p-3 rounded-md">
+                     <h3>{elem.userName}</h3>
+                     <p>{elem.comment}</p>
+                     {elem.stars}
+                  </div>
+               );
+            })}
          </div>
 
          <OneGoodsList
