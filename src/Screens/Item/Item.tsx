@@ -8,6 +8,7 @@ import { Heart } from "lucide-react";
 import { Error404 } from "../../Components/Errors/Error404";
 import { useEffect } from "react";
 import { reviewsList } from "../../DevData/ReviewsList";
+import { Review } from "../../Components/Review/Review";
 
 export const Item = (): JSX.Element => {
    const { itemId } = useParams();
@@ -79,15 +80,9 @@ export const Item = (): JSX.Element => {
             </div>
          </div>
 
-         <div className="my-5">
-            {reviewsList.map((elem) => {
-               return (
-                  <div className="mt-3 bg-gray-100 p-3 rounded-md">
-                     <h3>{elem.userName}</h3>
-                     <p>{elem.comment}</p>
-                     {elem.stars}
-                  </div>
-               );
+         <div className="mt-5 mb-11">
+            {reviewsList.map((reviewsData) => {
+               return <Review {...reviewsData} className={"mt-4"} />;
             })}
          </div>
 
