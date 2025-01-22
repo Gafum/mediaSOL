@@ -10,6 +10,7 @@ export const CatalogContent: IGadget[] = [
       img: "https://www.mifcom.de/media/catalog/product/i/m/img_0011_10.jpg",
       type: "PC",
       action: 20,
+      commentsList: ["mainId234", "mainId234"],
    },
    {
       id: "123",
@@ -47,6 +48,7 @@ export const CatalogContent: IGadget[] = [
          "Das ultimative Musiksystem für professionelle Ansprüche. Mit kristallklarem Sound, hoher Lautstärke und außergewöhnlicher Bassqualität ist dieses System perfekt für Konzerte, Studios und anspruchsvolle Musikliebhaber. Es verbindet modernste Technologie mit ästhetischem Design.",
       img: "https://static0.xdaimages.com/wordpress/wp-content/uploads/2023/09/logitech-g432-wired.png",
       type: "Musik",
+      commentsList: ["454564231", "4545642431"],
    },
    {
       id: "43345",
@@ -74,6 +76,7 @@ export const CatalogContent: IGadget[] = [
          "Kristallklare Bildqualität für Arbeit und Unterhaltung. Mit lebendigen Farben, hoher Bildwiederholrate und einem schlanken Design ist dieser Monitor ideal für kreative Profis, Gamer und Filmfans. Perfekte Kombination aus Stil und Funktionalität.",
       img: "https://re-macs.com/cdn/shop/products/iMac27Slimline1_ca3942bc-69d9-4b81-b03d-32ecf1466126_800x.jpg?v=1665496297",
       type: "PC",
+      commentsList: ["89014212"],
    },
    {
       id: "901",

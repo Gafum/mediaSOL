@@ -6,11 +6,13 @@ import { OneGoodsList } from "../Catalog/MyComponents/OneGoodsList";
 import { calculatePriceWithAction } from "../../Function/calculatePriceWithAction";
 import { Heart } from "lucide-react";
 import { Error404 } from "../../Components/Errors/Error404";
-import { useEffect } from "react";
-import { reviewsList } from "../../DevData/ReviewsList";
+import { useEffect, useState } from "react";
 import { Review } from "../../Components/Review/Review";
+import { IReviews } from "../../MainTypes/Reviews";
+import { reviewsList } from "../../DevData/ReviewsList";
 
 export const Item = (): JSX.Element => {
+   const [localCommentList, setLocalCommentList] = useState<IReviews[]>([]);
    const { itemId } = useParams();
    const elementData: IGadget | undefined = CatalogContent.find((elem) => {
       return elem.id == itemId;
@@ -22,6 +24,9 @@ export const Item = (): JSX.Element => {
 
    useEffect(() => {
       document.title = elementData.name;
+      setLocalCommentList(() =>
+         reviewsList.filter(({ id }) => elementData.commentsList?.includes(id))
+      );
    }, [elementData]);
 
    return (
@@ -80,20 +85,26 @@ export const Item = (): JSX.Element => {
             </div>
          </div>
 
-         <div className="mt-5 mb-11">
-            {reviewsList.map((reviewsData) => {
-               return <Review {...reviewsData} className={"mt-4"} />;
-            })}
-         </div>
+         {localCommentList.length ? (
+            <div className="mt-10">
+               {localCommentList.map((reviewsData) => {
+                  return <Review {...reviewsData} className={"mt-4"} />;
+               })}
+            </div>
+         ) : (
+            <></>
+         )}
 
-         <OneGoodsList
-            name="Änliche Gadgets"
-            list={CatalogContent.filter((elem) => {
-               return (
-                  elem.type == elementData.type && elem.id !== elementData.id
-               );
-            })}
-         />
+         <div className="mt-11">
+            <OneGoodsList
+               name="Änliche Gadgets"
+               list={CatalogContent.filter((elem) => {
+                  return (
+                     elem.type == elementData.type && elem.id !== elementData.id
+                  );
+               })}
+            />
+         </div>
       </div>
    );
 };
