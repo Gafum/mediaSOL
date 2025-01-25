@@ -43,7 +43,7 @@ export const Review = ({
             </div>
             <div className="text-[#666] capitalize text-sm">{userName}</div>
          </div>
-         <p className="text-[#999] overflow-hidden text-ellipsis max-w-full line-clamp-5 mt-2 text-sm">
+         <p className="text-[#999] overflow-hidden text-ellipsis max-w-full line-clamp-5 mt-2 text-sm text-justify">
             {comment}
          </p>
       </div>

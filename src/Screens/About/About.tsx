@@ -70,7 +70,7 @@ const SectionAboutPage = ({
 }: IAboutSectionData): JSX.Element => {
    function createDescription(): ReactNode {
       if (typeof description == "string") {
-         return <p className="text-sm">{description}</p>;
+         return <p className="text-sm text-justify">{description}</p>;
       } else {
          return (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">

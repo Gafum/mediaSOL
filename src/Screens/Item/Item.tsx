@@ -58,7 +58,9 @@ export const Item = (): JSX.Element => {
                      })}
                   </span>
                </div>
-               <p className="mt-3 text-[#777]">{elementData.description}</p>
+               <p className="mt-3 text-[#777] text-justify">
+                  {elementData.description}
+               </p>
                <div className="flex-1 min-h-5" />
 
                <CustomBtn
@@ -87,6 +89,7 @@ export const Item = (): JSX.Element => {
 
          {localCommentList.length ? (
             <div className="mt-10">
+               <h2 className="font-semibold text-[21px]">Produktbewertungen</h2>
                {localCommentList.map((reviewsData) => {
                   return <Review {...reviewsData} className={"mt-4"} />;
                })}
