@@ -37,7 +37,7 @@ export const CatalogContent: IGadget[] = [
       price: 200.0,
       description:
          "Ein moderner Laptop mit leistungsstarker RTX-Grafikkarte, ideal für Gaming, kreative Projekte oder intensive Arbeitsaufgaben. Mit einer schnellen SSD, großem RAM und hochwertiger Verarbeitung ist er für anspruchsvolle Nutzer konzipiert.",
-      img: "https://static.vecteezy.com/system/resources/thumbnails/048/412/788/small_2x/modern-gaming-pc-isolated-on-transparent-free-png.png",
+      // img: "https://static.vecteezy.com/system/resources/thumbnails/048/412/788/small_2x/modern-gaming-pc-isolated-on-transparent-free-png.png",
       type: "PC",
    },
    {

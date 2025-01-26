@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { IGadget } from "../../MainTypes/Gadget";
 import { CatalogContent } from "../../DevData/CatalogContent";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
-import { OneGoodsList } from "../Catalog/MyComponents/OneGoodsList";
+import { ItemsList } from "../../Components/ItemsList/ItemsList";
 import { calculatePriceWithAction } from "../../Function/calculatePriceWithAction";
 import { Heart } from "lucide-react";
 import { Error404 } from "../../Components/Errors/Error404";
@@ -99,7 +99,7 @@ export const Item = (): JSX.Element => {
          )}
 
          <div className="mt-11">
-            <OneGoodsList
+            <ItemsList
                name="Änliche Gadgets"
                list={CatalogContent.filter((elem) => {
                   return (
