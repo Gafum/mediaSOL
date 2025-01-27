@@ -18,35 +18,47 @@ export const ItemsList = ({ name, list }: ItemsListProps): JSX.Element => {
    }
 
    return (
-      <div className="w-full pb-3 overflow-hidden">
+      <div className="w-full pb-3">
          <h2 className="font-semibold text-[21px]">{name}</h2>
-         <Swiper
-            updateOnWindowResize={true}
-            slidesPerView={"auto"}
-            spaceBetween={30}
-            pagination={{
-               clickable: true,
-            }}
-            className="mt-3 pl-2 pb-7 overflow-visible"
-            // scrollbar={{ draggable: true, hide: true }}
-            // modules={[Scrollbar]}
-         >
-            {list.map((elem) => {
-               return (
-                  <SwiperSlide key={elem.id} className="w-fit">
-                     <SmallItem
-                        {...elem}
-                        isOnFavorites={likedList.includes(elem.id)}
-                        toggleToFavorites={() => {
-                           setLikedList((prev) =>
-                              toggleListElement(prev, elem.id.toString())
-                           );
-                        }}
-                     />
-                  </SwiperSlide>
-               );
-            })}
-         </Swiper>
+         <div className="mt-3 relative w-full">
+            <SmallItem
+               className="opacity-0 invisible"
+               name=""
+               description=""
+               price={0}
+               id="tester"
+               type="PC"
+               isOnFavorites={false}
+               toggleToFavorites={() => {}}
+            />
+            <Swiper
+               slidesPerView={"auto"}
+               spaceBetween={30}
+               pagination={{
+                  clickable: true,
+               }}
+               className="overflow-hidden absolute top-0 left-[-10px] w-full px-[10px] pb-7"
+               style={{ width: "calc(100% + 20px)" }}
+               // scrollbar={{ draggable: true, hide: true }}
+               // modules={[Scrollbar]}
+            >
+               {list.map((elem) => {
+                  return (
+                     <SwiperSlide key={elem.id} className="w-fit">
+                        <SmallItem
+                           {...elem}
+                           isOnFavorites={likedList.includes(elem.id)}
+                           toggleToFavorites={() => {
+                              setLikedList((prev) =>
+                                 toggleListElement(prev, elem.id.toString())
+                              );
+                           }}
+                        />
+                     </SwiperSlide>
+                  );
+               })}
+            </Swiper>
+         </div>
       </div>
    );
 };
