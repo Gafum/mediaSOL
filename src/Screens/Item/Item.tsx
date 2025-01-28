@@ -10,9 +10,20 @@ import { useEffect, useState } from "react";
 import { Review } from "../../Components/Review/Review";
 import { IReviews } from "../../MainTypes/Reviews";
 import { reviewsList } from "../../DevData/ReviewsList";
+import { twMerge } from "tailwind-merge";
+
+interface IImgState {
+   isLoading: boolean;
+   isError: boolean;
+}
 
 export const Item = (): JSX.Element => {
    const [localCommentList, setLocalCommentList] = useState<IReviews[]>([]);
+   const [imgState, setImgState] = useState<IImgState>({
+      isLoading: false,
+      isError: false,
+   });
+
    const { itemId } = useParams();
    const elementData: IGadget | undefined = CatalogContent.find((elem) => {
       return elem.id == itemId;
@@ -29,13 +40,39 @@ export const Item = (): JSX.Element => {
       );
    }, [elementData]);
 
+   console.log(imgState);
+
    return (
       <div>
-         <div className="grid grid-cols-2 gap-2 items-start justify-items-center">
-            <div
-               className="w-[calc(100%-20px)] aspect-square rounded-md bg-top bg-cover min-h-[200px] bg-no-repeat"
-               style={{ backgroundImage: `url(${elementData.img})` }}
-            />
+         <div
+            className={twMerge(
+               "gap-2 items-start justify-items-center",
+               imgState.isError || !elementData.img
+                  ? "flex"
+                  : "grid grid-cols-2"
+            )}
+         >
+            {imgState.isError || !elementData.img ? (
+               ""
+            ) : (
+               <div
+                  className="w-[calc(100%-20px)] aspect-square rounded-md bg-top bg-cover min-h-[200px] bg-no-repeat"
+                  style={{ backgroundImage: `url(${elementData.img})` }}
+               >
+                  <img
+                     src={elementData.img}
+                     onError={() => {
+                        console.log("hi");
+
+                        setImgState(() => {
+                           return { isLoading: false, isError: true };
+                        });
+                     }}
+                     style={{ display: "none" }}
+                     alt=""
+                  />
+               </div>
+            )}
 
             <div className="p-4 rounded-md bg-primaryLightGrey flex flex-col shadow-sm">
                <h2 className="font-semibold text-xl">{elementData.name}</h2>
