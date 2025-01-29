@@ -1,5 +1,6 @@
 import { LandPlot, Mail, Phone, SquareChartGantt } from "lucide-react";
 import { contactData } from "./ContactData";
+import { ContactForm } from "./MyComponents/ContactForm";
 
 interface IParagraphWithTitleProps {
    title: string;
@@ -66,6 +67,7 @@ export const Contact = (): JSX.Element => {
                );
             })}
          </div>
+         <ContactForm />
       </div>
    );
 };
