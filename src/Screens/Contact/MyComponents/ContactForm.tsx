@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import CustomInput from "../../../UI/CustomInput/CustomInput";
 
 interface IContactForm {
    name: string;
@@ -11,7 +10,7 @@ export const ContactForm = () => {
    const {
       register,
       handleSubmit,
-      formState: { isSubmitting },
+      formState: { errors, isSubmitting },
       reset,
    } = useForm<IContactForm>();
 
@@ -22,31 +21,50 @@ export const ContactForm = () => {
 
    return (
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-5">
-         <CustomInput
-            type="text"
-            {...register("name", { required: "Name ist erforderlich" })}
-            placeholder="Name"
-         />
+         <div className="inputes">
+            <input
+               required={true}
+               type="text"
+               {...register("name", { required: "Name ist erforderlich" })}
+            />
+            <label>Ihr Name</label>
+            {errors.name && (
+               <p className="text-red-500 text-sm">{errors.name.message}</p>
+            )}
+         </div>
 
-         <CustomInput
-            type="email"
-            {...register("email", {
-               required: "E-Mail ist erforderlich",
-               pattern: {
-                  value: /^\S+@\S+\.\S+$/,
-                  message: "Geben Sie eine gültige E-Mail-Adresse ein",
-               },
-            })}
-            placeholder="Email"
-         />
+         {/* Email */}
+         <div className="inputes">
+            <input
+               required={true}
+               type="text"
+               {...register("email", {
+                  required: "E-Mail ist erforderlich",
+                  pattern: {
+                     value: /^\S+@\S+\.\S+$/,
+                     message: "Geben Sie eine gültige E-Mail-Adresse ein",
+                  },
+               })}
+            />
+            <label className="block font-medium">E-Mail</label>
+            {errors.email && (
+               <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+         </div>
 
-         <CustomInput
-            {...register("message", {
-               required: "Nachricht ist erforderlich",
-            })}
-            rows={12}
-            placeholder="Ihre Nachricht..."
-         />
+         {/* Повідомлення */}
+         <div className="inputes">
+            <textarea
+               required={true}
+               {...register("message", {
+                  required: "Nachricht ist erforderlich",
+               })}
+            ></textarea>
+            <label className="block font-medium">Ihre Nachricht...</label>
+            {errors.message && (
+               <p className="text-red-500 text-sm">{errors.message.message}</p>
+            )}
+         </div>
 
          <button
             type="submit"

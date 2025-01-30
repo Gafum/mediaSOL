@@ -40,8 +40,6 @@ export const Item = (): JSX.Element => {
       );
    }, [elementData]);
 
-   console.log(imgState);
-
    return (
       <div>
          <div
@@ -62,8 +60,6 @@ export const Item = (): JSX.Element => {
                   <img
                      src={elementData.img}
                      onError={() => {
-                        console.log("hi");
-
                         setImgState(() => {
                            return { isLoading: false, isError: true };
                         });
