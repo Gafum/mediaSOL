@@ -49,15 +49,13 @@ const paragraphsInContacts: IParagraphWithTitleProps[] = [
 
 export const Contact = (): JSX.Element => {
    return (
-      <div>
-         <div className="w-full flex justify-start items-center gap-5 min-h-[180px]">
-            <img src="/mainIcon.svg" alt="M" className="w-1/2 max-w-[300px]" />
-            <div className="w-full flex flex-col gap-2">
-               <h1 className="font-bold text-[80px]">MediaSOL</h1>
-            </div>
-         </div>
-
-         <div className="mt-4 flex flex-col w-full gap-1">
+      <div className="grid w-full gap-4 grid-cols-2">
+         <div className="flex flex-col items-center justify-center gap-2 w-full bg-primaryBlue h-full p-4 rounded-md">
+            <p className="text-left">
+               Wir freuen uns, von Ihnen zu hören! Ob technische Beratung,
+               individuelle Angebote oder einfach nur eine Frage – unser
+               Support-Team hilft Ihnen gerne weiter.
+            </p>
             {paragraphsInContacts.map((paragraphData) => {
                return (
                   <ParagraphWithTitle
@@ -67,7 +65,10 @@ export const Contact = (): JSX.Element => {
                );
             })}
          </div>
-         <ContactForm />
+
+         <div className="w-full bg-primaryPink p-4 rounded-md">
+            <ContactForm />
+         </div>
       </div>
    );
 };
