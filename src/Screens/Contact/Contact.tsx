@@ -1,6 +1,8 @@
 import { LandPlot, Mail, Phone, SquareChartGantt } from "lucide-react";
 import { contactData } from "./ContactData";
 import { ContactForm } from "./MyComponents/ContactForm";
+import { MapContainer } from "react-leaflet/MapContainer";
+import { TileLayer } from "react-leaflet/TileLayer";
 
 interface IParagraphWithTitleProps {
    title: string;
@@ -49,13 +51,23 @@ const paragraphsInContacts: IParagraphWithTitleProps[] = [
 
 export const Contact = (): JSX.Element => {
    return (
-      <div className="grid w-full gap-4 grid-cols-2">
-         <div className="flex flex-col items-center justify-center gap-2 w-full bg-primaryBlue h-full p-4 rounded-md">
-            <p className="text-left">
-               Wir freuen uns, von Ihnen zu hören! Ob technische Beratung,
-               individuelle Angebote oder einfach nur eine Frage – unser
-               Support-Team hilft Ihnen gerne weiter.
-            </p>
+      <div className="flex flex-col gap-5 h-full">
+         <div className="flex gap-4">
+            <div className="w-2/3">
+               <ContactForm />
+            </div>
+
+            <MapContainer
+               center={[51.567441, 6.738321]}
+               zoom={17}
+               scrollWheelZoom={false}
+               className="rounded-md border-[1px] border-solid border-black w-1/3"
+            >
+               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            </MapContainer>
+         </div>
+
+         <div className="flex flex-col items-center justify-center gap-2 w-full h-full p-4 rounded-md">
             {paragraphsInContacts.map((paragraphData) => {
                return (
                   <ParagraphWithTitle
@@ -64,10 +76,6 @@ export const Contact = (): JSX.Element => {
                   />
                );
             })}
-         </div>
-
-         <div className="w-full bg-primaryPink p-4 rounded-md">
-            <ContactForm />
          </div>
       </div>
    );

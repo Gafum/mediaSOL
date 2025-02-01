@@ -22,7 +22,7 @@ export const ContactForm = () => {
    return (
       <form onSubmit={handleSubmit(onSubmit)}>
          <h2 className="font-bold">Kontakt-Formular</h2>
-         <div className="inputes">
+         <div className="inputes mt-4">
             <input
                required={true}
                type="text"
@@ -57,7 +57,7 @@ export const ContactForm = () => {
          <div className="inputes">
             <textarea
                required={true}
-               rows={4}
+               rows={5}
                {...register("message", {
                   required: "Nachricht ist erforderlich",
                })}
@@ -71,7 +71,7 @@ export const ContactForm = () => {
          <button
             type="submit"
             disabled={isSubmitting}
-            className="px-6 bg-primaryBlue text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+            className="px-6 bg-primaryBlue text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 mt-2"
          >
             {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
          </button>

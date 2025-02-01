@@ -131,7 +131,7 @@ export const Item = (): JSX.Element => {
             <></>
          )}
 
-         <div className="mt-11">
+         <div className="my-11">
             <ItemsList
                name="Änliche Gadgets"
                list={CatalogContent.filter((elem) => {
