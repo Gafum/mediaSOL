@@ -12,17 +12,15 @@ interface IParagraphWithTitleProps {
 
 export const ParagraphWithTitle = ({
    icon,
-   title,
    text,
-}: IParagraphWithTitleProps): JSX.Element => {
+}: Omit<IParagraphWithTitleProps, "title">): JSX.Element => {
    return (
-      <p className="w-full flex justify-start gap-2">
-         <strong className="flex gap-1">
+      <div className="flex flex-col items-center text-center w-full max-w-[150px]">
+         <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primaryBlue">
             {icon}
-            {title}:
-         </strong>
-         <span>{text}</span>
-      </p>
+         </div>
+         <span className="mt-4 text-black text-sm">{text}</span>
+      </div>
    );
 };
 
@@ -30,22 +28,22 @@ const paragraphsInContacts: IParagraphWithTitleProps[] = [
    {
       title: "Adresse",
       text: contactData.address,
-      icon: <LandPlot width={20} />,
+      icon: <LandPlot width={20} color="#ffffff" />,
    },
    {
       title: "Telefon",
       text: contactData.telephone,
-      icon: <Phone width={20} />,
+      icon: <Phone width={20} color="#ffffff" />,
    },
    {
       title: "E-Mail",
       text: contactData.email,
-      icon: <Mail width={20} />,
+      icon: <Mail width={20} color="#ffffff" />,
    },
    {
       title: "Öffnungszeiten",
       text: contactData.openTime,
-      icon: <SquareChartGantt width={20} />,
+      icon: <SquareChartGantt width={20} color="#ffffff" />,
    },
 ];
 
@@ -67,7 +65,7 @@ export const Contact = (): JSX.Element => {
             </MapContainer>
          </div>
 
-         <div className="flex flex-col items-center justify-center gap-2 w-full h-full p-4 rounded-md">
+         <div className="grid grid-cols-4 justify-items-center items-start  gap-2 w-full max-w-800px m-auto mt-8">
             {paragraphsInContacts.map((paragraphData) => {
                return (
                   <ParagraphWithTitle
