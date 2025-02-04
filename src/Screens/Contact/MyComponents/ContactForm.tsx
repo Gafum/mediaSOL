@@ -71,7 +71,7 @@ export const ContactForm = () => {
          <button
             type="submit"
             disabled={isSubmitting}
-            className="px-6 bg-primaryBlue text-white py-2 rounded-lg hover:brightness-110 transition-all duration-200 disabled:opacity-50 mt-2 w-full"
+            className="px-6 bg-primaryBlue text-white py-2 rounded-lg hover:opacity-85 transition-opacity duration-200 disabled:opacity-50 mt-2 w-full"
          >
             {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
          </button>

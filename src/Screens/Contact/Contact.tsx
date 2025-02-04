@@ -16,11 +16,11 @@ export const Contact = (): JSX.Element => {
 
             <MapContainer
                center={[51.567441, 6.738321]}
-               zoom={15}
+               zoom={14}
                scrollWheelZoom={false}
                className="rounded-md border-[1px] border-solid border-black w-1/3"
             >
-               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+               <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
                <Marker position={[51.567441, 6.738321]}>
                   <Popup>
                      A pretty CSS3 popup. <br /> Easily customizable.
