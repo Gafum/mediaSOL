@@ -27,10 +27,13 @@ export const ContactForm = () => {
                required={true}
                type="text"
                {...register("name", { required: "Name ist erforderlich" })}
+               className={errors.name && "incorrect"}
             />
             <label>Ihr Name</label>
             {errors.name && (
-               <p className="text-red-500 text-sm">{errors.name.message}</p>
+               <p className="text-red-500 text-sm pl-1">
+                  {errors.name.message}
+               </p>
             )}
          </div>
 
@@ -39,6 +42,7 @@ export const ContactForm = () => {
             <input
                required={true}
                type="text"
+               className={errors.email && "incorrect"}
                {...register("email", {
                   required: "E-Mail ist erforderlich",
                   pattern: {
@@ -49,7 +53,9 @@ export const ContactForm = () => {
             />
             <label className="block font-medium">E-Mail</label>
             {errors.email && (
-               <p className="text-red-500 text-sm">{errors.email.message}</p>
+               <p className="text-red-500 text-sm pl-1">
+                  {errors.email.message}
+               </p>
             )}
          </div>
 
@@ -61,10 +67,13 @@ export const ContactForm = () => {
                {...register("message", {
                   required: "Nachricht ist erforderlich",
                })}
+               className={errors.message && "incorrect"}
             ></textarea>
             <label className="block font-medium">Ihre Nachricht</label>
             {errors.message && (
-               <p className="text-red-500 text-sm">{errors.message.message}</p>
+               <p className="text-red-500 text-sm pl-1">
+                  {errors.message.message}
+               </p>
             )}
          </div>
 

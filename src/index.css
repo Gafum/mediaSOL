@@ -46,7 +46,7 @@ body{
    text-align: left;
    border-radius: 8px;
    font-size: 16px;
-   padding: 6px 12px;
+   padding: 8px 12px;
    width: 100%;
    border: 1px solid var(--main-text-color);
    transition: box-shadow 0.2s;
@@ -71,7 +71,7 @@ body{
    font-size: 16px;
    position: absolute;
    left: 8px;
-   top: 6px;
+   top: 8px;
    background-color: white;
    border-radius: 3px;
    padding: 0 4px;
@@ -83,7 +83,7 @@ body{
 .inputes textarea:focus ~ label,
 .inputes textarea:valid ~ label {
    color: var(--main-text-color);
-   transform: translateX(-10%) translateY(-75%) scale(0.75);
+   transform: translateX(-10%) translateY(-85%) scale(0.75);
 }
 
 @media (max-width: 400px) {
@@ -91,6 +91,6 @@ body{
    .inputes input:valid ~ label,
    .inputes textarea:focus ~ label,
    .inputes textarea:valid ~ label {
-      transform: translateX(-10%) translateY(-75%) scale(0.75);
+      transform: translateX(-10%) translateY(-85%) scale(0.75);
    }
 }
