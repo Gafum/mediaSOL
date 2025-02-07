@@ -11,6 +11,7 @@ import { Review } from "../../Components/Review/Review";
 import { IReviews } from "../../MainTypes/Reviews";
 import { reviewsList } from "../../DevData/ReviewsList";
 import { twMerge } from "tailwind-merge";
+import { useFavoritesStore } from "../../Store/FavoritesStore";
 
 interface IImgState {
    isLoading: boolean;
@@ -18,6 +19,11 @@ interface IImgState {
 }
 
 export const Item = (): JSX.Element => {
+   const favoriteList = useFavoritesStore((state) => state.favoritesList);
+   const toggleFavoritesElement = useFavoritesStore(
+      (state) => state.toggleFavoritesElement
+   );
+
    const [localCommentList, setLocalCommentList] = useState<IReviews[]>([]);
    const [imgState, setImgState] = useState<IImgState>({
       isLoading: false,
@@ -106,15 +112,20 @@ export const Item = (): JSX.Element => {
                      <div className="flex justify-center items-center gap-2 font-medium text-white">
                         <Heart
                            size={18}
-                           fill={false ? "white" : "transparent"}
+                           fill={
+                              favoriteList.includes(elementData.id)
+                                 ? "white"
+                                 : "transparent"
+                           }
                            color="white"
                            strokeWidth="2.5px"
                            className="hover:drop-shadow-md transition-all duration-300"
                         />
-                        Zu Favoriten
+                        {favoriteList.includes(elementData.id) ? "In " : "Zu "}
+                        Favoriten
                      </div>
                   }
-                  onClick={() => console.log("favorites" + elementData.id)}
+                  onClick={() => toggleFavoritesElement(elementData.id)}
                   className="w-full font-medium uppercase bg-primaryPink mt-2"
                />
             </div>

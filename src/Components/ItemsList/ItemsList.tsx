@@ -1,9 +1,7 @@
 import { IGadget } from "../../MainTypes/Gadget";
-import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SmallItem } from "./MyComponents/SmallItem";
-import { toggleListElement } from "../../Function/toggleListElemnt";
-// import 'swiper/css/scrollbar';
+import { useFavoritesStore } from "../../Store/FavoritesStore";
 
 interface ItemsListProps {
    name: string;
@@ -11,7 +9,10 @@ interface ItemsListProps {
 }
 
 export const ItemsList = ({ name, list }: ItemsListProps): JSX.Element => {
-   const [likedList, setLikedList] = useState<string[]>([]);
+   const favoriteList = useFavoritesStore((state) => state.favoritesList);
+   const toggleFavoritesElement = useFavoritesStore(
+      (state) => state.toggleFavoritesElement
+   );
 
    if (list.length == 0) {
       return <></>;
@@ -39,19 +40,15 @@ export const ItemsList = ({ name, list }: ItemsListProps): JSX.Element => {
                }}
                className="overflow-hidden absolute top-0 left-[-10px] w-full px-[10px] pb-7"
                style={{ width: "calc(100% + 20px)" }}
-               // scrollbar={{ draggable: true, hide: true }}
-               // modules={[Scrollbar]}
             >
                {list.map((elem) => {
                   return (
                      <SwiperSlide key={elem.id} className="w-fit">
                         <SmallItem
                            {...elem}
-                           isOnFavorites={likedList.includes(elem.id)}
+                           isOnFavorites={favoriteList.includes(elem.id)}
                            toggleToFavorites={() => {
-                              setLikedList((prev) =>
-                                 toggleListElement(prev, elem.id.toString())
-                              );
+                              toggleFavoritesElement(elem.id);
                            }}
                         />
                      </SwiperSlide>
