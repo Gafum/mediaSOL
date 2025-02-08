@@ -22,6 +22,12 @@ export const Footer = (): JSX.Element => {
                      {screenList.home.name}
                   </Link>
                   <Link
+                     to={screenList.contact.path}
+                     className="hover:opacity-70 transition-opacity duration-200"
+                  >
+                     {screenList.contact.name}
+                  </Link>
+                  <Link
                      to={screenList.about.path}
                      className="hover:opacity-70 transition-opacity duration-200"
                   >

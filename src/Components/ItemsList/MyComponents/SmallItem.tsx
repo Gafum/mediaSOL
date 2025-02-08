@@ -1,7 +1,9 @@
-import { Heart } from "lucide-react";
+import { Heart, ImageOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import { IGadget } from "../../../MainTypes/Gadget";
 import { PriceShower } from "../../PriceShower/PriceShower";
+import { CustomImg } from "../../../UI/CustomImg/CustomImg";
+import { useCustomImg } from "../../../UI/CustomImg/useCustomImg";
 
 interface SmallItemProps extends IGadget {
    toggleToFavorites: () => void;
@@ -20,6 +22,8 @@ export const SmallItem = ({
    toggleToFavorites,
    className,
 }: SmallItemProps): JSX.Element => {
+   const { imgState, setImgState } = useCustomImg();
+
    return (
       <div
          className={
@@ -50,9 +54,20 @@ export const SmallItem = ({
                   />
                </button>
             }
-            <div
-               className="rounded-md h-[200px] w-full bg-center bg-contain bg-no-repeat "
-               style={{ backgroundImage: `url(${img})` }}
+
+            <CustomImg
+               imgState={imgState}
+               setImgState={setImgState}
+               imgSrc={img}
+               className="bg-contain rounded-md h-[200px] w-full"
+               NotFoundComponent={
+                  <ImageOff
+                     width={100}
+                     height={100}
+                     strokeWidth={1.4}
+                     color="#222"
+                  />
+               }
             />
             <div>
                <h4 className="text-base font-bold overflow-clip text-ellipsis whitespace-nowrap">

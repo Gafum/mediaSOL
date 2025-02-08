@@ -6,7 +6,7 @@ export const reviewsList: IReviews[] = [
       comment:
          "Die Firma ist führend in ihrem Bereich und bietet außergewöhnliche Dienstleistungen und Produkte. Ihre Gadgets sind innovativ und von höchster Qualität, ihre Netzwerkstationen erfüllen auch anspruchsvollste Anforderungen, und der technische Support ist unschlagbar: freundlich, schnell und äußerst fachkundig. ",
       stars: 3,
-      id: "mainId234",
+      id: "mainId23423423",
    },
    {
       userName: "Adam Hoph",
@@ -20,7 +20,7 @@ export const reviewsList: IReviews[] = [
       comment:
          "Diese Bewertung zeigt, dass die Firma in den meisten Bereichen überzeugt. Gadgets sind hochwertig, Lieferungen erfolgen pünktlich, und der technische Support ist kompetent und hilfsbereit. Auch die Netzwerkstationen sind zuverlässig und gut konfigurierbar. Es handelt sich um einen Anbieter, der das Vertrauen seiner Kunden größtenteils verdient hat, auch wenn es immer Raum für Verbesserungen gibt, wie z. B. noch mehr innovative Produkte.",
       stars: 4,
-      id: "mainId234",
+      id: "mainId234123123",
    },
    {
       userName: "John Rosni",

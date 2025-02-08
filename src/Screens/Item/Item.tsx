@@ -12,39 +12,42 @@ import { IReviews } from "../../MainTypes/Reviews";
 import { reviewsList } from "../../DevData/ReviewsList";
 import { twMerge } from "tailwind-merge";
 import { useFavoritesStore } from "../../Store/FavoritesStore";
-
-interface IImgState {
-   isLoading: boolean;
-   isError: boolean;
-}
+import { CustomImg } from "../../UI/CustomImg/CustomImg";
+import { useCustomImg } from "../../UI/CustomImg/useCustomImg";
 
 export const Item = (): JSX.Element => {
-   const favoriteList = useFavoritesStore((state) => state.favoritesList);
-   const toggleFavoritesElement = useFavoritesStore(
-      (state) => state.toggleFavoritesElement
-   );
-
-   const [localCommentList, setLocalCommentList] = useState<IReviews[]>([]);
-   const [imgState, setImgState] = useState<IImgState>({
-      isLoading: false,
-      isError: false,
-   });
-
+   //Element Data
    const { itemId } = useParams();
    const elementData: IGadget | undefined = CatalogContent.find((elem) => {
       return elem.id == itemId;
    });
 
+   //Local Data from Element Data
+   const [localCommentList, setLocalCommentList] = useState<IReviews[]>([]);
+
+   // global states
+   const favoriteList = useFavoritesStore((state) => state.favoritesList);
+   const toggleFavoritesElement = useFavoritesStore(
+      (state) => state.toggleFavoritesElement
+   );
+
+   //Hooks
+   const { imgState, setImgState } = useCustomImg();
+
+   useEffect(() => {
+      if (!elementData) {
+         return;
+      }
+
+      document.title = elementData.name;
+      setLocalCommentList(() =>
+         reviewsList.filter(({ id }) => elementData?.commentsList?.includes(id))
+      );
+   }, [elementData]);
+
    if (!elementData) {
       return <Error404 />;
    }
-
-   useEffect(() => {
-      document.title = elementData.name;
-      setLocalCommentList(() =>
-         reviewsList.filter(({ id }) => elementData.commentsList?.includes(id))
-      );
-   }, [elementData]);
 
    return (
       <div>
@@ -56,25 +59,12 @@ export const Item = (): JSX.Element => {
                   : "grid grid-cols-2"
             )}
          >
-            {imgState.isError || !elementData.img ? (
-               ""
-            ) : (
-               <div
-                  className="w-[calc(100%-20px)] aspect-square rounded-md bg-top bg-cover min-h-[200px] bg-no-repeat"
-                  style={{ backgroundImage: `url(${elementData.img})` }}
-               >
-                  <img
-                     src={elementData.img}
-                     onError={() => {
-                        setImgState(() => {
-                           return { isLoading: false, isError: true };
-                        });
-                     }}
-                     style={{ display: "none" }}
-                     alt=""
-                  />
-               </div>
-            )}
+            <CustomImg
+               setImgState={setImgState}
+               imgState={imgState}
+               imgSrc={elementData.img}
+               className="w-[calc(100%-20px)] aspect-square rounded-md min-h-[200px] bg-top"
+            />
 
             <div className="p-4 rounded-md bg-primaryLightGrey flex flex-col shadow-sm">
                <h2 className="font-semibold text-xl">{elementData.name}</h2>
@@ -135,7 +125,13 @@ export const Item = (): JSX.Element => {
             <div className="mt-10">
                <h2 className="font-semibold text-[21px]">Produktbewertungen</h2>
                {localCommentList.map((reviewsData) => {
-                  return <Review {...reviewsData} className={"mt-4"} />;
+                  return (
+                     <Review
+                        {...reviewsData}
+                        className={"mt-4"}
+                        key={reviewsData.id}
+                     />
+                  );
                })}
             </div>
          ) : (
