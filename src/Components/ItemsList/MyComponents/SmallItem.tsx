@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { IGadget } from "../../../MainTypes/Gadget";
 import { PriceShower } from "../../PriceShower/PriceShower";
 import { CustomImg } from "../../../UI/CustomImg/CustomImg";
-import { useCustomImg } from "../../../UI/CustomImg/useCustomImg";
 
 interface SmallItemProps extends IGadget {
    toggleToFavorites: () => void;
@@ -22,8 +21,6 @@ export const SmallItem = ({
    toggleToFavorites,
    className,
 }: SmallItemProps): JSX.Element => {
-   const { imgState, setImgState } = useCustomImg();
-
    return (
       <div
          className={
@@ -56,8 +53,6 @@ export const SmallItem = ({
             }
 
             <CustomImg
-               imgState={imgState}
-               setImgState={setImgState}
                imgSrc={img}
                className="bg-contain rounded-md h-[200px] w-full"
                NotFoundComponent={

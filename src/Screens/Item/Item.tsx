@@ -13,7 +13,6 @@ import { reviewsList } from "../../DevData/ReviewsList";
 import { twMerge } from "tailwind-merge";
 import { useFavoritesStore } from "../../Store/FavoritesStore";
 import { CustomImg } from "../../UI/CustomImg/CustomImg";
-import { useCustomImg } from "../../UI/CustomImg/useCustomImg";
 
 export const Item = (): JSX.Element => {
    //Element Data
@@ -30,9 +29,6 @@ export const Item = (): JSX.Element => {
    const toggleFavoritesElement = useFavoritesStore(
       (state) => state.toggleFavoritesElement
    );
-
-   //Hooks
-   const { imgState, setImgState } = useCustomImg();
 
    useEffect(() => {
       if (!elementData) {
@@ -53,15 +49,10 @@ export const Item = (): JSX.Element => {
       <div>
          <div
             className={twMerge(
-               "gap-2 items-start justify-items-center",
-               imgState.isError || !elementData.img
-                  ? "flex"
-                  : "grid grid-cols-2"
+               "gap-2 items-start justify-items-center flex has-[.CustomImg]:grid has-[.CustomImg]:grid-cols-2"
             )}
          >
             <CustomImg
-               setImgState={setImgState}
-               imgState={imgState}
                imgSrc={elementData.img}
                className="w-[calc(100%-20px)] aspect-square rounded-md min-h-[200px] bg-top"
             />

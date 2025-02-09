@@ -1,21 +1,26 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { IuseCustomImgData } from "./useCustomImg";
 
-interface ICustomImgProps
-   extends HTMLAttributes<HTMLImageElement>,
-      IuseCustomImgData {
+interface ICustomImgProps extends HTMLAttributes<HTMLImageElement> {
    imgSrc: string | undefined;
    NotFoundComponent?: JSX.Element;
+}
+
+interface IImgState {
+   isLoading: boolean;
+   isError: boolean;
 }
 
 export const CustomImg = ({
    imgSrc = "",
    className = "",
-   setImgState,
-   imgState,
    NotFoundComponent,
 }: ICustomImgProps): JSX.Element => {
+   const [imgState, setImgState] = useState<IImgState>({
+      isLoading: false,
+      isError: false,
+   });
+
    if (imgState.isError || !imgSrc) {
       if (NotFoundComponent) {
          return (
@@ -33,8 +38,12 @@ export const CustomImg = ({
    }
 
    return (
+      //use CustomImg class in css to check if it apper on the screen
       <div
-         className={twMerge("bg-cover bg-no-repeat bg-center", className)}
+         className={twMerge(
+            "bg-cover bg-no-repeat bg-center CustomImg",
+            className
+         )}
          style={{ backgroundImage: `url(${imgSrc})` }}
       >
          <img
