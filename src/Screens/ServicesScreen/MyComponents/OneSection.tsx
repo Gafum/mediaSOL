@@ -1,5 +1,5 @@
 import { IOneSection } from "../ServicesScreenGenerator";
-import { SimpleSection } from "./SimpleSection";
+import { SectionWithButton } from "./SectionWithButton";
 
 export const OneSection = ({
    title,
@@ -11,7 +11,7 @@ export const OneSection = ({
    if (!list) {
       // Component without list
       return (
-         <SimpleSection
+         <SectionWithButton
             title={title}
             description={description}
             bg={bg}

@@ -10,7 +10,7 @@ export const CatalogContent: IGadget[] = [
       img: "https://www.mifcom.de/media/catalog/product/i/m/img_0011_10.jpg",
       type: "PC",
       action: 20,
-      commentsList: ["mainId234", "mainId234"],
+      commentsList: ["mainId234123123", "mainId23423423"],
    },
    {
       id: "123",

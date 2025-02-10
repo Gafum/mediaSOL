@@ -10,7 +10,7 @@ interface ISectionProps {
    eventOnImgClick?: (event: MouseEvent) => void;
 }
 
-export const StandardSection = ({
+export const SectionWithImage = ({
    headline,
    description,
    btnText,

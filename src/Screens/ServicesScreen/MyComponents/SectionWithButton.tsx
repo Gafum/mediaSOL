@@ -3,7 +3,7 @@ import { IOneSection } from "../ServicesScreenGenerator";
 import { screenList } from "../../../Routing/RoutingList";
 import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 
-export const SimpleSection = ({
+export const SectionWithButton = ({
    title,
    description,
    bg,
