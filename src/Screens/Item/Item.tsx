@@ -41,20 +41,20 @@ export const Item = (): JSX.Element => {
       <div>
          <ItemDetails {...elementData} />
 
-         <SectionWithHeadline name="Produktbewertungen">
-            {localCommentList.length
-               ? localCommentList.map((reviewsData) => {
-                    return (
-                       <Review
-                          {...reviewsData}
-                          className={"mt-4"}
-                          key={reviewsData.id}
-                       />
-                    );
-                 })
-               : ""}
+         {/* Comments =====*/}
+         <SectionWithHeadline title="Produktbewertungen">
+            {localCommentList.map((reviewsData) => {
+               return (
+                  <Review
+                     {...reviewsData}
+                     className={"mt-4"}
+                     key={reviewsData.id}
+                  />
+               );
+            })}
          </SectionWithHeadline>
 
+         {/* Similary gadgets */}
          <div className="my-11">
             <ItemsList
                name="Änliche Gadgets"

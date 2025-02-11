@@ -2,6 +2,7 @@ import { IGadget } from "../../MainTypes/Gadget";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SmallItem } from "./MyComponents/SmallItem";
 import { useFavoritesStore } from "../../Store/FavoritesStore";
+import { SectionWithHeadline } from "../Section/SectionWithHeadline";
 
 interface ItemsListProps {
    name: string;
@@ -19,9 +20,9 @@ export const ItemsList = ({ name, list }: ItemsListProps): JSX.Element => {
    }
 
    return (
-      <div className="w-full pb-3">
-         <h2 className="font-semibold text-[21px]">{name}</h2>
+      <SectionWithHeadline title={name}>
          <div className="mt-3 relative w-full">
+            {/* Invisible component =========> */}
             <SmallItem
                className="opacity-0 invisible"
                name=""
@@ -32,6 +33,9 @@ export const ItemsList = ({ name, list }: ItemsListProps): JSX.Element => {
                isOnFavorites={false}
                toggleToFavorites={() => {}}
             />
+            {/* <========= */}
+
+            {/* List =======> */}
             <Swiper
                slidesPerView={"auto"}
                spaceBetween={30}
@@ -55,7 +59,8 @@ export const ItemsList = ({ name, list }: ItemsListProps): JSX.Element => {
                   );
                })}
             </Swiper>
+            {/* <========= */}
          </div>
-      </div>
+      </SectionWithHeadline>
    );
 };

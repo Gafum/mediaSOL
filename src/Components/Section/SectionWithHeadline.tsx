@@ -2,20 +2,20 @@ import { ReactNode } from "react";
 
 interface SimpleSectionProps {
    children: ReactNode | undefined | "";
-   name: string;
+   title: string;
 }
 
 export const SectionWithHeadline = ({
    children,
-   name,
+   title,
 }: SimpleSectionProps): JSX.Element => {
-   if (!children || children == "") {
+   if (!children || children == "" || children == <></>) {
       return <></>;
    }
 
    return (
       <section className="mt-10">
-         <h2 className="font-semibold text-[21px]">{name}</h2>
+         <h2 className="font-semibold text-[21px] mb-3">{title}</h2>
          {children}
       </section>
    );
