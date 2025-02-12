@@ -16,7 +16,7 @@ export const CustomNavLink = ({
          to={myPath || "/"}
       >
          <div className={"bg-primaryBlue " + styles.linkBack} />
-         <span>{myName}</span>
+         <span className="font-medium">{myName}</span>
       </NavLink>
    );
 };

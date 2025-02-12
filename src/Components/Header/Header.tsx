@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { screenList } from "../../Routing/RoutingList";
 import { CustomNavLink } from "./MyComponents/CustomNavLink";
 import { IRoutingList } from "../../Routing/Routing.types";
@@ -23,7 +23,7 @@ export const Header = (): JSX.Element => {
                   className="flex justify-center items-center gap-2 text-2xl"
                >
                   <img src="/mainIcon.svg" alt="M" className="h-[15px]" />
-                  <span className="font-semibold whitespace-nowrap transition-opacity duration-300 hover:opacity-70">
+                  <span className="font-bold whitespace-nowrap transition-opacity duration-300 hover:opacity-70">
                      MediaSOL
                   </span>
                </Link>
@@ -39,6 +39,46 @@ export const Header = (): JSX.Element => {
                         />
                      );
                   })}
+                  {/* Icons */}
+                  <NavLink to={screenList.cart.path}>
+                     <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 131 121"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        stroke-width="12"
+                        className="relative top-[0.6px]"
+                     >
+                        <rect
+                           x="5"
+                           y="33"
+                           width="121"
+                           height="83"
+                           rx="15"
+                           stroke="black"
+                        />
+                        <path
+                           d="M34 56V94"
+                           stroke="black"
+                           stroke-linecap="round"
+                        />
+                        <path
+                           d="M65 56V94"
+                           stroke="black"
+                           stroke-linecap="round"
+                        />
+                        <path
+                           d="M96 56V93"
+                           stroke="black"
+                           stroke-linecap="round"
+                        />
+                        <path
+                           d="M41 5H90C92.7614 5 95 7.23858 95 10V33H36V10C36 7.23858 38.2386 5 41 5Z"
+                           stroke="black"
+                        />
+                     </svg>
+                  </NavLink>
                </nav>
             </div>
             <div className="bg-gradient-to-b from-white to-transparent h-4 absolute bottom-[-16px] w-full left-0" />

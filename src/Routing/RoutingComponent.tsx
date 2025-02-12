@@ -21,6 +21,7 @@ export const Router = (): JSX.Element => {
 
       window.scrollTo(0, 0);
    }, [location]);
+
    return (
       <Routes location={location} key={location.pathname}>
          {Object.values(screenList).map((screen) => (

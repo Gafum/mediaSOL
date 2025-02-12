@@ -10,13 +10,15 @@ import { ServicesScreenGenerator } from "../Screens/ServicesScreen/ServicesScree
 import { Item } from "../Screens/Item/Item";
 
 import { IScreenList } from "./Routing.types";
+import { Cart } from "../Screens/Cart/Cart";
 
 export const screenList: IScreenList = {
    home: { path: "/", component: <Home />, name: "Startseite" },
    about: { path: "/about", component: <About />, name: "Über uns" },
    contact: { path: "/contact", component: <Contact />, name: "Kontakt" },
    catalog: { path: "/catalog", component: <Catalog />, name: "Katalog" },
-   item: { path: "/item/:itemId", component: <Item />, name: "Item" },
+   item: { path: "/item/:itemId", component: <Item />, name: "Ware" },
+   cart: { path: "/cart", component: <Cart />, name: "Korb" },
    consultationService: {
       path: "/service/consultation",
       component: (
