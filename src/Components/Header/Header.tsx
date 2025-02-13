@@ -40,7 +40,15 @@ export const Header = (): JSX.Element => {
                      );
                   })}
                   {/* Icons */}
-                  <NavLink to={screenList.cart.path}>
+                  <NavLink
+                     to={screenList.cart.path}
+                     className={({ isActive }: { isActive: boolean }) =>
+                        isActive
+                           ? "scale-[1.15]"
+                           : "" +
+                             " hover:opacity-60 duration-300 transition-all"
+                     }
+                  >
                      <svg
                         width="20"
                         height="20"
