@@ -55,7 +55,7 @@ export const Header = (): JSX.Element => {
                         viewBox="0 0 131 121"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
-                        stroke-width="12"
+                        strokeWidth="12"
                         className="relative top-[0.6px]"
                      >
                         <rect
@@ -69,17 +69,17 @@ export const Header = (): JSX.Element => {
                         <path
                            d="M34 56V94"
                            stroke="black"
-                           stroke-linecap="round"
+                           strokeLinecap="round"
                         />
                         <path
                            d="M65 56V94"
                            stroke="black"
-                           stroke-linecap="round"
+                           strokeLinecap="round"
                         />
                         <path
                            d="M96 56V93"
                            stroke="black"
-                           stroke-linecap="round"
+                           strokeLinecap="round"
                         />
                         <path
                            d="M41 5H90C92.7614 5 95 7.23858 95 10V33H36V10C36 7.23858 38.2386 5 41 5Z"
