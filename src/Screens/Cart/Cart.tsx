@@ -1,5 +1,7 @@
 import { SmallItem } from "../../Components/ItemsList/MyComponents/SmallItem";
+import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadline";
 import { CatalogContent } from "../../DevData/CatalogContent";
+import { screenList } from "../../Routing/RoutingList";
 import { useFavoritesStore } from "../../Store/FavoritesStore";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 
@@ -21,25 +23,31 @@ export const Cart = (): JSX.Element => {
 
    return (
       <section>
-         <div className="flex justify-between">
-            <h1>Cart</h1>
-            <CustomBtn
-               btnText={"Clear Favorites List"}
-               onClick={() => clearFavoritesList()}
-            />
-         </div>
-         <div className="flex flex-wrap gap-5 mt-5">
-            {localFavoritesList.map((elem) => (
-               <SmallItem
-                  key={elem.id}
-                  {...elem}
-                  isOnFavorites={favoritesListIDs.includes(elem.id)}
-                  toggleToFavorites={() => {
-                     toggleFavoritesElement(elem.id);
-                  }}
-               />
-            ))}
-         </div>
+         <h1 className="font-semibold text-xl">{screenList.cart.name}</h1>
+         <SectionWithHeadline title="Favoriten">
+            {localFavoritesList.length > 0 && (
+               <>
+                  <div className="grid grid-cols-4 gap-5">
+                     {localFavoritesList.map((elem) => (
+                        <SmallItem
+                           key={elem.id}
+                           {...elem}
+                           isOnFavorites={favoritesListIDs.includes(elem.id)}
+                           toggleToFavorites={() => {
+                              toggleFavoritesElement(elem.id);
+                           }}
+                           className="w-full"
+                        />
+                     ))}
+                  </div>
+                  <CustomBtn
+                     btnText={"Favoritenliste löschen"}
+                     onClick={() => clearFavoritesList()}
+                     className="w-full mt-6"
+                  />
+               </>
+            )}
+         </SectionWithHeadline>
       </section>
    );
 };

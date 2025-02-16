@@ -7,9 +7,14 @@ import { SectionWithHeadline } from "../Section/SectionWithHeadline";
 interface ItemsListProps {
    name: string;
    list: IGadget[];
+   className?: string;
 }
 
-export const ItemsList = ({ name, list }: ItemsListProps): JSX.Element => {
+export const ItemsList = ({
+   name,
+   list,
+   className,
+}: ItemsListProps): JSX.Element => {
    const favoriteList = useFavoritesStore((state) => state.favoritesList);
    const toggleFavoritesElement = useFavoritesStore(
       (state) => state.toggleFavoritesElement
@@ -20,7 +25,7 @@ export const ItemsList = ({ name, list }: ItemsListProps): JSX.Element => {
    }
 
    return (
-      <SectionWithHeadline title={name}>
+      <SectionWithHeadline title={name} className={className}>
          <div className="mt-3 relative w-full">
             {/* Invisible component =========> */}
             <SmallItem
