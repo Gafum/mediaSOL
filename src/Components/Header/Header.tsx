@@ -43,49 +43,17 @@ export const Header = (): JSX.Element => {
                   <NavLink
                      to={screenList.cart.path}
                      className={({ isActive }: { isActive: boolean }) =>
-                        isActive
-                           ? "scale-[1.15]"
-                           : "" +
-                             " hover:opacity-60 duration-300 transition-all"
+                        (isActive
+                           ? "rotate-[8deg] scale-110 drop-shadow-[0_0_6px_rgba(59,130,246,0.7)]"
+                           : "") +
+                        " hover:opacity-60 duration-300 transition-all shadow-primaryBlue "
                      }
                   >
-                     <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 131 121"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        strokeWidth="12"
+                     <img
+                        src="/SVG/SmallIcons/Cart.svg"
+                        alt="Korb"
                         className="relative top-[0.6px]"
-                     >
-                        <rect
-                           x="5"
-                           y="33"
-                           width="121"
-                           height="83"
-                           rx="15"
-                           stroke="black"
-                        />
-                        <path
-                           d="M34 56V94"
-                           stroke="black"
-                           strokeLinecap="round"
-                        />
-                        <path
-                           d="M65 56V94"
-                           stroke="black"
-                           strokeLinecap="round"
-                        />
-                        <path
-                           d="M96 56V93"
-                           stroke="black"
-                           strokeLinecap="round"
-                        />
-                        <path
-                           d="M41 5H90C92.7614 5 95 7.23858 95 10V33H36V10C36 7.23858 38.2386 5 41 5Z"
-                           stroke="black"
-                        />
-                     </svg>
+                     />
                   </NavLink>
                </nav>
             </div>
