@@ -30,7 +30,7 @@ export const SmallItem = ({
       >
          <Link to={"/item/" + id}>
             {action && (
-               <span className="text-base w-1/4 max-w-[75px] top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
+               <span className="text-base w-1/4 max-w-[75px] min-w-[65px] top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
                   - {action}%
                </span>
             )}

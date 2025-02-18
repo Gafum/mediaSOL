@@ -9,7 +9,7 @@ import { Popup } from "react-leaflet/Popup";
 export const Contact = (): JSX.Element => {
    return (
       <div className="flex flex-col gap-5 h-full">
-         <div className="flex gap-4 border-b-2 border-primaryBlue border-solid pb-8">
+         <div className="flex gap-4 border-b-[3px] border-primaryBlue border-solid pb-8">
             <div className="w-2/3">
                <ContactForm />
             </div>
@@ -18,7 +18,7 @@ export const Contact = (): JSX.Element => {
                center={[51.567441, 6.738321]}
                zoom={14}
                scrollWheelZoom={false}
-               className="rounded-md border-[1px] border-solid border-black w-1/3"
+               className="rounded-md border-[1px] border-solid border-black w-1/3 z-0"
             >
                <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
                <Marker position={[51.567441, 6.738321]}>

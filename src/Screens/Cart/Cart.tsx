@@ -1,9 +1,9 @@
+import { Trash2 } from "lucide-react";
 import { SmallItem } from "../../Components/ItemsList/MyComponents/SmallItem";
 import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadline";
 import { CatalogContent } from "../../DevData/CatalogContent";
 import { screenList } from "../../Routing/RoutingList";
 import { useFavoritesStore } from "../../Store/FavoritesStore";
-import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 
 export const Cart = (): JSX.Element => {
    const clearFavoritesList = useFavoritesStore(
@@ -24,7 +24,21 @@ export const Cart = (): JSX.Element => {
    return (
       <section>
          <h1 className="font-semibold text-xl">{screenList.cart.name}</h1>
-         <SectionWithHeadline title="Favoriten">
+         <SectionWithHeadline
+            title={
+               <div className="flex justify-between text-inherit">
+                  <h1 className="font-semibold text-xl">Favoriten</h1>
+                  <button
+                     onClick={clearFavoritesList}
+                     className="hover:opacity-60 transition-opacity duration-300"
+                     title="Favoritenliste löschen"
+                  >
+                     <Trash2 />
+                  </button>
+               </div>
+            }
+            className="pt-3 border-primaryPink border-t-[3px] border-solid"
+         >
             {localFavoritesList.length > 0 && (
                <>
                   <div className="grid grid-cols-4 gap-5">
@@ -40,11 +54,6 @@ export const Cart = (): JSX.Element => {
                         />
                      ))}
                   </div>
-                  <CustomBtn
-                     btnText={"Favoritenliste löschen"}
-                     onClick={() => clearFavoritesList()}
-                     className="w-full mt-6"
-                  />
                </>
             )}
          </SectionWithHeadline>
