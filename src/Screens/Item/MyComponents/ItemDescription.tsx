@@ -3,6 +3,7 @@ import { calculatePriceWithAction } from "../../../Function/calculatePriceWithAc
 import { IGadget } from "../../../MainTypes/Gadget";
 import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 import { useFavoritesStore } from "../../../Store/FavoritesStore";
+import { useCartStore } from "../../../Store/CartStore";
 
 export const ItemDescription = ({
    id,
@@ -16,6 +17,10 @@ export const ItemDescription = ({
    const toggleFavoritesElement = useFavoritesStore(
       (state) => state.toggleFavoritesElement
    );
+
+   const cartList = useCartStore((state) => state.cartList);
+   const toggleCartList = useCartStore((state) => state.toggleCartList);
+
    return (
       <>
          <h2 className="font-semibold text-xl">{name}</h2>
@@ -45,8 +50,10 @@ export const ItemDescription = ({
 
          {/* Buttons */}
          <CustomBtn
-            btnText="In den Warenkorb"
-            onClick={() => console.log("basket" + id)}
+            btnText={
+               cartList.includes(id) ? "Jetzt in Warenkorb" : "In den Warenkorb"
+            }
+            onClick={() => toggleCartList(id)}
             className="w-full font-medium uppercase"
          />
          <CustomBtn

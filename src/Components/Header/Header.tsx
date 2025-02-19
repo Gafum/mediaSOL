@@ -21,6 +21,7 @@ export const Header = (): JSX.Element => {
                <Link
                   to={"/"}
                   className="flex justify-center items-center gap-2 text-2xl"
+                  title="Startseite"
                >
                   <img src="/mainIcon.svg" alt="M" className="h-[15px]" />
                   <span className="font-bold whitespace-nowrap transition-opacity duration-300 hover:opacity-70">
@@ -48,6 +49,7 @@ export const Header = (): JSX.Element => {
                            : "") +
                         " hover:opacity-60 duration-300 transition-all shadow-primaryBlue "
                      }
+                     title="Korb"
                   >
                      <img
                         src="/SVG/SmallIcons/Cart.svg"

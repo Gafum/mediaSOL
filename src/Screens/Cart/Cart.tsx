@@ -4,12 +4,14 @@ import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadlin
 import { CatalogContent } from "../../DevData/CatalogContent";
 import { screenList } from "../../Routing/RoutingList";
 import { useFavoritesStore } from "../../Store/FavoritesStore";
+import { useCartStore } from "../../Store/CartStore";
 
 export const Cart = (): JSX.Element => {
    const clearFavoritesList = useFavoritesStore(
       (state) => state.clearFavoritesList
    );
    const favoritesListIDs = useFavoritesStore((state) => state.favoritesList);
+   const cartListIDs = useCartStore((state) => state.cartList);
 
    const toggleFavoritesElement = useFavoritesStore(
       (state) => state.toggleFavoritesElement
@@ -23,7 +25,16 @@ export const Cart = (): JSX.Element => {
 
    return (
       <section>
-         <h1 className="font-semibold text-xl">{screenList.cart.name}</h1>
+         <SectionWithHeadline title={screenList.cart.name} className="mt-0">
+            {cartListIDs.map((e) => e + " ")}
+         </SectionWithHeadline>
+
+         {cartListIDs.length > 0 && favoritesListIDs.length > 0 ? (
+            <div className="h-[3px] w-full bg-primaryPink rounded-[3px] mt-5" />
+         ) : (
+            ""
+         )}
+
          <SectionWithHeadline
             title={
                <div className="flex justify-between text-inherit">
@@ -37,7 +48,7 @@ export const Cart = (): JSX.Element => {
                   </button>
                </div>
             }
-            className="pt-3 border-primaryPink border-t-[3px] border-solid"
+            className="mt-3"
          >
             {localFavoritesList.length > 0 && (
                <>

@@ -9,7 +9,7 @@ import { Popup } from "react-leaflet/Popup";
 export const Contact = (): JSX.Element => {
    return (
       <div className="flex flex-col gap-5 h-full">
-         <div className="flex gap-4 border-b-[3px] border-primaryBlue border-solid pb-8">
+         <div className="flex gap-4">
             <div className="w-2/3">
                <ContactForm />
             </div>
@@ -29,7 +29,9 @@ export const Contact = (): JSX.Element => {
             </MapContainer>
          </div>
 
-         <div className="max-w-[1000px] mx-auto mt-5 grid grid-cols-4 justify-items-center items-start gap-2 w-full">
+         <div className="h-[3px] w-full bg-primaryBlue rounded-[3px] mt-3 mb-5" />
+
+         <div className="max-w-[1000px] mx-auto grid grid-cols-4 justify-items-center items-start gap-2 w-full">
             {paragraphsInContacts.map((paragraphData) => {
                return (
                   <ParagraphWithTitle
