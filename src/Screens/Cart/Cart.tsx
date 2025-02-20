@@ -5,6 +5,8 @@ import { CatalogContent } from "../../DevData/CatalogContent";
 import { screenList } from "../../Routing/RoutingList";
 import { useFavoritesStore } from "../../Store/FavoritesStore";
 import { useCartStore } from "../../Store/CartStore";
+import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
+import { useNavigate } from "react-router-dom";
 
 export const Cart = (): JSX.Element => {
    const clearFavoritesList = useFavoritesStore(
@@ -21,7 +23,20 @@ export const Cart = (): JSX.Element => {
       favoritesListIDs.includes(id)
    );
 
-   console.log(localFavoritesList, favoritesListIDs);
+   const navigate = useNavigate();
+
+   if (!cartListIDs.length && !favoritesListIDs.length) {
+      return (
+         <div className="text-center w-full">
+            <h1 className="font-medium text-2xl mt-[140px]">Korb ist leer</h1>
+            <CustomBtn
+               btnText={"Etwas kaufen"}
+               className="w-1/3 mt-7"
+               onClick={() => navigate(screenList.catalog.path)}
+            />
+         </div>
+      );
+   }
 
    return (
       <section>
