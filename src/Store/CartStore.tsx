@@ -8,7 +8,7 @@ interface ICartStore {
 }
 
 export const useCartStore = create<ICartStore>((set) => ({
-   cartList: [],
+   cartList: ["mainId", "123", "789"],
    toggleCartList: (productId: string) => {
       return set((state) => ({
          cartList: toggleListElement(state.cartList, productId),

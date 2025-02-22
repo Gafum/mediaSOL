@@ -28,21 +28,22 @@ export const ItemDescription = ({
          {/* Price */}
          <div className="mt-1">
             {action && (
-               <div className="mb-2">
+               <div>
                   <span className="text-base rounded-md bg-primaryPink px-1 text-white text-center">
                      - {action}%
                   </span>
                   <span className="ml-3 line-through">${price}</span>
                </div>
             )}
-            <span className="price text-3xl font-semibold">
+            <div className="price text-3xl font-semibold mt-2">
                $
                {calculatePriceWithAction({
                   price: price,
                   action: action,
                })}
-            </span>
+            </div>
          </div>
+
          {/* Description */}
          <p className="mt-3 text-[#777] text-justify">{description}</p>
 

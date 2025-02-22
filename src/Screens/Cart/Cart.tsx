@@ -30,7 +30,7 @@ export const Cart = (): JSX.Element => {
          <ProductsList />
 
          {cartListIDs.length > 0 && favoritesListIDs.length > 0 && (
-            <div className="h-[3px] w-full bg-primaryPink rounded-[3px] mt-5" />
+            <div className="h-[3px] w-full bg-primaryPink rounded-[3px] mt-8" />
          )}
 
          <FavoritesList />
