@@ -18,7 +18,7 @@ export const ItemDescription = ({
       (state) => state.toggleFavoritesElement
    );
 
-   const cartList = useCartStore((state) => state.cartList);
+   const cartListIDs = Object.keys(useCartStore((state) => state.cartList));
    const toggleCartList = useCartStore((state) => state.toggleCartList);
 
    return (
@@ -52,7 +52,9 @@ export const ItemDescription = ({
          {/* Buttons */}
          <CustomBtn
             btnText={
-               cartList.includes(id) ? "Jetzt in Warenkorb" : "In den Warenkorb"
+               cartListIDs.includes(id)
+                  ? "Jetzt in Warenkorb"
+                  : "In den Warenkorb"
             }
             onClick={() => toggleCartList(id)}
             className="w-full font-medium uppercase"

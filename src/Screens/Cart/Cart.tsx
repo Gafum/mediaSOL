@@ -8,7 +8,7 @@ import { ProductsList } from "./MyComponents/ProductsList";
 
 export const Cart = (): JSX.Element => {
    const favoritesListIDs = useFavoritesStore((state) => state.favoritesList);
-   const cartListIDs = useCartStore((state) => state.cartList);
+   const cartListIDs = Object.keys(useCartStore((state) => state.cartList));
 
    const navigate = useNavigate();
 

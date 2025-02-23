@@ -23,7 +23,10 @@ export const Contact = (): JSX.Element => {
                <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
                <Marker position={[51.567441, 6.738321]}>
                   <Popup>
-                     A pretty CSS3 popup. <br /> Easily customizable.
+                     <div className="text-center">
+                        MediaSOL
+                        <br /> ist da!
+                     </div>
                   </Popup>
                </Marker>
             </MapContainer>
