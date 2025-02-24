@@ -1,8 +1,9 @@
-import { calculatePriceWithAction } from "../../Function/calculatePriceWithAction"
+import { mainCurrency } from "../../DevData/WhatCurrency";
+import { calculatePriceWithAction } from "../../Function/calculatePriceWithAction";
 
 export interface PriceShowerProps {
-   price: number
-   action?: number
+   price: number;
+   action?: number;
 }
 
 export const PriceShower = ({
@@ -13,14 +14,15 @@ export const PriceShower = ({
       return (
          <>
             <span className="mr-2 font-semibold text-inherit">
-               ${calculatePriceWithAction({ price, action })}
+               {calculatePriceWithAction({ price, action })}
+               {mainCurrency}
             </span>
             <span className="line-through font-medium opacity-40 text-inherit">
-               {"$" + price.toFixed(2)}
+               {price.toFixed(2) + mainCurrency}
             </span>
          </>
-      )
+      );
    } else {
-      return "$" + price.toFixed(2)
+      return price.toFixed(2) + mainCurrency;
    }
-}
+};

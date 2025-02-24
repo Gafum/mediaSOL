@@ -11,7 +11,7 @@ interface ICartStore {
 }
 
 export const useCartStore = create<ICartStore>((set) => ({
-   cartList: { mainId: 1, "123": 23, "789": 21 },
+   cartList: { mainId: 1, "123": 23, "789": 999 },
    toggleCartList: (productId: string) => {
       return set((state) => {
          let localCartList: TypeCartList = JSON.parse(
@@ -47,11 +47,12 @@ function actionWithItem(
    let localCartList: TypeCartList = JSON.parse(JSON.stringify(state.cartList));
    if (localCartList[productId]) {
       if (increase) {
-         localCartList[productId]++;
+         if (localCartList[productId] < 999) {
+            localCartList[productId]++;
+         }
       } else {
-         localCartList[productId]--;
-         if (localCartList[productId] == 0) {
-            delete localCartList[productId];
+         if (localCartList[productId] > 1) {
+            localCartList[productId]--;
          }
       }
    }

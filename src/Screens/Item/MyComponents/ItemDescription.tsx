@@ -4,6 +4,7 @@ import { IGadget } from "../../../MainTypes/Gadget";
 import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 import { useFavoritesStore } from "../../../Store/FavoritesStore";
 import { useCartStore } from "../../../Store/CartStore";
+import { mainCurrency } from "../../../DevData/WhatCurrency";
 
 export const ItemDescription = ({
    id,
@@ -32,15 +33,18 @@ export const ItemDescription = ({
                   <span className="text-base rounded-md bg-primaryPink px-1 text-white text-center">
                      - {action}%
                   </span>
-                  <span className="ml-3 line-through">${price}</span>
+                  <span className="ml-3 line-through">
+                     {price}
+                     {mainCurrency}
+                  </span>
                </div>
             )}
             <div className="price text-3xl font-semibold mt-2">
-               $
                {calculatePriceWithAction({
                   price: price,
                   action: action,
                })}
+               {mainCurrency}
             </div>
          </div>
 
