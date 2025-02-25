@@ -12,6 +12,8 @@ export const Cart = (): JSX.Element => {
 
    const navigate = useNavigate();
 
+   console.log(cartListIDs);
+
    if (!cartListIDs.length && !favoritesListIDs.length) {
       return (
          <div className="text-center w-full">
@@ -27,7 +29,7 @@ export const Cart = (): JSX.Element => {
 
    return (
       <section>
-         <ProductsList />
+         {Boolean(cartListIDs.length) && <ProductsList />}
 
          {cartListIDs.length > 0 && favoritesListIDs.length > 0 && (
             <div className="h-[3px] w-full bg-primaryPink rounded-[3px] mt-8" />

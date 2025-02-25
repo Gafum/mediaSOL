@@ -7,7 +7,8 @@ interface ICartStore {
    toggleCartList: (productId: string) => void;
    increaseItemAmount: (productId: string) => void;
    decreaseItemAmount: (productId: string) => void;
-   clearFavoritesList: () => void;
+   removeItem: (productId: string) => void;
+   clearCartList: () => void;
 }
 
 export const useCartStore = create<ICartStore>((set) => ({
@@ -36,7 +37,18 @@ export const useCartStore = create<ICartStore>((set) => ({
          return actionWithItem(state, productId, false);
       });
    },
-   clearFavoritesList: () => set({ cartList: {} }),
+   removeItem: (productId) => {
+      return set((state) => {
+         let localCartList: TypeCartList = JSON.parse(
+            JSON.stringify(state.cartList)
+         );
+         if (localCartList[productId]) {
+            delete localCartList[productId];
+         }
+         return { cartList: { ...localCartList } };
+      });
+   },
+   clearCartList: () => set({ cartList: {} }),
 }));
 
 function actionWithItem(

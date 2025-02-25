@@ -1,4 +1,4 @@
-import { ImageOff } from "lucide-react";
+import { ImageOff, Trash2 } from "lucide-react";
 import { SectionWithHeadline } from "../../../Components/Section/SectionWithHeadline";
 import { CatalogContent } from "../../../DevData/CatalogContent";
 import { calculatePriceWithAction } from "../../../Function/calculatePriceWithAction";
@@ -7,9 +7,12 @@ import { useCartStore } from "../../../Store/CartStore";
 import { CustomImg } from "../../../UI/CustomImg/CustomImg";
 import { Link } from "react-router-dom";
 import { mainCurrency } from "../../../DevData/WhatCurrency";
+import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 
 export const ProductsList = (): JSX.Element => {
    const cartList = useCartStore((state) => state.cartList);
+   const removeItem = useCartStore((state) => state.removeItem);
+   const clearCartList = useCartStore((state) => state.clearCartList);
    const increaseItemAmount = useCartStore((state) => state.increaseItemAmount);
    const decreaseItemAmount = useCartStore((state) => state.decreaseItemAmount);
 
@@ -17,12 +20,14 @@ export const ProductsList = (): JSX.Element => {
       Object.keys(cartList).includes(id)
    );
 
+   
+
    return (
       <SectionWithHeadline title={screenList.cart.name} className="mt-0">
          <div className="flex flex-col gap-4">
             {localCartList.map((elem) => (
                <Link
-                  className="flex gap-4 bg-primaryLightGrey rounded-md p-2 hover:shadow-lg duration-300 transition-shadow relative"
+                  className="flex bg-primaryLightGrey rounded-md p-2 hover:shadow-lg duration-300 transition-shadow relative"
                   to={"/item/" + elem.id}
                   key={elem.id}
                >
@@ -46,7 +51,7 @@ export const ProductsList = (): JSX.Element => {
                   />
 
                   {/* Description ========= */}
-                  <div className="flex flex-col pb-2 pr-2 w-3/4">
+                  <div className="flex flex-col pb-2 pr-2 w-[78%] ml-4">
                      <h3 className="font-medium text-lg overflow-clip text-ellipsis whitespace-nowrap w-11/12">
                         {elem.name}
                      </h3>
@@ -122,22 +127,77 @@ export const ProductsList = (): JSX.Element => {
                         <div className="flex flex-col items-end">
                            {elem.action && (
                               <div className="text-sm line-through">
-                                 {elem.price}
+                                 {(cartList[elem.id] * elem.price).toFixed(2)}
                                  {mainCurrency}
                               </div>
                            )}
-                           <div className="price text-lg font-semibold">
-                              {calculatePriceWithAction({
-                                 price: elem.price,
-                                 action: elem.action,
-                              })}
+                           <div
+                              className="price text-lg font-semibold"
+                              title={
+                                 cartList[elem.id].toString() +
+                                 " * " +
+                                 calculatePriceWithAction({
+                                    price: elem.price,
+                                    action: elem.action,
+                                 })
+                              }
+                           >
+                              {(
+                                 cartList[elem.id] *
+                                 Number(
+                                    calculatePriceWithAction({
+                                       price: elem.price,
+                                       action: elem.action,
+                                    })
+                                 )
+                              ).toFixed(2)}
                               {mainCurrency}
                            </div>
                         </div>
                      </div>
                   </div>
+
+                  <button
+                     className="hover:opacity-60 transition-opacity duration-300 self-start mt-1"
+                     title="Dieses Produkt löschen"
+                     onClick={(event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        if (
+                           confirm(
+                              "Dieses Produkt aus dem Einkaufswagen löschen?"
+                           )
+                        ) {
+                           removeItem(elem.id);
+                        }
+                     }}
+                  >
+                     <Trash2 width={20} />
+                  </button>
                </Link>
             ))}
+         </div>
+
+         <div className="w-full grid grid-cols-2 gap-3 mt-6">
+            <CustomBtn
+               onClick={() => {
+                  if (confirm("Möchten Sie Ihren Korb wirklich ausleeren?")) {
+                     clearCartList();
+                  }
+               }}
+               btnText={"Korb leeren"}
+               color="primaryBlue"
+               className="w-full bg-transparent border-2 border-primaryBlue border-solid text-primaryBlue"
+            />
+            <CustomBtn
+               onClick={() => {
+                  if (confirm("Möchten Sie diese Produkte kaufen?")) {
+                     clearCartList();
+                  }
+               }}
+               btnText={"Einkaufen"}
+               className="w-full"
+            />
          </div>
       </SectionWithHeadline>
    );
