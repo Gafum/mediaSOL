@@ -8,6 +8,7 @@ import { CustomImg } from "../../../UI/CustomImg/CustomImg";
 import { Link } from "react-router-dom";
 import { mainCurrency } from "../../../DevData/WhatCurrency";
 import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
+import { calculateAllAmount } from "../../../Function/calculateAllAmount";
 
 export const ProductsList = (): JSX.Element => {
    const cartList = useCartStore((state) => state.cartList);
@@ -19,8 +20,6 @@ export const ProductsList = (): JSX.Element => {
    const localCartList = CatalogContent.filter(({ id }) =>
       Object.keys(cartList).includes(id)
    );
-
-   
 
    return (
       <SectionWithHeadline title={screenList.cart.name} className="mt-0">
@@ -191,7 +190,11 @@ export const ProductsList = (): JSX.Element => {
             />
             <CustomBtn
                onClick={() => {
-                  if (confirm("Möchten Sie diese Produkte kaufen?")) {
+                  if (
+                     confirm(
+                        `Möchten Sie diese ${calculateAllAmount(cartList)} Produkte kaufen?`
+                     )
+                  ) {
                      clearCartList();
                   }
                }}

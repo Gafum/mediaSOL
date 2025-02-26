@@ -12,8 +12,6 @@ export const Cart = (): JSX.Element => {
 
    const navigate = useNavigate();
 
-   console.log(cartListIDs);
-
    if (!cartListIDs.length && !favoritesListIDs.length) {
       return (
          <div className="text-center w-full">

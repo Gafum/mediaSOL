@@ -40,6 +40,7 @@ export const SectionWithImage = ({
             className="max-w-1/2 w-[400px]"
             src={imgSrc}
             alt="comp"
+            loading="lazy"
          />
       </section>
    );

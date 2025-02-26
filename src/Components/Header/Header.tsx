@@ -2,6 +2,8 @@ import { Link, NavLink } from "react-router-dom";
 import { screenList } from "../../Routing/RoutingList";
 import { CustomNavLink } from "./MyComponents/CustomNavLink";
 import { IRoutingList } from "../../Routing/Routing.types";
+import { calculateAllAmount } from "../../Function/calculateAllAmount";
+import { useCartStore } from "../../Store/CartStore";
 
 const screenNavList: IRoutingList[] = [
    screenList.contact,
@@ -10,6 +12,8 @@ const screenNavList: IRoutingList[] = [
 ];
 
 export const Header = (): JSX.Element => {
+   const cartList = useCartStore((store) => store.cartList);
+
    return (
       <>
          <div className="container py-6 opacity-0 text-2xl w-full ">
@@ -40,23 +44,31 @@ export const Header = (): JSX.Element => {
                         />
                      );
                   })}
+
                   {/* Icons */}
-                  <NavLink
-                     to={screenList.cart.path}
-                     className={({ isActive }: { isActive: boolean }) =>
-                        (isActive
-                           ? "rotate-[8deg] scale-110 drop-shadow-[0_0_6px_rgba(59,130,246,0.7)]"
-                           : "") +
-                        " hover:opacity-60 duration-300 transition-all shadow-primaryBlue "
-                     }
-                     title="Korb"
-                  >
-                     <img
-                        src="/SVG/SmallIcons/Cart.svg"
-                        alt="Korb"
-                        className="relative top-[0.6px]"
-                     />
-                  </NavLink>
+                  <div className="relative flex  hover:opacity-60 duration-300 transition-opacity">
+                     <NavLink
+                        to={screenList.cart.path}
+                        className={({ isActive }: { isActive: boolean }) =>
+                           (isActive
+                              ? "relative rotate-[8deg] scale-110 drop-shadow-[0_0_6px_rgba(59,130,246,0.7)]"
+                              : "") +
+                           " duration-300 transition-all shadow-primaryBlue "
+                        }
+                        title="Korb"
+                     >
+                        <img
+                           src="/SVG/SmallIcons/Cart.svg"
+                           alt="Korb"
+                           className="relative top-[0.6px]"
+                        />
+                     </NavLink>
+                     <span className="absolute text-xs bg-primaryPink text-white top-[-10px] right-[-150%] px-1 rounded-md">
+                        {calculateAllAmount(cartList) > 99
+                           ? "99+"
+                           : calculateAllAmount(cartList)}
+                     </span>
+                  </div>
                </nav>
             </div>
             <div className="bg-gradient-to-b from-white to-transparent h-4 absolute bottom-[-16px] w-full left-0" />

@@ -7,8 +7,8 @@ interface ICustomImgProps extends HTMLAttributes<HTMLImageElement> {
 }
 
 interface IImgState {
-   isLoading: boolean;
    isError: boolean;
+   bgImageSrc: string;
 }
 
 export const CustomImg = ({
@@ -17,8 +17,8 @@ export const CustomImg = ({
    NotFoundComponent,
 }: ICustomImgProps): JSX.Element => {
    const [imgState, setImgState] = useState<IImgState>({
-      isLoading: false,
       isError: false,
+      bgImageSrc: "",
    });
 
    if (imgState.isError || !imgSrc) {
@@ -44,16 +44,25 @@ export const CustomImg = ({
             "bg-cover bg-no-repeat bg-center CustomImg",
             className
          )}
-         style={{ backgroundImage: `url(${imgSrc})` }}
+         style={{ backgroundImage: `url(${imgState.bgImageSrc})` }}
       >
          <img
             src={imgSrc}
-            onError={() => {
-               setImgState(() => {
-                  return { isLoading: false, isError: true };
-               });
-            }}
-            style={{ display: "none" }}
+            onError={() =>
+               setImgState((state) => {
+                  return { ...state, isError: true };
+               })
+            }
+            onLoad={() =>
+               setImgState((state) => {
+                  return {
+                     ...state,
+                     bgImageSrc: imgSrc.toString(),
+                  };
+               })
+            }
+            loading="lazy"
+            style={{ opacity: "0", visibility: "hidden" }}
             alt=""
          />
       </div>

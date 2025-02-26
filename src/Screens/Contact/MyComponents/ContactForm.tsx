@@ -16,6 +16,7 @@ export const ContactForm = () => {
 
    const onSubmit = async (data: IContactForm) => {
       console.log("Form Data:", data);
+      alert("Your will get the data in email " + data.email);
       reset();
    };
 
