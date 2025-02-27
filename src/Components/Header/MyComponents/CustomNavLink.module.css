@@ -24,3 +24,30 @@
    z-index: 2;
    position: relative;
 }
+
+.cartNavBtn {
+   @apply relative flex hover:opacity-60 duration-300 transition-all;
+}
+
+.cartNavBtn > .cartImg {
+   @apply block transition-all shadow-primaryBlue duration-300;
+}
+
+.cartNavBtn.hasItem {
+   @apply mr-2;
+}
+
+.cartNavBtn.activeCart > .cartImg {
+   @apply rotate-[8deg] scale-110 drop-shadow-[0_0_6px_rgba(59,130,246,0.7)];
+}
+
+.cartAmount {
+   display: none;
+   @apply absolute text-[12px] bg-primaryPink text-white top-0 right-2 px-[6px] rounded-xl;
+}
+
+.hasItem > .cartAmount {
+   display: block;
+   transform: translate(100%, -50%);
+   transform-origin: 100% 0%;
+}

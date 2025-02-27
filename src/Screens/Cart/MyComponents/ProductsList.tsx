@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { mainCurrency } from "../../../DevData/WhatCurrency";
 import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 import { calculateAllAmount } from "../../../Function/calculateAllAmount";
+import { twMerge } from "tailwind-merge";
 
 export const ProductsList = (): JSX.Element => {
    const cartList = useCartStore((state) => state.cartList);
@@ -38,7 +39,7 @@ export const ProductsList = (): JSX.Element => {
                   {/* Image =========== */}
                   <CustomImg
                      imgSrc={elem.img}
-                     className="bg-contain rounded-md w-1/5 min-w-[140px]"
+                     className="bg-contain rounded-md min-w-[140px] w-1/5 max-w-[210px]"
                      NotFoundComponent={
                         <ImageOff
                            width={100}
@@ -50,13 +51,16 @@ export const ProductsList = (): JSX.Element => {
                   />
 
                   {/* Description ========= */}
-                  <div className="flex flex-col pb-2 pr-2 w-[78%] ml-4">
-                     <h3 className="font-medium text-lg overflow-clip text-ellipsis whitespace-nowrap w-11/12">
+                  <div className="flex-1 flex flex-col pb-2 pr-2 w-[78%] ml-4">
+                     <h3 className="font-medium text-lg line-clamp-1">
                         {elem.name}
                      </h3>
                      <p className="text-sm line-clamp-3 mt-2 h-[4rem] max-w-full">
                         {elem.description}
                      </p>
+
+                     <div className="flex-1"> {/* Padding */}</div>
+
                      <div className="mt-1 flex items-center gap-2 justify-end ">
                         {/* How much items === */}
                         <div className="text-lg flex font-medium items-center">
@@ -66,15 +70,15 @@ export const ProductsList = (): JSX.Element => {
                                  event.stopPropagation();
                                  decreaseItemAmount(elem.id);
                               }}
-                              className="p-4 relative left-3"
+                              className={twMerge(
+                                 "p-4 relative left-3 transition-opacity duration-300 hover:opacity-40 cursor-pointer",
+                                 !(cartList[elem.id] - 1) &&
+                                    "opacity-40 cursor-not-allowed"
+                              )}
                               disabled={!(cartList[elem.id] - 1)}
                            >
                               <svg
-                                 fill={
-                                    !(cartList[elem.id] - 1)
-                                       ? "#999"
-                                       : "#000000"
-                                 }
+                                 fill="#000"
                                  height="12px"
                                  width="12px"
                                  id="Capa_1"
@@ -88,7 +92,7 @@ export const ProductsList = (): JSX.Element => {
                                  />
                               </svg>
                            </button>
-                           <span className="w-[50px] text-center">
+                           <span className="w-[50px] text-center cursor-default">
                               {cartList[elem.id]}
                            </span>
                            <button
@@ -97,15 +101,15 @@ export const ProductsList = (): JSX.Element => {
                                  event.stopPropagation();
                                  increaseItemAmount(elem.id);
                               }}
-                              className="p-4 relative right-3"
+                              className={twMerge(
+                                 "p-4 relative right-3 transition-opacity duration-300 hover:opacity-40 cursor-pointer",
+                                 cartList[elem.id] - 1 >= 998 &&
+                                    "opacity-40 cursor-not-allowed"
+                              )}
                               disabled={cartList[elem.id] - 1 >= 998}
                            >
                               <svg
-                                 fill={
-                                    cartList[elem.id] - 1 >= 998
-                                       ? "#999"
-                                       : "#000000"
-                                 }
+                                 fill="#000"
                                  height="12px"
                                  width="12px"
                                  xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +135,7 @@ export const ProductsList = (): JSX.Element => {
                               </div>
                            )}
                            <div
-                              className="price text-lg font-semibold"
+                              className="price text-lg font-semibold whitespace-nowrap"
                               title={
                                  cartList[elem.id].toString() +
                                  " * " +
@@ -156,23 +160,26 @@ export const ProductsList = (): JSX.Element => {
                      </div>
                   </div>
 
-                  <button
-                     className="hover:opacity-60 transition-opacity duration-300 self-start mt-1"
-                     title="Dieses Produkt löschen"
-                     onClick={(event) => {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        if (
-                           confirm(
-                              "Dieses Produkt aus dem Einkaufswagen löschen?"
-                           )
-                        ) {
-                           removeItem(elem.id);
-                        }
-                     }}
-                  >
-                     <Trash2 width={20} />
-                  </button>
+                  {/* Delete Btn ========= */}
+                  <div className="self-start pl-1">
+                     <button
+                        className="hover:opacity-60 transition-opacity duration-300 mt-[3px]"
+                        title="Dieses Produkt löschen"
+                        onClick={(event) => {
+                           event.preventDefault();
+                           event.stopPropagation();
+                           if (
+                              confirm(
+                                 "Dieses Produkt aus dem Einkaufswagen löschen?"
+                              )
+                           ) {
+                              removeItem(elem.id);
+                           }
+                        }}
+                     >
+                        <Trash2 width={20} />
+                     </button>
+                  </div>
                </Link>
             ))}
          </div>
