@@ -55,7 +55,7 @@ export const ProductsList = (): JSX.Element => {
                      <h3 className="font-medium text-lg line-clamp-1">
                         {elem.name}
                      </h3>
-                     <p className="text-sm line-clamp-3 mt-2 h-[4rem] max-w-full">
+                     <p className="text-sm line-clamp-3 mt-2 max-w-full">
                         {elem.description}
                      </p>
 

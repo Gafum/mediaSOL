@@ -13,7 +13,7 @@ const screenNavList: IRoutingList[] = [
 export const Header = (): JSX.Element => {
    return (
       <>
-         <div className="container py-6 opacity-0 text-2xl w-full ">
+         <div className="container py-6 opacity-0 text-2xl w-full invisible">
             {/* background header */}
             MediaSOL
          </div>
@@ -25,7 +25,7 @@ export const Header = (): JSX.Element => {
                   title="Startseite"
                >
                   <img src="/mainIcon.svg" alt="M" className="h-[15px]" />
-                  <span className="font-bold whitespace-nowrap transition-opacity duration-300 hover:opacity-70">
+                  <span className="font-bold whitespace-nowrap transition-opacity duration-300 hover:opacity-60">
                      MediaSOL
                   </span>
                </Link>

@@ -25,7 +25,7 @@ export const SmallItem = ({
       <Link
          to={"/item/" + id}
          className={
-            "w-[300px] bg-[#f8f9fe] text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-all duration-300 origin-top rounded-md " +
+            "w-[300px] bg-[#f8f9fe] text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-all duration-300 origin-top rounded-md" +
             className
          }
       >

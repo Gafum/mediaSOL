@@ -43,16 +43,16 @@ export const ItemsList = ({
             {/* List =======> */}
             <Swiper
                slidesPerView={"auto"}
-               spaceBetween={30}
+               // spaceBetween={30}
                pagination={{
                   clickable: true,
                }}
-               className="overflow-hidden absolute top-0 left-[-10px] w-full px-[10px] pb-7"
+               className="absolute overflow-hidden top-0 left-[-10px] w-full px-[10px] pb-7"
                style={{ width: "calc(100% + 20px)" }}
             >
-               {list.map((elem) => {
+               {list.map((elem, index) => {
                   return (
-                     <SwiperSlide key={elem.id} className="w-fit">
+                     <SwiperSlide key={elem.id} className="w-fit flex">
                         <SmallItem
                            {...elem}
                            isOnFavorites={favoriteList.includes(elem.id)}
@@ -60,6 +60,9 @@ export const ItemsList = ({
                               toggleFavoritesElement(elem.id);
                            }}
                         />
+                        {index !== list.length - 1 && (
+                           <div className="w-[30px] cursor-pointer"></div>
+                        )}
                      </SwiperSlide>
                   );
                })}
