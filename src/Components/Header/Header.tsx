@@ -3,6 +3,7 @@ import { screenList } from "../../Routing/RoutingList";
 import { CustomNavLink } from "./MyComponents/CustomNavLink";
 import { IRoutingList } from "../../Routing/Routing.types";
 import { CartIcon } from "./MyComponents/CartIcon";
+import { FavoritesIcon } from "./MyComponents/FavoritesIcon";
 
 const screenNavList: IRoutingList[] = [
    screenList.contact,
@@ -43,6 +44,7 @@ export const Header = (): JSX.Element => {
                   })}
 
                   {/* Icons */}
+                  <FavoritesIcon />
                   <CartIcon />
                </nav>
             </div>

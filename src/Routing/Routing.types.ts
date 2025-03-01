@@ -5,6 +5,7 @@ type RouteKeys =
    | "catalog"
    | "item"
    | "cart"
+   | "favorites"
    | "consultationService"
    | "maintenanceService"
    | "networkSetupService"

@@ -1,10 +1,10 @@
 import { Trash2 } from "lucide-react";
-import { SectionWithHeadline } from "../../../Components/Section/SectionWithHeadline";
-import { useFavoritesStore } from "../../../Store/FavoritesStore";
-import { CatalogContent } from "../../../DevData/CatalogContent";
-import { SmallItem } from "../../../Components/ItemsList/MyComponents/SmallItem";
+import { useFavoritesStore } from "../../Store/FavoritesStore";
+import { CatalogContent } from "../../DevData/CatalogContent";
+import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadline";
+import { SmallItem } from "../../Components/ItemsList/MyComponents/SmallItem";
 
-export const FavoritesList = (): JSX.Element => {
+export const Favorites = (): JSX.Element => {
    const favoritesListIDs = useFavoritesStore((state) => state.favoritesList);
    const clearFavoritesList = useFavoritesStore(
       (state) => state.clearFavoritesList
@@ -32,7 +32,7 @@ export const FavoritesList = (): JSX.Element => {
                </button>
             </div>
          }
-         className="mt-3"
+         className="m-0"
       >
          {localFavoritesList.length > 0 && (
             <>

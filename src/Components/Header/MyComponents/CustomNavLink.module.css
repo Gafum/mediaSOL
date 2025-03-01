@@ -25,6 +25,8 @@
    position: relative;
 }
 
+/* icons Btn  */
+
 .cartNavBtn {
    @apply relative flex hover:opacity-60 duration-300 transition-all;
 }
@@ -33,12 +35,20 @@
    @apply block transition-all shadow-primaryBlue duration-300;
 }
 
+.cartNavBtn > .FavoritesSvg {
+   @apply transition-all duration-300 fill-white;
+}
+
 .cartNavBtn.hasItem {
    @apply mr-2;
 }
 
 .cartNavBtn.activeCart > .cartImg {
    @apply rotate-[8deg] scale-110 drop-shadow-[0_0_6px_rgba(59,130,246,0.7)];
+}
+
+.cartNavBtn.activeCart > .FavoritesSvg {
+   @apply fill-primaryBlue scale-110 drop-shadow-[0_0_6px_rgba(59,130,246,0.7)];
 }
 
 .cartAmount {

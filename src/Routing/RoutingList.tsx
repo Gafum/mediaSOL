@@ -11,6 +11,7 @@ import { Item } from "../Screens/Item/Item";
 
 import { IScreenList } from "./Routing.types";
 import { Cart } from "../Screens/Cart/Cart";
+import { Favorites } from "../Screens/Favorites/Favorites";
 
 export const screenList: IScreenList = {
    home: { path: "/", component: <Home />, name: "Startseite" },
@@ -19,6 +20,11 @@ export const screenList: IScreenList = {
    catalog: { path: "/catalog", component: <Catalog />, name: "Katalog" },
    item: { path: "/item/:itemId", component: <Item />, name: "Ware" },
    cart: { path: "/cart", component: <Cart />, name: "Korb" },
+   favorites: {
+      path: "/favorites",
+      component: <Favorites />,
+      name: "Favoriten",
+   },
    consultationService: {
       path: "/service/consultation",
       component: (
