@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface ICustomBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    btnText?: string | JSX.Element;
@@ -16,10 +17,10 @@ export const CustomBtn = ({
    return (
       <button
          onClick={onClick}
-         className={
-            `bg-${bgColor} rounded-md py-2 px-1 transition duration-300 hover:brightness-110 hover:shadow-lg ${"text-" + color} ` +
-            (className ? className : "")
-         }
+         className={twMerge(
+            `bg-${bgColor} rounded-md py-2 px-1 transition duration-300 hover:brightness-110 hover:shadow-lg ${"text-" + color}`,
+            className
+         )}
       >
          {btnText}
       </button>

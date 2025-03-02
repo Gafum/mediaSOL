@@ -14,8 +14,9 @@ export const CartIcon = (): JSX.Element => {
          to={screenList.cart.path}
          className={({ isActive }: { isActive: boolean }) =>
             twMerge(
-               isActive && styles.activeCart,
+               isActive && styles.activeIcon,
                styles.cartNavBtn,
+               styles.NavIcons,
                Boolean(ItmesAmount) && styles.hasItem
             )
          }
@@ -26,7 +27,7 @@ export const CartIcon = (): JSX.Element => {
             alt="Korb"
             className={styles.cartImg}
          />
-         <span className={styles.cartAmount}>
+         <span className={styles.NavIconAmount}>
             {ItmesAmount > 99 ? "99+" : ItmesAmount}
          </span>
       </NavLink>

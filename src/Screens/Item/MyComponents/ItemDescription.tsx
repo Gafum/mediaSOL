@@ -5,6 +5,7 @@ import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 import { useFavoritesStore } from "../../../Store/FavoritesStore";
 import { useCartStore } from "../../../Store/CartStore";
 import { mainCurrency } from "../../../DevData/WhatCurrency";
+import { twMerge } from "tailwind-merge";
 
 export const ItemDescription = ({
    id,
@@ -61,7 +62,13 @@ export const ItemDescription = ({
                   : "In den Warenkorb"
             }
             onClick={() => toggleCartList(id)}
-            className="w-full font-medium uppercase"
+            className={twMerge(
+               "w-full font-medium uppercase transition-all duration-300 border-2 border-solid border-transparent",
+               cartListIDs.includes(id)
+                  ? "bg-transparent border-primaryBlue text-primaryBlue"
+                  : ""
+            )}
+            // color={}
          />
          <CustomBtn
             btnText={
@@ -73,7 +80,7 @@ export const ItemDescription = ({
                      strokeWidth="2.5px"
                      className="hover:drop-shadow-md transition-all duration-300"
                   />
-                  {favoriteList.includes(id) ? "In " : "Zu "}
+                  {favoriteList.includes(id) ? "IN " : "ZU "}
                   Favoriten
                </div>
             }

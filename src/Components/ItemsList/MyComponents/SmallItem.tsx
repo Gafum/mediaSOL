@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { IGadget } from "../../../MainTypes/Gadget";
 import { PriceShower } from "../../PriceShower/PriceShower";
 import { CustomImg } from "../../../UI/CustomImg/CustomImg";
+import { twMerge } from "tailwind-merge";
 
 interface SmallItemProps extends IGadget {
    toggleToFavorites: () => void;
@@ -24,10 +25,10 @@ export const SmallItem = ({
    return (
       <Link
          to={"/item/" + id}
-         className={
-            "w-[300px] bg-[#f8f9fe] text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-all duration-300 origin-top rounded-md" +
+         className={twMerge(
+            "w-[300px] bg-[#f8f9fe] text-left p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-all duration-300 origin-top rounded-md",
             className
-         }
+         )}
       >
          {action && (
             <span className="text-base w-1/4 max-w-[75px] min-w-[65px] top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
@@ -64,6 +65,7 @@ export const SmallItem = ({
                />
             }
          />
+
          <div>
             <h4 className="text-base font-bold overflow-clip text-ellipsis whitespace-nowrap">
                {name}

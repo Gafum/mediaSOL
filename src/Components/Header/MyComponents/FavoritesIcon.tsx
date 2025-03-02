@@ -13,8 +13,8 @@ export const FavoritesIcon = (): JSX.Element => {
          to={screenList.favorites.path}
          className={({ isActive }: { isActive: boolean }) =>
             twMerge(
-               isActive && styles.activeCart,
-               styles.cartNavBtn,
+               isActive && styles.activeIcon,
+               styles.NavIcons,
                Boolean(favoritesList.length) && styles.hasItem
             )
          }
@@ -27,7 +27,7 @@ export const FavoritesIcon = (): JSX.Element => {
             className={styles.FavoritesSvg}
             id="heartIcon"
          />
-         <span className={styles.cartAmount}>
+         <span className={styles.NavIconAmount}>
             {favoritesList.length > 9 ? "9+" : favoritesList.length}
          </span>
       </NavLink>

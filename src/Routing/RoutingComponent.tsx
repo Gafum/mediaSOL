@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import { Error404 } from "../Components/Errors/Error404";
+import { SimpleError } from "../Components/Errors/SimpleError";
 import { screenList } from "./RoutingList";
 import { Header } from "../Components/Header/Header";
 import { Footer } from "../Components/Footer/Footer";
@@ -32,7 +32,7 @@ export const Router = (): JSX.Element => {
             />
          ))}
 
-         <Route path="*" element={<Error404 />} />
+         <Route path="*" element={<SimpleError />} />
       </Routes>
    );
 };

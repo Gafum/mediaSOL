@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { IGadget } from "../../MainTypes/Gadget";
 import { CatalogContent } from "../../DevData/CatalogContent";
 import { ItemsList } from "../../Components/ItemsList/ItemsList";
-import { Error404 } from "../../Components/Errors/Error404";
+import { SimpleError } from "../../Components/Errors/SimpleError";
 import { useEffect, useState } from "react";
 import { Review } from "../../Components/Review/Review";
 import { IReviews } from "../../MainTypes/Reviews";
@@ -34,7 +34,7 @@ export const Item = (): JSX.Element => {
    }, [elementData]);
 
    if (!elementData) {
-      return <Error404 />;
+      return <SimpleError />;
    }
 
    return (

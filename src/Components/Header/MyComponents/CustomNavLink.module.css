@@ -27,36 +27,36 @@
 
 /* icons Btn  */
 
-.cartNavBtn {
+.NavIcons {
    @apply relative flex hover:opacity-60 duration-300 transition-all;
 }
 
-.cartNavBtn > .cartImg {
+.NavIcons > .cartImg {
    @apply block transition-all shadow-primaryBlue duration-300;
 }
 
-.cartNavBtn > .FavoritesSvg {
+.NavIcons > .FavoritesSvg {
    @apply transition-all duration-300 fill-white;
 }
 
-.cartNavBtn.hasItem {
+.NavIcons.cartNavBtn.hasItem {
    @apply mr-2;
 }
 
-.cartNavBtn.activeCart > .cartImg {
+.NavIcons.activeIcon > .cartImg {
    @apply rotate-[8deg] scale-110 drop-shadow-[0_0_6px_rgba(59,130,246,0.7)];
 }
 
-.cartNavBtn.activeCart > .FavoritesSvg {
+.NavIcons.activeIcon > .FavoritesSvg {
    @apply fill-primaryBlue scale-110 drop-shadow-[0_0_6px_rgba(59,130,246,0.7)];
 }
 
-.cartAmount {
+.NavIconAmount {
    display: none;
    @apply absolute text-[12px] bg-primaryPink text-white top-0 right-2 px-[6px] rounded-xl;
 }
 
-.hasItem > .cartAmount {
+.hasItem > .NavIconAmount {
    display: block;
    transform: translate(100%, -50%);
    transform-origin: 100% 0%;
