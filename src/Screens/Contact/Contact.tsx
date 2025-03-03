@@ -1,15 +1,17 @@
 import { ContactForm } from "./MyComponents/ContactForm";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
-import { paragraphsInContacts } from "./ContactData";
+import { contactData, followUsData } from "./ContactData";
 import { ParagraphWithTitle } from "./MyComponents/ParagraphWithTitle";
 import { Marker } from "react-leaflet/Marker";
 import { Popup } from "react-leaflet/Popup";
+import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadline";
+import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 
 export const Contact = (): JSX.Element => {
    return (
-      <div className="flex flex-col gap-5 h-full">
-         <div className="flex gap-4">
+      <div className="flex flex-col h-full min-h-[86vh]">
+         <div className="flex gap-4 mt-5">
             <div className="w-2/3">
                <ContactForm />
             </div>
@@ -32,18 +34,49 @@ export const Contact = (): JSX.Element => {
             </MapContainer>
          </div>
 
-         <div className="h-[3px] w-full bg-primaryBlue rounded-[3px] mt-3 mb-5" />
+         <div className="h-[3px] w-full bg-primaryBlue rounded-[3px] mt-12" />
 
-         <div className="max-w-[1000px] mx-auto grid grid-cols-4 justify-items-center items-start gap-2 w-full">
-            {paragraphsInContacts.map((paragraphData) => {
-               return (
-                  <ParagraphWithTitle
-                     {...paragraphData}
-                     key={paragraphData.text}
-                  />
-               );
-            })}
-         </div>
+         <SectionWithHeadline className="mt-4" title="Unsere Kontakte ">
+            <div className="max-w-[1000px] mx-auto grid grid-cols-4 justify-items-center items-start gap-2 w-full mt-6">
+               {contactData.map((paragraphData) => {
+                  return (
+                     <ParagraphWithTitle
+                        {...paragraphData}
+                        key={paragraphData.text}
+                     />
+                  );
+               })}
+            </div>
+         </SectionWithHeadline>
+
+         <div className="h-[3px] w-full bg-primaryBlue rounded-[3px] mt-20" />
+
+         <SectionWithHeadline
+            className="mt-6 mb-3"
+            title="Folge uns auf Social Media"
+         >
+            <div className="grid grid-cols-3 justify-items-center gap-3 mt-8">
+               {followUsData.map((paragraphData) => {
+                  return (
+                     <a
+                        href={paragraphData.link}
+                        target="_blank"
+                        className="w-full"
+                     >
+                        <CustomBtn
+                           btnText={
+                              <div className="flex gap-3 justify-center  text-white text-lg items-center">
+                                 {paragraphData.icon}
+                                 {paragraphData.title}
+                              </div>
+                           }
+                           className="w-full"
+                        />
+                     </a>
+                  );
+               })}
+            </div>
+         </SectionWithHeadline>
       </div>
    );
 };

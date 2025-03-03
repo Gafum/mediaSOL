@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { screenList } from "../../Routing/RoutingList";
-import { contactData } from "../../Screens/Contact/ContactData";
+import { contactData, followUsData } from "../../Screens/Contact/ContactData";
 
 export const Footer = (): JSX.Element => {
    return (
@@ -10,8 +10,8 @@ export const Footer = (): JSX.Element => {
             <div className="flex justify-start gap-[96px]">
                <div className="flex flex-col">
                   <h4 className="font-semibold mb-2">Kontact</h4>
-                  <div>{contactData.telephone}</div>
-                  <div>{contactData.email}</div>
+                  <div>{contactData[1].text}</div>
+                  <div>{contactData[2].text}</div>
                </div>
                <div className="flex flex-col ">
                   <h4 className="font-semibold mb-2">Seiten</h4>
@@ -42,20 +42,15 @@ export const Footer = (): JSX.Element => {
                </div>
                <div className="flex flex-col">
                   <h4 className="font-semibold mb-2">Entwikeler</h4>
-                  <a
-                     href="https://github.com/Gafum"
-                     className="hover:opacity-70 transition-opacity duration-200"
-                     target="_blank"
-                  >
-                     GitHub
-                  </a>
-                  <a
-                     href="https://www.youtube.com/@gafum"
-                     className="hover:opacity-70 transition-opacity duration-200"
-                     target="_blank"
-                  >
-                     YouTube
-                  </a>
+                  {followUsData.map((elem) => (
+                     <a
+                        href={elem.link}
+                        className="hover:opacity-70 transition-opacity duration-200"
+                        target="_blank"
+                     >
+                        {elem.title}
+                     </a>
+                  ))}
                </div>
             </div>
          </div>

@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 
 interface IContactForm {
    name: string;
@@ -21,9 +22,11 @@ export const ContactForm = () => {
    };
 
    return (
-      <form onSubmit={handleSubmit(onSubmit)}>
-         <h2 className="font-semibold">Kontakt-Formular</h2>
-         <div className="inputes mt-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-1">
+         <h2 className="font-semibold text-xl">Kontakt-Formular</h2>
+
+         {/* Name */}
+         <div className="inputes mt-7">
             <input
                required={true}
                type="text"
@@ -60,7 +63,7 @@ export const ContactForm = () => {
             )}
          </div>
 
-         {/* Повідомлення */}
+         {/* Nachricht */}
          <div className="inputes">
             <textarea
                required={true}
@@ -78,13 +81,12 @@ export const ContactForm = () => {
             )}
          </div>
 
-         <button
+         <CustomBtn
             type="submit"
             disabled={isSubmitting}
-            className="px-6 bg-primaryBlue text-white py-2 rounded-lg hover:opacity-85 transition-opacity duration-200 disabled:opacity-50 mt-2 w-full"
-         >
-            {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
-         </button>
+            className="w-full mt-2"
+            btnText={isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
+         ></CustomBtn>
       </form>
    );
 };

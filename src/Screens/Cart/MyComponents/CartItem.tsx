@@ -1,0 +1,87 @@
+import { Link } from "react-router-dom";
+import { IGadget } from "../../../MainTypes/Gadget";
+import { CustomImg } from "../../../UI/CustomImg/CustomImg";
+import { ImageOff, Trash2 } from "lucide-react";
+import { useCartStore } from "../../../Store/CartStore";
+import { CartItemInfo } from "./CartItemInfo.tsx";
+
+export interface ICartItemProps extends IGadget {
+   itemAmount: number;
+}
+
+export const CartItem = ({
+   id,
+   name,
+   price,
+   description,
+   type,
+   img,
+   commentsList,
+   action,
+   itemAmount,
+}: ICartItemProps): JSX.Element => {
+   const removeItem = useCartStore((state) => state.removeItem);
+
+   return (
+      <Link
+         className="flex bg-primaryLightGrey rounded-md p-2 hover:shadow-lg duration-300 transition-shadow relative"
+         to={"/item/" + id}
+         key={id}
+      >
+         {/* Action ======== */}
+         {action && (
+            <span className="text-base w-1/4 max-w-[75px] min-w-[65px] top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
+               - {action}%
+            </span>
+         )}
+
+         {/* Image =========== */}
+         <CustomImg
+            imgSrc={img}
+            className="bg-contain rounded-md min-w-[140px] w-1/5 max-w-[210px]"
+            NotFoundComponent={
+               <ImageOff
+                  width={100}
+                  height={100}
+                  strokeWidth={1.4}
+                  color="#222"
+               />
+            }
+         />
+
+         {/* INFO: Header, Description, Prise ========= */}
+         <CartItemInfo
+            {...{
+               id,
+               name,
+               price,
+               description,
+               type,
+               img,
+               commentsList,
+               action,
+               itemAmount,
+            }}
+         />
+
+         {/* Delete Item Btn ========= */}
+         <div className="self-start pl-1">
+            <button
+               className="hover:opacity-60 transition-opacity duration-300 mt-[3px]"
+               title="Dieses Produkt löschen"
+               onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  if (
+                     confirm("Dieses Produkt aus dem Einkaufswagen löschen?")
+                  ) {
+                     removeItem(id);
+                  }
+               }}
+            >
+               <Trash2 width={20} />
+            </button>
+         </div>
+      </Link>
+   );
+};
