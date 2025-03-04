@@ -11,7 +11,7 @@ export const Home = (): JSX.Element => {
    let navigate = useNavigate();
 
    return (
-      <div className="text-primaryBlue">
+      <>
          <SectionWithImage
             headline="Verbessere dein Leben mit neuer Technologie!"
             description="Neue Technologie zu einem sehr guten Preis kann dein Leben bereichern. Sei modern, cool und stets über die neuesten Trends informiert. Möchtest du das? Dann klicke auf den Link unten und kaufe dir einen neuen PC."
@@ -30,6 +30,6 @@ export const Home = (): JSX.Element => {
          <SectionWithHeadline title="Neueste Bewertungen">
             <ReviewsSection />
          </SectionWithHeadline>
-      </div>
+      </>
    );
 };

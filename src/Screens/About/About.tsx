@@ -2,11 +2,17 @@ import { ReactNode } from "react";
 import { screenList } from "../../Routing/RoutingList";
 import { Link, useNavigate } from "react-router-dom";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
+import {
+   BookCheck,
+   Computer,
+   MonitorSmartphone,
+   HouseWifi,
+} from "lucide-react";
 
 interface IAboutSectionData {
    name: string;
    title: string;
-   description: string | { title: string; text: string }[];
+   description: string | { title: string; text: string; icon: JSX.Element }[];
 }
 
 const aboutSectionData: IAboutSectionData[] = [
@@ -14,7 +20,7 @@ const aboutSectionData: IAboutSectionData[] = [
       name: "shortDescription",
       title: " Über Uns",
       description:
-         "MediaSOL GmbH ist ein IT-Beratungsunternehmen, das Firmen berät, mit passenden Medien ausstattet und auf Wunsch die technische Wartung übernimmt",
+         "MediaSOL GmbH ist ein innovatives IT-Beratungsunternehmen, das Firmen und Bildungseinrichtungen umfassend berät, mit hochwertigen Medienlösungen ausstattet und auf Wunsch die technische Wartung übernimmt. Unser Ziel ist es, individuelle Lösungen zu entwickeln, die perfekt auf die Bedürfnisse unserer Kunden abgestimmt sind. Mit unserer langjährigen Erfahrung und einem jungen, dynamischen Team setzen wir auf modernste Technologien und einen kundenorientierten Service.",
    },
    {
       name: "services",
@@ -22,19 +28,24 @@ const aboutSectionData: IAboutSectionData[] = [
       description: [
          {
             title: "Verkauf von technischen Produkten",
-            text: "PCs, Apple-Produkte, Drucker, Scanner, Server, Beamer und vieles mehr – wir bieten hochwertige Technik für Ihre Bedürfnisse.",
+            text: "PCs, Apple-Produkte, Drucker, Scanner, Server, Beamer und vieles mehr – wir bieten hochwertige Technik für Ihre Bedürfnisse. Unser Sortiment umfasst sowohl Einsteigergeräte als auch leistungsstarke Profitechnik für anspruchsvolle Anwendungen.",
+            icon: <MonitorSmartphone width={"100%"} height={"100%"} />,
          },
          {
             title: "Beratung für Firmen und Schulen",
-            text: "Maßgeschneiderte Lösungen, die perfekt zu Ihren Anforderungen passen.",
+            text: "Maßgeschneiderte Lösungen, die perfekt zu Ihren Anforderungen passen. Wir analysieren Ihre individuellen Bedürfnisse und entwickeln gemeinsam mit Ihnen ein Konzept, das Ihre Arbeitsabläufe effizienter und zukunftssicher macht.",
+            icon: <BookCheck width={"100%"} height={"100%"} />,
          },
          {
             title: "Technische Wartung",
-            text: "Wartung von Rechnern und Servern für einen reibungslosen Betrieb.",
+            text: "Wartung von Rechnern und Servern für einen reibungslosen Betrieb. Unser Service umfasst regelmäßige Inspektionen, Fehlerbehebung und präventive Maßnahmen, um Ausfälle zu vermeiden und Ihre Systeme stets auf dem neuesten Stand zu halten.",
+
+            icon: <Computer width={"100%"} height={"100%"} />,
          },
          {
             title: "Netzwerk-Einrichtung",
-            text: "Effiziente Netzwerke für Ihre IT-Infrastruktur.",
+            text: "Effiziente Netzwerke für Ihre IT-Infrastruktur. Wir planen, installieren und konfigurieren Netzwerke, die den Anforderungen moderner Unternehmen gerecht werden – von kleinen Büroeinheiten bis hin zu komplexen Unternehmensstrukturen.",
+            icon: <HouseWifi width={"100%"} height={"100%"} />,
          },
       ],
    },
@@ -42,25 +53,25 @@ const aboutSectionData: IAboutSectionData[] = [
       name: "director",
       title: "Über unseren Geschäftsführer",
       description:
-         "Unser Geschäftsführer Tim Baumann ist ein dynamischer und visionärer IT-Fachmann, der mit frischen Ideen und einer klaren Vorstellung für die Zukunft die MediaSOL GmbH leitet. Mit einem jungen, modernen Ansatz führt er das Unternehmen in eine neue Ära, die sowohl technische Innovation als auch kundenorientierte Services fördert. Sein Ziel ist es, MediaSOL ein zeitgemäßes Image zu verleihen, das junge Kunden anspricht und bestehende Partnerschaften stärkt. Tim hat das Unternehmen von seinem Vater übernommen und mit seinem Engagement und seiner Leidenschaft für IT den Betrieb erweitert und modernisiert.Mit Tim an der Spitze ist MediaSOL auf einem stabilen, zukunftsorientierten Weg, der die Stärken der Vergangenheit bewahrt und neue Potenziale eröffnet.",
+         "Unser Geschäftsführer Tim Baumann ist ein dynamischer und visionärer IT-Fachmann, der mit frischen Ideen und einer klaren Vorstellung für die Zukunft die MediaSOL GmbH leitet. Mit einem jungen, modernen Ansatz führt er das Unternehmen in eine neue Ära, die sowohl technische Innovation als auch kundenorientierte Services fördert. Sein Ziel ist es, MediaSOL ein zeitgemäßes Image zu verleihen, das junge Kunden anspricht und bestehende Partnerschaften stärkt. Tim hat das Unternehmen von seinem Vater übernommen, der die Firma über viele Jahre mit viel Engagement aufgebaut hat. Mit seinem Fachwissen und seiner Leidenschaft für IT hat Tim den Betrieb erweitert, modernisiert und neue Geschäftsfelder erschlossen. Unter seiner Leitung ist MediaSOL nicht nur ein verlässlicher Partner für bestehende Kunden, sondern auch ein attraktiver Anbieter für die nächste Generation von Unternehmen.",
    },
    {
       name: "ourColleagues",
       title: "Unser Team",
       description:
-         "Unser Team besteht aus engagierten Fachleuten, die sich in verschiedenen Bereichen spezialisiert haben. Dazu gehören mehrere erfahrene Verkäuferinnen und Verkäufer, die ihre Expertise aus dem früheren Betrieb des Unternehmens übernommen haben. Hinzu kommen sechs technische Spezialisten, darunter IT-System-Elektroniker, Servicetechniker und Fachinformatiker, die für die technische Unterstützung unserer Kunden sorgen. Das Team wird in naher Zukunft durch drei zusätzliche Techniker erweitert. Zusätzlich bieten wir jungen Talenten Ausbildungsplätze als IT-System-Elektroniker und Fachinformatiker an.",
+         "Unser Team besteht aus engagierten Fachleuten, die sich in verschiedenen Bereichen spezialisiert haben. Dazu gehören mehrere erfahrene Verkäuferinnen und Verkäufer, die ihre Expertise aus dem früheren Betrieb des Unternehmens übernommen haben. Hinzu kommen sechs technische Spezialisten, darunter IT-System-Elektroniker, Servicetechniker und Fachinformatiker, die für die technische Unterstützung unserer Kunden sorgen. Das Team wird in naher Zukunft durch drei zusätzliche Techniker erweitert, um unserem wachsenden Kundenstamm gerecht zu werden. Zusätzlich bieten wir jungen Talenten Ausbildungsplätze als IT-System-Elektroniker und Fachinformatiker an. Unser Team zeichnet sich durch eine offene Unternehmenskultur, Teamgeist und kontinuierliche Weiterbildung aus.",
    },
    {
       name: "location",
       title: "Standort und internationale Kontakte",
       description:
-         "Unser Hauptsitz befindet sich in einem Gewerbegebiet der Hauptstadt. Wir pflegen internationale Kontakte nach England, Spanien, China und den USA, um unseren Kunden die besten Lösungen anzubieten.",
+         "Unser Hauptsitz befindet sich in einem Gewerbegebiet der Hauptstadt, das optimal an die Verkehrsinfrastruktur angebunden ist. Dies ermöglicht eine schnelle und zuverlässige Abwicklung von Aufträgen. Darüber hinaus pflegen wir internationale Kontakte nach England, Spanien, China und den USA, um unseren Kunden die besten Lösungen anzubieten. Diese Partnerschaften ermöglichen es uns, stets die neuesten Technologien anzubieten und globale Innovationen in unsere Lösungen zu integrieren.",
    },
    {
       name: "workWithUs",
       title: "Bereit, mit uns zu arbeiten?",
       description:
-         "Kontaktieren Sie uns, um mehr über unsere Dienstleistungen zu erfahren. Wir freuen uns darauf, von Ihnen zu hören!",
+         "Kontaktieren Sie uns, um mehr über unsere Dienstleistungen zu erfahren. Unser Team steht Ihnen mit Fachwissen, Engagement und persönlicher Beratung zur Seite. Wir freuen uns darauf, von Ihnen zu hören und gemeinsam mit Ihnen innovative Lösungen für Ihre IT-Herausforderungen zu entwickeln!",
    },
 ];
 
@@ -74,13 +85,18 @@ const SectionAboutPage = ({
       } else {
          return (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">
-               {description.map((text) => (
+               {description.map((data) => (
                   <div
-                     key={text.title}
-                     className="bg-primaryLightGrey p-4 rounded-md shadow-sm"
+                     key={data.title}
+                     className="bg-primaryLightGrey p-4 rounded-md shadow-sm flex gap-3 items-center justify-start"
                   >
-                     <h3 className="text-md font-semibold">{text.title}</h3>
-                     <p className="text-sm mt-1">{text.text}</p>
+                     <div className="min-h-16 min-w-16 h-16 w-16">
+                        {data.icon}
+                     </div>
+                     <div>
+                        <h3 className="text-md font-semibold">{data.title}</h3>
+                        <p className="text-sm mt-1">{data.text}</p>
+                     </div>
                   </div>
                ))}
             </div>
@@ -100,7 +116,7 @@ export const About = (): JSX.Element => {
    const navigate = useNavigate();
 
    return (
-      <div className="max-w-[900px] m-auto flex flex-col">
+      <div className="m-auto flex flex-col">
          <section className="About__description flex gap-4 justify-start items-center flex-col lg:flex-row">
             <Link
                to={screenList.home.path}

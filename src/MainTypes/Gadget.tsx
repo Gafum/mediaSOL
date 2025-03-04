@@ -3,7 +3,7 @@ export interface IGadget {
    name: string;
    price: number;
    description: string;
-   type: "PC" | "Laptop" | "Handy" | "Musik" | "Kamera" | "Gaming Gärate";
+   type: string;
    img?: string;
    commentsList?: string[];
    action?: number;

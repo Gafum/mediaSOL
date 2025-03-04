@@ -44,6 +44,7 @@ export const Footer = (): JSX.Element => {
                   <h4 className="font-semibold mb-2">Entwikeler</h4>
                   {followUsData.map((elem) => (
                      <a
+                        key={elem.link}
                         href={elem.link}
                         className="hover:opacity-70 transition-opacity duration-200"
                         target="_blank"
