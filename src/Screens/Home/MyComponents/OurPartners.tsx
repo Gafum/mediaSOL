@@ -1,6 +1,6 @@
 export const OurPartners = (): JSX.Element => {
    return (
-      <div className="flex justify-between h-[100px] px-5 items-center max-w-[1000px] m-auto gap-2">
+      <div className="flex justify-between h-[100px] px-5 items-center w-full max-w-[1000px] m-auto gap-2">
          <img
             src="/SVG/Partners/Wider.svg"
             alt="Wider"

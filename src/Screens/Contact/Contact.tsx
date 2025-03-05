@@ -7,6 +7,7 @@ import { Marker } from "react-leaflet/Marker";
 import { Popup } from "react-leaflet/Popup";
 import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadline";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
+import { MapController } from "../../UI/CustomData/MapController";
 
 export const Contact = (): JSX.Element => {
    return (
@@ -22,6 +23,7 @@ export const Contact = (): JSX.Element => {
                scrollWheelZoom={false}
                className="rounded-md border-[1px] border-solid border-black w-1/3 z-0"
             >
+               <MapController />
                <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
                <Marker position={[51.567441, 6.738321]}>
                   <Popup>
