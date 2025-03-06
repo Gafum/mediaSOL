@@ -18,7 +18,7 @@ export const Header = (): JSX.Element => {
             {/* background header */}
             MediaSOL
          </div>
-         <header className="fixed top-0 left-0 w-full pt-6 pb-2 bg-white z-20">
+         <header className="fixed top-0 left-0 w-full pt-6 pb-2 bg-white z-10">
             <div className="flex gap-4 justify-between container w-full pb-0">
                <Link
                   to={"/"}

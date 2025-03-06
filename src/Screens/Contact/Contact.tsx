@@ -79,6 +79,7 @@ export const Contact = (): JSX.Element => {
                })}
             </div>
          </SectionWithHeadline>
+
       </div>
    );
 };
