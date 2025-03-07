@@ -1,6 +1,8 @@
 interface ICustomDialogProps {
    open: boolean;
-   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+   setOpen:
+      | React.Dispatch<React.SetStateAction<boolean>>
+      | ((prev: boolean) => void);
    children: React.ReactNode;
 }
 

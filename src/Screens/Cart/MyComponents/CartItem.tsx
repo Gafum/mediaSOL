@@ -25,7 +25,7 @@ export const CartItem = ({
    return (
       <Link
          className="flex bg-primaryLightGrey rounded-md p-2 hover:shadow-lg duration-300 transition-shadow relative"
-         to={"/item/" + id}
+         to={import.meta.env.BASE_URL + "/item/" + id}
          key={id}
       >
          {/* Action ======== */}

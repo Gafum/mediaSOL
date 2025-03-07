@@ -4,18 +4,28 @@ import { SimpleError } from "../../Components/Errors/SimpleError";
 import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadline";
 import { CartItem } from "./MyComponents/CartItem";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
-import { calculateAllAmount } from "../../Function/calculateAllAmount";
 import { CatalogContent } from "../../DevData/CatalogContent";
+import { useState } from "react";
+import { CartDialog } from "./MyComponents/CartDialog";
+import { calculateAllAmount } from "../../Function/calculateAllAmount";
+
+export interface IModalState {
+   isOpen: boolean;
+   headlineText: string;
+}
 
 export const Cart = (): JSX.Element => {
    const cartList = useCartStore((state) => state.cartList);
+
    const cartListIDs = Object.keys(cartList);
-
-   const clearCartList = useCartStore((state) => state.clearCartList);
-
    const localCartList = CatalogContent.filter(({ id }) =>
       Object.keys(cartList).includes(id)
    );
+
+   const [modalData, setModalData] = useState<IModalState>({
+      isOpen: false,
+      headlineText: "",
+   });
 
    if (!cartListIDs || !cartListIDs?.length) {
       return (
@@ -38,9 +48,10 @@ export const Cart = (): JSX.Element => {
          <div className="w-full grid grid-cols-2 gap-3 mt-6">
             <CustomBtn
                onClick={() => {
-                  if (confirm("Möchten Sie Ihren Korb wirklich ausleeren?")) {
-                     clearCartList();
-                  }
+                  setModalData({
+                     isOpen: true,
+                     headlineText: "Möchten Sie Ihren Korb wirklich ausleeren?",
+                  });
                }}
                btnText={"Korb leeren"}
                color="primaryBlue"
@@ -49,18 +60,17 @@ export const Cart = (): JSX.Element => {
 
             <CustomBtn
                onClick={() => {
-                  if (
-                     confirm(
-                        `Möchten Sie diese ${calculateAllAmount(cartList)} Produkte kaufen?`
-                     )
-                  ) {
-                     clearCartList();
-                  }
+                  setModalData({
+                     isOpen: true,
+                     headlineText: `Möchten Sie diese ${calculateAllAmount(cartList)} Produkte kaufen?`,
+                  });
                }}
                btnText={"Einkaufen"}
                className="w-full"
             />
          </div>
+
+         <CartDialog modalData={modalData} setModalData={setModalData} />
       </SectionWithHeadline>
    );
 };

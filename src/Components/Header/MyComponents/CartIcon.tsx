@@ -23,7 +23,7 @@ export const CartIcon = (): JSX.Element => {
          title="Korb"
       >
          <img
-            src="/SVG/SmallIcons/Cart.svg"
+            src={import.meta.env.BASE_URL+"/SVG/SmallIcons/Cart.svg"}
             alt="Korb"
             className={styles.cartImg}
          />

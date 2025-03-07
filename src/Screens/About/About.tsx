@@ -151,7 +151,7 @@ export const About = (): JSX.Element => {
                to={screenList.home.path}
                className="w-full max-w-[200px] lg:w-1/2"
             >
-               <img src="/mainIcon.svg" alt="M" />
+               <img src={import.meta.env.BASE_URL + "/mainIcon.svg"} alt="M" />
             </Link>
             <div className="text-left py-6">
                <h1 className="text-2xl font-bold">Über MediaSOL GmbH</h1>

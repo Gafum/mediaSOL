@@ -21,11 +21,11 @@ export const Header = (): JSX.Element => {
          <header className="fixed top-0 left-0 w-full pt-6 pb-2 bg-white z-10">
             <div className="flex gap-4 justify-between container w-full pb-0">
                <Link
-                  to={"/"}
+                  to={import.meta.env.BASE_URL}
                   className="flex justify-center items-center gap-2 text-2xl"
                   title="Startseite"
                >
-                  <img src="/mainIcon.svg" alt="M" className="h-[15px]" />
+                  <img src={import.meta.env.BASE_URL+"/mainIcon.svg"} alt="M" className="h-[15px]" />
                   <span className="font-bold whitespace-nowrap transition-opacity duration-300 hover:opacity-60">
                      MediaSOL
                   </span>

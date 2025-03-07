@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
-import { CustomDialog } from "../../../UI/CustomDialog/CustomDialog";
 import { useState } from "react";
+import { ContactDialog } from "./ContactDialog";
 
-interface IContactForm {
+export interface IContactForm {
    name: string;
    email: string;
    message: string;
@@ -18,7 +18,11 @@ export const ContactForm = () => {
    } = useForm<IContactForm>();
 
    const [modalOpen, setModalOpen] = useState(false);
-   const [formData, setFormData] = useState<IContactForm>();
+   const [formData, setFormData] = useState<IContactForm>({
+      name: "",
+      email: "",
+      message: "",
+   });
 
    const onSubmit = async (data: IContactForm) => {
       setFormData(data);
@@ -99,23 +103,11 @@ export const ContactForm = () => {
                btnText={isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
             ></CustomBtn>
          </form>
-
-         <CustomDialog open={modalOpen} setOpen={setModalOpen}>
-            <div className="text-center p-3 pb-4 flex flex-col justify-between items-center overflow-hidden">
-               <h2 className="font-semibold text-2xl">Warten auf Antwort</h2>
-
-               <p className="mt-3 break-words break-all text-wrap max-w-full w-full">
-                  <span className="capitalize">{formData?.name}</span>, Sie
-                  erhalten die Daten per E-Mail{" "}
-                  <span className="font-medium">{formData?.email}</span>
-               </p>
-               <CustomBtn
-                  btnText={"Okay"}
-                  className="w-2/3 mt-4 bg-primaryPink"
-                  onClick={() => setModalOpen(false)}
-               />
-            </div>
-         </CustomDialog>
+         <ContactDialog
+            formData={formData}
+            setModalOpen={setModalOpen}
+            modalOpen={modalOpen}
+         />
       </>
    );
 };

@@ -13,7 +13,7 @@ export const CustomNavLink = ({
          className={({ isActive }: { isActive: boolean }) =>
             styles.navLink + " " + (isActive ? styles.active : "brightness-125")
          }
-         to={myPath || "/"}
+         to={myPath || import.meta.env.BASE_URL}
       >
          <div className={"bg-primaryBlue " + styles.linkBack} />
          <span className="font-medium">{myName}</span>

@@ -18,7 +18,9 @@ export const Home = (): JSX.Element => {
             btnText="Kaufe einige Gadgets"
             imgSrc="https://www.mifcom.de/media/catalog/product/i/m/img_0011_10.jpg"
             onClick={() => navigate(screenList.catalog.path)}
-            eventOnImgClick={() => navigate("/item/mainId")}
+            eventOnImgClick={() =>
+               navigate(import.meta.env.BASE_URL + "/item/mainId")
+            }
          />
 
          <ServicesSection />

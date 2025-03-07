@@ -14,38 +14,58 @@ import { Cart } from "../Screens/Cart/Cart";
 import { Favorites } from "../Screens/Favorites/Favorites";
 
 export const screenList: IScreenList = {
-   home: { path: "/", component: <Home />, name: "Startseite" },
-   about: { path: "/about", component: <About />, name: "Über uns" },
-   contact: { path: "/contact", component: <Contact />, name: "Kontakt" },
-   catalog: { path: "/catalog", component: <Catalog />, name: "Katalog" },
-   item: { path: "/item/:itemId", component: <Item />, name: "Ware" },
+   home: {
+      path: import.meta.env.BASE_URL,
+      component: <Home />,
+      name: "Startseite",
+   },
+   about: {
+      path: import.meta.env.BASE_URL + "/about",
+      component: <About />,
+      name: "Über uns",
+   },
+   contact: {
+      path: import.meta.env.BASE_URL + "/contact",
+      component: <Contact />,
+      name: "Kontakt",
+   },
+   catalog: {
+      path: import.meta.env.BASE_URL + "/catalog",
+      component: <Catalog />,
+      name: "Katalog",
+   },
+   item: {
+      path: import.meta.env.BASE_URL + "/item/:itemId",
+      component: <Item />,
+      name: "Ware",
+   },
    cart: { path: "/cart", component: <Cart />, name: "Korb" },
    favorites: {
-      path: "/favorites",
+      path: import.meta.env.BASE_URL + "/favorites",
       component: <Favorites />,
       name: "Favoriten",
    },
    consultationService: {
-      path: "/service/consultation",
+      path: import.meta.env.BASE_URL + "/service/consultation",
       component: (
          <ServicesScreenGenerator ServicesList={ConsultationServiceContent} />
       ),
       name: "Beratung",
    },
    maintenanceService: {
-      path: "/service/maintenance",
+      path: import.meta.env.BASE_URL + "/service/maintenance",
       component: (
          <ServicesScreenGenerator ServicesList={MaintenanceServiceContent} />
       ),
       name: "Wartung der Rechner",
    },
    networkSetupService: {
-      path: "/service/networkSetup",
+      path: import.meta.env.BASE_URL + "/service/networkSetup",
       component: <ServicesScreenGenerator ServicesList={NetworkSetupContent} />,
       name: "Netzwerkeinstellungen und Einrichtung",
    },
    technicalSupportService: {
-      path: "/service/technicalSupport",
+      path: import.meta.env.BASE_URL + "/service/technicalSupport",
       component: (
          <ServicesScreenGenerator ServicesList={TechnicalSupportContent} />
       ),

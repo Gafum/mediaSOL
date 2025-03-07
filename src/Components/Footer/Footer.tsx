@@ -6,7 +6,7 @@ export const Footer = (): JSX.Element => {
    return (
       <footer className="bg-primaryLightGrey">
          <div className="flex justify-start px-9 py-4 gap-6 items-start container">
-            <img src="/mainIcon.svg" alt="M" className="w-[54px] mt-1" />
+            <img src={import.meta.env.BASE_URL+"/mainIcon.svg"} alt="M" className="w-[54px] mt-1" />
             <div className="flex justify-start gap-[96px]">
                <div className="flex flex-col">
                   <h4 className="font-semibold mb-2">Kontact</h4>

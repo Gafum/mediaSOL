@@ -18,7 +18,10 @@ export const ServicesSection = (): JSX.Element => {
                      </div>
                   </div>
                   <img
-                     src="/SVG/Services/Consultation.svg"
+                     src={
+                        import.meta.env.BASE_URL +
+                        "/SVG/Services/Consultation.svg"
+                     }
                      alt="Consultation"
                      className="w-1/2 ml-auto"
                   />
@@ -36,7 +39,10 @@ export const ServicesSection = (): JSX.Element => {
                      </button>
                   </div>
                   <img
-                     src="/SVG/Services/NetworkSetup.svg"
+                     src={
+                        import.meta.env.BASE_URL +
+                        "/SVG/Services/NetworkSetup.svg"
+                     }
                      alt="NetworkSetup"
                      className="w-1/2 ml-auto"
                   />
@@ -57,7 +63,10 @@ export const ServicesSection = (): JSX.Element => {
                      </button>
                   </div>
                   <img
-                     src="/SVG/Services/Maintenance.svg"
+                     src={
+                        import.meta.env.BASE_URL +
+                        "/SVG/Services/Maintenance.svg"
+                     }
                      alt="Maintenance"
                      className="w-3/5 ml-auto"
                   />
@@ -75,7 +84,10 @@ export const ServicesSection = (): JSX.Element => {
                      </button>
                   </div>
                   <img
-                     src="/SVG/Services/TechnicalSupport.svg"
+                     src={
+                        import.meta.env.BASE_URL +
+                        "/SVG/Services/TechnicalSupport.svg"
+                     }
                      alt="TechnicalSupport"
                      className="w-2/5 ml-auto"
                   />
