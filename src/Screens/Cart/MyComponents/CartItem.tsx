@@ -4,9 +4,11 @@ import { CustomImg } from "../../../UI/CustomImg/CustomImg";
 import { ImageOff, Trash2 } from "lucide-react";
 import { useCartStore } from "../../../Store/CartStore";
 import { CartItemInfo } from "./CartItemInfo.tsx";
+import { IModalState } from "../Cart.tsx";
 
 export interface ICartItemProps extends IGadget {
    itemAmount: number;
+   setModalData: React.Dispatch<React.SetStateAction<IModalState>>;
 }
 
 export const CartItem = ({
@@ -19,6 +21,7 @@ export const CartItem = ({
    commentsList,
    action,
    itemAmount,
+   setModalData,
 }: ICartItemProps): JSX.Element => {
    const removeItem = useCartStore((state) => state.removeItem);
 
@@ -72,11 +75,13 @@ export const CartItem = ({
                onClick={(event) => {
                   event.preventDefault();
                   event.stopPropagation();
-                  if (
-                     confirm("Dieses Produkt aus dem Einkaufswagen löschen?")
-                  ) {
-                     removeItem(id);
-                  }
+                  setModalData({
+                     isOpen: true,
+                     onOkeyClicK: () => {
+                        removeItem(id);
+                     },
+                     headlineText: name + " aus dem Einkaufswagen löschen?",
+                  });
                }}
             >
                <Trash2 width={20} />

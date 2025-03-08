@@ -12,6 +12,7 @@ import { calculateAllAmount } from "../../Function/calculateAllAmount";
 export interface IModalState {
    isOpen: boolean;
    headlineText: string;
+   onOkeyClicK: (() => void) | undefined;
 }
 
 export const Cart = (): JSX.Element => {
@@ -25,6 +26,7 @@ export const Cart = (): JSX.Element => {
    const [modalData, setModalData] = useState<IModalState>({
       isOpen: false,
       headlineText: "",
+      onOkeyClicK: () => {},
    });
 
    if (!cartListIDs || !cartListIDs?.length) {
@@ -41,7 +43,11 @@ export const Cart = (): JSX.Element => {
       <SectionWithHeadline title={screenList.cart.name} className="mt-0">
          <div className="flex flex-col gap-4">
             {localCartList.map((elem) => (
-               <CartItem {...elem} itemAmount={cartList[elem.id]} />
+               <CartItem
+                  {...elem}
+                  itemAmount={cartList[elem.id]}
+                  setModalData={setModalData}
+               />
             ))}
          </div>
 
@@ -51,6 +57,7 @@ export const Cart = (): JSX.Element => {
                   setModalData({
                      isOpen: true,
                      headlineText: "Möchten Sie Ihren Korb wirklich ausleeren?",
+                     onOkeyClicK: undefined,
                   });
                }}
                btnText={"Korb leeren"}
@@ -63,6 +70,7 @@ export const Cart = (): JSX.Element => {
                   setModalData({
                      isOpen: true,
                      headlineText: `Möchten Sie diese ${calculateAllAmount(cartList)} Produkte kaufen?`,
+                     onOkeyClicK: undefined,
                   });
                }}
                btnText={"Einkaufen"}

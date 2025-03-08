@@ -39,7 +39,11 @@ export const screenList: IScreenList = {
       component: <Item />,
       name: "Ware",
    },
-   cart: { path: "/cart", component: <Cart />, name: "Korb" },
+   cart: {
+      path: import.meta.env.BASE_URL + "/cart",
+      component: <Cart />,
+      name: "Korb",
+   },
    favorites: {
       path: import.meta.env.BASE_URL + "/favorites",
       component: <Favorites />,

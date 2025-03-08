@@ -177,7 +177,7 @@ export const About = (): JSX.Element => {
                         className="rounded-md border-[1px] border-solid border-black w-full z-0 h-96 mt-5"
                      >
                         <MapController />
-                        <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
+                        <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
                         <Marker position={[51.567441, 6.738321]}>
                            <Popup>
                               <div className="text-center">

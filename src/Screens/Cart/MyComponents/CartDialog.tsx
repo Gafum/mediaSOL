@@ -13,6 +13,14 @@ export const CartDialog = ({
    setModalData,
 }: ICartDialog): JSX.Element => {
    const clearCartList = useCartStore((state) => state.clearCartList);
+   function closeModal() {
+      setModalData({
+         isOpen: false,
+         headlineText: "",
+         onOkeyClicK: undefined,
+      });
+   }
+
    return (
       <CustomDialog
          open={modalData.isOpen}
@@ -29,17 +37,17 @@ export const CartDialog = ({
                <CustomBtn
                   btnText={"Nein"}
                   className="bg-primaryPink w-full"
-                  onClick={() =>
-                     setModalData({
-                        isOpen: false,
-                        headlineText: "",
-                     })
-                  }
+                  onClick={closeModal}
                />
                <CustomBtn
                   className="w-full"
                   btnText={"Ja"}
-                  onClick={() => clearCartList()}
+                  onClick={() => {
+                     closeModal();
+                     (modalData.onOkeyClicK
+                        ? modalData.onOkeyClicK
+                        : clearCartList)();
+                  }}
                />
             </div>
          </div>

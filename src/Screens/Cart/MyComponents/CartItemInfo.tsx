@@ -11,7 +11,7 @@ export const CartItemInfo = ({
    description,
    action,
    itemAmount,
-}: ICartItemProps): JSX.Element => {
+}: Omit<ICartItemProps, "setModalData">): JSX.Element => {
    const increaseItemAmount = useCartStore((state) => state.increaseItemAmount);
    const decreaseItemAmount = useCartStore((state) => state.decreaseItemAmount);
 
