@@ -13,7 +13,7 @@ export const ItemDetails = ({ img, ...elementData }: IGadget): JSX.Element => {
          {/* Image ======== */}
          <CustomImg
             imgSrc={img}
-            className="w-[calc(100%-20px)] aspect-square rounded-md min-h-[200px] bg-top"
+            className="w-[calc(100%-20px)] aspect-square rounded-md min-h-[200px] max-w-[600px] bg-top"
          />
 
          {/* Description and Buttons =======*/}

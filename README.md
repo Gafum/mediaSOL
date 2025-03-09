@@ -35,3 +35,13 @@ yarn install
 ```bash
 yarn dev
 ```
+
+## Deployment
+
+To deploy this project on GitHub Pages, use the following command:
+
+`yarn deploy`
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request.

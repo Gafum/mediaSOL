@@ -1,6 +1,6 @@
 export const OurPartners = (): JSX.Element => {
    return (
-      <div className="flex justify-between h-[100px] px-5 items-center w-full max-w-[1000px] m-auto gap-2">
+      <div className="flex justify-between h-[100px] px-5 items-center w-full max-w-[1200px] m-auto gap-2">
          <img
             src={import.meta.env.BASE_URL + "/SVG/Partners/Wider.svg"}
             alt="Wider"
@@ -17,7 +17,7 @@ export const OurPartners = (): JSX.Element => {
             className="w-[60px] max-h-full"
          />
          <img
-            src={import.meta.env.BASE_URL+"/SVG/Partners/Geoda.svg"}
+            src={import.meta.env.BASE_URL + "/SVG/Partners/Geoda.svg"}
             alt="Geoda"
             className="w-[200px] max-h-full"
          />

@@ -24,7 +24,7 @@ export const Contact = (): JSX.Element => {
                className="rounded-md border-[1px] border-solid border-black w-1/3 z-0"
             >
                <MapController />
-               <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
+               <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
                <Marker position={[51.567441, 6.738321]}>
                   <Popup>
                      <div className="text-center">
@@ -39,7 +39,7 @@ export const Contact = (): JSX.Element => {
          <div className="h-[3px] w-full bg-primaryBlue rounded-[3px] mt-12" />
 
          <SectionWithHeadline className="mt-4" title="Unsere Kontakte ">
-            <div className="max-w-[1000px] mx-auto grid grid-cols-4 justify-items-center items-start gap-2 w-full mt-6">
+            <div className="max-w-[1200px] mx-auto grid grid-cols-4 justify-items-center items-start gap-2 w-full mt-6">
                {contactData.map((paragraphData) => {
                   return (
                      <ParagraphWithTitle
@@ -79,7 +79,6 @@ export const Contact = (): JSX.Element => {
                })}
             </div>
          </SectionWithHeadline>
-
       </div>
    );
 };

@@ -15,7 +15,7 @@ export const CustomDialog = ({
       <div
          className={
             open
-               ? "fixed top-0 left-0 w-full h-full z-20 flex justify-center items-center bg-[#00000088]"
+               ? "fixed top-0 left-0 w-full h-full z-20 flex justify-center items-center bg-[#00000088] backdrop-blur-md"
                : "hidden"
          }
          onClick={() => setOpen(false)}

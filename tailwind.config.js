@@ -2,7 +2,14 @@
 export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}",],
   theme: {
-    container: false,
+    container: {
+      screens: {
+        "lg": '1000px',
+        "xl": '1240px',
+        "2xl": '1496px',
+        "3xl": '1560px',
+      },
+    },
     extend: {
       dropShadow: {
         md: "0 0 3px #666"
@@ -19,7 +26,6 @@ export default {
     function ({ addComponents }) {
       addComponents({
         '.container': {
-          maxWidth: '1400px',
           padding: "0 24px 50px",
           margin: "0 auto"
         }
