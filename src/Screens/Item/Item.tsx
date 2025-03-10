@@ -26,7 +26,9 @@ export const Item = (): JSX.Element => {
          return;
       }
 
-      document.title = elementData.name;
+      setTimeout(() => {
+         document.title = elementData.name;
+      }, 200);
 
       setLocalCommentList(() =>
          reviewsList.filter(({ id }) => elementData.commentsList?.includes(id))

@@ -15,7 +15,7 @@ import { Favorites } from "../Screens/Favorites/Favorites";
 
 export const screenList: IScreenList = {
    home: {
-      path: import.meta.env.BASE_URL,
+      path: import.meta.env.BASE_URL + "/",
       component: <Home />,
       name: "Startseite",
    },

@@ -15,9 +15,13 @@ export const Router = (): JSX.Element => {
       )?.name;
 
       if (!screenName) {
-         screenName = "error";
+         screenName;
+         console.log("EROR WITH PATH NAME", screenName);
+
+         document.title = `MediaSOL - Computerpflege`;
+      } else {
+         document.title = `${screenName} - MediaSOL - Computerpflege`;
       }
-      document.title = `${screenName} - MediaSOL - Computerpflege`;
 
       window.scrollTo(0, 0);
    }, [location]);
