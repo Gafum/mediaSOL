@@ -23,12 +23,12 @@ export interface IfollowUsData {
 export const followUsData: IfollowUsData[] = [
    {
       title: "YouTube",
-      link: "https://github.com/Gafum",
+      link: "https://www.youtube.com/@gafum",
       icon: <Youtube width={20} color="#fff" />,
    },
    {
       title: "GitHub",
-      link: "https://www.youtube.com/@gafum",
+      link: "https://github.com/Gafum",
       icon: <Github width={20} color="#fff" />,
    },
    {
