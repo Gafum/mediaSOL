@@ -1,17 +1,34 @@
 import { Link } from "react-router-dom";
 import { screenList } from "../../Routing/RoutingList";
 import { contactData, followUsData } from "../../Screens/Contact/ContactData";
+import { useCopyToClipboard } from "../../Hooks/useCopyToClipboard";
 
 export const Footer = (): JSX.Element => {
+   const { ToastContainer, copyToClipboard } = useCopyToClipboard();
+
    return (
       <footer className="bg-primaryLightGrey">
          <div className="flex justify-start px-9 py-4 gap-6 items-start container">
-            <img src={import.meta.env.BASE_URL+"/mainIcon.svg"} alt="M" className="w-[54px] mt-1" />
+            <img
+               src={import.meta.env.BASE_URL + "/mainIcon.svg"}
+               alt="M"
+               className="w-[54px] mt-1"
+            />
             <div className="flex justify-start gap-[96px]">
                <div className="flex flex-col">
                   <h4 className="font-semibold mb-2">Kontact</h4>
-                  <div>{contactData[1].text}</div>
-                  <div>{contactData[2].text}</div>
+                  <div
+                     onClick={() => copyToClipboard(contactData[1].text)}
+                     className="hover:opacity-70 transition-opacity duration-200"
+                  >
+                     {contactData[1].text}
+                  </div>
+                  <div
+                     onClick={() => copyToClipboard(contactData[2].text)}
+                     className="hover:opacity-70 transition-opacity duration-200"
+                  >
+                     {contactData[2].text}
+                  </div>
                </div>
                <div className="flex flex-col ">
                   <h4 className="font-semibold mb-2">Seiten</h4>
@@ -55,6 +72,7 @@ export const Footer = (): JSX.Element => {
                </div>
             </div>
          </div>
+         <ToastContainer />
       </footer>
    );
 };

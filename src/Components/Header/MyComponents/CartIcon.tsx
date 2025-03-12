@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useCartStore } from "../../../Store/CartStore";
-import { calculateAllAmount } from "../../../Function/calculateAllAmount";
+import { calculateAllAmountInCart } from "../../../Function/calculateAllAmount";
 import { screenList } from "../../../Routing/RoutingList";
 import styles from "./CustomNavLink.module.css";
 import { twMerge } from "tailwind-merge";
@@ -8,7 +8,7 @@ import { twMerge } from "tailwind-merge";
 export const CartIcon = (): JSX.Element => {
    const cartList = useCartStore((store) => store.cartList);
 
-   const ItmesAmount = calculateAllAmount(cartList);
+   const ItmesAmount = calculateAllAmountInCart(cartList);
    return (
       <NavLink
          to={screenList.cart.path}

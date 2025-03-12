@@ -11,7 +11,7 @@ interface ISimpleErrorProps {
 export const SimpleError = ({
    title = "Keine Seite gefunden...",
    btnText = "Zur " + screenList.home.name,
-   navigateTo = import.meta.env.BASE_URL,
+   navigateTo = screenList.home.path,
 }: ISimpleErrorProps): JSX.Element => {
    let navigate = useNavigate();
 

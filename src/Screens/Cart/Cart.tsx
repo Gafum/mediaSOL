@@ -7,7 +7,7 @@ import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 import { CatalogContent } from "../../DevData/CatalogContent";
 import { useState } from "react";
 import { CartDialog } from "./MyComponents/CartDialog";
-import { calculateAllAmount } from "../../Function/calculateAllAmount";
+import { calculateAllAmountInCart } from "../../Function/calculateAllAmount";
 
 export interface IModalState {
    isOpen: boolean;
@@ -21,7 +21,9 @@ export const Cart = (): JSX.Element => {
    const cartListIDs = Object.keys(cartList);
    const localCartList = CatalogContent.filter(({ id }) =>
       Object.keys(cartList).includes(id)
-   );
+   ).sort(({ id: aId }, { id: bId }) => {
+      return cartList[aId].date > cartList[bId].date ? 1 : -1;
+   });
 
    const [modalData, setModalData] = useState<IModalState>({
       isOpen: false,
@@ -45,7 +47,7 @@ export const Cart = (): JSX.Element => {
             {localCartList.map((elem) => (
                <CartItem
                   {...elem}
-                  itemAmount={cartList[elem.id]}
+                  itemAmount={cartList[elem.id].amount}
                   setModalData={setModalData}
                />
             ))}
@@ -69,7 +71,7 @@ export const Cart = (): JSX.Element => {
                onClick={() => {
                   setModalData({
                      isOpen: true,
-                     headlineText: `Möchten Sie diese ${calculateAllAmount(cartList)} Produkte kaufen?`,
+                     headlineText: `Möchten Sie diese ${calculateAllAmountInCart(cartList)} Produkte kaufen?`,
                      onOkeyClicK: undefined,
                   });
                }}

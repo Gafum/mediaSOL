@@ -1,4 +1,4 @@
-import { useCopyToClipboard } from "../../../Function/usecopyToClipboard";
+import { useCopyToClipboard } from "../../../Hooks/useCopyToClipboard";
 import { IcontactDataProps } from "../ContactData";
 
 export const ParagraphWithTitle = ({

@@ -1,6 +1,8 @@
 import { create } from "zustand";
 
-type TypeCartList = { [key: string]: number };
+export type TypeCartList = {
+   [key: string]: { amount: number; date: number };
+};
 
 interface ICartStore {
    cartList: TypeCartList;
@@ -12,7 +14,11 @@ interface ICartStore {
 }
 
 export const useCartStore = create<ICartStore>((set) => ({
-   cartList: { mainId: 1, "123": 23, "789": 999 },
+   cartList: {
+      mainId: { amount: 1, date: 1 },
+      "123": { amount: 24, date: 2 },
+      "789": { amount: 999, date: 3 },
+   },
    toggleCartList: (productId: string) => {
       return set((state) => {
          let localCartList: TypeCartList = JSON.parse(
@@ -21,7 +27,10 @@ export const useCartStore = create<ICartStore>((set) => ({
          if (localCartList[productId]) {
             delete localCartList[productId];
          } else {
-            localCartList[productId] = 1;
+            localCartList[productId] = {
+               amount: 1,
+               date: Date.now(),
+            };
          }
 
          return { cartList: { ...localCartList } };
@@ -59,12 +68,12 @@ function actionWithItem(
    let localCartList: TypeCartList = JSON.parse(JSON.stringify(state.cartList));
    if (localCartList[productId]) {
       if (increase) {
-         if (localCartList[productId] < 999) {
-            localCartList[productId]++;
+         if (localCartList[productId].amount < 999) {
+            localCartList[productId].amount++;
          }
       } else {
-         if (localCartList[productId] > 1) {
-            localCartList[productId]--;
+         if (localCartList[productId].amount > 1) {
+            localCartList[productId].amount--;
          }
       }
    }
