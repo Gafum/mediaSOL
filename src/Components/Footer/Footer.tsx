@@ -14,7 +14,10 @@ export const Footer = (): JSX.Element => {
                alt="M"
                className="w-[54px] mt-1"
             />
-            <div className="flex justify-start gap-[96px]">
+            <div
+               className="flex gap-4 flex-col sm500:grid md:flex md:flex-row md:justify-start md:gap-x-20"
+               style={{ gridTemplateColumns: "repeat(2, auto)" }}
+            >
                <div className="flex flex-col">
                   <h4 className="font-semibold mb-2">Kontact</h4>
                   <div
@@ -29,6 +32,19 @@ export const Footer = (): JSX.Element => {
                   >
                      {contactData[2].text}
                   </div>
+               </div>
+               <div className="flex flex-col">
+                  <h4 className="font-semibold mb-2">Entwikeler</h4>
+                  {followUsData.map((elem) => (
+                     <a
+                        key={elem.link}
+                        href={elem.link}
+                        className="hover:opacity-70 transition-opacity duration-200"
+                        target="_blank"
+                     >
+                        {elem.title}
+                     </a>
+                  ))}
                </div>
                <div className="flex flex-col ">
                   <h4 className="font-semibold mb-2">Seiten</h4>
@@ -56,19 +72,6 @@ export const Footer = (): JSX.Element => {
                   >
                      {screenList.catalog.name}
                   </Link>
-               </div>
-               <div className="flex flex-col">
-                  <h4 className="font-semibold mb-2">Entwikeler</h4>
-                  {followUsData.map((elem) => (
-                     <a
-                        key={elem.link}
-                        href={elem.link}
-                        className="hover:opacity-70 transition-opacity duration-200"
-                        target="_blank"
-                     >
-                        {elem.title}
-                     </a>
-                  ))}
                </div>
             </div>
          </div>

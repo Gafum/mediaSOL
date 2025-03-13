@@ -19,8 +19,8 @@ export const SectionWithImage = ({
    eventOnImgClick,
 }: ISectionProps): JSX.Element => {
    return (
-      <section className="w-full flex justify-between items-start gap-2 pt-7">
-         <div className="w-1/2 flex justify-start flex-col gap-5">
+      <section className="w-full block md:grid grid-cols-2 gap-2 pt-7">
+         <div className="w-full flex justify-start flex-col gap-5">
             {/* Text Block */}
             <div className="h-[3px] w-1/4 bg-primaryBlue rounded-[3px] mb-7" />
 
@@ -31,13 +31,13 @@ export const SectionWithImage = ({
             <CustomBtn
                onClick={onClick}
                btnText={btnText}
-               className="w-2/5 mt-5"
+               className="w-2/5 mt-5 min-w-60"
             />
          </div>
 
          <img
             onClick={eventOnImgClick}
-            className="max-w-1/2 w-[400px]"
+            className="max-w-[550px] w-full justify-self-end hidden md:block "
             src={imgSrc}
             alt="comp"
             loading="lazy"

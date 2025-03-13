@@ -8,7 +8,17 @@ export const ReviewsSection = (): JSX.Element => {
    return (
       <div className="max-w-full w-full overflow-hidden pb-8">
          <Swiper
-            slidesPerView={3}
+            breakpoints={{
+               0: {
+                  slidesPerView: 1,
+               },
+               600: {
+                  slidesPerView: 2,
+               },
+               960: {
+                  slidesPerView: 3,
+               },
+            }}
             spaceBetween={5}
             pagination={{
                clickable: true,
