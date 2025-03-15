@@ -18,7 +18,7 @@ export const CustomBtn = ({
       <button
          onClick={onClick}
          className={twMerge(
-            `bg-${bgColor} rounded-md py-2 px-1 transition duration-300 hover:brightness-110 hover:shadow-lg ${"text-" + color}`,
+            `bg-${bgColor} rounded-md py-2 px-1 transition duration-300 text-sm sm500:text-base hover:brightness-110 hover:shadow-lg ${"text-" + color}`,
             className
          )}
       >

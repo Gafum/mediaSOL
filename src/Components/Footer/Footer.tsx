@@ -15,10 +15,10 @@ export const Footer = (): JSX.Element => {
                className="w-[54px] mt-1"
             />
             <div
-               className="flex gap-4 flex-col sm500:grid md:flex md:flex-row md:justify-start md:gap-x-20"
+               className="flex gap-4 flex-col sm500:grid sm500:gap-x-10 md:flex md:flex-row md:justify-start md:gap-x-20"
                style={{ gridTemplateColumns: "repeat(2, auto)" }}
             >
-               <div className="flex flex-col">
+               <div className="flex-col hidden sm500:flex">
                   <h4 className="font-semibold mb-2">Kontact</h4>
                   <div
                      onClick={() => copyToClipboard(contactData[1].text)}
@@ -33,7 +33,7 @@ export const Footer = (): JSX.Element => {
                      {contactData[2].text}
                   </div>
                </div>
-               <div className="flex flex-col">
+               <div className="flex-col flex">
                   <h4 className="font-semibold mb-2">Entwikeler</h4>
                   {followUsData.map((elem) => (
                      <a
@@ -46,7 +46,7 @@ export const Footer = (): JSX.Element => {
                      </a>
                   ))}
                </div>
-               <div className="flex flex-col ">
+               <div className="flex-col hidden sm500:flex ">
                   <h4 className="font-semibold mb-2">Seiten</h4>
                   <Link
                      to={screenList.home.path}

@@ -20,21 +20,24 @@ export const SectionWithImage = ({
 }: ISectionProps): JSX.Element => {
    return (
       <section className="w-full block md:grid grid-cols-2 gap-2 pt-7">
-         <div className="w-full flex justify-start flex-col gap-5">
+         <div className="w-full flex justify-start flex-col gap-3 sm:gap-5">
             {/* Text Block */}
-            <div className="h-[3px] w-1/4 bg-primaryBlue rounded-[3px] mb-7" />
+            <div className="h-[3px] w-1/4 bg-primaryBlue rounded-[3px] mb-2 min-w-[110px] md:mb-7" />
 
-            <h2 className="font-semibold text-5xl">{headline}</h2>
+            <h2 className="font-semibold text-3xl sm:text-5xl">{headline}</h2>
 
-            <p className="text-gray-500 font-medium">{description}</p>
+            <p className="text-gray-500 sm500:font-medium text-xs sm500:text-base">
+               {description}
+            </p>
 
             <CustomBtn
                onClick={onClick}
                btnText={btnText}
-               className="w-2/5 mt-5 min-w-60"
+               className="sm:w-2/5 mt-1 md:mt-5 sm:min-w-60"
             />
          </div>
 
+         {/* Image will disapear on small screen */}
          <img
             onClick={eventOnImgClick}
             className="max-w-[550px] w-full justify-self-end hidden md:block "
