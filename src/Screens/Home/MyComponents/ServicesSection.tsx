@@ -58,9 +58,9 @@ const ServiceItem = ({
 
 export const ServicesSection = (): JSX.Element => {
    return (
-      <section className="flex flex-col md:flex-row gap-4 mt-9">
+      <section className="flex flex-col md:flex-row gap-2 sm:gap-4 mt-3 sm:mt-9">
          {/* Left Side */}
-         <div className="w-full md:w-1/2 flex flex-col gap-4">
+         <div className="w-full md:w-1/2 flex flex-col gap-2 sm:gap-4">
             <ServiceItem
                title="Beratung von Firmen und Schulen"
                href={screenList.consultationService.path}
@@ -77,7 +77,7 @@ export const ServicesSection = (): JSX.Element => {
          </div>
 
          {/* Right Side */}
-         <div className="w-full md:w-1/2 flex flex-col gap-4">
+         <div className="w-full md:w-1/2 flex flex-col gap-2 sm:gap-4">
             <ServiceItem
                title="Wartung der Rechner und Server"
                paragrathClassName="md:w-2/5"

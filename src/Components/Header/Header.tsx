@@ -35,7 +35,7 @@ export const Header = (): JSX.Element => {
                   </span>
                </Link>
 
-               <nav className="flex gap-4 justify-center items-center font-semibold">
+               <nav className="hidden sm:flex gap-4 justify-center items-center font-semibold">
                   {/* Generated with special List with name params */}
                   {screenNavList.map((screen) => {
                      return (

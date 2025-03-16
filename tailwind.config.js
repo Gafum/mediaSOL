@@ -35,8 +35,14 @@ export default {
     function ({ addComponents }) {
       addComponents({
         '.container': {
-          padding: "0 24px 50px",
-          margin: "0 auto"
+          padding: "0 10px 40px",
+          margin: "0 auto",
+          '@media (min-width: 640px)': {
+            padding: "0 24px 50px",
+          },
+          '@media (min-width: 1024px)': {
+            padding: "0 32px 60px",
+          }
         }
       })
     }
