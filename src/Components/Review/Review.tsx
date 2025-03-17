@@ -2,13 +2,7 @@ import { Star } from "lucide-react";
 import { IReviews } from "../../MainTypes/Reviews";
 import { HtmlHTMLAttributes } from "react";
 
-const starsName: string[] = [
-   "Nicht gut",
-   "Könnte besser sein",
-   "Okay",
-   "Gut",
-   "Ausgezeichnet",
-];
+const starsName: string[] = ["Nicht gut", "Mäßig", "Okay", "Gut", "Top"];
 
 type IReviewProps = IReviews & HtmlHTMLAttributes<HTMLDivElement>;
 
