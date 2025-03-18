@@ -21,7 +21,6 @@ export const FavoritesIcon = (): JSX.Element => {
          title="Korb"
       >
          <Heart
-            size={20}
             color={"#000"}
             strokeWidth={2.5}
             className={styles.FavoritesSvg}

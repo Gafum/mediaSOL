@@ -4,6 +4,7 @@ import { CustomNavLink } from "./MyComponents/CustomNavLink";
 import { IRoutingList } from "../../Routing/Routing.types";
 import { CartIcon } from "./MyComponents/CartIcon";
 import { FavoritesIcon } from "./MyComponents/FavoritesIcon";
+import { Hamburger } from "./MyComponents/Hamburger";
 
 const screenNavList: IRoutingList[] = [
    screenList.contact,
@@ -14,7 +15,7 @@ const screenNavList: IRoutingList[] = [
 export const Header = (): JSX.Element => {
    return (
       <>
-         <div className="container py-6 opacity-0 text-2xl w-full invisible">
+         <div className="h-[15px] sm500:h-auto text-xs container py-6 opacity-0 sm500:text-2xl w-full invisible">
             {/* background header */}
             MediaSOL
          </div>
@@ -30,26 +31,32 @@ export const Header = (): JSX.Element => {
                      alt="M"
                      className="h-[15px]"
                   />
-                  <span className="font-bold whitespace-nowrap transition-opacity duration-300 hover:opacity-60">
+                  <span className="font-bold whitespace-nowrap transition-opacity duration-300 hover:opacity-60 hidden sm500:inline">
                      MediaSOL
                   </span>
                </Link>
 
-               <nav className="hidden sm:flex gap-4 justify-center items-center font-semibold">
+               <nav className="flex gap-4 justify-center items-center">
                   {/* Generated with special List with name params */}
-                  {screenNavList.map((screen) => {
-                     return (
-                        <CustomNavLink
-                           key={screen.path}
-                           myPath={screen.path}
-                           myName={screen.name}
-                        />
-                     );
-                  })}
+                  <div className="hidden md:flex gap-4 justify-center items-center font-semibold">
+                     {screenNavList.map((screen) => {
+                        return (
+                           <CustomNavLink
+                              key={screen.path}
+                              myPath={screen.path}
+                              myName={screen.name}
+                           />
+                        );
+                     })}
+                  </div>
 
                   {/* Icons */}
                   <FavoritesIcon />
                   <CartIcon />
+                  <Hamburger
+                     onClick={() => console.log("hi")}
+                     className="md:hidden"
+                  />
                </nav>
             </div>
             <div className="bg-gradient-to-b from-white to-transparent h-4 absolute bottom-[-16px] w-full left-0" />

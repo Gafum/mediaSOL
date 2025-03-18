@@ -32,15 +32,15 @@
 }
 
 .NavIcons > .cartImg {
-   @apply block transition-all shadow-primaryBlue duration-300;
+   @apply w-3 sm500:w-5 block transition-all shadow-primaryBlue duration-300;
 }
 
 .NavIcons > .FavoritesSvg {
-   @apply transition-all duration-300 fill-white;
+   @apply size-3 sm500:size-5 transition-all duration-300 fill-white;
 }
 
 .NavIcons.cartNavBtn.hasItem {
-   @apply mr-2;
+   @apply mr-0.5 sm500:mr-2;
 }
 
 .NavIcons.activeIcon > .cartImg {
@@ -53,7 +53,7 @@
 
 .NavIconAmount {
    display: none;
-   @apply absolute text-[12px] bg-primaryPink text-white top-0 right-2 px-[6px] rounded-xl;
+   @apply absolute text-[8px] sm500:text-[12px] bg-primaryPink text-white top-0 right-2 px-[6px] sm500:px-[6px] rounded-xl;
 }
 
 .hasItem > .NavIconAmount {
