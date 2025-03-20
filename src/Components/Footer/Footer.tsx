@@ -39,7 +39,7 @@ export const Footer = (): JSX.Element => {
                      {contactData[2].text}
                   </div>
                </div>
-               <div className="flex-col flex items-center mx-auto sm300:items-start sm500:mx-0 text-sm sm300:text-base">
+               <div className="flex-col hidden sm500:flex">
                   <h4 className="font-semibold mb-2">Entwikeler</h4>
                   {followUsData.map((elem) => (
                      <a
@@ -52,7 +52,7 @@ export const Footer = (): JSX.Element => {
                      </a>
                   ))}
                </div>
-               <div className="flex-col hidden sm500:flex ">
+               <div className="flex-col flex items-center mx-auto sm300:items-start sm500:mx-0 text-sm sm300:text-base">
                   <h4 className="font-semibold mb-2">Seiten</h4>
                   <Link
                      to={screenList.home.path}

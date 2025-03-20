@@ -19,10 +19,10 @@ export const SectionWithImage = ({
    eventOnImgClick,
 }: ISectionProps): JSX.Element => {
    return (
-      <section className="w-full block md:grid grid-cols-2 gap-2 pt-7">
+      <section className="w-full block md:grid grid-cols-2 gap-2 pt-2 sm300:pt-4 sm500:pt-7">
          <div className="w-full flex justify-start flex-col gap-3 sm:gap-5 text-justify sm:text-left">
             {/* Text Block */}
-            <div className="h-[3px] w-1/4 bg-primaryBlue rounded-[3px] mb-2 min-w-[110px] md:mb-7" />
+            <div className="h-[3px] w-1/4 bg-primaryBlue rounded-[3px] mb-2 min-w-[90px] sm300:min-w-[140px] md:mb-7" />
 
             <h2 className="font-semibold text-xl sm300:text-3xl sm:text-5xl text-left">
                {headline}

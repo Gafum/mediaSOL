@@ -1,5 +1,5 @@
 .navLink {
-   @apply font-medium capitalize transition-all duration-300 relative brightness-125 hover:opacity-60;
+   @apply font-medium capitalize transition-all duration-300 relative brightness-125 hover:opacity-60 text-center whitespace-nowrap w-full;
 }
 
 .active {

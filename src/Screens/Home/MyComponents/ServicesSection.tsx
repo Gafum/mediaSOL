@@ -24,7 +24,7 @@ const ServiceItem = ({
       <Link to={href}>
          <div
             className={twMerge(
-               "relative flex bg-primaryDarkGrey p-5 rounded-lg max-h-[300px] md:max-h-none",
+               "relative flex bg-primaryDarkGrey p-3 sm500:p-5 rounded-lg max-h-[300px] md:max-h-none",
                className
             )}
          >
@@ -34,7 +34,7 @@ const ServiceItem = ({
                   paragrathClassName
                )}
             >
-               <h1 className="text-white text-base sm:text-lg lg:text-2xl">
+               <h1 className="text-white text-sm sm300:text-base sm:text-lg lg:text-2xl">
                   {title}
                </h1>
                <button className="h-10 w-10  bg-[#ffffff44] transition-colors hover:bg-[#ffffff55] duration-300 hidden sm500:flex justify-center items-center mt-3 rounded-[4px] ">
@@ -49,7 +49,7 @@ const ServiceItem = ({
                   ".svg"
                }
                alt={title + " img"}
-               className={twMerge("ml-auto w-1/2", imgClassName)}
+               className={twMerge("ml-auto w-2/5 sm300:w-1/2", imgClassName)}
             />
          </div>
       </Link>

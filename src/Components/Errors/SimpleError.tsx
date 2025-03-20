@@ -16,12 +16,14 @@ export const SimpleError = ({
    let navigate = useNavigate();
 
    return (
-      <div className="flex justify-center items-center gap-9 flex-col mt-36">
-         <h1 className="font-semibold text-4xl">{title}</h1>
+      <div className="container flex justify-center items-center gap-4 sm:gap-9 flex-col mt-24 sm:mt-36">
+         <h1 className="font-semibold text-center text-base sm300:text-2xl sm:text-4xl">
+            {title}
+         </h1>
          <CustomBtn
             btnText={btnText}
             onClick={() => navigate(navigateTo)}
-            className="max-w-[400px] min-w-[200px] w-full"
+            className="max-w-[85%] sm:max-w-[400px] w-full"
          />
       </div>
    );

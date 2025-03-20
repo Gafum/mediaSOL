@@ -19,7 +19,7 @@ export const Header = (): JSX.Element => {
 
    return (
       <>
-         <div className="h-[15px] sm500:h-auto text-xs container py-6 opacity-0 sm500:text-2xl w-full invisible">
+         <div className="text-xs sm500:text-2xl  container py-6 opacity-0 w-full invisible">
             {/* background header */}
             MediaSOL
          </div>
@@ -44,7 +44,7 @@ export const Header = (): JSX.Element => {
                   {/* Generated with special List with name params */}
                   <div
                      className={twMerge(
-                        "hidden absolute md:static px-3 md:px-0 -bottom-1/2 left-0 z-10 bg-white -translate-y-1/2 md:translate-y-0 w-full md:flex gap-4 justify-around md:justify-center items-center font-semibold",
+                        "hidden absolute md:static px-3 pt-2 sm500:pt-1 pb-3 shadow-lg shadow-white md:shadow-none md:p-0 top-full left-0 z-10 bg-white w-full flex-col gap-7 sm500:flex-row md:flex  sm500:gap-4 justify-around md:justify-center items-center font-semibold",
                         openNav ? "flex " : "hidden md:flex"
                      )}
                   >
