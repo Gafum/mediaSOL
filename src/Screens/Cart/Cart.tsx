@@ -49,6 +49,7 @@ export const Cart = (): JSX.Element => {
                   {...elem}
                   itemAmount={cartList[elem.id].amount}
                   setModalData={setModalData}
+                  key={elem.id}
                />
             ))}
          </div>

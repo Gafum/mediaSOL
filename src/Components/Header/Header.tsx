@@ -19,7 +19,7 @@ export const Header = (): JSX.Element => {
 
    return (
       <>
-         <div className="text-xs sm500:text-2xl  container py-6 opacity-0 w-full invisible">
+         <div className="text-base sm500:text-2xl container py-6 opacity-0 w-full invisible">
             {/* background header */}
             MediaSOL
          </div>
@@ -63,7 +63,13 @@ export const Header = (): JSX.Element => {
                   <FavoritesIcon />
                   <CartIcon />
                   <Hamburger
-                     onClick={() => setOpenNav((prev) => !prev)}
+                     onClick={({ close }: { close?: true }) => {
+                        if (close) {
+                           setOpenNav(false);
+                        } else {
+                           setOpenNav((prev) => !prev);
+                        }
+                     }}
                      className="md:hidden"
                   />
                </nav>

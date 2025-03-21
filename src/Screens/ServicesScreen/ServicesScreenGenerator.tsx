@@ -1,3 +1,4 @@
+import { Fragment } from "react/jsx-runtime";
 import { OneSection } from "./MyComponents/OneSection";
 
 export interface IOneSection {
@@ -25,7 +26,7 @@ export const ServicesScreenGenerator = ({
             // Check that this and the previous element have no background
 
             return (
-               <div key={elem.title + "_block"}>
+               <Fragment key={elem.title + "_block"}>
                   {showLine && (
                      // Show blue line
                      <div
@@ -40,7 +41,7 @@ export const ServicesScreenGenerator = ({
                      list={elem.list}
                      key={elem.title}
                   />
-               </div>
+               </Fragment>
             );
          })}
       </>

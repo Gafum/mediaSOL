@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 export interface HamburgerProps {
-   onClick: () => void;
+   onClick: ({ close }: { close?: true }) => void;
 
    isInitiallyOpen?: boolean;
    className?: string;
@@ -11,14 +11,31 @@ export interface HamburgerProps {
 export const Hamburger = (props: HamburgerProps) => {
    const { onClick, isInitiallyOpen, className } = props;
    const [isOpen, setIsOpen] = useState<boolean>(isInitiallyOpen ?? false);
+   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
    const handleClick = () => {
       setIsOpen((prev) => !prev);
-      onClick();
+      onClick({});
    };
+
+   useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+         if (
+            buttonRef.current &&
+            !buttonRef.current.contains(event.target as Node)
+         ) {
+            setIsOpen(false);
+            onClick({ close: true });
+         }
+      };
+
+      document.addEventListener("click", handleClickOutside);
+      return () => document.removeEventListener("click", handleClickOutside);
+   }, [isOpen]);
 
    return (
       <button
+         ref={buttonRef}
          onClick={handleClick}
          type="button"
          className={twMerge(

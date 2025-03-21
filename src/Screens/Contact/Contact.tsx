@@ -61,6 +61,7 @@ export const Contact = (): JSX.Element => {
                {followUsData.map((paragraphData) => {
                   return (
                      <a
+                        key={paragraphData.title}
                         href={paragraphData.link}
                         target="_blank"
                         className="w-full"

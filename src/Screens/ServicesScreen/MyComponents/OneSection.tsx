@@ -23,10 +23,12 @@ export const OneSection = ({
 
       // Component with list
       return (
-         <section className="py-16">
-            <h3 className="text-3xl font-semibold text-center mb-8">{title}</h3>
+         <section className="pt-4 pb-7 sm500:py-8 sm:py-16">
+            <h3 className="text-pretty text-lg sm500:text-xl md:text-3xl font-semibold text-center px-3">
+               {title}
+            </h3>
             <div
-               className={`grid grid-cols-1 ${gridCols ? "md:grid-cols-3" : "md:grid-cols-2"} gap-5`}
+               className={`mt-4 md:mt-8 grid grid-cols-1 ${gridCols ? "md:grid-cols-3" : "md:grid-cols-2"} gap-3 sm:gap-5`}
             >
                {list.map(
                   ({
@@ -35,13 +37,15 @@ export const OneSection = ({
                   }: IOneSection) => {
                      return (
                         <div
-                           className={`bg-primaryLightGrey shadow-sm rounded-lg p-6 ${gridCols ? "text-center" : "text-left"}`}
+                           className={`bg-primaryLightGrey shadow-sm rounded-lg p-3 sm:p-6 text-center ${gridCols ? "" : "md:text-left"}`}
                            key={localTitle}
                         >
-                           <h3 className="text-xl font-semibold mb-4">
+                           <h3 className="text-sm sm500:text-base sm:text-xl font-semibold">
                               {localTitle}
                            </h3>
-                           <p className="text-gray-800">{localDescription}</p>
+                           <p className="mt-0.5 sm500:mt-2 md:mt-4 text-gray-800 text-xs sm500:text-sm sm:text-base">
+                              {localDescription}
+                           </p>
                         </div>
                      );
                   }

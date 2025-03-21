@@ -11,18 +11,9 @@ export interface ICartItemProps extends IGadget {
    setModalData: React.Dispatch<React.SetStateAction<IModalState>>;
 }
 
-export const CartItem = ({
-   id,
-   name,
-   price,
-   description,
-   type,
-   img,
-   commentsList,
-   action,
-   itemAmount,
-   setModalData,
-}: ICartItemProps): JSX.Element => {
+export const CartItem = (props: ICartItemProps): JSX.Element => {
+   const { id, action, img, setModalData } = props;
+
    const removeItem = useCartStore((state) => state.removeItem);
 
    return (
@@ -53,19 +44,7 @@ export const CartItem = ({
          />
 
          {/* INFO: Header, Description, Prise ========= */}
-         <CartItemInfo
-            {...{
-               id,
-               name,
-               price,
-               description,
-               type,
-               img,
-               commentsList,
-               action,
-               itemAmount,
-            }}
-         />
+         <CartItemInfo {...props} />
 
          {/* Delete Item Btn ========= */}
          <div className="self-start pl-1">
