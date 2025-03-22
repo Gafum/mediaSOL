@@ -1,45 +1,25 @@
 import { ContactForm } from "./MyComponents/ContactForm";
-import { MapContainer } from "react-leaflet/MapContainer";
-import { TileLayer } from "react-leaflet/TileLayer";
 import { contactData, followUsData } from "./ContactData";
 import { ParagraphWithTitle } from "./MyComponents/ParagraphWithTitle";
-import { Marker } from "react-leaflet/Marker";
-import { Popup } from "react-leaflet/Popup";
 import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadline";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
-import { MapController } from "../../UI/CustomData/MapController";
+import { MainMap } from "../../Components/MainMap/MainMap";
 
 export const Contact = (): JSX.Element => {
    return (
       <div className="flex flex-col h-full min-h-[86vh]">
-         <div className="flex gap-4 mt-5">
-            <div className="w-2/3">
+         <div className="flex flex-col lg:flex-row gap-4 mt-2 lg:mt-5">
+            <div className="w-full lg:w-2/3">
                <ContactForm />
             </div>
-
-            <MapContainer
-               center={[51.567441, 6.738321]}
-               zoom={14}
-               scrollWheelZoom={false}
-               className="rounded-md border-[1px] border-solid border-black w-1/3 z-0"
-            >
-               <MapController />
-               <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
-               <Marker position={[51.567441, 6.738321]}>
-                  <Popup>
-                     <div className="text-center">
-                        MediaSOL
-                        <br /> ist da!
-                     </div>
-                  </Popup>
-               </Marker>
-            </MapContainer>
+            <div className="h-[3px] w-full bg-primaryBlue rounded-[3px] my-3 lg:hidden" />
+            <MainMap className="w-full h-[200px] lg:h-auto lg:w-1/3" />
          </div>
 
-         <div className="h-[3px] w-full bg-primaryBlue rounded-[3px] mt-12" />
+         <div className="h-[3px] w-full bg-primaryBlue rounded-[3px] mt-8 sm:mt-12" />
 
          <SectionWithHeadline className="mt-4" title="Unsere Kontakte ">
-            <div className="max-w-[1200px] mx-auto grid grid-cols-4 justify-items-center items-start gap-2 w-full mt-6">
+            <div className="md:max-w-[1200px] mx-auto grid grid-cols-1 sm500:grid-cols-2 md:grid-cols-4 gap-3 sm500:gap-y-5 sm500:gap-x-2 md:gap-3 justify-items-center items-start md:w-full mt-6">
                {contactData.map((paragraphData) => {
                   return (
                      <ParagraphWithTitle
@@ -51,13 +31,13 @@ export const Contact = (): JSX.Element => {
             </div>
          </SectionWithHeadline>
 
-         <div className="h-[3px] w-full bg-primaryBlue rounded-[3px] mt-20" />
+         <div className="h-[3px] w-full bg-primaryBlue rounded-[3px] mt-8 sm:mt-12 lg:mt-20" />
 
          <SectionWithHeadline
             className="mt-6 mb-3"
             title="Folge uns auf Social Media"
          >
-            <div className="grid grid-cols-3 justify-items-center gap-3 mt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 justify-items-center gap-3 sm:mt-8">
                {followUsData.map((paragraphData) => {
                   return (
                      <a
@@ -68,9 +48,11 @@ export const Contact = (): JSX.Element => {
                      >
                         <CustomBtn
                            btnText={
-                              <div className="flex gap-3 justify-center  text-white text-lg items-center">
+                              <div className="pl-2 sm300:pl-0 sm300:grid grid-cols-2 flex justify-start sm:flex gap-2 sm300:gap-0 sm500:gap-3 justify-items-center sm300:justify-center items-center">
                                  {paragraphData.icon}
-                                 {paragraphData.title}
+                                 <span className="sm300:w-full sm:w-auto text-white text-lg text-left sm:text-center">
+                                    {paragraphData.title}
+                                 </span>
                               </div>
                            }
                            className="w-full"

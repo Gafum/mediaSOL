@@ -36,10 +36,12 @@ export const ContactForm = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-1"
          >
-            <h2 className="font-semibold text-xl">Kontakt-Formular</h2>
+            <h2 className="font-semibold text-base text-center lg:text-left md:text-xl">
+               Kontakt-Formular
+            </h2>
 
             {/* Name */}
-            <div className="inputes mt-7">
+            <div className="inputes lg:mt-7">
                <input
                   required={true}
                   type="text"
@@ -47,7 +49,7 @@ export const ContactForm = () => {
                   {...register("name", { required: "Name ist erforderlich" })}
                   className={errors.name && "incorrect"}
                />
-               <label>Ihr Name</label>
+               <label className="block font-medium text-base">Ihr Name</label>
                {errors.name && (
                   <p className="text-red-500 text-sm pl-1">
                      {errors.name.message}
