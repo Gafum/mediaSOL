@@ -6,7 +6,7 @@ export const OurPartners = (): JSX.Element => {
          {partnersList.map((elem) => (
             <div
                key={elem}
-               className="h-full w-full flex justify-center items-center shadow-sm sm500:shadow-none rounded-md bg-primaryLightGrey p-3 sm500:p-0 sm500:bg-transparent"
+               className="h-full w-full flex justify-center items-center shadow-sm sm500:shadow-none rounded-md bg-primaryLightGrey p-3 sm300:px-7 sm500:p-0 sm500:bg-transparent"
             >
                <img
                   src={
