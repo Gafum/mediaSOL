@@ -25,7 +25,7 @@ export const ItemDescription = ({
 
    return (
       <>
-         <h2 className="font-semibold text-xl">{name}</h2>
+         <h2 className="font-semibold text-lg lg:text-xl">{name}</h2>
 
          {/* Price */}
          <div className="mt-1">
@@ -50,7 +50,9 @@ export const ItemDescription = ({
          </div>
 
          {/* Description */}
-         <p className="mt-3 text-[#777] text-justify">{description}</p>
+         <p className="text-xs sm:text-sm xl:text-base mt-3 text-[#777] text-justify">
+            {description}
+         </p>
 
          <div className="flex-1 min-h-5">{/* Custom Gap */}</div>
 
