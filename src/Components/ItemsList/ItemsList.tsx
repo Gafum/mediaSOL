@@ -2,7 +2,7 @@ import { IGadget } from "../../MainTypes/Gadget";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SmallItem } from "./MyComponents/SmallItem";
 import { useFavoritesStore } from "../../Store/FavoritesStore";
-import { SectionWithHeadline } from "../Section/SectionWithHeadline";
+import { SectionWithHeadline } from "../Sections/SectionWithHeadline";
 
 interface ItemsListProps {
    name: string;

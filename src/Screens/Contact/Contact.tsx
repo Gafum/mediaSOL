@@ -1,7 +1,7 @@
 import { ContactForm } from "./MyComponents/ContactForm";
 import { contactData, followUsData } from "./ContactData";
 import { ParagraphWithTitle } from "./MyComponents/ParagraphWithTitle";
-import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadline";
+import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 import { MainMap } from "../../Components/MainMap/MainMap";
 

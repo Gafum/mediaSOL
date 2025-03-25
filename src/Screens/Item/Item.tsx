@@ -8,7 +8,7 @@ import { Review } from "../../Components/Review/Review";
 import { IReviews } from "../../MainTypes/Reviews";
 import { reviewsList } from "../../DevData/ReviewsList";
 import { ItemDetails } from "./MyComponents/ItemDetails";
-import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadline";
+import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
 
 export const Item = (): JSX.Element => {
    //Element Data

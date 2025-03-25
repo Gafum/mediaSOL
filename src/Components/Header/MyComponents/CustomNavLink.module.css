@@ -32,7 +32,7 @@
 }
 
 .NavIcons > .cartImg {
-   @apply w-4 sm500:w-5 block transition-all shadow-primaryBlue duration-300;
+   @apply w-4 sm500:w-5 max-w-none block transition-all shadow-primaryBlue duration-300;
 }
 
 .NavIcons > .FavoritesSvg {

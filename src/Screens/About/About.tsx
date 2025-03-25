@@ -45,7 +45,7 @@ const SectionAboutPage = ({
 
    return (
       <section className={"About__" + title + " mt-4 md:mt-6"}>
-         <h2 className="text-lg md:text-2xl font-semibold text-left mb-1 md:mb-2">
+         <h2 className="sm:text-lg md:text-2xl font-semibold text-left mb-1 md:mb-2">
             {title}
          </h2>
          {createDescription()}

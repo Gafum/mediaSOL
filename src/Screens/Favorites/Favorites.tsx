@@ -1,6 +1,6 @@
 import { useFavoritesStore } from "../../Store/FavoritesStore";
 import { CatalogContent } from "../../DevData/CatalogContent";
-import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadline";
+import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
 import { SmallItem } from "../../Components/ItemsList/MyComponents/SmallItem";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 import { SimpleError } from "../../Components/Errors/SimpleError";

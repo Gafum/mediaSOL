@@ -5,7 +5,7 @@ import { SectionWithImage } from "./MyComponents/SectionWithImage";
 import { ServicesSection } from "./MyComponents/ServicesSection";
 import { ReviewsSection } from "./MyComponents/ReviewsSection";
 import { OurPartners } from "./MyComponents/OurPartners";
-import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadline";
+import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
 
 export const Home = (): JSX.Element => {
    let navigate = useNavigate();

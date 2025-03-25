@@ -1,7 +1,7 @@
 import { screenList } from "../../Routing/RoutingList";
 import { useCartStore } from "../../Store/CartStore";
 import { SimpleError } from "../../Components/Errors/SimpleError";
-import { SectionWithHeadline } from "../../Components/Section/SectionWithHeadline";
+import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
 import { CartItem } from "./MyComponents/CartItem";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 import { CatalogContent } from "../../DevData/CatalogContent";
