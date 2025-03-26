@@ -13,7 +13,7 @@ export const PriceShower = ({
    if (action) {
       return (
          <>
-            <span className="mr-2 font-semibold text-inherit">
+            <span className="mr-2 font-semibold text-inherit text-[length:inherit]">
                {calculatePriceWithAction({ price, action })}
                {mainCurrency}
             </span>

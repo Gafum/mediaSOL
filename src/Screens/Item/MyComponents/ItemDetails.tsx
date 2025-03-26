@@ -17,9 +17,7 @@ export const ItemDetails = ({ img, ...elementData }: IGadget): JSX.Element => {
          />
 
          {/* Description and Buttons =======*/}
-         <div className="p-4 rounded-md bg-primaryLightGrey flex flex-col shadow-sm">
-            <ItemDescription {...elementData} />
-         </div>
+         <ItemDescription {...elementData} />
       </section>
    );
 };

@@ -44,7 +44,10 @@ export const Item = (): JSX.Element => {
          <ItemDetails {...elementData} />
 
          {/* Comments =====*/}
-         <SectionWithHeadline title="Produktbewertungen">
+         <SectionWithHeadline
+            title="Produktbewertungen"
+            className="mt-4 sm500:mt-5 sm:mt-9"
+         >
             {localCommentList.map((reviewsData) => {
                return (
                   <Review
@@ -57,8 +60,9 @@ export const Item = (): JSX.Element => {
          </SectionWithHeadline>
 
          {/* Similary gadgets */}
-         <div className="my-11">
+         <div className="mb-11">
             <ItemsList
+               className="mt-4 sm500:mt-5 sm:mt-9"
                name="Änliche Gadgets"
                list={CatalogContent.filter((elem) => {
                   return (
