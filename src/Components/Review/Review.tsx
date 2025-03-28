@@ -1,6 +1,7 @@
 import { Star } from "lucide-react";
 import { IReviews } from "../../MainTypes/Reviews";
 import { HtmlHTMLAttributes } from "react";
+import { twMerge } from "tailwind-merge";
 
 const starsName: string[] = ["Nicht gut", "Mäßig", "Okay", "Gut", "Top"];
 
@@ -28,12 +29,16 @@ export const Review = ({
                      return (
                         <Star
                            key={e}
-                           fill={index < stars + 1 ? "#FFD700" : "#ddd"}
                            strokeWidth={1}
                            color="#333"
                            strokeLinecap="round"
                            strokeLinejoin="round"
-                           className="size-3 sm:size-4"
+                           className={twMerge(
+                              "size-3 sm:size-4",
+                              index < stars + 1
+                                 ? "fill-[#FFD700]"
+                                 : "fill-primaryLightGrey"
+                           )}
                         />
                      );
                   })}

@@ -9,6 +9,7 @@ interface SmallItemProps extends IGadget {
    toggleToFavorites: () => void;
    isOnFavorites: boolean;
    className?: string;
+   imgClassName?: string;
 }
 
 export const SmallItem = ({
@@ -21,12 +22,13 @@ export const SmallItem = ({
    isOnFavorites,
    toggleToFavorites,
    className,
+   imgClassName,
 }: SmallItemProps): JSX.Element => {
    return (
       <Link
          to={import.meta.env.BASE_URL + "/item/" + id}
          className={twMerge(
-            "w-[160px] sm500:w-[250px] md:w-[300px] bg-[#f8f9fe] text-left p-2 sm:p-4 md:p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-shadow duration-300 origin-top rounded-md",
+            "w-[160px] sm500:w-[250px] md:w-[300px] bg-primaryLightGrey text-left p-2 sm:p-4 md:p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-shadow duration-300 origin-top rounded-md",
             className
          )}
       >
@@ -55,7 +57,10 @@ export const SmallItem = ({
 
          <CustomImg
             imgSrc={img}
-            className="bg-contain rounded-md h-[110px] sm500:h-[175px] md:h-[200px] w-full mt-3 sm500:mt-4 sm:mt-0"
+            className={twMerge(
+               "bg-contain rounded-md h-[110px] sm500:h-[175px] md:h-[200px] w-full mt-3 sm500:mt-4 sm:mt-0",
+               imgClassName
+            )}
             NotFoundComponent={
                <ImageOff
                   strokeWidth={1.4}
@@ -70,7 +75,7 @@ export const SmallItem = ({
                {name}
             </h4>
             <h6 className="text-xs sm500:text-sm">{mytype}</h6>
-            <h4 className="font-semibold text-sm sm500:text-base mt-1">
+            <h4 className="font-semibold text-sm sm500:text-base mt-1 max-h-[1.25rem] overflow-hidden text-clip">
                <PriceShower price={price} action={action} />
             </h4>
          </div>

@@ -17,6 +17,7 @@ export const PriceShower = ({
                {calculatePriceWithAction({ price, action })}
                {mainCurrency}
             </span>
+            <wbr />
             <span className="line-through font-medium opacity-40 text-inherit">
                {price.toFixed(2) + mainCurrency}
             </span>

@@ -14,6 +14,8 @@ export const Favorites = (): JSX.Element => {
       (state) => state.clearFavoritesList
    );
 
+   console.log(favoritesListIDs);
+
    const toggleFavoritesElement = useFavoritesStore(
       (state) => state.toggleFavoritesElement
    );
@@ -37,7 +39,7 @@ export const Favorites = (): JSX.Element => {
    return (
       <>
          <SectionWithHeadline title={"Favoriten"} className="m-0">
-            <div className="grid grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm500:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
                {localFavoritesList.map((elem) => (
                   <SmallItem
                      key={elem.id}
@@ -46,7 +48,8 @@ export const Favorites = (): JSX.Element => {
                      toggleToFavorites={() => {
                         toggleFavoritesElement(elem.id);
                      }}
-                     className="w-full"
+                     className="w-full sm500:w-full md:w-full"
+                     imgClassName="h-[175px] sm500:h-[175px] md:h-[200px]"
                   />
                ))}
             </div>
