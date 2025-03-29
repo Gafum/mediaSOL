@@ -12,19 +12,19 @@ export interface ICartItemProps extends IGadget {
 }
 
 export const CartItem = (props: ICartItemProps): JSX.Element => {
-   const { id, action, img, setModalData } = props;
+   const { id, action, name, img, setModalData } = props;
 
    const removeItem = useCartStore((state) => state.removeItem);
 
    return (
       <Link
-         className="flex bg-primaryLightGrey rounded-md p-2 hover:shadow-lg duration-300 transition-shadow relative"
+         className="flex flex-col sm500:flex-row justify-center items-center bg-primaryLightGrey rounded-md p-2 hover:shadow-lg duration-300 transition-shadow relative"
          to={import.meta.env.BASE_URL + "/item/" + id}
          key={id}
       >
          {/* Action ======== */}
          {action && (
-            <span className="text-base w-1/4 max-w-[75px] min-w-[65px] top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
+            <span className="text-xs sm500:text-sm md:text-base w-1/6 sm500:w-1/4 max-w-[75px] min-w-[50px] sm500:min-w-[65px] top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
                - {action}%
             </span>
          )}
@@ -32,7 +32,7 @@ export const CartItem = (props: ICartItemProps): JSX.Element => {
          {/* Image =========== */}
          <CustomImg
             imgSrc={img}
-            className="bg-contain rounded-md min-w-[140px] w-1/5 max-w-[210px]"
+            className="bg-contain rounded-md min-w-[140px] w-1/2 sm500:w-1/5 max-w-[210px] mt-3 sm500:mt-0"
             NotFoundComponent={
                <ImageOff
                   width={100}
@@ -47,9 +47,9 @@ export const CartItem = (props: ICartItemProps): JSX.Element => {
          <CartItemInfo {...props} />
 
          {/* Delete Item Btn ========= */}
-         <div className="self-start pl-1">
+         <div className="self-start sm:pl-1 absolute right-2 top-2 sm500:static sm500:hidden sm:block">
             <button
-               className="hover:opacity-60 transition-opacity duration-300 mt-[3px]"
+               className="hover:opacity-60 transition-opacity duration-300 sm:mt-[3px]"
                title="Dieses Produkt löschen"
                onClick={(event) => {
                   event.preventDefault();

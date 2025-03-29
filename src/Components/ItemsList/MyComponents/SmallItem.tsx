@@ -76,7 +76,11 @@ export const SmallItem = ({
             </h4>
             <h6 className="text-xs sm500:text-sm">{mytype}</h6>
             <h4 className="font-semibold text-sm sm500:text-base mt-1 max-h-[1.25rem] overflow-hidden text-clip">
-               <PriceShower price={price} action={action} />
+               <PriceShower
+                  price={price}
+                  action={action}
+                  realPriceClassName="ml-2"
+               />
             </h4>
          </div>
       </Link>

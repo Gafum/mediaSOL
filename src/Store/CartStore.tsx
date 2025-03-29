@@ -15,9 +15,9 @@ interface ICartStore {
 
 export const useCartStore = create<ICartStore>((set) => ({
    cartList: {
-      mainId: { amount: 1, date: 1 },
+      mainId: { amount: 999, date: 1 },
       "123": { amount: 24, date: 2 },
-      "789": { amount: 999, date: 3 },
+      "789": { amount: 1, date: 3 },
    },
    toggleCartList: (productId: string) => {
       return set((state) => {

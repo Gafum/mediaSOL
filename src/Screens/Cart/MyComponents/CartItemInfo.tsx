@@ -1,8 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { useCartStore } from "../../../Store/CartStore";
-import { calculatePriceWithAction } from "../../../Function/calculatePriceWithAction";
-import { mainCurrency } from "../../../DevData/WhatCurrency";
 import { ICartItemProps } from "./CartItem";
+import { PriceShower } from "../../../Components/PriceShower/PriceShower";
 
 export const CartItemInfo = ({
    id,
@@ -16,15 +15,29 @@ export const CartItemInfo = ({
    const decreaseItemAmount = useCartStore((state) => state.decreaseItemAmount);
 
    return (
-      <div className="flex-1 flex flex-col pb-2 pr-2 w-[78%] ml-4">
-         <h3 className="font-medium text-lg line-clamp-1">{name}</h3>
-         <p className="text-sm line-clamp-3 mt-2 max-w-full">{description}</p>
+      <div className="flex-1 flex flex-col mt-2 sm500:pb-2 sm500:*:pr-2 sm500:w-[78%] sm500:mt-0 sm500:ml-4">
+         <h3 className="text-justify sm:text-left font-medium sm500:text-lg line-clamp-1">
+            {name}
+         </h3>
+         <p className="text-xs sm:text-sm sm500:mt-0.5 sm:mt-2 max-w-full line-clamp-3">
+            {description}
+         </p>
 
-         <div className="flex-1"> {/* Padding */}</div>
+         <div className="hidden sm:block flex-1"> {/* Padding */}</div>
 
          {/* How much items ======= */}
-         <div className="mt-1 flex items-center gap-2 justify-end ">
-            <div className="text-lg flex font-medium items-center">
+         <div className="mt-1 flex flex-col sm:flex-row-reverse items-start sm:items-center sm:gap-2 justify-start">
+            {/* Price ======  */}
+            <div className="sm:flex flex-col-reverse sm:items-end text-sm sm500:text-base sm:text-lg max-w-full max-h-[1.25rem] sm:max-h-none overflow-hidden text-clip">
+               <PriceShower
+                  price={itemAmount * price}
+                  action={action}
+                  realPriceClassName="text-xs sm:text-sm ml-2 sm:ml-0"
+                  wbrClasses="sm:hidden"
+               />
+            </div>
+
+            <div className="text-lg flex font-medium items-center relative w-20 sm500:w-24 ml-1.5 sm:mr-6 justify-center">
                {/* Plus Btn ===== */}
                <button
                   onClick={(event) => {
@@ -33,7 +46,7 @@ export const CartItemInfo = ({
                      decreaseItemAmount(id);
                   }}
                   className={twMerge(
-                     "p-4 relative left-3 transition-opacity duration-300 hover:opacity-40 cursor-pointer",
+                     "p-4 absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 transition-opacity duration-300 hover:opacity-40 cursor-pointer",
                      !(itemAmount - 1) && "opacity-40 cursor-not-allowed"
                   )}
                   disabled={!(itemAmount - 1)}
@@ -55,7 +68,7 @@ export const CartItemInfo = ({
                </button>
 
                {/* Amount ==== */}
-               <span className="w-[50px] text-center cursor-default">
+               <span className="w-14 text-center cursor-default">
                   {itemAmount}
                </span>
 
@@ -67,7 +80,7 @@ export const CartItemInfo = ({
                      increaseItemAmount(id);
                   }}
                   className={twMerge(
-                     "p-4 relative right-3 transition-opacity duration-300 hover:opacity-40 cursor-pointer",
+                     "p-4 absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 transition-opacity duration-300 hover:opacity-40 cursor-pointer",
                      itemAmount - 1 >= 998 && "opacity-40 cursor-not-allowed"
                   )}
                   disabled={itemAmount - 1 >= 998}
@@ -88,39 +101,6 @@ export const CartItemInfo = ({
                      />
                   </svg>
                </button>
-            </div>
-
-            {/* Price ====== */}
-            <div className="flex flex-col items-end">
-               {action && (
-                  <div className="text-sm line-through">
-                     {(itemAmount * price).toFixed(2)}
-                     {mainCurrency}
-                  </div>
-               )}
-
-               <div
-                  className="price text-lg font-semibold whitespace-nowrap"
-                  title={
-                     itemAmount.toString() +
-                     " * " +
-                     calculatePriceWithAction({
-                        price,
-                        action,
-                     })
-                  }
-               >
-                  {(
-                     itemAmount *
-                     Number(
-                        calculatePriceWithAction({
-                           price,
-                           action,
-                        })
-                     )
-                  ).toFixed(2)}
-                  {mainCurrency}
-               </div>
             </div>
          </div>
       </div>
