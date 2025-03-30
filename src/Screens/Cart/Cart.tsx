@@ -5,15 +5,11 @@ import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadli
 import { CartItem } from "./MyComponents/CartItem";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 import { CatalogContent } from "../../DevData/CatalogContent";
-import { useState } from "react";
-import { CartDialog } from "./MyComponents/CartDialog";
 import { calculateAllAmountInCart } from "../../Function/calculateAllAmount";
-
-export interface IModalState {
-   isOpen: boolean;
-   headlineText: string;
-   onOkeyClicK: (() => void) | undefined;
-}
+import {
+   StandartDialog,
+   useStandartDialog,
+} from "../../UI/CustomDialog/Standart/StandartDialog";
 
 export const Cart = (): JSX.Element => {
    const cartList = useCartStore((state) => state.cartList);
@@ -25,11 +21,7 @@ export const Cart = (): JSX.Element => {
       return cartList[aId].date > cartList[bId].date ? 1 : -1;
    });
 
-   const [modalData, setModalData] = useState<IModalState>({
-      isOpen: false,
-      headlineText: "",
-      onOkeyClicK: () => {},
-   });
+   const { modalData, setModalData } = useStandartDialog();
 
    if (!cartListIDs || !cartListIDs?.length) {
       return (
@@ -81,7 +73,7 @@ export const Cart = (): JSX.Element => {
             />
          </div>
 
-         <CartDialog modalData={modalData} setModalData={setModalData} />
+         <StandartDialog modalData={modalData} setModalData={setModalData} />
       </SectionWithHeadline>
    );
 };

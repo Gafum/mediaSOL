@@ -16,17 +16,19 @@ export const ContactDialog = ({
 }: IContactDialogProps): JSX.Element => {
    return (
       <CustomDialog open={modalOpen} setOpen={setModalOpen}>
-         <div className="p-5 min-h-44 flex flex-col justify-between gap-5 text-center items-center overflow-hidden">
-            <h2 className="font-semibold text-2xl">Warten auf Antwort</h2>
+         <div className="p-3 sm:p-5 min-h-32 md:min-h-44 flex flex-col justify-between gap-3 md:gap-5 text-center items-center overflow-hidden">
+            <h2 className="font-semibold text-lg sm:text-2xl">
+               Warten auf Antwort
+            </h2>
 
-            <p className="break-words break-all text-wrap max-w-full w-full">
+            <p className="break-words break-all text-wrap max-w-full w-full text-sm sm:text-lg">
                <span className="capitalize">{formData?.name}</span>, Sie werden
                die Daten per E-Mail{" "}
                <span className="font-medium">{formData?.email}</span> erhalten
             </p>
             <CustomBtn
                btnText={"Okay"}
-               className="w-3/4 mt-4 bg-primaryPink"
+               className="w-full sm:w-3/4 mt-4 bg-primaryPink"
                onClick={() => setModalOpen(false)}
             />
          </div>

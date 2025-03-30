@@ -15,8 +15,8 @@ export const CartItemInfo = ({
    const decreaseItemAmount = useCartStore((state) => state.decreaseItemAmount);
 
    return (
-      <div className="flex-1 flex flex-col mt-2 sm500:pb-2 sm500:*:pr-2 sm500:w-[78%] sm500:mt-0 sm500:ml-4">
-         <h3 className="text-justify sm:text-left font-medium sm500:text-lg line-clamp-1">
+      <div className="flex-1 flex flex-col mt-2 sm500:pb-2 md:pr-2 sm500:w-[78%] sm500:mt-0 sm500:ml-4">
+         <h3 className="text-justify sm:text-left font-medium sm500:text-lg line-clamp-1 sm500:max-w-[90%] sm:max-w-none h-full">
             {name}
          </h3>
          <p className="text-xs sm:text-sm sm500:mt-0.5 sm:mt-2 max-w-full line-clamp-3">

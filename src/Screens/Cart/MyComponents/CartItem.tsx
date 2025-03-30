@@ -4,7 +4,7 @@ import { CustomImg } from "../../../UI/CustomImg/CustomImg";
 import { ImageOff, Trash2 } from "lucide-react";
 import { useCartStore } from "../../../Store/CartStore";
 import { CartItemInfo } from "./CartItemInfo.tsx";
-import { IModalState } from "../Cart.tsx";
+import { IModalState } from "../../../UI/CustomDialog/Standart/StandartDialog.tsx";
 
 export interface ICartItemProps extends IGadget {
    itemAmount: number;
@@ -18,7 +18,7 @@ export const CartItem = (props: ICartItemProps): JSX.Element => {
 
    return (
       <Link
-         className="flex flex-col sm500:flex-row justify-center items-center bg-primaryLightGrey rounded-md p-2 hover:shadow-lg duration-300 transition-shadow relative"
+         className="flex flex-col sm500:flex-row justify-center items-center sm500:items-start bg-primaryLightGrey rounded-md p-2 hover:shadow-lg duration-300 transition-shadow relative"
          to={import.meta.env.BASE_URL + "/item/" + id}
          key={id}
       >
@@ -47,7 +47,7 @@ export const CartItem = (props: ICartItemProps): JSX.Element => {
          <CartItemInfo {...props} />
 
          {/* Delete Item Btn ========= */}
-         <div className="self-start sm:pl-1 absolute right-2 top-2 sm500:static sm500:hidden sm:block">
+         <div className="self-start sm500:bg-primaryLightGrey sm500:p-1 sm:p-0 md:pl-1 sm500:pr-0 absolute right-2 top-2 sm:static sm:block">
             <button
                className="hover:opacity-60 transition-opacity duration-300 sm:mt-[3px]"
                title="Dieses Produkt löschen"
