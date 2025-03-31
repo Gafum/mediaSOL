@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  future: {
+    hoverOnlyWhenSupported: true
+  },
   content: ["./src/**/*.{js,jsx,ts,tsx}",],
   theme: {
     screens: {

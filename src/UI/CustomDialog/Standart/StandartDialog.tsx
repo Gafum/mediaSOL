@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { useCartStore } from "../../../Store/CartStore";
 import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 import { CustomDialog } from "../../../UI/CustomDialog/CustomDialog";
+import { twMerge } from "tailwind-merge";
 
+// Types
 export interface IModalState {
    isOpen: boolean;
-   headlineText: string;
-   onOkeyClicK: (() => void) | undefined;
+   onOkeyClick?: () => void;
+   content: React.ReactNode | string;
+   isAlert?: boolean;
+   headlineText?: string;
 }
 
 interface IStandartDialogProps {
@@ -14,32 +17,36 @@ interface IStandartDialogProps {
    setModalData: React.Dispatch<React.SetStateAction<IModalState>>;
 }
 
+// Constanten
+const defaultDialogData = {
+   isOpen: false,
+   onOkeyClick: () => {},
+   content: "",
+   headlineText: "",
+   isAlert: false,
+};
+
+// Hooks
 export const useStandartDialog = (): IStandartDialogProps => {
-   const [modalData, setModalData] = useState<IModalState>({
-      isOpen: false,
-      headlineText: "",
-      onOkeyClicK: () => {},
-   });
+   const [modalData, setModalData] = useState<IModalState>(defaultDialogData);
 
    return { modalData, setModalData };
 };
 
+// Components
 export const StandartDialog = ({
    modalData,
    setModalData,
 }: IStandartDialogProps): JSX.Element => {
-   const clearCartList = useCartStore((state) => state.clearCartList);
+   const { isOpen, headlineText, content, isAlert, onOkeyClick } = modalData;
+
    function closeModal() {
-      setModalData({
-         isOpen: false,
-         headlineText: "",
-         onOkeyClicK: undefined,
-      });
+      setModalData(defaultDialogData);
    }
 
    return (
       <CustomDialog
-         open={modalData.isOpen}
+         open={isOpen}
          setOpen={(newState: boolean) => {
             setModalData((prev) => {
                return { ...prev, isOpen: newState };
@@ -48,25 +55,35 @@ export const StandartDialog = ({
       >
          <div className="p-3 sm:p-5 min-h-24 sm:min-h-32 md:min-h-44 flex flex-col justify-between items-center text-center gap-3 md:gap-5">
             <h1 className="text-lg sm:text-2xl font-medium">
-               Sind Sie sicher?
+               {headlineText ? headlineText : "Sind Sie sicher?"}
             </h1>
-            <p className="text-sm sm:text-lg">{modalData.headlineText}</p>
-            <div className="grid grid-cols-2 mt-3 sm500:mt-5 gap-2 w-full">
+            <p className="text-sm sm:text-lg">{content}</p>
+
+            <div
+               className={twMerge(
+                  "grid  mt-3 sm500:mt-5 gap-2 w-full",
+                  isAlert ? "grid-cols-1" : "grid-cols-2"
+               )}
+            >
                <CustomBtn
-                  btnText={"Nein"}
+                  btnText={isAlert ? "Okay" : "Nein"}
                   className="bg-primaryPink w-full"
                   onClick={closeModal}
                />
-               <CustomBtn
-                  className="w-full"
-                  btnText={"Ja"}
-                  onClick={() => {
-                     closeModal();
-                     (modalData.onOkeyClicK
-                        ? modalData.onOkeyClicK
-                        : clearCartList)();
-                  }}
-               />
+               {isAlert ? (
+                  ""
+               ) : (
+                  <CustomBtn
+                     className="w-full"
+                     btnText={"Ja"}
+                     onClick={() => {
+                        closeModal();
+                        if (onOkeyClick) {
+                           onOkeyClick();
+                        }
+                     }}
+                  />
+               )}
             </div>
          </div>
       </CustomDialog>

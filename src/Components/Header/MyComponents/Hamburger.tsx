@@ -39,7 +39,7 @@ export const Hamburger = (props: HamburgerProps) => {
          onClick={handleClick}
          type="button"
          className={twMerge(
-            "w-4 sm500:w-6 h-2.5 sm500:h-3 my-auto relative cursor-pointer",
+            "w-4 sm500:w-6 h-2.5 sm500:h-3 my-auto relative cursor-pointer transition-opacity hover:opacity-70",
             className
          )}
       >

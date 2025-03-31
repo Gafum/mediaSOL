@@ -19,11 +19,11 @@ export const Header = (): JSX.Element => {
 
    return (
       <>
-         <div className="text-base sm500:text-2xl container py-6 opacity-0 w-full invisible">
+         <div className="text-base sm500:text-2xl container pb-5 pt-3 sm500:pt-4 md:py-6 opacity-0 w-full invisible">
             {/* background header */}
             MediaSOL
          </div>
-         <header className="fixed top-0 left-0 w-full pt-6 pb-2 bg-white z-10">
+         <header className="fixed top-0 left-0 w-full pt-2 sm500:pt-4 md:pt-6 pb-2 bg-white z-10">
             <div className="flex gap-4 justify-between container w-full pb-0">
                <Link
                   to={screenList.home.path}

@@ -10,9 +10,12 @@ import {
    StandartDialog,
    useStandartDialog,
 } from "../../UI/CustomDialog/Standart/StandartDialog";
+import { Settings } from "lucide-react";
+import { CartSettings } from "./MyComponents/CartSettings";
 
 export const Cart = (): JSX.Element => {
    const cartList = useCartStore((state) => state.cartList);
+   const clearCartList = useCartStore((state) => state.clearCartList);
 
    const cartListIDs = Object.keys(cartList);
    const localCartList = CatalogContent.filter(({ id }) =>
@@ -34,7 +37,23 @@ export const Cart = (): JSX.Element => {
    }
 
    return (
-      <SectionWithHeadline title={screenList.cart.name} className="mt-0">
+      <SectionWithHeadline
+         title={screenList.cart.name}
+         className="mt-0 relative"
+      >
+         <button
+            className="absolute top-1 right-2 hover:opacity-70 transition-opacity"
+            onClick={() =>
+               setModalData({
+                  isOpen: true,
+                  onOkeyClick: clearCartList,
+                  content: <CartSettings />,
+               })
+            }
+         >
+            <Settings className="size-[19px] sm:size-[22px]" />
+         </button>
+
          <div className="flex flex-col gap-4">
             {localCartList.map((elem) => (
                <CartItem
@@ -51,8 +70,8 @@ export const Cart = (): JSX.Element => {
                onClick={() => {
                   setModalData({
                      isOpen: true,
-                     headlineText: "Möchten Sie Ihren Korb wirklich ausleeren?",
-                     onOkeyClicK: undefined,
+                     content: "Möchten Sie Ihren Korb wirklich ausleeren?",
+                     onOkeyClick: clearCartList,
                   });
                }}
                btnText={"Korb leeren"}
@@ -64,8 +83,8 @@ export const Cart = (): JSX.Element => {
                onClick={() => {
                   setModalData({
                      isOpen: true,
-                     headlineText: `Möchten Sie diese ${calculateAllAmountInCart(cartList)} Produkte kaufen?`,
-                     onOkeyClicK: undefined,
+                     content: `Möchten Sie diese ${calculateAllAmountInCart(cartList)} Produkte kaufen?`,
+                     onOkeyClick: clearCartList,
                   });
                }}
                btnText={"Einkaufen"}

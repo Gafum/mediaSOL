@@ -56,10 +56,10 @@ export const CartItem = (props: ICartItemProps): JSX.Element => {
                   event.stopPropagation();
                   setModalData({
                      isOpen: true,
-                     onOkeyClicK: () => {
+                     onOkeyClick: () => {
                         removeItem(id);
                      },
-                     headlineText: name + " aus dem Einkaufswagen löschen?",
+                     content: name + " aus dem Einkaufswagen löschen?",
                   });
                }}
             >

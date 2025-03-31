@@ -60,8 +60,8 @@ export const Favorites = (): JSX.Element => {
                onClick={() =>
                   setModalData({
                      isOpen: true,
-                     headlineText: "Elemente aus der Favoritenliste entfernen?",
-                     onOkeyClicK: clearFavoritesList,
+                     content: "Elemente aus der Favoritenliste entfernen?",
+                     onOkeyClick: clearFavoritesList,
                   })
                }
                bgColor="primaryPink"
