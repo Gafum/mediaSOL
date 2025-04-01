@@ -57,7 +57,7 @@ export const StandartDialog = ({
             <h1 className="text-lg sm:text-2xl font-medium">
                {headlineText ? headlineText : "Sind Sie sicher?"}
             </h1>
-            <p className="text-sm sm:text-lg">{content}</p>
+            <p className="w-full text-sm sm:text-lg">{content}</p>
 
             <div
                className={twMerge(

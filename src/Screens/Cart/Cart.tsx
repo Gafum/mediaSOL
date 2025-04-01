@@ -12,10 +12,18 @@ import {
 } from "../../UI/CustomDialog/Standart/StandartDialog";
 import { Settings } from "lucide-react";
 import { CartSettings } from "./MyComponents/CartSettings";
+import { useState } from "react";
+
+export const sortOptions = [
+   { id: "date", label: "Datum des Antrags" },
+   { id: "price", label: "Preis" },
+   { id: "name", label: "Name" },
+];
 
 export const Cart = (): JSX.Element => {
    const cartList = useCartStore((state) => state.cartList);
    const clearCartList = useCartStore((state) => state.clearCartList);
+   const [selectedSort, setSelectedSort] = useState(sortOptions[0].id);
 
    const cartListIDs = Object.keys(cartList);
    const localCartList = CatalogContent.filter(({ id }) =>
@@ -42,12 +50,19 @@ export const Cart = (): JSX.Element => {
          className="mt-0 relative"
       >
          <button
+            title="Korbfilter"
             className="absolute top-1 right-2 hover:opacity-70 transition-opacity"
             onClick={() =>
                setModalData({
                   isOpen: true,
-                  onOkeyClick: clearCartList,
-                  content: <CartSettings />,
+                  isAlert: true,
+                  content: (
+                     <CartSettings
+                        selectedSort={() => selectedSort}
+                        setSelectedSort={setSelectedSort}
+                     />
+                  ),
+                  headlineText: "Korbfilter",
                })
             }
          >
