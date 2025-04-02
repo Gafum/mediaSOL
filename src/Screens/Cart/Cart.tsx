@@ -12,25 +12,41 @@ import {
 } from "../../UI/CustomDialog/Standart/StandartDialog";
 import { Settings } from "lucide-react";
 import { CartSettings } from "./MyComponents/CartSettings";
-import { useState } from "react";
-
-export const sortOptions = [
-   { id: "date", label: "Datum des Antrags" },
-   { id: "price", label: "Preis" },
-   { id: "name", label: "Name" },
-];
+import { useEffect, useMemo, useState } from "react";
+import { sortOptions } from "./CartData";
+import { IGadget } from "../../MainTypes/Gadget";
+import { CartService } from "./CartService";
 
 export const Cart = (): JSX.Element => {
+   // Global Data / State
    const cartList = useCartStore((state) => state.cartList);
    const clearCartList = useCartStore((state) => state.clearCartList);
+   const cartListIDs = Object.keys(cartList);
+
+   // Local States
    const [selectedSort, setSelectedSort] = useState(sortOptions[0].id);
 
-   const cartListIDs = Object.keys(cartList);
-   const localCartList = CatalogContent.filter(({ id }) =>
-      Object.keys(cartList).includes(id)
-   ).sort(({ id: aId }, { id: bId }) => {
-      return cartList[aId].date > cartList[bId].date ? 1 : -1;
-   });
+   const localCartList = useMemo<IGadget[]>(
+      () =>
+         CatalogContent.filter(({ id }) =>
+            Object.keys(cartList).includes(id)
+         ).sort((a, b) => {
+            const sortFilter = sortOptions.find(
+               ({ id }) => id == selectedSort
+            )?.func;
+
+            if (!sortFilter) {
+               return 1;
+            }
+
+            return sortFilter.apply(cartList, [a, b]);
+         }),
+      [cartList, selectedSort]
+   );
+
+   useEffect(() => {
+      setSelectedSort(CartService.getSelectedStore());
+   }, []);
 
    const { modalData, setModalData } = useStandartDialog();
 

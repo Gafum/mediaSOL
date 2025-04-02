@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { sortOptions } from "../Cart";
+import { sortOptions } from "../CartData";
+import { CartService } from "../CartService";
 
 interface ICartSettingsProps {
    selectedSort: () => string;
@@ -13,6 +14,7 @@ export const CartSettings = ({
    const [selectedSort, setSelectedSort] = useState(selectedSortProp);
 
    function setOptions(id: string) {
+      CartService.saveSelectedSrore(id);
       setSelectedSortProp(id);
       setSelectedSort(id);
    }

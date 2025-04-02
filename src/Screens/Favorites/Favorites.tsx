@@ -16,8 +16,6 @@ export const Favorites = (): JSX.Element => {
       (state) => state.clearFavoritesList
    );
 
-   console.log(favoritesListIDs);
-
    const toggleFavoritesElement = useFavoritesStore(
       (state) => state.toggleFavoritesElement
    );
