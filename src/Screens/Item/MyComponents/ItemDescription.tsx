@@ -34,7 +34,7 @@ export const ItemDescription = ({
                <div>
                   {/* Action----- */}
                   <span className="text-sm sm:text-base rounded-md bg-primaryPink px-1 text-white text-center">
-                     - {action}%
+                     {"- " + action + " %"}
                   </span>
 
                   {/* Price with decoration */}
@@ -79,15 +79,16 @@ export const ItemDescription = ({
 
          <CustomBtn
             btnText={
-               <div className="flex justify-center items-center text-sm sm500:text-base gap-2 font-medium text-white">
+               <div className="flex justify-center items-center gap-2">
                   <Heart
                      fill={favoriteList.includes(id) ? "white" : "transparent"}
                      color="white"
                      strokeWidth="2.5px"
                      className="size-3.5 sm500:size-5 hover:drop-shadow-md transition-all duration-300"
                   />
-                  {favoriteList.includes(id) ? "IN " : "ZU "}
-                  Favoriten
+                  <span className=" text-sm sm500:text-base text-white font-medium">
+                     {(favoriteList.includes(id) ? "IN " : "ZU ") + "Favoriten"}
+                  </span>
                </div>
             }
             onClick={() => toggleFavoritesElement(id)}

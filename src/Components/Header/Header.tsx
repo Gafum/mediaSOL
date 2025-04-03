@@ -19,7 +19,10 @@ export const Header = (): JSX.Element => {
 
    return (
       <>
-         <div className="text-base sm500:text-2xl container pb-5 pt-3 sm500:pt-4 md:py-6 opacity-0 w-full invisible">
+         <div
+            className="text-base sm500:text-2xl container pb-5 pt-3 sm500:pt-4 md:py-6 opacity-0 w-full invisible"
+            translate="no"
+         >
             {/* background header */}
             MediaSOL
          </div>
@@ -35,7 +38,10 @@ export const Header = (): JSX.Element => {
                      alt="M"
                      className="h-[15px]"
                   />
-                  <span className="font-bold whitespace-nowrap transition-opacity duration-300 hover:opacity-60 hidden sm300:inline text-lg sm500:text-2xl">
+                  <span
+                     translate="no"
+                     className="font-bold whitespace-nowrap transition-opacity duration-300 hover:opacity-60 hidden sm300:inline text-lg sm500:text-2xl "
+                  >
                      MediaSOL
                   </span>
                </Link>
