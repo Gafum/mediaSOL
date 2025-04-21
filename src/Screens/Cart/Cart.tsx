@@ -15,7 +15,7 @@ import { CartSettings } from "./MyComponents/CartSettings";
 import { useEffect, useMemo, useState } from "react";
 import { sortOptions } from "./CartData";
 import { IGadget } from "../../MainTypes/Gadget";
-import { CartService } from "./CartService";
+import { CartService } from "./CartService.servise";
 
 export const Cart = (): JSX.Element => {
    // Global Data / State

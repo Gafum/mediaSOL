@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { sortOptions } from "../CartData";
-import { CartService } from "../CartService";
+import { CartService } from "../CartService.servise";
 
 interface ICartSettingsProps {
    selectedSort: () => string;
