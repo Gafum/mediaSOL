@@ -1,6 +1,6 @@
-# University Project: MediaSOL Website
+# Сollege Project: MediaSOL Website
 
-This project is a university assignment where I am developing a website for an IT consulting company named **MediaSOL**. The website showcases the company’s services, team, and contact information using modern web technologies. The primary technologies used are **React**, **Vite**, and **Tailwind CSS**.
+This project is a college assignment where I am developing a website for an IT consulting company named **MediaSOL**. The website showcases the company’s services, team, and contact information using modern web technologies. The primary technologies used are **React**, **Vite**, and **Tailwind CSS**.
 
 <!-- ## Project Overview
  -->

@@ -8,7 +8,7 @@ export const CatalogContent: IGadget[] = [
       price: 142132131231129.99,
       description:
          "Der ERAZER Bandit P20 ist Deine kompakte Gaming-Maschine. Seinem Namen macht er alle Ehre, indem er schurkenhaft im kleinen Gehäuse verbirgt, was in ihm steckt: Auf minimalem Raum liefert er beeindruckende Leistung für Dein Spielerlebnis. Das Spielgenre ist dabei nebensächlich: Komplexe strategische Zusammenhänge berechnet der mächtige Intel Core i7 Prozessor. Grafisch aufwendige virtuelle Welten stellt der Bandit P20 mit seiner NVIDIA GeForce RTX 4070 flüssig und ohne Ruckeln dar. Der ERAZER Bandit P20 ist Deine kompakte Gaming-Maschine. Seinem Namen macht er alle Ehre, indem er schurkenhaft im kleinen Gehäuse verbirgt, was in ihm steckt: Auf minimalem Raum liefert er beeindruckende Leistung für Dein Spielerlebnis. Das Spielgenre ist dabei nebensächlich: Komplexe strategische Zusammenhänge berechnet der mächtige Intel Core i7 Prozessor. Grafisch aufwendige virtuelle Welten stellt der Bandit P20 mit seiner NVIDIA GeForce RTX 4070 flüssig und ohne Ruckeln dar.",
-      img: "https://www.mifcom.de/media/catalog/product/i/m/img_0011_10.jpg",
+      img: import.meta.env.BASE_URL + "/static/images/items/firstPC.jpg",
       type: ItemsTypesArray[0],
       action: 20,
       commentsList: ["mainId234123123", "mainId23423423"],
