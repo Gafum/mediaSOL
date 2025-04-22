@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
-import { CustomDialog } from "../../../UI/CustomDialog/CustomDialog";
+import { CustomBtn } from "../../CustomBtn/CustomBtn";
+import { CustomDialog } from "../CustomDialog";
 import { twMerge } from "tailwind-merge";
 
 // Types
