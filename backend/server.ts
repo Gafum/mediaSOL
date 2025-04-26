@@ -1,19 +1,33 @@
 import express, { Request, Response } from "express";
-import { items } from "./data";
 import cors, { CorsOptions } from "cors";
+import { config } from "dotenv";
+import { indexRouter } from "./routes/index";
+config();
+
+const app = express();
+const PORT = process.env.PORT || 5000;
+
 const corsOption: CorsOptions = {
    origin: ["http://localhost:5173/"],
    credentials: true,
 };
-
-const app = express();
-
 app.use(cors(corsOption));
+app.use(express.json());
 
-app.listen(8080, () => {
-   console.log("start on port 8080");
-});
+const start = async () => {
+   try {
+      app.use("/api", indexRouter);
 
-app.get("/api/items", (req: Request, res: Response) => {
-   res.json(items);
-});
+      app.use((req: Request, res: Response) => {
+         res.status(404).json({ message: "Not Found" });
+      });
+
+      app.listen(PORT, () => {
+         console.log(`start on port ${PORT}`);
+      });
+   } catch (err) {
+      console.log(err);
+   }
+};
+
+start();
