@@ -26,7 +26,7 @@ export const SmallItem = ({
 }: SmallItemProps): JSX.Element => {
    return (
       <Link
-         to={import.meta.env.BASE_URL + "/item/" + id}
+         to={import.meta.env.VITE_BASE_URL + "/item/" + id}
          className={twMerge(
             "w-[160px] sm500:w-[250px] md:w-[300px] bg-primaryLightGrey text-left p-2 sm:p-4 md:p-5 flex flex-col justify-between relative gap-1 shadow-sm hover:shadow-lg transition-shadow duration-300 origin-top rounded-md",
             className

@@ -20,7 +20,7 @@ export const Home = (): JSX.Element => {
             imgSrc={CatalogContent[0].img ?? ""}
             onClick={() => navigate(screenList.catalog.path)}
             eventOnImgClick={() =>
-               navigate(import.meta.env.BASE_URL + "/item/mainId")
+               navigate(import.meta.env.VITE_BASE_URL + "/item/mainId")
             }
          />
 

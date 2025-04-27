@@ -19,7 +19,7 @@ export const CartItem = (props: ICartItemProps): JSX.Element => {
    return (
       <Link
          className="flex flex-col sm500:flex-row justify-center items-center sm500:items-start bg-primaryLightGrey rounded-md p-2 hover:shadow-lg duration-300 transition-shadow relative"
-         to={import.meta.env.BASE_URL + "/item/" + id}
+         to={import.meta.env.VITE_BASE_URL + "/item/" + id}
          key={id}
       >
          {/* Action ======== */}

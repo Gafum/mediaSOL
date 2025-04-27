@@ -2,16 +2,21 @@ import express, { Request, Response } from "express";
 import cors, { CorsOptions } from "cors";
 import { config } from "dotenv";
 import { indexRouter } from "./routes/index";
+
 config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const corsOption: CorsOptions = {
-   origin: ["http://localhost:5173/"],
-   credentials: true,
-};
-app.use(cors(corsOption));
+// const corsOption: CorsOptions = {
+//    origin: [
+//       "http://localhost:5173/mediaSOL",
+//       "https://gafum.github.io/mediaSOL/",
+//    ],
+//    credentials: true,
+// };
+
+app.use(cors());
 app.use(express.json());
 
 const start = async () => {

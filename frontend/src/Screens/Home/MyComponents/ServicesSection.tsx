@@ -43,7 +43,7 @@ const ServiceItem = ({
             </div>
             <img
                src={
-                  import.meta.env.BASE_URL +
+                  import.meta.env.VITE_BASE_URL +
                   "/SVG/Services/" +
                   shortImgPath +
                   ".svg"

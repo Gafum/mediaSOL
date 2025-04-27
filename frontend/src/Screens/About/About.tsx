@@ -63,7 +63,7 @@ export const About = (): JSX.Element => {
                to={screenList.home.path}
                className="w-full max-w-[150px] ml-3 sm500:m-0 sm:max-w-[200px] lg:w-1/2"
             >
-               <img src={import.meta.env.BASE_URL + "/mainIcon.svg"} alt="M" />
+               <img src={import.meta.env.VITE_BASE_URL + "/mainIcon.svg"} alt="M" />
             </Link>
             <div className="text-left sm500:text-center lg:text-left lg:py-6 w-full lg:w-auto">
                <h1 className="text-lg sm:text-xl md:text-2xl font-semibold sm:font-bold">

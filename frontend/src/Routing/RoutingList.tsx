@@ -15,61 +15,61 @@ import { Favorites } from "../Screens/Favorites/Favorites";
 
 export const screenList: IScreenList = {
    home: {
-      path: import.meta.env.BASE_URL + "/",
+      path: import.meta.env.VITE_BASE_URL + "/",
       component: <Home />,
       name: "Startseite",
    },
    about: {
-      path: import.meta.env.BASE_URL + "/about",
+      path: import.meta.env.VITE_BASE_URL + "/about",
       component: <About />,
       name: "Über uns",
    },
    contact: {
-      path: import.meta.env.BASE_URL + "/contact",
+      path: import.meta.env.VITE_BASE_URL + "/contact",
       component: <Contact />,
       name: "Kontakt",
    },
    catalog: {
-      path: import.meta.env.BASE_URL + "/catalog",
+      path: import.meta.env.VITE_BASE_URL + "/catalog",
       component: <Catalog />,
       name: "Katalog",
    },
    item: {
-      path: import.meta.env.BASE_URL + "/item/:itemId",
+      path: import.meta.env.VITE_BASE_URL + "/item/:itemId",
       component: <Item />,
       name: "Ware",
    },
    cart: {
-      path: import.meta.env.BASE_URL + "/cart",
+      path: import.meta.env.VITE_BASE_URL + "/cart",
       component: <Cart />,
       name: "Korb",
    },
    favorites: {
-      path: import.meta.env.BASE_URL + "/favorites",
+      path: import.meta.env.VITE_BASE_URL + "/favorites",
       component: <Favorites />,
       name: "Favoriten",
    },
    consultationService: {
-      path: import.meta.env.BASE_URL + "/service/consultation",
+      path: import.meta.env.VITE_BASE_URL + "/service/consultation",
       component: (
          <ServicesScreenGenerator ServicesList={ConsultationServiceContent} />
       ),
       name: "Beratung",
    },
    maintenanceService: {
-      path: import.meta.env.BASE_URL + "/service/maintenance",
+      path: import.meta.env.VITE_BASE_URL + "/service/maintenance",
       component: (
          <ServicesScreenGenerator ServicesList={MaintenanceServiceContent} />
       ),
       name: "Wartung der Rechner",
    },
    networkSetupService: {
-      path: import.meta.env.BASE_URL + "/service/networkSetup",
+      path: import.meta.env.VITE_BASE_URL + "/service/networkSetup",
       component: <ServicesScreenGenerator ServicesList={NetworkSetupContent} />,
       name: "Netzwerkeinstellungen und Einrichtung",
    },
    technicalSupportService: {
-      path: import.meta.env.BASE_URL + "/service/technicalSupport",
+      path: import.meta.env.VITE_BASE_URL + "/service/technicalSupport",
       component: (
          <ServicesScreenGenerator ServicesList={TechnicalSupportContent} />
       ),

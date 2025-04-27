@@ -34,7 +34,7 @@ export const Header = (): JSX.Element => {
                   title="Startseite"
                >
                   <img
-                     src={import.meta.env.BASE_URL + "/mainIcon.svg"}
+                     src={import.meta.env.VITE_BASE_URL + "/mainIcon.svg"}
                      alt="M"
                      className="h-[15px]"
                   />

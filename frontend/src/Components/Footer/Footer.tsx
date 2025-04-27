@@ -16,7 +16,7 @@ export const Footer = (): JSX.Element => {
             )}
          >
             <img
-               src={import.meta.env.BASE_URL + "/mainIcon.svg"}
+               src={import.meta.env.VITE_BASE_URL + "/mainIcon.svg"}
                alt="M"
                className="w-[54px] mt-1 hidden sm300:block"
             />

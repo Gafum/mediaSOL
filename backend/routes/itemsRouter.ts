@@ -1,18 +1,10 @@
-import { Request, Response, Router } from "express";
-
-import { itemsList } from "../Data/items";
+import { Router } from "express";
+import { ItemsController } from "../controllers/itemsController";
 
 export const itemsRouter = Router();
 
 // get all Items
-itemsRouter.get("/", (req: Request, res: Response) => {
-   res.status(200).json(itemsList);
-});
+itemsRouter.get("/", ItemsController.getAll);
 
 // get one Item
-itemsRouter.get("/:id", (req: Request, res: Response) => {
-   if (!req?.params?.id) {
-      res.status(400).json({ message: "bad request" });
-   }
-   res.status(200).json({ id: req.params.id });
-});
+itemsRouter.get("/:id", ItemsController.getOne);

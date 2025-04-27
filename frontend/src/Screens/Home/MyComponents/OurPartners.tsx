@@ -10,7 +10,7 @@ export const OurPartners = (): JSX.Element => {
             >
                <img
                   src={
-                     import.meta.env.BASE_URL + "/SVG/Partners/" + elem + ".svg"
+                     import.meta.env.VITE_BASE_URL + "/SVG/Partners/" + elem + ".svg"
                   }
                   alt={elem}
                   className="max-h-[100px] block"

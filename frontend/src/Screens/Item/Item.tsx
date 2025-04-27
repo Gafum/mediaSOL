@@ -3,7 +3,7 @@ import { IGadget } from "../../MainTypes/Gadget";
 import { CatalogContent } from "../../DevData/CatalogContent";
 import { ItemsList } from "../../Components/ItemsList/ItemsList";
 import { SimpleError } from "../../Components/Errors/SimpleError";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Review } from "../../Components/Review/Review";
 import { IReviews } from "../../MainTypes/Reviews";
 import { reviewsList } from "../../DevData/ReviewsList";
@@ -13,12 +13,22 @@ import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadli
 export const Item = (): JSX.Element => {
    //Element Data
    const { itemId } = useParams();
-   const elementData: IGadget | undefined = CatalogContent.find((elem) => {
-      return elem.id == itemId;
-   });
+   const [elementData, setElementData] = useState<IGadget>(CatalogContent[0]);
+   const [isLoading, setIsLoading] = useState(true);
 
    //Local Data from Element Data
    const [localCommentList, setLocalCommentList] = useState<IReviews[]>([]);
+
+   const fetchData = useCallback(async () => {
+      const response = await fetch(
+         import.meta.env.VITE_BACKEND_URL + "/items/" + itemId
+      );
+
+      const json = await response.json();
+      console.log(json);
+
+      setElementData(json[0]);
+   }, []);
 
    useEffect(() => {
       if (!elementData) {
@@ -33,7 +43,9 @@ export const Item = (): JSX.Element => {
       setLocalCommentList(() =>
          reviewsList.filter(({ id }) => elementData.commentsList?.includes(id))
       );
-   }, [elementData]);
+
+      fetchData();
+   }, []);
 
    if (!elementData) {
       return <SimpleError />;
