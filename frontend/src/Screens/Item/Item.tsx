@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { IGadget } from "../../MainTypes/Gadget";
-import { CatalogContent } from "../../DevData/CatalogContent";
 import { ItemsList } from "../../Components/ItemsList/ItemsList";
 import { SimpleError } from "../../Components/Errors/SimpleError";
 import { useCallback, useEffect, useState } from "react";
@@ -13,39 +12,71 @@ import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadli
 export const Item = (): JSX.Element => {
    //Element Data
    const { itemId } = useParams();
-   const [elementData, setElementData] = useState<IGadget>(CatalogContent[0]);
+   const [elementData, setElementData] = useState<IGadget | undefined>(
+      undefined
+   );
+   const [localCommentList, setLocalCommentList] = useState<IReviews[]>([]);
+   const [similaryGadgets, setSimilaryGadgets] = useState<IGadget[]>([]);
+
    const [isLoading, setIsLoading] = useState(true);
 
-   //Local Data from Element Data
-   const [localCommentList, setLocalCommentList] = useState<IReviews[]>([]);
-
+   // Rewrite with React Query
    const fetchData = useCallback(async () => {
-      const response = await fetch(
-         import.meta.env.VITE_BACKEND_URL + "/items/" + itemId
-      );
+      try {
+         const response = await fetch(
+            import.meta.env.VITE_BACKEND_URL +
+               "/items/" +
+               itemId +
+               "?withSimilary=true"
+         );
 
-      const json = await response.json();
-      console.log(json);
+         if (!response.ok) {
+            throw new Error("not found");
+            return;
+         }
 
-      setElementData(json[0]);
+         const json = await response.json();
+
+         setElementData(json[0]);
+
+         //BACKEND === json[1]
+         setLocalCommentList(() => {
+            if (json[0]) {
+               return reviewsList.filter(({ id }) =>
+                  json[0].commentsList?.includes(id)
+               );
+            }
+            return [];
+         });
+         setSimilaryGadgets(json[2]);
+      } catch (error) {
+         console.log(error);
+         setElementData(undefined);
+      } finally {
+         setIsLoading(false);
+      }
    }, []);
 
    useEffect(() => {
-      if (!elementData) {
+      fetchData();
+   }, []);
+
+   useEffect(() => {
+      if (!isLoading && !elementData) {
          document.title = "Not Found";
          return;
       }
 
       setTimeout(() => {
-         document.title = elementData.name;
+         if (elementData) {
+            document.title = elementData.name;
+         }
       }, 200);
+   }, [elementData]);
 
-      setLocalCommentList(() =>
-         reviewsList.filter(({ id }) => elementData.commentsList?.includes(id))
-      );
-
-      fetchData();
-   }, []);
+   if (isLoading) {
+      return <div>Loading...</div>;
+   }
 
    if (!elementData) {
       return <SimpleError />;
@@ -76,11 +107,7 @@ export const Item = (): JSX.Element => {
             <ItemsList
                className="mt-4 sm500:mt-5 sm:mt-9"
                name="Änliche Gadgets"
-               list={CatalogContent.filter((elem) => {
-                  return (
-                     elem.type == elementData.type && elem.id !== elementData.id
-                  );
-               })}
+               list={similaryGadgets}
             />
          </div>
       </div>

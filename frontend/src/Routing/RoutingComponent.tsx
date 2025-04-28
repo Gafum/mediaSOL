@@ -16,7 +16,7 @@ export const Router = (): JSX.Element => {
 
       if (!screenName) {
          screenName;
-         console.log("EROR WITH PATH NAME", screenName);
+         // console.log("EROR WITH PATH NAME", screenName);
 
          document.title = `MediaSOL - Computerpflege`;
       } else {

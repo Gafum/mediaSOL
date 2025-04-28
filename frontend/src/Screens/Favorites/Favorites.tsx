@@ -1,5 +1,4 @@
 import { useFavoritesStore } from "../../Store/FavoritesStore";
-import { CatalogContent } from "../../DevData/CatalogContent";
 import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
 import { SmallItem } from "../../Components/ItemsList/MyComponents/SmallItem";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
@@ -9,6 +8,8 @@ import {
    StandartDialog,
    useStandartDialog,
 } from "../../UI/CustomDialog/Standart/StandartDialog";
+import { useEffect } from "react";
+import { IGadget } from "../../MainTypes/Gadget";
 
 export const Favorites = (): JSX.Element => {
    const favoritesListIDs = useFavoritesStore((state) => state.favoritesList);
@@ -22,9 +23,14 @@ export const Favorites = (): JSX.Element => {
 
    const { modalData, setModalData } = useStandartDialog();
 
-   const localFavoritesList = CatalogContent.filter(({ id }) =>
-      favoritesListIDs.includes(id)
-   );
+   const localFavoritesList: IGadget[] = [];
+
+   //Rewrite with React Query
+   useEffect(() => {
+      // CatalogContent.filter(({ id }) =>
+      //    favoritesListIDs.includes(id)
+      // );
+   }, []);
 
    if (!localFavoritesList || !localFavoritesList?.length) {
       return (

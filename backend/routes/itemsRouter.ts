@@ -8,3 +8,6 @@ itemsRouter.get("/", ItemsController.getAll);
 
 // get one Item
 itemsRouter.get("/:id", ItemsController.getOne);
+
+// get some Items by ids
+itemsRouter.post("/list", ItemsController.getList);
