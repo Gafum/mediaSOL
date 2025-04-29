@@ -5,7 +5,7 @@ export const CatalogContent: IGadget[] = [
    {
       id: "mainId",
       name: "Monster Gaming PC - Intel i7 3,90Ghz | 32GB RAM | 1TB SSD | Nvidia RTX 3050 8GB",
-      price: 142132131231129.99,
+      price: 142.99,
       description:
          "Der ERAZER Bandit P20 ist Deine kompakte Gaming-Maschine. Seinem Namen macht er alle Ehre, indem er schurkenhaft im kleinen Gehäuse verbirgt, was in ihm steckt: Auf minimalem Raum liefert er beeindruckende Leistung für Dein Spielerlebnis. Das Spielgenre ist dabei nebensächlich: Komplexe strategische Zusammenhänge berechnet der mächtige Intel Core i7 Prozessor. Grafisch aufwendige virtuelle Welten stellt der Bandit P20 mit seiner NVIDIA GeForce RTX 4070 flüssig und ohne Ruckeln dar. Der ERAZER Bandit P20 ist Deine kompakte Gaming-Maschine. Seinem Namen macht er alle Ehre, indem er schurkenhaft im kleinen Gehäuse verbirgt, was in ihm steckt: Auf minimalem Raum liefert er beeindruckende Leistung für Dein Spielerlebnis. Das Spielgenre ist dabei nebensächlich: Komplexe strategische Zusammenhänge berechnet der mächtige Intel Core i7 Prozessor. Grafisch aufwendige virtuelle Welten stellt der Bandit P20 mit seiner NVIDIA GeForce RTX 4070 flüssig und ohne Ruckeln dar.",
       img: import.meta.env.BASE_URL + "/static/images/items/firstPC.jpg",
@@ -44,7 +44,7 @@ export const CatalogContent: IGadget[] = [
    {
       id: "454564",
       name: "Premium Musiksystem",
-      price: 1_999_999.99,
+      price: 1_999.99,
       description:
          "Das ultimative Musiksystem für professionelle Ansprüche. Mit kristallklarem Sound, hoher Lautstärke und außergewöhnlicher Bassqualität ist dieses System perfekt für Konzerte, Studios und anspruchsvolle Musikliebhaber. Es verbindet modernste Technologie mit ästhetischem Design.",
       img: "https://static0.xdaimages.com/wordpress/wp-content/uploads/2023/09/logitech-g432-wired.png",
@@ -63,7 +63,7 @@ export const CatalogContent: IGadget[] = [
    {
       id: "789",
       name: "Kabellose Kopfhörer X",
-      price: 149.99,
+      price: 49.99,
       description:
          "Premium-Soundqualität und aktive Geräuschunterdrückung machen diese kabellosen Kopfhörer ideal für Pendler, Sportler oder Musikliebhaber. Die ergonomische Passform sorgt für hohen Tragekomfort, während die lange Akkulaufzeit sie perfekt für unterwegs macht.",
       img: "https://elver.in/cdn/shop/files/Elver_Buds_X_True_Wireless_Earbuds-back.webp?v=1732011209&width=1946",

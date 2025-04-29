@@ -11,7 +11,7 @@ interface IFavoriteStore {
 export const useFavoritesStore = create<IFavoriteStore>()(
    persist(
       (set, get) => ({
-         favoritesList: [],
+         favoritesList: ["123", "901"],
          toggleFavoritesElement: (productId: string) => {
             return set(() => {
                return {
