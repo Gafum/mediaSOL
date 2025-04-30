@@ -16,11 +16,16 @@ app.use(express.json());
 const start = async () => {
    try {
       app.use("/api", indexRouter);
-      app.use(ErrorHandler);
 
-      app.use((req: Request, res: Response, next: NextFunction) => {
-         next(ApiError.badRequest("Not found"));
+      app.use("/", (req: Request, res: Response, next: NextFunction) => {
+         try {
+            next(ApiError.badRequest("Not found"));
+         } catch (e) {
+            console.log(e);
+         }
       });
+
+      app.use(ErrorHandler); //Must stay in the end
 
       app.listen(PORT, () => {
          console.log(`start on port ${PORT}`);

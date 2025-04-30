@@ -8,7 +8,7 @@ import {
    StandartDialog,
    useStandartDialog,
 } from "../../UI/CustomDialog/Standart/StandartDialog";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { IGadget } from "../../MainTypes/Gadget";
 
 export const Favorites = (): JSX.Element => {
@@ -23,14 +23,47 @@ export const Favorites = (): JSX.Element => {
 
    const { modalData, setModalData } = useStandartDialog();
 
-   const localFavoritesList: IGadget[] = [];
+   const [localFavoritesList, setLocalFavoritesList] = useState<IGadget[]>([]);
 
-   //Rewrite with React Query
-   useEffect(() => {
-      // CatalogContent.filter(({ id }) =>
-      //    favoritesListIDs.includes(id)
-      // );
+   // Rewrite with React Query
+   const [isLoading, setIsLoading] = useState(true);
+   const fetchData = useCallback(async () => {
+      try {
+         const response = await fetch(
+            import.meta.env.VITE_BACKEND_URL + "/items/list",
+            {
+               method: "POST",
+               headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify({ ids: favoritesListIDs }),
+            }
+         );
+
+         const json = await response.json();
+
+         if (!response.ok) {
+            throw new Error(json.message);
+            return;
+         }
+
+         setLocalFavoritesList(json);
+      } catch (error) {
+         console.log(error);
+         setLocalFavoritesList([]);
+      } finally {
+         setIsLoading(false);
+      }
    }, []);
+
+   useEffect(() => {
+      fetchData();
+   }, [favoritesListIDs]);
+
+   if (isLoading) {
+      return <div>Loading...</div>;
+   }
 
    if (!localFavoritesList || !localFavoritesList?.length) {
       return (

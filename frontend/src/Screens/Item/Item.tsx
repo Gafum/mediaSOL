@@ -18,9 +18,9 @@ export const Item = (): JSX.Element => {
    const [localCommentList, setLocalCommentList] = useState<IReviews[]>([]);
    const [similaryGadgets, setSimilaryGadgets] = useState<IGadget[]>([]);
 
+   // Rewrite with React Query
    const [isLoading, setIsLoading] = useState(true);
 
-   // Rewrite with React Query
    const fetchData = useCallback(async () => {
       try {
          const response = await fetch(
@@ -30,12 +30,12 @@ export const Item = (): JSX.Element => {
                "?withSimilary=true"
          );
 
+         const json = await response.json();
+
          if (!response.ok) {
-            throw new Error("not found");
+            throw new Error(json.message);
             return;
          }
-
-         const json = await response.json();
 
          setElementData(json[0]);
 

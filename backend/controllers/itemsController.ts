@@ -43,17 +43,18 @@ export class ItemsController {
    static async getList(req: Request, res: Response, next: NextFunction) {
       try {
          if (!req.body || !req?.body?.ids) {
-            return next(ApiError.internal("There are not IDs"));
+            return next(ApiError.badRequest("There are not IDs"));
          }
+
          const { ids } = req.body;
 
          if (!Array.isArray(ids)) {
-            return next(ApiError.internal("IDs must be an array"));
+            return next(ApiError.badRequest("IDs must be an array"));
          }
 
          const items = itemsList.filter((item) => ids.includes(item.id));
 
-         res.json(items);
+         res.status(200).json(items);
       } catch (error) {
          console.log(error);
          return next(ApiError.internal("Error on server"));
