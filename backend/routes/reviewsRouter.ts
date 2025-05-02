@@ -1,25 +1,17 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 
-import { itemsList } from "../Data/items";
+import { ReviewController } from "../controllers/reviewController";
 
 export const reviewsRouter = Router();
 
-//Get all reviews
-reviewsRouter.get("/", (req: Request, res: Response) => {
-   res.status(200).json(itemsList);
-});
+// get some reviews by ids
+reviewsRouter.post("/list", ReviewController.getList);
 
 //Get one review
-reviewsRouter.get("/:id", (req: Request, res: Response) => {
-   res.status(200).json(itemsList);
-});
+reviewsRouter.get("/:id", ReviewController.getOne);
 
 //Add review
-reviewsRouter.post("/", (req: Request, res: Response) => {
-   res.status(200).json(itemsList);
-});
+reviewsRouter.post("/", ReviewController.addOne);
 
 //Delete review
-reviewsRouter.delete("/:id", (req: Request, res: Response) => {
-   res.status(200).json(itemsList);
-});
+reviewsRouter.delete("/", ReviewController.deleteOne);
