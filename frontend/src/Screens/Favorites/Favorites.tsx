@@ -25,6 +25,7 @@ export const Favorites = (): JSX.Element => {
 
    const [localFavoritesList, setLocalFavoritesList] = useState<IGadget[]>([]);
 
+   
    // Rewrite with React Query
    const [isLoading, setIsLoading] = useState(true);
    const fetchData = useCallback(async () => {
