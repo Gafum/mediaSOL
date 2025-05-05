@@ -13,28 +13,30 @@ export async function getOne(itemId: string | undefined): Promise<IGetOne> {
    if (!itemId) {
       throw new Error("It is not the right path!");
    }
+   try {
+      const response = await axios.get(
+         import.meta.env.VITE_BACKEND_URL +
+            "/items/" +
+            itemId +
+            "?withSimilary=true"
+      );
+      const data = await response.data;
 
-   const response = await axios.get(
-      import.meta.env.VITE_BACKEND_URL +
-         "/items/" +
-         itemId +
-         "?withSimilary=true"
-   );
+      if (response.status > 300) {
+         throw new Error(data.message);
+      }
 
-   const data = await response.data;
+      //rewrite BACKEND === json[1]
+      const localCommentList = reviewsList.filter(({ id }) =>
+         data[1].commentsList?.includes(id)
+      );
 
-   if (response.status > 300) {
-      throw new Error(data.message);
+      return {
+         elementData: data[0],
+         localCommentList: localCommentList,
+         similaryGadgets: data[2],
+      };
+   } catch (error) {
+      throw new Error("error");
    }
-
-   //rewrite BACKEND === json[1]
-   const localCommentList = reviewsList.filter(({ id }) =>
-      data[1].commentsList?.includes(id)
-   );
-
-   return {
-      elementData: data[0],
-      localCommentList: localCommentList,
-      similaryGadgets: data[2],
-   };
 }

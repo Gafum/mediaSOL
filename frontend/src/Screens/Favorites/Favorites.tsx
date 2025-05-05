@@ -8,8 +8,7 @@ import {
    StandartDialog,
    useStandartDialog,
 } from "../../UI/CustomDialog/Standart/StandartDialog";
-import { useCallback, useEffect, useState } from "react";
-import { IGadget } from "../../MainTypes/Gadget";
+import { useGetSomeItems } from "../../Hooks/Query/Items/useGetSome";
 
 export const Favorites = (): JSX.Element => {
    const favoritesListIDs = useFavoritesStore((state) => state.favoritesList);
@@ -23,47 +22,24 @@ export const Favorites = (): JSX.Element => {
 
    const { modalData, setModalData } = useStandartDialog();
 
-   const [localFavoritesList, setLocalFavoritesList] = useState<IGadget[]>([]);
-
-   
-   // Rewrite with React Query
-   const [isLoading, setIsLoading] = useState(true);
-   const fetchData = useCallback(async () => {
-      try {
-         const response = await fetch(
-            import.meta.env.VITE_BACKEND_URL + "/items/list",
-            {
-               method: "POST",
-               headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-               },
-               body: JSON.stringify({ ids: favoritesListIDs }),
-            }
-         );
-
-         const json = await response.json();
-
-         if (!response.ok) {
-            throw new Error(json.message);
-            return;
-         }
-
-         setLocalFavoritesList(json);
-      } catch (error) {
-         console.log(error);
-         setLocalFavoritesList([]);
-      } finally {
-         setIsLoading(false);
-      }
-   }, []);
-
-   useEffect(() => {
-      fetchData();
-   }, [favoritesListIDs]);
+   const {
+      isLoading,
+      error,
+      list: localFavoritesList,
+   } = useGetSomeItems(favoritesListIDs);
 
    if (isLoading) {
       return <div>Loading...</div>;
+   }
+
+   if (error) {
+      return (
+         <SimpleError
+            title="Problemen on Server"
+            btnText="Nach Hause"
+            navigateTo={screenList.home.path}
+         />
+      );
    }
 
    if (!localFavoritesList || !localFavoritesList?.length) {
