@@ -4,7 +4,6 @@ import { SimpleError } from "../../Components/Errors/SimpleError";
 import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
 import { CartItem } from "./MyComponents/CartItem";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
-import { CatalogContent } from "../../DevData/CatalogContent";
 import { calculateAllAmountInCart } from "../../Function/calculateAllAmount";
 import {
    StandartDialog,
@@ -16,6 +15,7 @@ import { useEffect, useMemo, useState } from "react";
 import { sortOptions } from "./CartData";
 import { IGadget } from "../../MainTypes/Gadget";
 import { CartService } from "./CartService.servise";
+import { useGetSomeItems } from "../../Hooks/Query/Items/useGetSome";
 
 export const Cart = (): JSX.Element => {
    // Global Data / State
@@ -25,30 +25,48 @@ export const Cart = (): JSX.Element => {
 
    // Local States
    const [selectedSort, setSelectedSort] = useState(sortOptions[0].id);
-
-   const localCartList = useMemo<IGadget[]>(
-      () =>
-         CatalogContent.filter(({ id }) =>
-            Object.keys(cartList).includes(id)
-         ).sort((a, b) => {
-            const sortFilter = sortOptions.find(
-               ({ id }) => id == selectedSort
-            )?.func;
-
-            if (!sortFilter) {
-               return 1;
-            }
-
-            return sortFilter.apply(cartList, [a, b]);
-         }),
-      [cartList, selectedSort]
-   );
-
    useEffect(() => {
       setSelectedSort(CartService.getSelectedStore());
    }, []);
 
+   const {
+      isLoading,
+      error,
+      list: elementDataList,
+   } = useGetSomeItems(cartListIDs);
+
+   const localCartList = useMemo<IGadget[]>(() => {
+      if (!elementDataList) {
+         return [];
+      }
+      return elementDataList.sort((a, b) => {
+         const sortFilter = sortOptions.find(
+            ({ id }) => id == selectedSort
+         )?.func;
+
+         if (!sortFilter) {
+            return 1;
+         }
+
+         return sortFilter.apply(cartList, [a, b]);
+      });
+   }, [cartList, selectedSort, elementDataList]);
+
    const { modalData, setModalData } = useStandartDialog();
+
+   if (isLoading) {
+      return <div>Loading...</div>;
+   }
+
+   if (error) {
+      return (
+         <SimpleError
+            title="Problemen on Server"
+            btnText="Nach Hause"
+            navigateTo={screenList.home.path}
+         />
+      );
+   }
 
    if (!cartListIDs || !cartListIDs?.length) {
       return (
