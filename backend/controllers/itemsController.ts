@@ -5,7 +5,22 @@ import { ApiError } from "../error/ApiError";
 export class ItemsController {
    static async getAll(req: Request, res: Response, next: NextFunction) {
       try {
-         res.status(200).json(itemsList);
+         if (!!req.query && !!req?.query?.page && !!req?.query.limit) {
+            //Pagination request
+            const { page, limit } = req.query;
+            if (
+               !Boolean(Number(Number(page) + 1)) ||
+               !Boolean(Number(Number(limit) + 1))
+            ) {
+               // if page or limit is a string type
+               return next(ApiError.badRequest("Bad request"));
+            }
+            res.status(200).json(
+               itemsList.slice(Number(page) * Number(limit), Number(limit))
+            );
+         } else {
+            res.status(200).json(itemsList);
+         }
       } catch (error) {
          console.log(error);
          return next(ApiError.internal("Error on server"));
@@ -18,8 +33,10 @@ export class ItemsController {
             return next(ApiError.badRequest("Not found"));
          }
 
+         const { id: elementId } = req.params;
+
          const elementData = itemsList.find(({ id }) => {
-            return id == req.params.id;
+            return id == elementId;
          });
 
          if (!elementData) {
