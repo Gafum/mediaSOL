@@ -11,9 +11,15 @@ export const Catalog = (): JSX.Element => {
    const toggleFavoritesElement = useFavoritesStore(
       (state) => state.toggleFavoritesElement
    );
-   
+
    //Rewrite Add Pagination
-   const { isLoading, error, list: catalogList } = useGetAllItems();
+   const {
+      isLoading,
+      error,
+      list: catalogList,
+      fetchNextPage,
+      isFetchingNextPage,
+   } = useGetAllItems();
 
    if (isLoading) {
       return <div>Loading...</div>;
@@ -45,6 +51,10 @@ export const Catalog = (): JSX.Element => {
                />
             ))}
          </div>
+
+         <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+            {isFetchingNextPage ? "LOADING..." : "LOAD MORE"}
+         </button>
       </SectionWithHeadline>
    );
 };

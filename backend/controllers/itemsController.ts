@@ -15,8 +15,14 @@ export class ItemsController {
                // if page or limit is a string type
                return next(ApiError.badRequest("Bad request"));
             }
+
+            const firstElementOfPage = Number(page) * Number(limit);
+
             res.status(200).json(
-               itemsList.slice(Number(page) * Number(limit), Number(limit))
+               itemsList.slice(
+                  firstElementOfPage,
+                  firstElementOfPage + Number(limit)
+               )
             );
          } else {
             res.status(200).json(itemsList);

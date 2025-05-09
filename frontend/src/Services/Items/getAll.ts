@@ -5,11 +5,14 @@ interface IGetAll {
    list: IGadget[];
 }
 
-export async function getAll(): Promise<IGetAll> {
+export async function getAll(
+   page: number = 0,
+   limit: number = 3
+): Promise<IGetAll> {
    //Rewrite Add Pagination
    try {
       const response = await axios.get(
-         import.meta.env.VITE_BACKEND_URL + "/items/"
+         import.meta.env.VITE_BACKEND_URL + `/items?page=${page}&limit=${limit}`
       );
       const data = await response.data;
 

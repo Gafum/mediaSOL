@@ -1,18 +1,28 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { ItemsService } from "../../../Services/Items";
 
+const LIMIT = 4;
 export function useGetAllItems() {
-   //Rewrite Add Pagination
-   const { isLoading, error, data } = useQuery({
-      queryKey: ["items"],
-      queryFn: () => ItemsService.getAll(),
-   });
+   const { data, fetchNextPage, isFetchingNextPage, isLoading, error } =
+      useInfiniteQuery({
+         queryKey: ["items"],
+         queryFn: ({ pageParam = 0 }) => ItemsService.getAll(pageParam, LIMIT),
+         getNextPageParam: (lastPage, allPages) => {
+            if (lastPage.list.length < LIMIT) return undefined;
+            console.log(lastPage.list, allPages);
 
-   const list = data?.list ?? null;
+            return allPages.length;
+         },
+         initialPageParam: 0,
+      });
+
+   const list = data?.pages.flatMap((page) => page.list) ?? [];
 
    return {
       isLoading,
       error,
       list,
+      fetchNextPage,
+      isFetchingNextPage,
    };
 }
