@@ -4,6 +4,8 @@ import { SimpleError } from "../../Components/Errors/SimpleError";
 import { screenList } from "../../Routing/RoutingList";
 import { useFavoritesStore } from "../../Store/FavoritesStore";
 import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
+import { Download } from "lucide-react";
+import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 
 export const Catalog = (): JSX.Element => {
    const favoritesListIDs = useFavoritesStore((state) => state.favoritesList);
@@ -12,13 +14,13 @@ export const Catalog = (): JSX.Element => {
       (state) => state.toggleFavoritesElement
    );
 
-   //Rewrite Add Pagination
    const {
       isLoading,
       error,
       list: catalogList,
       fetchNextPage,
       isFetchingNextPage,
+      hasNextPage,
    } = useGetAllItems();
 
    if (isLoading) {
@@ -52,9 +54,25 @@ export const Catalog = (): JSX.Element => {
             ))}
          </div>
 
-         <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-            {isFetchingNextPage ? "LOADING..." : "LOAD MORE"}
-         </button>
+         {hasNextPage && (
+            <div className="w-full flex justify-center mt-4">
+               <CustomBtn
+                  onClick={() => fetchNextPage()}
+                  disabled={isFetchingNextPage}
+                  btnText={
+                     <div className="flex justify-center items-center text-inherit gap-2">
+                        {isFetchingNextPage
+                           ? "Loading..."
+                           : "Daten herunterladen"}
+                        <Download color="white" size={20} />
+                     </div>
+                  }
+                  className="px-3"
+               />
+            </div>
+         )}
+
+         {isLoading && <p>Loading...</p>}
       </SectionWithHeadline>
    );
 };

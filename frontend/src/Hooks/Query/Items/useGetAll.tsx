@@ -3,18 +3,24 @@ import { ItemsService } from "../../../Services/Items";
 
 const LIMIT = 4;
 export function useGetAllItems() {
-   const { data, fetchNextPage, isFetchingNextPage, isLoading, error } =
-      useInfiniteQuery({
-         queryKey: ["items"],
-         queryFn: ({ pageParam = 0 }) => ItemsService.getAll(pageParam, LIMIT),
-         getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.list.length < LIMIT) return undefined;
-            console.log(lastPage.list, allPages);
+   const {
+      data,
+      fetchNextPage,
+      isFetchingNextPage,
+      isLoading,
+      error,
+      hasNextPage,
+   } = useInfiniteQuery({
+      queryKey: ["items"],
+      queryFn: ({ pageParam = 0 }) => ItemsService.getAll(pageParam, LIMIT),
+      getNextPageParam: (lastPage, allPages) => {
+         if (lastPage.list.length < LIMIT) return undefined;
+         console.log(lastPage.list, allPages);
 
-            return allPages.length;
-         },
-         initialPageParam: 0,
-      });
+         return allPages.length;
+      },
+      initialPageParam: 0,
+   });
 
    const list = data?.pages.flatMap((page) => page.list) ?? [];
 
@@ -24,5 +30,6 @@ export function useGetAllItems() {
       list,
       fetchNextPage,
       isFetchingNextPage,
+      hasNextPage,
    };
 }
