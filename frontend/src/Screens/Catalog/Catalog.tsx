@@ -6,6 +6,7 @@ import { useFavoritesStore } from "../../Store/FavoritesStore";
 import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
 import { Download } from "lucide-react";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
+import { useGetTypes } from "../../Hooks/Query/Items/useTypes";
 
 export const Catalog = (): JSX.Element => {
    const favoritesListIDs = useFavoritesStore((state) => state.favoritesList);
@@ -13,6 +14,8 @@ export const Catalog = (): JSX.Element => {
    const toggleFavoritesElement = useFavoritesStore(
       (state) => state.toggleFavoritesElement
    );
+
+   const { data: types, isLoading: isTypesLoading } = useGetTypes();
 
    const {
       isLoading,
@@ -39,6 +42,14 @@ export const Catalog = (): JSX.Element => {
 
    return (
       <SectionWithHeadline title={"Katalog"} className="m-0">
+         {isTypesLoading ? (
+            "Loading..."
+         ) : (
+            <div className="flex justify-around">
+               {types?.map((type: string) => <h2 key={type}>{type}</h2>)}
+            </div>
+         )}
+
          <div className="grid grid-cols-1 sm500:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 mt-3">
             {catalogList.map((elem) => (
                <SmallItem
@@ -53,7 +64,6 @@ export const Catalog = (): JSX.Element => {
                />
             ))}
          </div>
-
          {hasNextPage && (
             <div className="w-full flex justify-center mt-4">
                <CustomBtn
@@ -71,7 +81,6 @@ export const Catalog = (): JSX.Element => {
                />
             </div>
          )}
-
          {isLoading && <p>Loading...</p>}
       </SectionWithHeadline>
    );

@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { IGadget, itemsList } from "../Data/items";
 import { ApiError } from "../error/ApiError";
 import { filterItemsBySearch } from "../functions/filterItemsBySearch";
+import { ItemsTypesArray } from "../Data/ItemsTypesArray";
 
 export class ItemsController {
    static async getAll(req: Request, res: Response, next: NextFunction) {
@@ -39,18 +40,13 @@ export class ItemsController {
             }
 
             const start = pageNum * limitNum;
-            const paginated = localItemsList.slice(start, start + limitNum);
-
-            res.status(200).json({
-               list: paginated,
-               total: localItemsList.length,
-            });
-         } else {
-            res.status(200).json({
-               list: localItemsList,
-               total: localItemsList.length,
-            });
+            localItemsList = localItemsList.slice(start, start + limitNum);
          }
+
+         res.status(200).json({
+            list: localItemsList,
+            total: localItemsList.length,
+         });
       } catch (error) {
          console.log(error);
          return next(ApiError.internal("Error on server"));
@@ -102,6 +98,15 @@ export class ItemsController {
          const items = itemsList.filter((item) => ids.includes(item.id));
 
          res.status(200).json(items);
+      } catch (error) {
+         console.log(error);
+         return next(ApiError.internal("Error on server"));
+      }
+   }
+
+   static async getTypes(req: Request, res: Response, next: NextFunction) {
+      try {
+         res.status(200).json(ItemsTypesArray);
       } catch (error) {
          console.log(error);
          return next(ApiError.internal("Error on server"));

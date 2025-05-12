@@ -14,14 +14,13 @@ export async function getAll(
          import.meta.env.VITE_BACKEND_URL + `/items?page=${page}&limit=${limit}`
       );
       const data = await response.data;
+      // {list:[], total:number}
 
       if (response.status > 300) {
          throw new Error(data.message);
       }
 
-      return {
-         list: data,
-      };
+      return data;
    } catch (error) {
       throw new Error("error");
    }

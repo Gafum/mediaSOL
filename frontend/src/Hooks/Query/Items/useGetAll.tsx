@@ -15,7 +15,6 @@ export function useGetAllItems() {
       queryFn: ({ pageParam = 0 }) => ItemsService.getAll(pageParam, LIMIT),
       getNextPageParam: (lastPage, allPages) => {
          if (lastPage.list.length < LIMIT) return undefined;
-         console.log(lastPage.list, allPages);
 
          return allPages.length;
       },
