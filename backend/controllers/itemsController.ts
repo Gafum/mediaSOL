@@ -1,31 +1,55 @@
 import { NextFunction, Request, Response } from "express";
 import { IGadget, itemsList } from "../Data/items";
 import { ApiError } from "../error/ApiError";
+import { filterItemsBySearch } from "../functions/filterItemsBySearch";
 
 export class ItemsController {
    static async getAll(req: Request, res: Response, next: NextFunction) {
       try {
-         if (!!req.query && !!req?.query?.page && !!req?.query.limit) {
-            //Pagination request
-            const { page, limit } = req.query;
+         let localItemsList = itemsList;
+         const { searchText, page, limit, type } = req.query;
+
+         if (type) {
+            localItemsList = localItemsList.filter(
+               (item) =>
+                  item.type.toLowerCase() === type.toString().toLowerCase()
+            );
+         }
+
+         if (searchText) {
+            localItemsList = filterItemsBySearch(
+               localItemsList,
+               searchText.toString()
+            );
+         }
+
+         if (page !== undefined && limit !== undefined) {
+            const pageNum = Number(page);
+            const limitNum = Number(limit);
+
             if (
-               !Boolean(Number(Number(page) + 1)) ||
-               !Boolean(Number(Number(limit) + 1))
+               isNaN(pageNum) ||
+               isNaN(limitNum) ||
+               pageNum < 0 ||
+               limitNum <= 0
             ) {
-               // if page or limit is a string type
-               return next(ApiError.badRequest("Bad request"));
+               return next(
+                  ApiError.badRequest("Invalid pagination parameters")
+               );
             }
 
-            const firstElementOfPage = Number(page) * Number(limit);
+            const start = pageNum * limitNum;
+            const paginated = localItemsList.slice(start, start + limitNum);
 
-            res.status(200).json(
-               itemsList.slice(
-                  firstElementOfPage,
-                  firstElementOfPage + Number(limit)
-               )
-            );
+            res.status(200).json({
+               list: paginated,
+               total: localItemsList.length,
+            });
          } else {
-            res.status(200).json(itemsList);
+            res.status(200).json({
+               list: localItemsList,
+               total: localItemsList.length,
+            });
          }
       } catch (error) {
          console.log(error);
