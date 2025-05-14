@@ -6,7 +6,9 @@ import { useFavoritesStore } from "../../Store/FavoritesStore";
 import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
 import { Download } from "lucide-react";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
-import { useGetTypes } from "../../Hooks/Query/Items/useTypes";
+import { useGetTypes } from "../../Hooks/Query/Items/useGetTypes";
+import { useState } from "react";
+import { TypesBtn } from "./MyComponents/TypesBtn";
 
 export const Catalog = (): JSX.Element => {
    const favoritesListIDs = useFavoritesStore((state) => state.favoritesList);
@@ -15,7 +17,13 @@ export const Catalog = (): JSX.Element => {
       (state) => state.toggleFavoritesElement
    );
 
-   const { data: types, isLoading: isTypesLoading } = useGetTypes();
+   const [selectedType, setSelectedType] = useState<string | null>(null);
+
+   const {
+      data: types,
+      isLoading: isTypesLoading,
+      error: typesError,
+   } = useGetTypes();
 
    const {
       isLoading,
@@ -24,13 +32,13 @@ export const Catalog = (): JSX.Element => {
       fetchNextPage,
       isFetchingNextPage,
       hasNextPage,
-   } = useGetAllItems();
+   } = useGetAllItems(selectedType);
 
    if (isLoading) {
       return <div>Loading...</div>;
    }
 
-   if (error || !catalogList || !catalogList?.length) {
+   if (error || !catalogList) {
       return (
          <SimpleError
             title="Problemen on Server"
@@ -42,28 +50,46 @@ export const Catalog = (): JSX.Element => {
 
    return (
       <SectionWithHeadline title={"Katalog"} className="m-0">
+         {/* Type filter */}
          {isTypesLoading ? (
-            "Loading..."
+            <p>Loading types...</p>
+         ) : typesError ? (
+            <p className="text-red-500">Error loading types</p>
          ) : (
-            <div className="flex justify-around">
-               {types?.map((type: string) => <h2 key={type}>{type}</h2>)}
+            <div className="flex gap-x-3 gap-y-2 flex-wrap mb-6">
+               {[null, ...types]?.map((type: string) => (
+                  <TypesBtn
+                     text={type}
+                     selectedType={selectedType}
+                     setSelectedType={setSelectedType}
+                  />
+               ))}
             </div>
          )}
 
-         <div className="grid grid-cols-1 sm500:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 mt-3">
-            {catalogList.map((elem) => (
-               <SmallItem
-                  key={elem.id}
-                  {...elem}
-                  isOnFavorites={favoritesListIDs.includes(elem.id)}
-                  toggleToFavorites={() => {
-                     toggleFavoritesElement(elem.id);
-                  }}
-                  className="w-full sm500:w-full md:w-full"
-                  imgClassName="h-[175px] sm500:h-[175px] md:h-[200px]"
-               />
-            ))}
-         </div>
+         {!catalogList.length ? (
+            <SimpleError
+               title="Keine Einträge gefunden"
+               btnText="Nach Hause"
+               navigateTo={screenList.home.path}
+            />
+         ) : (
+            <div className="grid grid-cols-1 sm500:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 mt-3">
+               {catalogList.map((elem) => (
+                  <SmallItem
+                     key={elem.id}
+                     {...elem}
+                     isOnFavorites={favoritesListIDs.includes(elem.id)}
+                     toggleToFavorites={() => {
+                        toggleFavoritesElement(elem.id);
+                     }}
+                     className="w-full sm500:w-full md:w-full"
+                     imgClassName="h-[175px] sm500:h-[175px] md:h-[200px]"
+                  />
+               ))}
+            </div>
+         )}
+
          {hasNextPage && (
             <div className="w-full flex justify-center mt-4">
                <CustomBtn

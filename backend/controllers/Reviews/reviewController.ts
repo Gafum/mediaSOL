@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
-import { IGadget, itemsList } from "../Data/items";
-import { ApiError } from "../error/ApiError";
+import { IGadget, itemsList } from "../../Data/items";
+import { ApiError } from "../../error/ApiError";
 
 export class ReviewController {
-   static async getList(req: Request, res: Response, next: NextFunction) {
+   static async getSome(req: Request, res: Response, next: NextFunction) {
       try {
          if (!req.body || !req?.body?.ids) {
             return next(ApiError.badRequest("There are not IDs"));
@@ -71,7 +71,7 @@ export class ReviewController {
          return next(ApiError.internal("Error on server"));
       }
    }
-   
+
    static async deleteOne(req: Request, res: Response, next: NextFunction) {
       try {
          if (!req.body || !req?.body?.ids) {

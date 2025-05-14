@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { ItemsService } from "../../../Services/Items";
 
 const LIMIT = 4;
-export function useGetAllItems() {
+export function useGetAllItems(selectedType: string | null) {
    const {
       data,
       fetchNextPage,
@@ -11,8 +11,13 @@ export function useGetAllItems() {
       error,
       hasNextPage,
    } = useInfiniteQuery({
-      queryKey: ["items"],
-      queryFn: ({ pageParam = 0 }) => ItemsService.getAll(pageParam, LIMIT),
+      queryKey: ["items", selectedType],
+      queryFn: ({ pageParam = 0 }) =>
+         ItemsService.getAll({
+            page: pageParam,
+            limit: LIMIT,
+            type: selectedType ?? undefined,
+         }),
       getNextPageParam: (lastPage, allPages) => {
          if (lastPage.list.length < LIMIT) return undefined;
 

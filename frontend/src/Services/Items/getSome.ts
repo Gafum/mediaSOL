@@ -14,7 +14,7 @@ export async function getSome(
 
    try {
       const response = await axios.post(
-         import.meta.env.VITE_BACKEND_URL + "/items/list",
+         import.meta.env.VITE_BACKEND_URL + "/items/some",
          JSON.stringify({ ids: elementsIds }),
          {
             method: "POST",

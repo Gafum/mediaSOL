@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ItemsController } from "../controllers/itemsController";
+import { ItemsController } from "../controllers/Items/itemsController";
 
 export const itemsRouter = Router();
 
@@ -13,4 +13,4 @@ itemsRouter.get("/types", ItemsController.getTypes);
 itemsRouter.get("/:id", ItemsController.getOne);
 
 // get some Items by ids
-itemsRouter.post("/list", ItemsController.getList);
+itemsRouter.post("/some", ItemsController.getSome);

@@ -1,27 +1,37 @@
 import axios from "axios";
 import { IGadget } from "../../MainTypes/Gadget";
 
-interface IGetAll {
-   list: IGadget[];
+interface IGetALlProps {
+   page?: number;
+   limit?: number;
+   type?: string;
 }
 
-export async function getAll(
-   page: number = 0,
-   limit: number = 3
-): Promise<IGetAll> {
+interface IGetAll {
+   list: IGadget[];
+   total: number;
+}
+
+export async function getAll({
+   page = 0,
+   limit = 3,
+   type = "",
+}: IGetALlProps): Promise<IGetAll> {
    try {
-      const response = await axios.get(
-         import.meta.env.VITE_BACKEND_URL + `/items?page=${page}&limit=${limit}`
+      const params = new URLSearchParams({
+         page: String(page),
+         limit: String(limit),
+         type,
+      });
+
+      const response = await axios.get<IGetAll>(
+         `${import.meta.env.VITE_BACKEND_URL}/items?${params.toString()}`
       );
-      const data = await response.data;
-      // {list:[], total:number}
 
-      if (response.status > 300) {
-         throw new Error(data.message);
-      }
-
-      return data;
-   } catch (error) {
-      throw new Error("error");
+      return response.data;
+   } catch (error: any) {
+      const message =
+         error?.response?.data?.message || error?.message || "Unknown error";
+      throw new Error(message);
    }
 }
