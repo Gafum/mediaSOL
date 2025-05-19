@@ -2,8 +2,8 @@ import axios from "axios";
 import { IGadget } from "../../MainTypes/Gadget";
 
 interface IGetALlProps {
-   page?: number;
-   limit?: number;
+   page: number;
+   limit: number;
    type?: string;
 }
 
@@ -21,7 +21,7 @@ export async function getAll({
       const params = new URLSearchParams({
          page: String(page),
          limit: String(limit),
-         type,
+         ...(type ? { type } : {}),
       });
 
       const response = await axios.get<IGetAll>(

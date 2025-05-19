@@ -17,7 +17,7 @@ export const Catalog = (): JSX.Element => {
       (state) => state.toggleFavoritesElement
    );
 
-   const [selectedType, setSelectedType] = useState<string | null>(null);
+   const [selectedType, setSelectedType] = useState<string | null>("");
 
    const {
       data: types,
@@ -56,14 +56,17 @@ export const Catalog = (): JSX.Element => {
          ) : typesError ? (
             <p className="text-red-500">Error loading types</p>
          ) : (
-            <div className="flex gap-x-3 gap-y-2 flex-wrap mb-6">
-               {[null, ...types]?.map((type: string) => (
-                  <TypesBtn
-                     text={type}
-                     selectedType={selectedType}
-                     setSelectedType={setSelectedType}
-                  />
-               ))}
+            <div className="overflow-x-auto mb-3">
+               <div className="flex gap-2 sm:gap-3 w-max sm:w-auto pb-1">
+                  {["", ...types]?.map((type: string) => (
+                     <TypesBtn
+                        key={type}
+                        text={type}
+                        selectedType={selectedType}
+                        setSelectedType={setSelectedType}
+                     />
+                  ))}
+               </div>
             </div>
          )}
 
