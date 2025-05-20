@@ -3,7 +3,7 @@ import { getSome } from "./getSome";
 import { getAll } from "./getAll";
 import { getTypes } from "./getTypes";
 
-export class ItemsController {
+export class ItemsService {
    static getTypes: typeof getTypes = getTypes;
    static getOne: typeof getOne = getOne;
    static getSome: typeof getSome = getSome;

@@ -3,6 +3,7 @@ import cors from "cors";
 import { config } from "dotenv";
 import { indexRouter } from "./routes/index";
 import { ErrorHandler } from "./middleware/ErrorHandlingMiddleware";
+import { JsonParseErrorHandler } from "./middleware/JsonParseErrorHandler";
 import { ApiError } from "./error/ApiError";
 
 config();
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(JsonParseErrorHandler);
 
 const start = async () => {
    try {
@@ -19,9 +21,10 @@ const start = async () => {
 
       app.use("/", (req: Request, res: Response, next: NextFunction) => {
          try {
-            next(ApiError.badRequest("Not found"));
+            res.status(200).json({ message: "MediaSOl server" });
          } catch (e) {
             console.log(e);
+            next(ApiError.internal("Server Problem"));
          }
       });
 

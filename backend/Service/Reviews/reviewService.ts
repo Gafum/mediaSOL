@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { IGadget, itemsList } from "../../Data/items";
 import { ApiError } from "../../error/ApiError";
 
-export class ReviewController {
+export class ReviewService {
    static async getSome(req: Request, res: Response, next: NextFunction) {
       try {
          if (!req.body || !req?.body?.ids) {

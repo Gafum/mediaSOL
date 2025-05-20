@@ -1,21 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-body{
+body {
    --primaryBlue: theme("colors.primaryBlue");
    --primaryPink: theme("colors.primaryPink");
    --primaryDarkGrey: theme("colors.primaryDarkGrey");
    --primaryLightGrey: theme("colors.primaryLightGrey");
 }
 
-#root{
-   height:100%;
+#root {
+   height: 100%;
    --swiper-pagination-bottom: -32px;
-   --swiper-pagination-color: #1F2022;
+   --swiper-pagination-color: #1f2022;
    --swiper-pagination-bullet-size: 8px;
    --swiper-pagination-bullet-width: 8px;
    --swiper-pagination-bullet-height: 8px;
@@ -27,15 +26,121 @@ body{
 }
 
 /* Null Css */
-*{padding:0;margin:0;border:0;background:none;box-sizing:border-box;color:black; font-family: "Noto Sans", sans-serif;font-weight:400;-khtml-user-select:none;user-select:none;-ms-user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:black;-webkit-tap-highlight-color:transparent}*,:before,:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}:focus,:active{outline:none}a:focus,a:active,input:focus,input:active{outline:none}nav,footer,header,aside{display:block}html,body{min-height:100%;min-width:100%;height:100%;width:100%;font-size:100%;font-size:14px;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-size:18px;}input,button,textarea,select{-webkit-user-select:initial;-khtml-user-select:initial;-moz-user-select:initial;-ms-user-select:initial;-khtml-user-select:initial;user-select:initial;pointer-events:all;-webkit-appearance:none;-moz-appearance:none;appearance:none;font-family:inherit}input::-ms-clear{display:none}button{cursor:pointer;-webkit-tap-highlight-color:#fff0;-webkit-tap-highlight-color:transparent}select{cursor:pointer}button::-moz-focus-inner{padding:0;border:0}a,a:visited{text-decoration:none}a:hover{text-decoration:none}ul li,nav li{list-style:none}img{vertical-align:top;width:100%}h1,h2,h3,h4,h5,h6{font-size:inherit}
+* {
+   padding: 0;
+   margin: 0;
+   border: 0;
+   background: none;
+   box-sizing: border-box;
+   color: black;
+   font-family: "Noto Sans", sans-serif;
+   font-weight: 400;
+   -khtml-user-select: none;
+   user-select: none;
+   -ms-user-select: none;
+   -webkit-user-select: none;
+   -webkit-tap-highlight-color: black;
+   -webkit-tap-highlight-color: transparent;
+}
+*,
+:before,
+:after {
+   -moz-box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+}
+:focus,
+:active {
+   outline: none;
+}
+a:focus,
+a:active,
+input:focus,
+input:active {
+   outline: none;
+}
+nav,
+footer,
+header,
+aside {
+   display: block;
+}
+html,
+body {
+   min-height: 100%;
+   min-width: 100%;
+   height: 100%;
+   width: 100%;
+   font-size: 100%;
+   font-size: 14px;
+   -ms-text-size-adjust: 100%;
+   -moz-text-size-adjust: 100%;
+   -webkit-text-size-adjust: 100%;
+   font-size: 18px;
+}
+input,
+button,
+textarea,
+select {
+   -webkit-user-select: initial;
+   -khtml-user-select: initial;
+   -moz-user-select: initial;
+   -ms-user-select: initial;
+   -khtml-user-select: initial;
+   user-select: initial;
+   pointer-events: all;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   font-family: inherit;
+}
+input::-ms-clear {
+   display: none;
+}
+button {
+   cursor: pointer;
+   -webkit-tap-highlight-color: #fff0;
+   -webkit-tap-highlight-color: transparent;
+}
+select {
+   cursor: pointer;
+}
+button::-moz-focus-inner {
+   padding: 0;
+   border: 0;
+}
+a,
+a:visited {
+   text-decoration: none;
+}
+a:hover {
+   text-decoration: none;
+}
+ul li,
+nav li {
+   list-style: none;
+}
+img {
+   vertical-align: top;
+   width: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-size: inherit;
+}
 
-.text-primaryPink{
+.text-primaryPink {
    color: var(--primaryPink);
 }
 
-
 /* Custom Input Css */
 .inputes {
+   --horizontal: 12px;
+   --vertical: 8px;
    position: relative;
    margin-top: 16px;
 }
@@ -47,6 +152,7 @@ body{
    border-radius: 8px;
    font-size: 16px;
    padding: 8px 12px;
+   padding: var(--vertical) var(--horizontal);
    width: 100%;
    border: 1px solid var(--main-text-color);
    transition: box-shadow 0.2s;
@@ -70,20 +176,32 @@ body{
    color: #11144cb1;
    font-size: 16px;
    position: absolute;
-   left: 8px;
-   top: 8px;
+   top: var(--vertical);
+   left: var(--horizontal);
    background-color: white;
    border-radius: 3px;
    padding: 0 4px;
    border-radius: 5px;
 }
 
+.inputes label svg {
+   stroke: #11144cb1;
+}
+
 .inputes input:focus ~ label,
 .inputes input:valid ~ label,
 .inputes textarea:focus ~ label,
 .inputes textarea:valid ~ label {
-   color: var(--main-text-color);
-   transform: translateX(-10%) translateY(-85%) scale(0.75);
+   color: black;
+   transform: translateX(-10%) translateY(calc(-54% - var(--vertical)))
+      scale(0.75);
+}
+
+.inputes input:focus ~ label svg,
+.inputes input:valid ~ label svg,
+.inputes textarea:focus ~ label svg,
+.inputes textarea:valid ~ label svg {
+   stroke: black;
 }
 
 @media (max-width: 400px) {

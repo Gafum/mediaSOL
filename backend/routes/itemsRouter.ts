@@ -1,16 +1,16 @@
 import { Router } from "express";
-import { ItemsController } from "../controllers/Items/itemsController";
+import { ItemsService } from "../Service/Items/itemsService";
 
 export const itemsRouter = Router();
 
 // get all Items
-itemsRouter.get("/", ItemsController.getAll);
+itemsRouter.get("/", ItemsService.getAll);
 
 // get all Types
-itemsRouter.get("/types", ItemsController.getTypes);
+itemsRouter.get("/types", ItemsService.getTypes);
 
 // get one Item
-itemsRouter.get("/:id", ItemsController.getOne);
+itemsRouter.get("/:id", ItemsService.getOne);
 
 // get some Items by ids
-itemsRouter.post("/some", ItemsController.getSome);
+itemsRouter.post("/some", ItemsService.getSome);

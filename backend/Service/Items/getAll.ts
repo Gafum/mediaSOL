@@ -19,7 +19,6 @@ export async function getAll(req: Request, res: Response, next: NextFunction) {
             localItemsList,
             searchText.toString()
          );
-         console.log(localItemsList);
       }
 
       if (page !== undefined && limit !== undefined) {
