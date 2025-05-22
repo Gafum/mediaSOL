@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { ItemsService } from "../../../Services/Items";
 
-const LIMIT = 4;
+const LIMIT = 5;
 
 export function useGetAllItems(
    selectedType: string | null,

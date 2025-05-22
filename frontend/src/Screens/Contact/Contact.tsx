@@ -19,7 +19,7 @@ export const Contact = (): JSX.Element => {
          <div className="h-[3px] w-full bg-primaryBlue rounded-[3px] mt-8 sm:mt-12" />
 
          <SectionWithHeadline className="mt-4" title="Unsere Kontakte ">
-            <div className="md:max-w-[1200px] mx-auto grid grid-cols-1 sm500:grid-cols-2 md:grid-cols-4 gap-3 sm500:gap-y-5 sm500:gap-x-2 md:gap-3 justify-items-center items-start md:w-full mt-6">
+            <div className="md:max-w-[1360px] mx-auto grid grid-cols-1 sm500:grid-cols-2 md:grid-cols-4 gap-3 sm500:gap-y-5 sm500:gap-x-2 md:gap-3 justify-items-center items-start md:w-full mt-6">
                {contactData.map((paragraphData) => {
                   return (
                      <ParagraphWithTitle

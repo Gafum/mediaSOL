@@ -1,10 +1,9 @@
 import { Download } from "lucide-react";
 import { SimpleError } from "../../../Components/Errors/SimpleError";
-import { SmallItem } from "../../../Components/ItemsList/MyComponents/SmallItem";
 import { useGetAllItems } from "../../../Hooks/Query/Items/useGetAll";
 import { screenList } from "../../../Routing/RoutingList";
-import { useFavoritesStore } from "../../../Store/FavoritesStore";
 import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
+import { SimpleItemsList } from "../../../Components/ItemsList/SimpleItemsList";
 
 interface IListRenderingProps {
    selectedType: string;
@@ -15,12 +14,6 @@ export const ListRendering = ({
    selectedType,
    searchText,
 }: IListRenderingProps): JSX.Element => {
-   const favoritesListIDs = useFavoritesStore((state) => state.favoritesList);
-
-   const toggleFavoritesElement = useFavoritesStore(
-      (state) => state.toggleFavoritesElement
-   );
-
    const {
       isLoading,
       error,
@@ -56,20 +49,7 @@ export const ListRendering = ({
 
    return (
       <>
-         <div className="grid grid-cols-1 sm500:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 mt-3">
-            {catalogList.map((elem) => (
-               <SmallItem
-                  key={elem.id}
-                  {...elem}
-                  isOnFavorites={favoritesListIDs.includes(elem.id)}
-                  toggleToFavorites={() => {
-                     toggleFavoritesElement(elem.id);
-                  }}
-                  className="w-full sm500:w-full md:w-full"
-                  imgClassName="h-[175px] sm500:h-[175px] md:h-[200px]"
-               />
-            ))}
-         </div>
+         <SimpleItemsList itemsList={catalogList} />
 
          {hasNextPage && (
             <div className="w-full flex justify-center mt-4">
