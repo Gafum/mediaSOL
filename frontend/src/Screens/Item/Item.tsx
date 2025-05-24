@@ -2,15 +2,13 @@ import { useParams } from "react-router-dom";
 import { ItemsList } from "../../Components/ItemsList/ItemsList";
 import { SimpleError } from "../../Components/Errors/SimpleError";
 import { useEffect } from "react";
-import { Review } from "../../Components/Review/Review";
 import { ItemDetails } from "./MyComponents/ItemDetails";
-import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
 import { useGetOneItem } from "../../Hooks/Query/Items/useGetOne";
 
 export const Item = (): JSX.Element => {
    const { itemId } = useParams();
 
-   const { isLoading, error, elementData, localCommentList, similaryGadgets } =
+   const { isLoading, error, elementData, similaryGadgets } =
       useGetOneItem(itemId);
 
    useEffect(() => {
@@ -39,7 +37,7 @@ export const Item = (): JSX.Element => {
          <ItemDetails {...elementData} />
 
          {/* Comments =====*/}
-         <SectionWithHeadline
+         {/* <SectionWithHeadline
             title="Produktbewertungen"
             className="mt-4 sm500:mt-5 sm:mt-9"
          >
@@ -52,7 +50,7 @@ export const Item = (): JSX.Element => {
                   />
                );
             })}
-         </SectionWithHeadline>
+         </SectionWithHeadline> */}
 
          {/* Similary gadgets */}
          <div className="mb-11">

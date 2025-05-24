@@ -5,15 +5,18 @@ import { indexRouter } from "./routes/index";
 import { ErrorHandler } from "./middleware/ErrorHandlingMiddleware";
 import { JsonParseErrorHandler } from "./middleware/JsonParseErrorHandler";
 import { ApiError } from "./error/ApiError";
+import { PrismaClient } from "@prisma/client";
 
 config();
+const PORT = process.env.PORT || 5000;
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 app.use(JsonParseErrorHandler);
+
+const prisma = new PrismaClient();
 
 const start = async () => {
    try {
@@ -38,4 +41,12 @@ const start = async () => {
    }
 };
 
-start();
+start()
+   .then(async () => {
+      await prisma.$disconnect();
+   })
+   .catch(async (e) => {
+      console.error(e);
+      await prisma.$disconnect();
+      process.exit(1);
+   });

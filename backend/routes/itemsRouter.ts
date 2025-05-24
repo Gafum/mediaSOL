@@ -14,3 +14,6 @@ itemsRouter.get("/:id", ItemsService.getOne);
 
 // get some Items by ids
 itemsRouter.post("/some", ItemsService.getSome);
+
+// create one item
+itemsRouter.post("/createOne", ItemsService.createOne);

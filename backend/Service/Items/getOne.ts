@@ -24,7 +24,9 @@ export async function getOne(req: Request, res: Response, next: NextFunction) {
             return elem.type == elementData.type && elem.id !== elementData.id;
          });
       }
-      res.status(200).json([elementData, [], similaryGadgets]);
+
+      
+      res.status(200).json([elementData, similaryGadgets]);
    } catch (error) {
       console.log(error);
    }

@@ -9,14 +9,12 @@ export function useGetOneItem(itemId: string | undefined) {
    });
 
    const elementData = data?.elementData ?? null;
-   const localCommentList = data?.localCommentList ?? [];
    const similaryGadgets = data?.similaryGadgets ?? [];
 
    return {
       isLoading,
       error,
       elementData,
-      localCommentList,
       similaryGadgets,
    };
 }

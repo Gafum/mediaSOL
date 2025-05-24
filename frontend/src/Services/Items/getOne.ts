@@ -1,11 +1,8 @@
 import axios from "axios";
-import { reviewsList } from "../../DevData/ReviewsList";
 import { IGadget } from "../../MainTypes/Gadget";
-import { IReviews } from "../../MainTypes/Reviews";
 
 interface IGetOne {
    elementData: IGadget;
-   localCommentList: IReviews[];
    similaryGadgets: IGadget[];
 }
 
@@ -26,15 +23,9 @@ export async function getOne(itemId: string | undefined): Promise<IGetOne> {
          throw new Error(data.message);
       }
 
-      //rewrite BACKEND === json[1]
-      const localCommentList = reviewsList.filter(({ id }) =>
-         data[1].commentsList?.includes(id)
-      );
-
       return {
          elementData: data[0],
-         localCommentList: localCommentList,
-         similaryGadgets: data[2],
+         similaryGadgets: data[1],
       };
    } catch (error) {
       throw new Error("error");
