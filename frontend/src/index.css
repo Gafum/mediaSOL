@@ -41,6 +41,9 @@ body {
    -webkit-user-select: none;
    -webkit-tap-highlight-color: black;
    -webkit-tap-highlight-color: transparent;
+
+   /* Teilwind optimization */
+   border-style: solid;
 }
 *,
 :before,

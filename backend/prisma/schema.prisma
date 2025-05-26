@@ -7,6 +7,13 @@ generator client {
    provider = "prisma-client-js"
 }
 
+model ItemType {
+   id   String @id @default(cuid())
+   name String @unique
+
+   Item Item[]
+}
+
 model Item {
    id           String   @id @default(cuid())
    createdAt    DateTime @default(now())
@@ -15,7 +22,8 @@ model Item {
    price        Float
    description  String
    img          String
-   type         String
+   type         ItemType @relation(fields: [typeId], references: [id])
+   typeId       String
    commentsList Review[]
    action       Int?
 }

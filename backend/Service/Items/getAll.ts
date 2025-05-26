@@ -1,30 +1,17 @@
 import { NextFunction, Request, Response } from "express";
-import { itemsList } from "../../Data/items";
 import { ApiError } from "../../error/ApiError";
-import { filterItemsBySearch } from "../../functions/filterItemsBySearch";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export async function getAll(req: Request, res: Response, next: NextFunction) {
    try {
-      let localItemsList = itemsList;
       const { searchText, page, limit, type } = req.query;
 
-      if (type) {
-         localItemsList = localItemsList.filter(
-            (item) => item.type.toLowerCase() === type.toString().toLowerCase()
-         );
-      }
-
-      if (searchText) {
-         localItemsList = filterItemsBySearch(
-            localItemsList,
-            searchText.toString()
-         );
-      }
+      const pageNum = Number(page) || 0;
+      const limitNum = Number(limit) || 10;
 
       if (page !== undefined && limit !== undefined) {
-         const pageNum = Number(page);
-         const limitNum = Number(limit);
-
          if (
             isNaN(pageNum) ||
             isNaN(limitNum) ||
@@ -33,14 +20,43 @@ export async function getAll(req: Request, res: Response, next: NextFunction) {
          ) {
             return next(ApiError.badRequest("Invalid pagination parameters"));
          }
-
-         const start = pageNum * limitNum;
-         localItemsList = localItemsList.slice(start, start + limitNum);
       }
 
+      const where: any = {};
+
+      if (type) {
+         where.type = {
+            equals: type.toString(),
+            mode: "insensitive",
+         };
+      }
+
+      if (searchText) {
+         where.OR = [
+            {
+               name: {
+                  contains: searchText.toString(),
+                  mode: "insensitive",
+               },
+            },
+            {
+               description: {
+                  contains: searchText.toString(),
+                  mode: "insensitive",
+               },
+            },
+         ];
+      }
+
+      const items = await prisma.item.findMany({
+         where,
+         skip: pageNum * limitNum,
+         take: limitNum,
+      });
+
       res.status(200).json({
-         list: localItemsList,
-         total: localItemsList.length,
+         list: items,
+         total: items.length,
       });
    } catch (error) {
       console.log(error);
