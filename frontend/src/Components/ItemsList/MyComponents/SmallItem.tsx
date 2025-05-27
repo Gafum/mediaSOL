@@ -15,7 +15,7 @@ interface SmallItemProps extends IGadget {
 export const SmallItem = ({
    id,
    name,
-   type: mytype,
+   typeName: mytype,
    price,
    action,
    img,

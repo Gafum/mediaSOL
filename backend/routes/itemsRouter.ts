@@ -16,4 +16,4 @@ itemsRouter.get("/:id", ItemsService.getOne);
 itemsRouter.post("/some", ItemsService.getSome);
 
 // create one item
-itemsRouter.post("/createOne", ItemsService.createOne);
+itemsRouter.post("/createBD", ItemsService.createBD);

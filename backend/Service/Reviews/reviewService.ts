@@ -40,11 +40,11 @@ export class ReviewService {
 
          let similaryGadgets: IGadget[] = [];
          if (req?.query?.withSimilary) {
-            similaryGadgets = itemsList.filter((elem) => {
-               return (
-                  elem.type == elementData.type && elem.id !== elementData.id
-               );
-            });
+            // similaryGadgets = itemsList.filter((elem) => {
+            //    return (
+            //       elem.typeName == elementData.typeName && elem.id !== elementData.id
+            //    );
+            // });
          }
          res.status(200).json([elementData, [], similaryGadgets]);
       } catch (error) {

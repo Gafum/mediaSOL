@@ -8,8 +8,7 @@ generator client {
 }
 
 model ItemType {
-   id   String @id @default(cuid())
-   name String @unique
+   name String @id @unique
 
    Item Item[]
 }
@@ -22,8 +21,8 @@ model Item {
    price        Float
    description  String
    img          String
-   type         ItemType @relation(fields: [typeId], references: [id])
-   typeId       String
+   typeName     String
+   type         ItemType @relation(fields: [typeName], references: [name])
    commentsList Review[]
    action       Int?
 }

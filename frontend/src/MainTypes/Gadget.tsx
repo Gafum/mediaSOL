@@ -3,7 +3,7 @@ export interface IGadget {
    name: string;
    price: number;
    description: string;
-   type: string;
+   typeName: string;
    img?: string;
    commentsList?: string[];
    action?: number;

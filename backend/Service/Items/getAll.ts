@@ -25,7 +25,7 @@ export async function getAll(req: Request, res: Response, next: NextFunction) {
       const where: any = {};
 
       if (type) {
-         where.type = {
+         where.typeName = {
             equals: type.toString(),
             mode: "insensitive",
          };
