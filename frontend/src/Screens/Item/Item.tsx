@@ -4,6 +4,7 @@ import { SimpleError } from "../../Components/Errors/SimpleError";
 import { useEffect } from "react";
 import { ItemDetails } from "./MyComponents/ItemDetails";
 import { useGetOneItem } from "../../Hooks/Query/Items/useGetOne";
+import { LoadingBlock } from "../../Components/LoadingBlock/LoadingBlock";
 
 export const Item = (): JSX.Element => {
    const { itemId } = useParams();
@@ -25,7 +26,7 @@ export const Item = (): JSX.Element => {
    }, [elementData]);
 
    if (isLoading) {
-      return <div>Loading...</div>;
+      return <LoadingBlock />;
    }
 
    if (!elementData || error) {

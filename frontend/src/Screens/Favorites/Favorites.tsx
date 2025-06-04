@@ -9,6 +9,7 @@ import {
 } from "../../UI/CustomDialog/Standart/StandartDialog";
 import { useGetSomeItems } from "../../Hooks/Query/Items/useGetSome";
 import { SimpleItemsList } from "../../Components/ItemsList/SimpleItemsList";
+import { LoadingBlock } from "../../Components/LoadingBlock/LoadingBlock";
 
 export const Favorites = (): JSX.Element => {
    const favoritesListIDs = useFavoritesStore((state) => state.favoritesList);
@@ -25,7 +26,7 @@ export const Favorites = (): JSX.Element => {
    } = useGetSomeItems(favoritesListIDs);
 
    if (isLoading) {
-      return <div>Loading...</div>;
+      return <LoadingBlock />;
    }
 
    if (error) {

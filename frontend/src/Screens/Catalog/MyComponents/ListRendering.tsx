@@ -4,6 +4,7 @@ import { useGetAllItems } from "../../../Hooks/Query/Items/useGetAll";
 import { screenList } from "../../../Routing/RoutingList";
 import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 import { SimpleItemsList } from "../../../Components/ItemsList/SimpleItemsList";
+import { LoadingBlock } from "../../../Components/LoadingBlock/LoadingBlock";
 
 interface IListRenderingProps {
    selectedType: string;
@@ -24,7 +25,7 @@ export const ListRendering = ({
    } = useGetAllItems(selectedType, searchText);
 
    if (isLoading) {
-      return <div>Loading...</div>;
+      return <LoadingBlock />;
    }
 
    if (error || !catalogList) {
@@ -58,17 +59,21 @@ export const ListRendering = ({
                   disabled={isFetchingNextPage}
                   btnText={
                      <div className="flex justify-center items-center text-inherit gap-2">
-                        {isFetchingNextPage
-                           ? "Loading..."
-                           : "Daten herunterladen"}
-                        <Download color="white" size={20} />
+                        {isFetchingNextPage ? (
+                           <LoadingBlock className="mt-0 text-white" />
+                        ) : (
+                           <>
+                              Daten herunterladen{" "}
+                              <Download color="white" size={20} />
+                           </>
+                        )}
                      </div>
                   }
                   className="px-3"
                />
             </div>
          )}
-         {isLoading && <p>Loading...</p>}
+         {isLoading && <LoadingBlock />}
       </>
    );
 };

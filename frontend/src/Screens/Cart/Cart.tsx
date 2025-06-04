@@ -16,6 +16,7 @@ import { sortOptions } from "./CartData";
 import { IGadget } from "../../MainTypes/Gadget";
 import { CartService } from "./CartService.servise";
 import { useGetSomeItems } from "../../Hooks/Query/Items/useGetSome";
+import { LoadingBlock } from "../../Components/LoadingBlock/LoadingBlock";
 
 export const Cart = (): JSX.Element => {
    // Global Data / State
@@ -55,7 +56,7 @@ export const Cart = (): JSX.Element => {
    const { modalData, setModalData } = useStandartDialog();
 
    if (isLoading) {
-      return <div>Loading...</div>;
+      return <LoadingBlock />;
    }
 
    if (error) {
