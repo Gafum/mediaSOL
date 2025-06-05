@@ -25,17 +25,19 @@ export const TypesFilter = ({
    return (
       <div className="overflow-x-auto mb-3">
          <div className="flex gap-2 sm:gap-3 w-max sm:w-auto pb-1">
-            {["", ...types]?.map((type: string) => (
+            {["", "action", ...types]?.map((type: string) => (
                <button
                   key={type}
                   className={`text-sm px-3 py-0.5 sm:text-base sm:px-4 sm:py-1 md:px-4 md:py-1.5 rounded-full text-nowrap whitespace-nowrap ${
                      selectedType === type
                         ? "bg-primaryBlue text-white"
-                        : "bg-primaryLightGrey"
+                        : type == "action"
+                          ? "bg-primaryPink text-white"
+                          : "bg-primaryLightGrey"
                   }`}
                   onClick={() => setSelectedType(type)}
                >
-                  {!type ? "Alle" : type}
+                  {!type ? "Alle" : type == "action" ? "Angebote" : type}
                </button>
             ))}
          </div>

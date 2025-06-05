@@ -25,10 +25,16 @@ export async function getAll(req: Request, res: Response, next: NextFunction) {
       const where: any = {};
 
       if (type) {
-         where.typeName = {
-            equals: type.toString(),
-            mode: "insensitive",
-         };
+         if (type === "action") {
+            where.action = {
+               not: null,
+            };
+         } else {
+            where.typeName = {
+               equals: type.toString(),
+               mode: "insensitive",
+            };
+         }
       }
 
       if (searchText) {
