@@ -7,12 +7,7 @@ const starsName: string[] = ["Nicht gut", "Mäßig", "Okay", "Gut", "Top"];
 
 type IReviewProps = IReviews & HtmlHTMLAttributes<HTMLDivElement>;
 
-export const Review = ({
-   stars,
-   userName,
-   comment,
-   className,
-}: IReviewProps) => {
+export const Review = ({ stars, userName, text, className }: IReviewProps) => {
    return (
       <div
          className={
@@ -49,7 +44,7 @@ export const Review = ({
             </div>
          </div>
          <p className="text-[#999] overflow-hidden text-ellipsis max-w-full line-clamp-3 sm:line-clamp-5 mt-1 sm:mt-2 text-[13.6px] sm:text-sm text-justify">
-            {comment}
+            {text}
          </p>
       </div>
    );

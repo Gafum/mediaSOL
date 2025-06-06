@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { ApiError } from "../../error/ApiError";
 import { PrismaClient } from "@prisma/client";
 import { itemsList } from "../../Data/items";
+import { reviewsList } from "../../Data/ReviewsList";
 import { ItemsTypesArray } from "../../Data/ItemsTypesArray";
 
 const prisma = new PrismaClient();
@@ -30,9 +31,13 @@ export async function createBD(
          data: itemsList,
       });
 
+      const review = await prisma.review.createMany({
+         data: reviewsList,
+      });
+
       res.status(200).json({
          message: "Data was created",
-         data: ["Items:", items, "ItmesTypes:", itemType],
+         data: ["review:", review, "Items:", items, "ItmesTypes:", itemType],
       });
    } catch (error) {
       console.log(error);
