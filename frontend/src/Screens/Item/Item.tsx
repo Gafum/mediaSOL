@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { ItemDetails } from "./MyComponents/ItemDetails";
 import { useGetOneItem } from "../../Hooks/Query/Items/useGetOne";
 import { LoadingBlock } from "../../Components/LoadingBlock/LoadingBlock";
+import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
+import { Review } from "../../Components/Review/Review";
 
 export const Item = (): JSX.Element => {
    const { itemId } = useParams();
@@ -38,20 +40,21 @@ export const Item = (): JSX.Element => {
          <ItemDetails {...elementData} />
 
          {/* Comments =====*/}
-         {/* <SectionWithHeadline
+         <SectionWithHeadline
             title="Produktbewertungen"
             className="mt-4 sm500:mt-5 sm:mt-9"
          >
-            {localCommentList.map((reviewsData) => {
-               return (
-                  <Review
-                     {...reviewsData}
-                     className={"mt-4"}
-                     key={reviewsData.id}
-                  />
-               );
-            })}
-         </SectionWithHeadline> */}
+            {elementData.commentsList &&
+               elementData.commentsList.map((reviewsData) => {
+                  return (
+                     <Review
+                        {...reviewsData}
+                        className={"mt-4"}
+                        key={reviewsData.id}
+                     />
+                  );
+               })}
+         </SectionWithHeadline>
 
          {/* Similary gadgets */}
          <div className="mb-11">

@@ -15,6 +15,9 @@ export async function getOne(req: Request, res: Response, next: NextFunction) {
 
       const elementData = await prisma.item.findUnique({
          where: { id: elementId },
+         include: {
+            commentsList: true,
+         },
       });
 
       if (!elementData) {

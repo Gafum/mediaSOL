@@ -1,5 +1,5 @@
 import { getLatest } from "./getLatest";
 
-export class ReviewService {
+export class ReviewsService {
    static getLatest: typeof getLatest = getLatest;
 }

@@ -5,13 +5,16 @@ import { ReviewService } from "../Service/Reviews/reviewService";
 export const reviewsRouter = Router();
 
 // get some reviews by ids
-reviewsRouter.post("/list", ReviewService.getSome);
+reviewsRouter.get("/latest", ReviewService.getLatest);
 
-//Get one review
-reviewsRouter.get("/:id", ReviewService.getOne);
+// // get some reviews by ids
+// reviewsRouter.post("/list", ReviewService.getSome);
 
-//Add review
-reviewsRouter.post("/", ReviewService.addOne);
+// //Get one review
+// reviewsRouter.get("/:id", ReviewService.getOne);
 
-//Delete review
-reviewsRouter.delete("/", ReviewService.deleteOne);
+// //Add review
+// reviewsRouter.post("/", ReviewService.addOne);
+
+// //Delete review
+// reviewsRouter.delete("/", ReviewService.deleteOne);

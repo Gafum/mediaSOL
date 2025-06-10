@@ -1,10 +1,12 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Pagination } from "swiper/modules";
-import { reviewsList } from "../../../DevData/ReviewsList";
 import { Review } from "../../../Components/Review/Review";
+import { useGetLatestReviews } from "../../../Hooks/Query/Reviews/getLatest";
+import { LoadingBlock } from "../../../Components/LoadingBlock/LoadingBlock";
 
 export const ReviewsSection = (): JSX.Element => {
+   const { isLoading, error, latestReview } = useGetLatestReviews();
    return (
       <div className="max-w-full w-full overflow-hidden pb-8">
          <Swiper
@@ -29,16 +31,22 @@ export const ReviewsSection = (): JSX.Element => {
             modules={[Pagination]}
             className="overflow-visible"
          >
-            {reviewsList.map((reviewsData) => {
-               return (
-                  <SwiperSlide className="w-1/3" key={reviewsData.id}>
-                     <Review
-                        {...reviewsData}
-                        className="h-[125px] sm:h-[210px]"
-                     />
-                  </SwiperSlide>
-               );
-            })}
+            {error ? (
+               ""
+            ) : isLoading ? (
+               <LoadingBlock />
+            ) : (
+               latestReview.map((reviewsData) => {
+                  return (
+                     <SwiperSlide className="w-1/3" key={reviewsData.id}>
+                        <Review
+                           {...reviewsData}
+                           className="h-[125px] sm:h-[210px]"
+                        />
+                     </SwiperSlide>
+                  );
+               })
+            )}
          </Swiper>
       </div>
    );
