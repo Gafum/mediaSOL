@@ -3,7 +3,7 @@ import axios from "axios";
 export async function getLatest() {
    try {
       const response = await axios.get(
-         import.meta.env.VITE_BACKEND_URL + `/reviews/latest`
+         import.meta.env.VITE_BACKEND_URL + `/reviews/`
       );
       const data = await response.data;
 
