@@ -8,6 +8,13 @@ const starsName: string[] = ["Nicht gut", "Mäßig", "Okay", "Gut", "Top"];
 type IReviewProps = IReviews & HtmlHTMLAttributes<HTMLDivElement>;
 
 export const Review = ({ stars, userName, text, className }: IReviewProps) => {
+   let reviewName = starsName[4];
+   if (stars >= 0 && stars < 4) {
+      reviewName = starsName[stars];
+   }
+
+   console.log(reviewName);
+
    return (
       <div
          className={
@@ -17,7 +24,7 @@ export const Review = ({ stars, userName, text, className }: IReviewProps) => {
          <div className="flex justify-between">
             <div className="Stars flex flex-col items-start">
                <h4 className="capitalize font-semibold text-sm sm:text-base">
-                  {starsName[stars]}
+                  {reviewName}
                </h4>
                <div className="flex">
                   {starsName.map((e, index) => {
@@ -32,7 +39,9 @@ export const Review = ({ stars, userName, text, className }: IReviewProps) => {
                               "size-3 sm:size-4",
                               index < stars + 1
                                  ? "fill-[#FFD700]"
-                                 : "fill-primaryLightGrey"
+                                 : stars < 0
+                                   ? "fill-[#FFD700]"
+                                   : "fill-primaryLightGrey"
                            )}
                         />
                      );

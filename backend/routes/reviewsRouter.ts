@@ -10,8 +10,8 @@ reviewsRouter.get("/", ReviewService.getLatest);
 //Get one review
 reviewsRouter.get("/:id", ReviewService.getOne);
 
-// //Add review
-// reviewsRouter.post("/", ReviewService.addOne);
+//Add review
+reviewsRouter.post("/", ReviewService.createOne);
 
 // //Delete review
 // reviewsRouter.delete("/", ReviewService.deleteOne);

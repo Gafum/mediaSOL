@@ -6,6 +6,10 @@ const prisma = new PrismaClient();
 
 export async function getSome(req: Request, res: Response, next: NextFunction) {
    try {
+      if (!req.body) {
+         return next(ApiError.badRequest("Bad Request"));
+      }
+
       const { ids } = req.body;
 
       if (!ids || !Array.isArray(ids)) {

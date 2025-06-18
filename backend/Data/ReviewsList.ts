@@ -1,10 +1,9 @@
 import { Review } from "@prisma/client";
 import { itemsList } from "./items";
-export type IReviews = Review;
 
-interface IReviewsList extends Omit<IReviews, "createdAt" | "updatedAt"> {}
+export interface IReviews extends Omit<Review, "createdAt" | "updatedAt"> {}
 
-export const reviewsList: IReviewsList[] = [
+export const reviewsList: IReviews[] = [
    {
       userName: "Fredo Andish",
       text: "Die Firma ist führend in ihrem Bereich und bietet außergewöhnliche Dienstleistungen und Produkte. Ihre Gadgets sind innovativ und von höchster Qualität, ihre Netzwerkstationen erfüllen auch anspruchsvollste Anforderungen, und der technische Support ist unschlagbar: freundlich, schnell und äußerst fachkundig. ",
