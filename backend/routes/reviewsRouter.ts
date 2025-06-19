@@ -13,5 +13,5 @@ reviewsRouter.get("/:id", ReviewService.getOne);
 //Add review
 reviewsRouter.post("/", ReviewService.createOne);
 
-// //Delete review
-// reviewsRouter.delete("/", ReviewService.deleteOne);
+//Delete review
+reviewsRouter.delete("/:id", ReviewService.deleteOne);

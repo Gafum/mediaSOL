@@ -13,8 +13,6 @@ export const Review = ({ stars, userName, text, className }: IReviewProps) => {
       reviewName = starsName[stars];
    }
 
-   console.log(reviewName);
-
    return (
       <div
          className={
