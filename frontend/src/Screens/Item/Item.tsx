@@ -7,6 +7,7 @@ import { useGetOneItem } from "../../Hooks/Query/Items/useGetOne";
 import { LoadingBlock } from "../../Components/LoadingBlock/LoadingBlock";
 import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
 import { Review } from "../../Components/Review/Review";
+import { ReviewForm } from "./MyComponents/ReviewForm";
 
 export const Item = (): JSX.Element => {
    const { itemId } = useParams();
@@ -44,6 +45,7 @@ export const Item = (): JSX.Element => {
             title="Produktbewertungen"
             className="mt-4 sm500:mt-5 sm:mt-9"
          >
+            <ReviewForm />
             {elementData.commentsList &&
                elementData.commentsList.map((reviewsData) => {
                   return (
