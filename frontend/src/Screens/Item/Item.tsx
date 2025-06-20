@@ -45,17 +45,17 @@ export const Item = (): JSX.Element => {
             title="Produktbewertungen"
             className="mt-4 sm500:mt-5 sm:mt-9"
          >
-            <ReviewForm />
             {elementData.commentsList &&
                elementData.commentsList.map((reviewsData) => {
                   return (
                      <Review
                         {...reviewsData}
-                        className={"mt-4"}
+                        className={"mb-4"}
                         key={reviewsData.id}
                      />
                   );
                })}
+            <ReviewForm />
          </SectionWithHeadline>
 
          {/* Similary gadgets */}

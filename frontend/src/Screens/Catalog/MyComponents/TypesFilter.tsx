@@ -24,7 +24,7 @@ export const TypesFilter = ({
 
    return (
       <div className="overflow-x-auto mb-3">
-         <div className="flex gap-2 sm:gap-3 w-max sm:w-auto pb-1">
+         <div className="flex gap-2 sm:gap-3 w-max sm:w-auto pb-2">
             {["", "action", ...types]?.map((type: string) => (
                <button
                   key={type}
