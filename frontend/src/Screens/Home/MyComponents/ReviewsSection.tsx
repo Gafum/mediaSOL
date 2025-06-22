@@ -1,8 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import { Pagination } from "swiper/modules";
 import { Review } from "../../../Components/Review/Review";
-import { useGetLatestReviews } from "../../../Hooks/Query/Reviews/getLatest";
+import { useGetLatestReviews } from "../../../Hooks/Query/Reviews/useGetLatest";
 import { LoadingBlock } from "../../../Components/LoadingBlock/LoadingBlock";
 
 export const ReviewsSection = (): JSX.Element => {

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ItemsService } from "../../../Services/Items";
 
 export function useGetOneItem(itemId: string | undefined) {
-   const { isLoading, error, data } = useQuery({
+   const { isLoading, error, data, isPending } = useQuery({
       queryKey: ["items", itemId],
       queryFn: () => ItemsService.getOne(itemId),
       enabled: !!itemId,
@@ -16,5 +16,6 @@ export function useGetOneItem(itemId: string | undefined) {
       error,
       elementData,
       similaryGadgets,
+      isPending,
    };
 }

@@ -7,8 +7,8 @@ const prisma = new PrismaClient();
 
 const createSchema = z.object({
    stars: z.number().int().min(0).max(4),
-   userName: z.string().max(50),
-   text: z.string().max(250),
+   userName: z.string().trim().max(50),
+   text: z.string().trim().max(250),
    itemId: z.string(),
 });
 
@@ -24,19 +24,19 @@ export async function createOne(
 
       const { userName, text, stars, itemId } = req.body;
 
-      if (!userName) {
+      if (!userName || !userName.trim().length) {
          return next(ApiError.badRequest("Username is not found"));
       }
 
-      if (!text) {
+      if (!text || !text.trim().length) {
          return next(ApiError.badRequest("Write the message"));
       }
 
-      if (!stars || isNaN(stars)) {
+      if (stars === undefined || isNaN(Number(stars))) {
          return next(ApiError.badRequest("Give the feadbeak"));
       }
 
-      if (!itemId) {
+      if (!itemId || !itemId.trim().length) {
          return next(ApiError.badRequest("Bad Request"));
       }
 
@@ -45,7 +45,7 @@ export async function createOne(
          // Not the right items length (min 0, 1, 2, 3, 4 max)
          return next(ApiError.badRequest("Give the right feadbeak"));
       }
-      if (userName.trim().length > 50) {
+      if (userName.trim().length > 30) {
          return next(ApiError.badRequest("Username is too long"));
       }
       if (text.trim().length > 250) {
@@ -56,7 +56,7 @@ export async function createOne(
          userName: userName.toString().trim(),
          text: text.toString().trim(),
          stars: Number(stars),
-         itemId: itemId,
+         itemId: itemId.trim(),
       };
 
       const parsed = createSchema.safeParse(newReview);

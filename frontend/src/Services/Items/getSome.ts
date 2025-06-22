@@ -1,5 +1,6 @@
 import axios from "axios";
 import { IGadget } from "../../MainTypes/Gadget";
+import { IErrorMessage, logError } from "../../MainTypes/ErrorMessage";
 
 interface IGetSome {
    list: IGadget[];
@@ -13,7 +14,7 @@ export async function getSome(
    }
 
    try {
-      const response = await axios.post(
+      const response = await axios.post<IGadget[] | IErrorMessage>(
          import.meta.env.VITE_BACKEND_URL + "/items/some",
          JSON.stringify({ ids: elementsIds }),
          {
@@ -25,15 +26,19 @@ export async function getSome(
          }
       );
 
-      const data = await response.data;
+      const data = response.data;
 
       if (response.status > 300) {
-         throw new Error(data.message);
+         logError(data);
       }
 
-      return {
-         list: data,
-      };
+      if (Array.isArray(data)) {
+         return {
+            list: data,
+         };
+      } else {
+         throw new Error("Unexpected response format");
+      }
    } catch (error) {
       throw new Error("error");
    }

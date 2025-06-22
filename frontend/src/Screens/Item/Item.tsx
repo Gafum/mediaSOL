@@ -7,12 +7,12 @@ import { useGetOneItem } from "../../Hooks/Query/Items/useGetOne";
 import { LoadingBlock } from "../../Components/LoadingBlock/LoadingBlock";
 import { SectionWithHeadline } from "../../Components/Sections/SectionWithHeadline";
 import { Review } from "../../Components/Review/Review";
-import { ReviewForm } from "./MyComponents/ReviewForm";
+import { ReviewBlock } from "./MyComponents/ReviewBlock";
 
 export const Item = (): JSX.Element => {
    const { itemId } = useParams();
 
-   const { isLoading, error, elementData, similaryGadgets } =
+   const { isLoading, error, elementData, similaryGadgets, isPending } =
       useGetOneItem(itemId);
 
    useEffect(() => {
@@ -55,7 +55,9 @@ export const Item = (): JSX.Element => {
                      />
                   );
                })}
-            <ReviewForm />
+
+            {isPending ? <LoadingBlock /> : ""}
+            <ReviewBlock itemId={itemId} />
          </SectionWithHeadline>
 
          {/* Similary gadgets */}

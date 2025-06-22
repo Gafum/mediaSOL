@@ -6,7 +6,10 @@ interface StarRatingProps {
    onChange?: (value: number) => void;
 }
 
-export default function StarRating({ value = 1, onChange }: StarRatingProps) {
+export const StarRating = ({
+   value = 1,
+   onChange,
+}: StarRatingProps): JSX.Element => {
    const [hovered, setHovered] = useState<number | null>(null);
 
    const handleClick = (index: number) => {
@@ -16,7 +19,7 @@ export default function StarRating({ value = 1, onChange }: StarRatingProps) {
    return (
       <div className="flex gap-1 mt-2">
          {Array.from({ length: 5 }, (_, i) => {
-            const index = i + 1;
+            const index = i;
             const isActive =
                hovered !== null ? index <= hovered : index <= value;
             return (
@@ -35,4 +38,4 @@ export default function StarRating({ value = 1, onChange }: StarRatingProps) {
          })}
       </div>
    );
-}
+};

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { IGadget } from "../../MainTypes/Gadget";
+import { IErrorMessage, logError } from "../../MainTypes/ErrorMessage";
 
 interface IGetALlProps {
    page: number;
@@ -27,17 +28,20 @@ export async function getAll({
          ...(searchText ? { searchText } : {}),
       });
 
-      const response = await axios.get(
+      const response = await axios.get<IGetAll | IErrorMessage>(
          `${import.meta.env.VITE_BACKEND_URL}/items?${params.toString()}`
       );
 
       const data = response.data;
 
       if (response.status > 300) {
-         throw new Error(data?.message);
+         logError(data);
       }
-
-      return data;
+      if ("list" in data) {
+         return data;
+      } else {
+         throw new Error("Unexpected response format");
+      }
    } catch (error: any) {
       const message =
          error?.response?.data?.message || error?.message || "Unknown error";

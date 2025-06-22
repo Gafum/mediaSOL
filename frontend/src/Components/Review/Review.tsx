@@ -47,11 +47,11 @@ export const Review = ({ stars, userName, text, className }: IReviewProps) => {
                </div>
             </div>
             <div className="text-[#666] capitalize text-xs sm:text-sm">
-               {userName}
+               {userName.slice(0, 30)}
             </div>
          </div>
-         <p className="text-[#999] overflow-hidden text-ellipsis max-w-full line-clamp-3 sm:line-clamp-5 mt-1 sm:mt-2 text-[13.6px] sm:text-sm text-justify">
-            {text}
+         <p className="text-[#999] overflow-hidden text-ellipsis max-w-full line-clamp-3 sm:line-clamp-5 mt-1 sm:mt-2 text-[13.6px] sm:text-sm text-justify break-words">
+            {text.slice(0, 250)}
          </p>
       </div>
    );
