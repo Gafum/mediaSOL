@@ -3,6 +3,7 @@ import { getSome } from "./getSome";
 import { getAll } from "./getAll";
 import { getTypes } from "./getTypes";
 import { createBD } from "./createBD";
+import { deleteOne } from "./deleteOne";
 
 export class ItemsService {
    static getTypes: typeof getTypes = getTypes;
@@ -10,4 +11,5 @@ export class ItemsService {
    static getSome: typeof getSome = getSome;
    static getAll: typeof getAll = getAll;
    static createBD: typeof createBD = createBD;
+   static deleteOne: typeof deleteOne = deleteOne;
 }

@@ -17,3 +17,6 @@ itemsRouter.post("/some", ItemsService.getSome);
 
 // create one item
 itemsRouter.post("/createBD", ItemsService.createBD);
+
+//Delete review
+itemsRouter.delete("/:id", ItemsService.deleteOne);
