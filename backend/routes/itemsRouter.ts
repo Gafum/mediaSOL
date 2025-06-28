@@ -3,11 +3,19 @@ import { ItemsService } from "../Service/Items/itemsService";
 
 export const itemsRouter = Router();
 
+/*
+      ALL DATA 
+======================================================>
+*/
+// create one item
+itemsRouter.post("/createBD", ItemsService.createBD);
+
+/*
+      Items
+======================================================>
+*/
 // get all Items
 itemsRouter.get("/", ItemsService.getAll);
-
-// get all Types
-itemsRouter.get("/types", ItemsService.getTypes);
 
 // get one Item
 itemsRouter.get("/:id", ItemsService.getOne);
@@ -15,8 +23,15 @@ itemsRouter.get("/:id", ItemsService.getOne);
 // get some Items by ids
 itemsRouter.post("/some", ItemsService.getSome);
 
-// create one item
-itemsRouter.post("/createBD", ItemsService.createBD);
+// create Item
+itemsRouter.post("/", ItemsService.createOne);
 
 //Delete review
 itemsRouter.delete("/:id", ItemsService.deleteOne);
+
+/*
+      Types
+======================================================>
+*/
+// get all Types
+itemsRouter.get("/types", ItemsService.getTypes);

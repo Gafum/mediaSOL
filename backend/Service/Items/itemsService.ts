@@ -1,15 +1,22 @@
+import { createBD } from "./createBD";
+import { createOne } from "./createOne";
 import { getOne } from "./getOne";
 import { getSome } from "./getSome";
 import { getAll } from "./getAll";
-import { getTypes } from "./getTypes";
-import { createBD } from "./createBD";
 import { deleteOne } from "./deleteOne";
+import { getTypes } from "./Types/getTypes";
 
 export class ItemsService {
-   static getTypes: typeof getTypes = getTypes;
+   static createBD: typeof createBD = createBD;
+
+   static createOne: typeof createOne = createOne;
+
    static getOne: typeof getOne = getOne;
    static getSome: typeof getSome = getSome;
    static getAll: typeof getAll = getAll;
-   static createBD: typeof createBD = createBD;
+
    static deleteOne: typeof deleteOne = deleteOne;
+
+   // Types
+   static getTypes: typeof getTypes = getTypes;
 }
