@@ -9,7 +9,8 @@ type RouteKeys =
    | "consultationService"
    | "maintenanceService"
    | "networkSetupService"
-   | "technicalSupportService";
+   | "technicalSupportService"
+   | "admin";
 
 export interface IRoutingList {
    path: string;

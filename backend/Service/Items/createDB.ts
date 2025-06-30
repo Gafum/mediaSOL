@@ -7,7 +7,7 @@ import { ItemsTypesArray } from "../../Data/ItemsTypesArray";
 
 const prisma = new PrismaClient();
 
-export async function createBD(
+export async function createDB(
    req: Request,
    res: Response,
    next: NextFunction

@@ -1,4 +1,4 @@
-import { createBD } from "./createBD";
+import { createDB } from "./createDB";
 import { createOne } from "./createOne";
 import { getOne } from "./getOne";
 import { getSome } from "./getSome";
@@ -7,7 +7,7 @@ import { deleteOne } from "./deleteOne";
 import { getTypes } from "./Types/getTypes";
 
 export class ItemsService {
-   static createBD: typeof createBD = createBD;
+   static createDB: typeof createDB = createDB;
 
    static createOne: typeof createOne = createOne;
 

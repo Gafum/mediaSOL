@@ -28,6 +28,12 @@ export async function createOne(
       }
 
       const itemData = parsed.data;
+      if ((itemData as any)?.id) {
+         delete (itemData as any).id;
+      }
+      if (itemData.action == 0) {
+         delete itemData.action;
+      }
 
       const newItem = await prisma.item.create({
          data: itemData,

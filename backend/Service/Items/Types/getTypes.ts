@@ -16,7 +16,7 @@ export async function getTypes(
       });
 
       const namesArray = categories.map((cat) => cat.name);
-
+      
       res.status(200).json(namesArray);
    } catch (error) {
       console.log(error);

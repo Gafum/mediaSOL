@@ -17,7 +17,7 @@ export async function getOne(req: Request, res: Response, next: NextFunction) {
       });
 
       if (!elementData) {
-         return next(ApiError.badRequest("Not found"));
+         return next(ApiError.badRequest("Review is not found"));
       }
 
       res.status(200).json(elementData);

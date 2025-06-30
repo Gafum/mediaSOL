@@ -15,7 +15,7 @@ export const PriceShower = ({
    realPriceClassName,
    wbrClasses,
 }: PriceShowerProps): JSX.Element | string => {
-   if (action) {
+   if (Boolean(action)) {
       return (
          <>
             <span className="font-semibold text-inherit text-[length:inherit] whitespace-nowrap">

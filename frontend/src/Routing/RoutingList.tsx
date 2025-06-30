@@ -12,6 +12,7 @@ import { Item } from "../Screens/Item/Item";
 import { IScreenList } from "./Routing.types";
 import { Cart } from "../Screens/Cart/Cart";
 import { Favorites } from "../Screens/Favorites/Favorites";
+import { Admin } from "../Screens/Admin/Admin";
 
 export const screenList: IScreenList = {
    home: {
@@ -48,6 +49,11 @@ export const screenList: IScreenList = {
       path: import.meta.env.VITE_BASE_URL + "/favorites",
       component: <Favorites />,
       name: "Favoriten",
+   },
+   admin: {
+      path: import.meta.env.VITE_BASE_URL + "/admin",
+      component: <Admin />,
+      name: "Admin Page",
    },
    consultationService: {
       path: import.meta.env.VITE_BASE_URL + "/service/consultation",

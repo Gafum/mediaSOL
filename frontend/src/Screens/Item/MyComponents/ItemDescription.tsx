@@ -30,7 +30,7 @@ export const ItemDescription = ({
          {/* Price */}
          <div className="sm500:mt-1 flex flex-col sm500:gap-1 md:gap-2">
             {/* I don't use here the <PriceShower/>, because here I want to show action with procent */}
-            {action && (
+            {Boolean(action) && (
                <div>
                   {/* Action----- */}
                   <span className="text-sm sm:text-base rounded-md bg-primaryPink px-1 text-white text-center">

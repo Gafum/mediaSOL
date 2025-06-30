@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { ApiError } from "../../error/ApiError";
 import { PrismaClient } from "@prisma/client";
+import { notEqual } from "assert";
 
 const prisma = new PrismaClient();
 
@@ -26,9 +27,7 @@ export async function getAll(req: Request, res: Response, next: NextFunction) {
 
       if (type) {
          if (type === "action") {
-            where.action = {
-               not: null,
-            };
+            where.AND = [{ action: { not: 0 } }, { action: { not: null } }];
          } else {
             where.typeName = {
                equals: type.toString(),

@@ -8,7 +8,14 @@ export const itemsRouter = Router();
 ======================================================>
 */
 // create one item
-itemsRouter.post("/createBD", ItemsService.createBD);
+itemsRouter.post("/createDB", ItemsService.createDB);
+
+/*
+      Types
+======================================================>
+*/
+// get all Types
+itemsRouter.get("/types", ItemsService.getTypes);
 
 /*
       Items
@@ -28,10 +35,3 @@ itemsRouter.post("/", ItemsService.createOne);
 
 //Delete review
 itemsRouter.delete("/:id", ItemsService.deleteOne);
-
-/*
-      Types
-======================================================>
-*/
-// get all Types
-itemsRouter.get("/types", ItemsService.getTypes);

@@ -32,7 +32,7 @@ export const SmallItem = ({
             className
          )}
       >
-         {action && (
+         {Boolean(action) && (
             <span className="text-xs sm500:text-sm md:text-base w-1/5 sm500:w-1/4 max-w-[75px] min-w-[50px] sm500:min-w-[65px] top-2 left-2 rounded-md bg-primaryPink absolute text-white text-center">
                {"- " + action + " %"}
             </span>

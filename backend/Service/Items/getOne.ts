@@ -21,7 +21,7 @@ export async function getOne(req: Request, res: Response, next: NextFunction) {
       });
 
       if (!elementData) {
-         return next(ApiError.badRequest("Not found"));
+         return next(ApiError.badRequest("Item is not found"));
       }
 
       let similaryGadgets: IGadget[] = [];
