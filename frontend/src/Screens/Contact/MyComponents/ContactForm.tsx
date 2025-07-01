@@ -4,6 +4,7 @@ import {
    StandartDialog,
    useStandartDialog,
 } from "../../../UI/CustomDialog/Standart/StandartDialog";
+import { useContact } from "../../../Hooks/Query/Email/useContact";
 
 export interface IContactForm {
    name: string;
@@ -20,21 +21,42 @@ export const ContactForm = () => {
    } = useForm<IContactForm>();
 
    const { modalData, setModalData } = useStandartDialog();
+   const { sendContact, isPending } = useContact();
 
-   const onSubmit = async (data: IContactForm) => {
-      setModalData({
-         isOpen: true,
-         content: (
-            <>
-               <span className="capitalize">{data?.name}</span>, Sie werden die
-               Daten per E-Mail{" "}
-               <span className="font-medium">{data?.email}</span> erhalten
-            </>
-         ),
-         headlineText: "Warten auf Antwort",
-         isAlert: true,
+   const onSubmit = async (formData: IContactForm) => {
+      sendContact(formData, {
+         onSettled(data, error) {
+            console.log(data);
+            if (Boolean(error)) {
+               setModalData({
+                  isOpen: true,
+                  content: (
+                     <p>
+                        Entschuldigung, {formData.name}! Leider ist beim Senden
+                        der E-Mail ein Fehler aufgetreten.
+                     </p>
+                  ),
+                  headlineText: "Fehler!",
+                  isAlert: true,
+               });
+            } else {
+               setModalData({
+                  isOpen: true,
+                  content: (
+                     <>
+                        <span className="capitalize">{formData.name}</span>, Sie
+                        werden die Daten per E-Mail{" "}
+                        <span className="font-medium">{formData.email}</span>{" "}
+                        erhalten
+                     </>
+                  ),
+                  headlineText: "Warten auf Antwort",
+                  isAlert: true,
+               });
+            }
+            reset();
+         },
       });
-      reset();
    };
 
    return (
@@ -107,9 +129,13 @@ export const ContactForm = () => {
 
             <CustomBtn
                type="submit"
-               disabled={isSubmitting}
+               disabled={isSubmitting || isPending}
                className="w-full mt-2"
-               btnText={isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
+               btnText={
+                  isSubmitting || isPending
+                     ? "Wird gesendet..."
+                     : "Nachricht senden"
+               }
             ></CustomBtn>
          </form>
 

@@ -10,5 +10,4 @@ const contactLimiter = rateLimit({
    message: "Too many requests, try again later",
 });
 
-emailRouter.post("/contact", contactLimiter, EmailService.sendContact);
-  
+emailRouter.post("/contact", EmailService.sendContact);
