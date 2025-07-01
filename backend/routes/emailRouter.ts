@@ -11,3 +11,4 @@ const contactLimiter = rateLimit({
 });
 
 emailRouter.post("/contact", contactLimiter, EmailService.sendContact);
+  
