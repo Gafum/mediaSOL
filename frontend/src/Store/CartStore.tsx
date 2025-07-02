@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export type TypeCartList = {
    [key: string]: { amount: number; date: number };
@@ -13,52 +14,55 @@ interface ICartStore {
    clearCartList: () => void;
 }
 
-export const useCartStore = create<ICartStore>((set) => ({
-   cartList: {
-      mainId: { amount: 999, date: 1 },
-      "123": { amount: 24, date: 2 },
-      "789": { amount: 1, date: 3 },
-   },
-   toggleCartList: (productId: string) => {
-      return set((state) => {
-         let localCartList: TypeCartList = JSON.parse(
-            JSON.stringify(state.cartList)
-         );
-         if (localCartList[productId]) {
-            delete localCartList[productId];
-         } else {
-            localCartList[productId] = {
-               amount: 1,
-               date: Date.now(),
-            };
-         }
+export const useCartStore = create<ICartStore>()(
+   persist(
+      (set, get) => ({
+         cartList: {},
+         toggleCartList: (productId: string) => {
+            return set(() => {
+               let localCartList: TypeCartList = JSON.parse(
+                  JSON.stringify(get().cartList)
+               );
+               if (localCartList[productId]) {
+                  delete localCartList[productId];
+               } else {
+                  localCartList[productId] = {
+                     amount: 1,
+                     date: Date.now(),
+                  };
+               }
 
-         return { cartList: { ...localCartList } };
-      });
-   },
-   increaseItemAmount: (productId: string) => {
-      return set((state) => {
-         return actionWithItem(state, productId, true);
-      });
-   },
-   decreaseItemAmount: (productId: string) => {
-      return set((state) => {
-         return actionWithItem(state, productId, false);
-      });
-   },
-   removeItem: (productId) => {
-      return set((state) => {
-         let localCartList: TypeCartList = JSON.parse(
-            JSON.stringify(state.cartList)
-         );
-         if (localCartList[productId]) {
-            delete localCartList[productId];
-         }
-         return { cartList: { ...localCartList } };
-      });
-   },
-   clearCartList: () => set({ cartList: {} }),
-}));
+               return { cartList: { ...localCartList } };
+            });
+         },
+         increaseItemAmount: (productId: string) => {
+            return set(() => {
+               return actionWithItem(get(), productId, true);
+            });
+         },
+         decreaseItemAmount: (productId: string) => {
+            return set(() => {
+               return actionWithItem(get(), productId, false);
+            });
+         },
+         removeItem: (productId) => {
+            return set(() => {
+               let localCartList: TypeCartList = JSON.parse(
+                  JSON.stringify(get().cartList)
+               );
+               if (localCartList[productId]) {
+                  delete localCartList[productId];
+               }
+               return { cartList: { ...localCartList } };
+            });
+         },
+         clearCartList: () => set({ cartList: {} }),
+      }),
+      {
+         name: "CartStore",
+      }
+   )
+);
 
 function actionWithItem(
    state: ICartStore,

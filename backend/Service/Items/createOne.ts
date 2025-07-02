@@ -1,18 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import { ApiError } from "../../error/ApiError";
-import z from "zod";
+import { validateAndSanitizeItem } from "../../Validators/createItem";
 
 const prisma = new PrismaClient();
-
-const createItemSchema = z.object({
-   name: z.string().trim().min(1, "Name is required").max(100),
-   price: z.number().positive("Price must be positive"),
-   description: z.string().trim().min(1).max(1000),
-   img: z.string().trim().url("Invalid image URL"),
-   typeName: z.string().trim().min(1),
-   action: z.number().int().min(0).max(100).optional(),
-});
 
 export async function createOne(
    req: Request,
@@ -20,19 +11,16 @@ export async function createOne(
    next: NextFunction
 ) {
    try {
-      const parsed = createItemSchema.safeParse(req.body);
+      const adminSecret = req.headers["x-admin-secret"];
 
-      if (!parsed.success) {
-         const messages = parsed.error.errors[0].message ?? "Validation failed";
-         return next(ApiError.badRequest(messages));
+      if (!adminSecret || adminSecret !== process.env.ADMIN_SECRET) {
+         return next(ApiError.forbidden("Access denied"));
       }
 
-      const itemData = parsed.data;
-      if ((itemData as any)?.id) {
-         delete (itemData as any).id;
-      }
-      if (itemData.action == 0) {
-         delete itemData.action;
+      const itemData = validateAndSanitizeItem(req.body);
+
+      if (itemData.action === 0) {
+         delete (itemData as any).action;
       }
 
       const newItem = await prisma.item.create({
@@ -40,11 +28,16 @@ export async function createOne(
       });
 
       res.status(201).json(newItem);
-   } catch (error) {
-      if ((error as any)?.code === "P2003") {
+   } catch (error: any) {
+      if (error instanceof ApiError) {
+         return next(error);
+      }
+
+      if ((error as unknown as { code: string }).code === "P2003") {
+         // Foreign key constraint failed
          return next(ApiError.badRequest("Invalid typeName: type not found"));
       }
-      console.error(error);
-      return next(ApiError.internal("Failed to create item"));
+      console.log(error);
+      return next(ApiError.internal("Error on server"));
    }
 }

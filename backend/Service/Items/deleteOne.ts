@@ -9,6 +9,12 @@ export async function deleteOne(
    next: NextFunction
 ) {
    try {
+      const adminSecret = req.headers["x-admin-secret"];
+
+      if (!adminSecret || adminSecret !== process.env.ADMIN_SECRET) {
+         return next(ApiError.forbidden("Access denied"));
+      }
+
       if (!req.params) {
          return next(ApiError.badRequest("Bad Request"));
       }

@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import { ApiError } from "../../../error/ApiError";
 import z from "zod";
+import sanitizeHtml from "sanitize-html";
 
 const prisma = new PrismaClient();
 
@@ -19,6 +20,12 @@ export async function createOneItemType(
    next: NextFunction
 ) {
    try {
+      const adminSecret = req.headers["x-admin-secret"];
+
+      if (!adminSecret || adminSecret !== process.env.ADMIN_SECRET) {
+         return next(ApiError.forbidden("Access denied"));
+      }
+
       const parsed = createItemTypeSchema.safeParse(req.body);
 
       if (!parsed.success) {
@@ -29,7 +36,7 @@ export async function createOneItemType(
       const { name } = parsed.data;
 
       const newType = await prisma.itemType.create({
-         data: { name },
+         data: { name: sanitizeHtml(name.toString().trim()) },
       });
 
       return res.status(201).json(newType);

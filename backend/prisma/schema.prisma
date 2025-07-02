@@ -20,10 +20,10 @@ model Item {
    name         String
    price        Float
    description  String
-   img          String
    typeName     String
    type         ItemType @relation(fields: [typeName], references: [name])
    commentsList Review[]
+   img          String?
    action       Int?
 }
 
@@ -35,4 +35,12 @@ model Review {
    stars     Int
    Item      Item?    @relation(fields: [itemId], references: [id])
    itemId    String?
+}
+
+model ContactForm {
+   id        String   @id @default(cuid())
+   createdAt DateTime @default(now())
+   name      String
+   email     String
+   message   String
 }

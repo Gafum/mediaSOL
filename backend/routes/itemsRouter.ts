@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { ItemsService } from "../Service/Items/itemsService";
+import { contactLimiter } from "../middleware/ContactLimiter";
 
 export const itemsRouter = Router();
 
@@ -8,7 +9,7 @@ export const itemsRouter = Router();
 ======================================================>
 */
 // create one item
-itemsRouter.post("/createDB", ItemsService.createDB);
+itemsRouter.post("/createDB", contactLimiter, ItemsService.createDB);
 
 /*
       Types
