@@ -4,31 +4,42 @@ import { TypeCartList } from "../../Store/CartStore";
 
 export const sortOptionsKey = "cartSelectedSort";
 
+function getElemetsInSortOption(thisArg: unknown, a: IGadget, b: IGadget) {
+   return {
+      elemA: (thisArg as TypeCartList)[a.id],
+      elemB: (thisArg as TypeCartList)[b.id],
+   };
+}
+
 export const sortOptions = [
    {
       id: "date",
       label: "Datum des Antrags",
       func: function (a: IGadget, b: IGadget) {
-         return (this as unknown as TypeCartList)[a.id].date >
-            (this as unknown as TypeCartList)[b.id].date
-            ? 1
-            : -1;
+         const { elemA, elemB } = getElemetsInSortOption(this, a, b);
+         if (!Boolean(elemA) || !Boolean(elemB)) {
+            return 0;
+         }
+         return elemA.date > elemB.date ? 1 : -1;
       },
    },
    {
       id: "price",
       label: "Preis",
       func: function (a: IGadget, b: IGadget) {
+         const { elemA, elemB } = getElemetsInSortOption(this, a, b);
+         if (!Boolean(elemA) || !Boolean(elemB) || !Boolean(a) || !Boolean(b)) {
+            return 0;
+         }
          return Number(
             calculatePriceWithAction({
-               price: (this as unknown as TypeCartList)[a.id].amount * a.price,
+               price: elemA.amount * a.price,
                action: a.action,
             })
          ) >
             Number(
                calculatePriceWithAction({
-                  price:
-                     (this as unknown as TypeCartList)[b.id].amount * b.price,
+                  price: elemB.amount * b.price,
                   action: b.action,
                })
             )

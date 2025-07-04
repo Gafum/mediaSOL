@@ -32,7 +32,7 @@ export const CartItem = (props: ICartItemProps): JSX.Element => {
          {/* Image =========== */}
          <CustomImg
             imgSrc={img}
-            className="bg-contain rounded-md min-w-[140px] w-1/2 sm500:w-1/5 max-w-[210px] mt-3 sm500:mt-0"
+            className="bg-contain rounded-md min-h-[120px] h-full min-w-[140px] w-1/2 sm500:w-1/5 max-w-[210px] mt-3 sm500:mt-0"
             NotFoundComponent={
                <ImageOff
                   width={100}

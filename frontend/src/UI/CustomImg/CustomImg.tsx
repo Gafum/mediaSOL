@@ -26,7 +26,7 @@ export const CustomImg = ({
          return (
             <div
                className={twMerge(
-                  "bg-cover bg-no-repeat bg-center grid place-items-center",
+                  "bg-cover bg-no-repeat bg-center grid place-items-center aspect-square",
                   className
                )}
             >

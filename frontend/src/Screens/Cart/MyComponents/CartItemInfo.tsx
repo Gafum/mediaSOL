@@ -15,15 +15,17 @@ export const CartItemInfo = ({
    const decreaseItemAmount = useCartStore((state) => state.decreaseItemAmount);
 
    return (
-      <div className="flex-1 flex flex-col mt-2 sm500:pb-2 md:pr-2 sm500:w-[78%] sm500:mt-0 sm500:ml-4">
-         <h3 className="text-justify sm:text-left font-medium sm500:text-lg line-clamp-1 sm500:max-w-[90%] sm:max-w-none h-full">
+      <div className="flex-grow flex flex-col mt-2 h-full xl:min-h-[180px] sm500:pb-2 md:pr-2 sm500:w-[78%] sm500:mt-0 sm500:ml-4">
+         <h3 className="text-justify sm:text-left font-medium sm500:text-lg line-clamp-1 sm500:max-w-[90%] sm:max-w-none">
             {name}
          </h3>
-         <p className="text-xs sm:text-sm sm500:mt-0.5 sm:mt-2 max-w-full line-clamp-3">
+         <p className="text-xs sm:text-sm sm500:mt-0.5 sm:mt-2 max-w-full line-clamp-3 xl:line-clamp-4">
             {description}
          </p>
 
-         <div className="hidden sm:block flex-1"> {/* Padding */}</div>
+         <div className="hidden sm:block flex-grow max-h-[100%]">
+            {/* Padding */}
+         </div>
 
          {/* How much items ======= */}
          <div className="mt-1 flex flex-col sm:flex-row-reverse items-start sm:items-center sm:gap-2 justify-start">

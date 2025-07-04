@@ -40,7 +40,10 @@ export const Cart = (): JSX.Element => {
       if (!elementDataList) {
          return [];
       }
-      return elementDataList.sort((a, b) => {
+      return elementDataList.sort((a: IGadget, b: IGadget) => {
+         if (!Boolean(a) || !Boolean(b) || !Boolean(cartList)) {
+            return 0;
+         }
          const sortFilter = sortOptions.find(
             ({ id }) => id == selectedSort
          )?.func;
@@ -82,7 +85,7 @@ export const Cart = (): JSX.Element => {
    return (
       <SectionWithHeadline
          title={screenList.cart.name}
-         className="mt-0 relative"
+         className="mt-0 relative h-full"
       >
          <button
             title="Korbfilter"
@@ -108,7 +111,7 @@ export const Cart = (): JSX.Element => {
             {localCartList.map((elem) => (
                <CartItem
                   {...elem}
-                  itemAmount={cartList[elem.id].amount}
+                  itemAmount={cartList[elem.id]?.amount}
                   setModalData={setModalData}
                   key={elem.id}
                />
