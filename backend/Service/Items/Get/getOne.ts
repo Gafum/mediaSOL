@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { ApiError } from "../../error/ApiError";
+import { ApiError } from "../../../error/ApiError";
 import { PrismaClient } from "@prisma/client";
-import { IGadget } from "../../Data/items";
+import { IGadget } from "../../../Data/items";
 
 const prisma = new PrismaClient();
 

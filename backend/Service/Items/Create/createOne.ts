@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
-import { ApiError } from "../../error/ApiError";
-import { validateAndSanitizeItem } from "../../Validators/createItem";
+import { ApiError } from "../../../error/ApiError";
+import { validateAndSanitizeItem } from "../../../Validators/createItem";
 
 const prisma = new PrismaClient();
 

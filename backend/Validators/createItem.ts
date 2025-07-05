@@ -31,6 +31,7 @@ export const createItemSchema = z.object({
       .int({ message: "Action must be integer" })
       .min(0)
       .max(100)
+      .nullable()
       .optional(),
 });
 
@@ -40,7 +41,7 @@ export function validateAndSanitizeItem(
    const parsed = createItemSchema.safeParse(input);
 
    if (!parsed.success) {
-      const messages = parsed.error.errors[0].message ?? "Validation failed";
+      const messages = parsed.error.errors[0]?.message ?? "Validation failed";
       throw ApiError.badRequest(messages);
    }
 

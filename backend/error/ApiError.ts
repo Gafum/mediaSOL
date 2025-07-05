@@ -4,6 +4,9 @@ export interface IApiError {
 }
 
 export class ApiError extends Error {
+   static notFound(arg0: string): any {
+      throw new Error("Method not implemented.");
+   }
    status = 500;
 
    constructor(status: number, message: string) {

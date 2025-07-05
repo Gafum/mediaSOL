@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { ApiError } from "../../error/ApiError";
+import { ApiError } from "../../../error/ApiError";
 import { PrismaClient } from "@prisma/client";
-import { notEqual } from "assert";
 
 const prisma = new PrismaClient();
 

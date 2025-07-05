@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
-import { ApiError } from "../../error/ApiError";
+import { ApiError } from "../../../error/ApiError";
 import { PrismaClient } from "@prisma/client";
-import { itemsList } from "../../Data/items";
-import { reviewsList } from "../../Data/ReviewsList";
-import { ItemsTypesArray } from "../../Data/ItemsTypesArray";
+import { itemsList } from "../../../Data/items";
+import { reviewsList } from "../../../Data/ReviewsList";
+import { ItemsTypesArray } from "../../../Data/ItemsTypesArray";
 
 const prisma = new PrismaClient();
 

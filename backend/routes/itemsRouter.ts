@@ -34,5 +34,8 @@ itemsRouter.post("/some", ItemsService.getSome);
 // create Item
 itemsRouter.post("/", ItemsService.createOne);
 
+// update Items Data
+itemsRouter.put("/:id", ItemsService.updateOne);
+
 //Delete review
 itemsRouter.delete("/:id", ItemsService.deleteOne);
