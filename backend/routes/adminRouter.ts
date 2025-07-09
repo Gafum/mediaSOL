@@ -3,4 +3,4 @@ import { AdminService } from "../Service/Admin/adminService";
 
 export const adminRouter = Router();
 
-adminRouter.get("/schema", AdminService.getFormattedSchema);
+adminRouter.get("/admin-overview", AdminService.getAdminSchemaWithData);
