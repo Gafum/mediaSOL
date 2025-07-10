@@ -10,7 +10,6 @@ export function useContact() {
 
    return {
       sendContact: mutation.mutate,
-      
       sendContactAsync: mutation.mutateAsync,
       ...mutation,
    };
