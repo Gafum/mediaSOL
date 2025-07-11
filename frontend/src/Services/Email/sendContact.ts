@@ -8,7 +8,7 @@ export async function sendContact({
    message,
 }: IContactForm): Promise<string> {
    try {
-      const response = await axios.post<{ message: string } | IErrorMessage>(
+      const response = await axios.post<IErrorMessage>(
          import.meta.env.VITE_BACKEND_URL + "/email/contact",
          JSON.stringify({ name, email, message }),
          {
