@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
-import { ApiError } from "../../error/ApiError";
+import { ApiError } from "../../../error/ApiError";
 const prisma = new PrismaClient();
 
 export async function getAdminSchemaWithData(

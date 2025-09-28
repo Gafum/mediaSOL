@@ -1,4 +1,4 @@
-import { getAdminSchemaWithData } from "./getAdminSchemaWithData";
+import { getAdminSchemaWithData } from "./get/getAdminSchemaWithData";
 
 export class AdminService {
    // Get Schema
