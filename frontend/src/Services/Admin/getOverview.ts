@@ -10,6 +10,7 @@ export interface ISchemaColumn {
 export interface ITableData {
    schema: ISchemaColumn[];
    preview: Record<string, any>[];
+   shown?: boolean;
 }
 
 export interface IAdminData {

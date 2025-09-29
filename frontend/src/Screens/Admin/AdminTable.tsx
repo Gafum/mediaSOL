@@ -53,27 +53,18 @@ export const AdminTable = ({ data }: IAdminTable): JSX.Element => {
          {sortedEntries.map(([tableName, table], index) => {
             if (index !== activeTab) return null;
 
+            // HIER!!!!!
             const filteredSchema = table.schema.filter(
                (col) => col.column_name !== "id"
             );
-            const [visibleCols, setVisibleCols] = useState<
-               Record<string, boolean>
-            >(() =>
-               filteredSchema.reduce(
-                  (acc, col) => {
-                     acc[col.column_name] = true; // всі включені спочатку
-                     return acc;
-                  },
-                  {} as Record<string, boolean>
-               )
-            );
 
-            const handleToggle = (col: string) => {
-               setVisibleCols((prev) => ({
-                  ...prev,
-                  [col]: !prev[col],
-               }));
-            };
+            // const handleToggle = (col: string) => {
+            //    setSortedEntries((prev) => {
+            //       let locallist = JSON.parse(JSON.stringify(prev));
+            //       locallist[index][1].shown = !locallist[index][1].shown;
+            //       return locallist;
+            //    });
+            // };
 
             return (
                <div key={tableName} className="mt-3">
@@ -88,8 +79,8 @@ export const AdminTable = ({ data }: IAdminTable): JSX.Element => {
                            <input
                               type="checkbox"
                               id={col.column_name + "_ID"}
-                              checked={visibleCols[col.column_name]}
-                              onChange={() => handleToggle(col.column_name)}
+                              // checked={visibleCols[col.column_name]}
+                              // onChange={() => handleToggle(col.column_name)}
                               className="hidden peer"
                            />
                            <label
