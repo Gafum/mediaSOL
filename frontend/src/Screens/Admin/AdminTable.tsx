@@ -34,16 +34,20 @@ export const AdminTable = ({
    );
 
    const handleToggle = (index: number) => {
-      console.log(index);
-
       setSchemaState((prev) => {
+         let howManyIsShown: number = prev.reduce(
+            (a: number, b: ISchemaState) => (b.isShown ? a + 1 : a),
+            0
+         );
+         if (howManyIsShown < 2 && prev[index].isShown) {
+            return prev;
+         }
          let locallist: ISchemaState[] = JSON.parse(JSON.stringify(prev));
+
          locallist[index].isShown = !prev[index].isShown;
          return locallist;
       });
    };
-
-   console.log(schemaState);
 
    return (
       <div key={tableName} className="mt-3">
@@ -78,14 +82,19 @@ export const AdminTable = ({
             <table className="min-w-full text-sm border border-gray-300 table-auto">
                <thead className="bg-gray-100">
                   <tr>
-                     {schemaState.map((col) => (
-                        <th
-                           key={col.column_name}
-                           className="px-4 py-2 border text-left capitalize"
-                        >
-                           {splitWordsSmart(col.column_name)}
-                        </th>
-                     ))}
+                     {schemaState.map((col) => {
+                        if (!col.isShown) {
+                           return "";
+                        }
+                        return (
+                           <th
+                              key={col.column_name}
+                              className="px-4 py-2 border text-left capitalize"
+                           >
+                              {splitWordsSmart(col.column_name)}
+                           </th>
+                        );
+                     })}
                      <th className="px-4 py-2 border">Actions</th>
                   </tr>
                </thead>
@@ -94,6 +103,9 @@ export const AdminTable = ({
                   {table.preview.map((row, rowIndex) => (
                      <tr key={rowIndex} className="even:bg-gray-50">
                         {schemaState.map((col) => {
+                           if (!col.isShown) {
+                              return "";
+                           }
                            const val = row[col.column_name];
                            const content =
                               col.column_name === "createdAt" ||
