@@ -3,13 +3,14 @@ import { ISchemaColumn, ITableData } from "../../Services/Admin/getOverview";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 import { splitWordsSmart } from "../../Function/splitWords";
 import { useState } from "react";
+import { AdminPageSettings } from "./AdminPageSettings";
 
 interface IAdminTableProps {
    tableName: string;
    table: ITableData;
 }
 
-interface ISchemaState extends ISchemaColumn {
+export interface ISchemaState extends ISchemaColumn {
    isShown: boolean;
 }
 
@@ -33,47 +34,12 @@ export const AdminTable = ({
          })
    );
 
-   const handleToggle = (index: number) => {
-      setSchemaState((prev) => {
-         let howManyIsShown: number = prev.reduce(
-            (a: number, b: ISchemaState) => (b.isShown ? a + 1 : a),
-            0
-         );
-         if (howManyIsShown < 2 && prev[index].isShown) {
-            return prev;
-         }
-         let locallist: ISchemaState[] = JSON.parse(JSON.stringify(prev));
-
-         locallist[index].isShown = !prev[index].isShown;
-         return locallist;
-      });
-   };
-
    return (
       <div key={tableName} className="mt-3">
-         <h2>What Data:</h2>
-
-         <ul>
-            {schemaState.map((col, index) => (
-               <ol key={col.column_name} className="checkbox-wrapper">
-                  <label className="checkbox">
-                     <input
-                        type="checkbox"
-                        id={col.column_name + "_ID"}
-                        checked={col.isShown}
-                        onChange={() => handleToggle(index)}
-                        className="hidden peer checkbox__input"
-                        key={col.column_name}
-                     />
-                     <span className="checkbox__label"></span>
-
-                     <span className="capitalize">
-                        {splitWordsSmart(col.column_name)}
-                     </span>
-                  </label>
-               </ol>
-            ))}
-         </ul>
+         <AdminPageSettings
+            schemaState={schemaState}
+            setSchemaState={setSchemaState}
+         />
 
          <h3 className="text-xl font-bold mb-3 capitalize mt-3">
             {splitWordsSmart(tableName)}
@@ -82,6 +48,7 @@ export const AdminTable = ({
             <table className="min-w-full text-sm border border-gray-300 table-auto">
                <thead className="bg-gray-100">
                   <tr>
+                     <th className="px-4 py-2 border">Actions</th>
                      {schemaState.map((col) => {
                         if (!col.isShown) {
                            return "";
@@ -95,13 +62,26 @@ export const AdminTable = ({
                            </th>
                         );
                      })}
-                     <th className="px-4 py-2 border">Actions</th>
                   </tr>
                </thead>
 
                <tbody>
                   {table.preview.map((row, rowIndex) => (
                      <tr key={rowIndex} className="even:bg-gray-50">
+                        <td className="p-2 h-full border align-top">
+                           <div className="h-full w-full flex flex-col gap-1">
+                              <CustomBtn
+                                 btnText={"Edit"}
+                                 bgColor="primaryBlue"
+                                 onClick={() => handleEdit(tableName, row)}
+                              />
+                              <CustomBtn
+                                 btnText={"Delete"}
+                                 bgColor="primaryPink"
+                                 onClick={() => handleDelete(tableName, row.id)}
+                              />
+                           </div>
+                        </td>
                         {schemaState.map((col) => {
                            if (!col.isShown) {
                               return "";
@@ -122,21 +102,6 @@ export const AdminTable = ({
                               </td>
                            );
                         })}
-
-                        <td className="p-2 h-full border align-top">
-                           <div className="h-full w-full flex flex-col gap-1">
-                              <CustomBtn
-                                 btnText={"Edit"}
-                                 bgColor="primaryBlue"
-                                 onClick={() => handleEdit(tableName, row)}
-                              />
-                              <CustomBtn
-                                 btnText={"Delete"}
-                                 bgColor="primaryPink"
-                                 onClick={() => handleDelete(tableName, row.id)}
-                              />
-                           </div>
-                        </td>
                      </tr>
                   ))}
                </tbody>

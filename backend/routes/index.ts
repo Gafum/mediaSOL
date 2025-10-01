@@ -6,7 +6,14 @@ import { adminRouter } from "./adminRouter";
 
 export const indexRouter = Router();
 
-indexRouter.use("/items/", itemsRouter);
-indexRouter.use("/reviews/", reviewsRouter);
-indexRouter.use("/email/", emailRouter);
-indexRouter.use("/admin/", adminRouter);
+export const routersPath = {
+   items: "/items/",
+   reviews: "/reviews/",
+   emails: "/email/",
+   admin: "/admin/",
+};
+
+indexRouter.use(routersPath.items, itemsRouter);
+indexRouter.use(routersPath.reviews, reviewsRouter);
+indexRouter.use(routersPath.emails, emailRouter);
+indexRouter.use(routersPath.admin, adminRouter);

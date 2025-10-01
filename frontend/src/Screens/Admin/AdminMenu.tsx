@@ -21,7 +21,7 @@ export const AdminMenu = ({ data }: IAdminMenuProps): JSX.Element => {
    return (
       <div>
          {/* Tabs */}
-         <div className="flex overflow-x-auto border-b border-gray-300">
+         <div className="flex overflow-x-auto border-b border-gray-300 pb-3">
             {sortedEntries.map(([tableName], index) => (
                <button
                   key={tableName}
