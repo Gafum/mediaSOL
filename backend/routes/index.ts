@@ -11,6 +11,7 @@ export const routersPath = {
    reviews: "/reviews/",
    emails: "/email/",
    admin: "/admin/",
+   types: "/items/types/",
 };
 
 indexRouter.use(routersPath.items, itemsRouter);
