@@ -26,6 +26,10 @@ export const AdminTable = ({
       console.log(`Edit ${table}:`, row);
    };
 
+   const addNewElement = () => {
+      console.log(`adding`);
+   };
+
    const [schemaState, setSchemaState] = useState<ISchemaState[]>(
       table.schema
          .filter((col) => col.column_name !== "id")
@@ -41,11 +45,8 @@ export const AdminTable = ({
             setSchemaState={setSchemaState}
          />
 
-         <h3 className="text-xl font-bold mb-3 capitalize mt-3">
-            {splitWordsSmart(tableName)}
-         </h3>
-         <div className="overflow-x-auto">
-            <table className="min-w-full text-sm border border-gray-300 table-auto">
+         <div className="overflow-x-auto mt-6 pb-2">
+            <table className="min-w-full text-sm border border-gray-300 table-auto rounded-md border-collapse">
                <thead className="bg-gray-100">
                   <tr>
                      <th className="px-4 py-2 border">Actions</th>
@@ -104,6 +105,23 @@ export const AdminTable = ({
                         })}
                      </tr>
                   ))}
+                  <tr className="p-2 h-full border align-top w-full">
+                     <td
+                        colSpan={schemaState.reduce(
+                           (a: number, b: ISchemaState) =>
+                              b.isShown ? a + 1 : a,
+                           1
+                        )}
+                        className="px-2 py-1 border align-top whitespace-pre-wrap break-words max-w-md w-full even:bg-gray-50"
+                     >
+                        <button
+                           className="w-full bg-transparent hover:opacity-70 text-lg"
+                           onClick={addNewElement}
+                        >
+                           Add new +
+                        </button>
+                     </td>
+                  </tr>
                </tbody>
             </table>
          </div>
