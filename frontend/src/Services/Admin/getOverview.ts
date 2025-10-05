@@ -17,7 +17,12 @@ export interface IAdminData {
    [tableName: string]: ITableData;
 }
 
-export async function getOverview({ password }: IGetOverviewProps) {
+export async function getOverview({
+   password,
+   pageParam,
+   limit,
+   name,
+}: IGetOverviewProps): Promise<IAdminData> {
    try {
       if (!Boolean(password) || password.trim().length == 0) {
          throw new Error("Passwort is required");
@@ -25,6 +30,7 @@ export async function getOverview({ password }: IGetOverviewProps) {
       const response = await axios.get<IAdminData>(
          import.meta.env.VITE_BACKEND_URL + "/admin/overview",
          {
+            params: { name, page: pageParam, limit },
             headers: {
                "x-admin-secret": password,
             },

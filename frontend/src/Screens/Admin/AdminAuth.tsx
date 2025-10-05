@@ -1,55 +1,37 @@
 import { useForm } from "react-hook-form";
-import { useGetOverview } from "../../Hooks/Query/Admin/useGetOverview";
-import { IAdminData } from "../../Services/Admin/getOverview";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
-
-interface IAdminForm {
-   password: string;
-   name: string;
-}
+import { useEffect } from "react";
+import { IAdminForm } from "./Admin";
 
 interface IAdminAuthProps {
-   setOverviewData: React.Dispatch<React.SetStateAction<IAdminData | null>>;
-   setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
+   userData: IAdminForm;
+   setUserData: React.Dispatch<React.SetStateAction<IAdminForm>>;
 }
 
 export const AdminAuth = ({
-   setOverviewData,
-   setIsAuth,
+   userData,
+   setUserData,
 }: IAdminAuthProps): JSX.Element => {
    const {
       register,
       handleSubmit,
       formState: { errors, isSubmitting },
-      reset,
       setError,
    } = useForm<IAdminForm>();
 
-   const { getOverview, isPending } = useGetOverview();
-
    async function formSubmit(data: IAdminForm) {
-      getOverview(data, {
-         onSettled(_data, error) {
-            if (error) {
-               console.log(error);
-               setError("root", { message: error.message });
-            }
-         },
-         onSuccess(response) {
-            if (typeof response.message == "string") {
-               return response;
-            }
-            setIsAuth(true);
-            setOverviewData(response);
-            reset();
-         },
-         onError(error) {
-            console.error("Auth failed", error);
-            setError("root", { message: error.message });
-            setIsAuth(false);
-         },
-      });
+      setUserData({ ...data, isDataSend: true });
    }
+
+   useEffect(() => {
+      if (userData.errors) {
+         if (userData.errors.name) {
+            setError("name", { message: "incorect Name" });
+         } else {
+            setError("password", { message: "incorect password" });
+         }
+      }
+   }, [userData]);
 
    return (
       <div className="w-full flex flex-col items-center justify-center">
@@ -77,20 +59,11 @@ export const AdminAuth = ({
                />
                <label htmlFor="loginInput">Passwort</label>
             </div>
-            {errors.root ? (
-               <span className="text-red-600">{errors.root.message}</span>
-            ) : (
-               ""
-            )}
             <CustomBtn
                type="submit"
-               disabled={isSubmitting || isPending}
+               disabled={isSubmitting}
                className="w-full mt-2"
-               btnText={
-                  isSubmitting || isPending
-                     ? "Wird gesendet..."
-                     : "Nachricht senden"
-               }
+               btnText="Anmelden"
             ></CustomBtn>
          </form>
       </div>

@@ -1,27 +1,54 @@
-import { useState } from "react";
-import { IAdminData } from "../../Services/Admin/getOverview";
+import { useEffect, useState } from "react";
 import { splitWordsSmart } from "../../Function/splitWords";
 import { AdminTable } from "./AdminTable";
+import { IAdminForm } from "./Admin";
+import { useGetSchema } from "../../Hooks/Query/Admin/useGetSchema";
+import { SimpleError } from "../../Components/Errors/SimpleError";
+import { LoadingBlock } from "../../Components/LoadingBlock/LoadingBlock";
 
 interface IAdminMenuProps {
-   data: IAdminData | null;
+   userData: IAdminForm;
+   setUserData: React.Dispatch<React.SetStateAction<IAdminForm>>;
 }
 
-export const AdminMenu = ({ data }: IAdminMenuProps): JSX.Element => {
+export const AdminMenu = ({
+   userData,
+   setUserData,
+}: IAdminMenuProps): JSX.Element => {
    const [activeTab, setActiveTab] = useState(0);
 
-   if (!data) {
+   if (!userData) {
       return <div className="text-center text-gray-500 mt-10">No data</div>;
    }
 
-   const sortedEntries = Object.entries(data).sort(
-      (a, b) => a[1].preview.length - b[1].preview.length
-   );
+   const { isLoading, error, adminSchema } = useGetSchema(userData.password);
+
+   useEffect(() => {
+      if (error) {
+         setUserData({
+            ...userData,
+            isDataSend: false,
+            errors: {
+               password: "false",
+               name: "false",
+            },
+         });
+      }
+   }, [error]);
+
+   if (isLoading) {
+      return <LoadingBlock />;
+   }
+
+   if (!adminSchema) {
+      return <SimpleError />;
+   }
 
    return (
       <div>
+         {adminSchema.toString()}
          {/* Tabs */}
-         <div className="flex overflow-x-auto border-b border-gray-300 pb-3">
+         {/* <div className="flex overflow-x-auto border-b border-gray-300 pb-3">
             {sortedEntries.map(([tableName], index) => (
                <button
                   key={tableName}
@@ -38,7 +65,6 @@ export const AdminMenu = ({ data }: IAdminMenuProps): JSX.Element => {
             ))}
          </div>
 
-         {/* Active Table */}
          {sortedEntries.map(([tableName, table], index) => {
             if (index !== activeTab) return "";
 
@@ -49,7 +75,7 @@ export const AdminMenu = ({ data }: IAdminMenuProps): JSX.Element => {
                   key={tableName}
                />
             );
-         })}
+         })} */}
       </div>
    );
 };

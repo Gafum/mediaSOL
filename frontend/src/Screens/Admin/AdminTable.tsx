@@ -65,7 +65,22 @@ export const AdminTable = ({
                      })}
                   </tr>
                </thead>
-
+               <tr className="p-2 h-full border align-top w-full">
+                  <td
+                     colSpan={schemaState.reduce(
+                        (a: number, b: ISchemaState) => (b.isShown ? a + 1 : a),
+                        1
+                     )}
+                     className="px-2 py-1 border align-top whitespace-pre-wrap break-words max-w-md w-full even:bg-gray-50"
+                  >
+                     <button
+                        className="w-full bg-transparent hover:opacity-70 text-lg"
+                        onClick={addNewElement}
+                     >
+                        Add new +
+                     </button>
+                  </td>
+               </tr>
                <tbody>
                   {table.preview.map((row, rowIndex) => (
                      <tr key={rowIndex} className="even:bg-gray-50">
@@ -105,23 +120,6 @@ export const AdminTable = ({
                         })}
                      </tr>
                   ))}
-                  <tr className="p-2 h-full border align-top w-full">
-                     <td
-                        colSpan={schemaState.reduce(
-                           (a: number, b: ISchemaState) =>
-                              b.isShown ? a + 1 : a,
-                           1
-                        )}
-                        className="px-2 py-1 border align-top whitespace-pre-wrap break-words max-w-md w-full even:bg-gray-50"
-                     >
-                        <button
-                           className="w-full bg-transparent hover:opacity-70 text-lg"
-                           onClick={addNewElement}
-                        >
-                           Add new +
-                        </button>
-                     </td>
-                  </tr>
                </tbody>
             </table>
          </div>

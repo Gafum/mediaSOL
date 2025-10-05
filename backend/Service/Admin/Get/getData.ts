@@ -2,10 +2,12 @@ import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import { ApiError } from "../../../error/ApiError";
 import { routersPath } from "../../../routes";
+
 const prisma = new PrismaClient();
 
 type PrismaModel = {
    findMany: (args?: any) => Promise<any[]>;
+   count?: (args?: any) => Promise<number>;
 };
 
 interface IAdminPanel {
@@ -53,51 +55,52 @@ export async function getAdminSchemaWithData(
          return next(ApiError.forbidden("Access denied"));
       }
 
-      const limitNum = Number(req.query?.limit) || 10;
+      const page = Number(req.query.page) || 1;
+      const limit = Number(req.query.limit) || 10;
+      const name = String(req.query.name || "Items");
 
-      const finalResult: Record<
-         string,
-         {
-            router: string;
-            schema: {
-               column_name: string;
-               data_type: string;
-            }[];
-            preview: Record<string, any>[] | { error: string };
-         }
-      > = {};
-
-      for (const panel of adminDataPanel) {
-         try {
-            const preview = await panel.db.findMany({
-               take: limitNum,
-               orderBy: panel.orderBy,
-            });
-
-            const columns =
-               preview.length > 0
-                  ? Object.keys(preview[0]).map((col) => ({
-                       column_name: col,
-                       data_type: typeof (preview[0] as any)[col],
-                    }))
-                  : [];
-
-            finalResult[panel.name] = {
-               router: panel.router,
-               schema: columns,
-               preview,
-            };
-         } catch (err) {
-            console.error(`Failed fetching ${panel.name}`, err);
-            finalResult[panel.name] = {
-               router: "/error/",
-               schema: [],
-               preview: [{ error: "Failed to fetch data" }],
-            };
-         }
+      const panel = adminDataPanel.find(
+         (p) => p.name.toLowerCase() === name.toLowerCase()
+      );
+      if (!panel) {
+         return next(ApiError.badRequest("Invalid table name"));
       }
 
-      res.status(200).json(finalResult);
+      const skip = (page - 1) * limit;
+
+      const [preview, total] = await Promise.all([
+         panel.db.findMany({
+            skip,
+            take: limit,
+            orderBy: panel.orderBy,
+         }),
+         panel.db.count ? panel.db.count() : Promise.resolve(0),
+      ]);
+
+      const columns =
+         preview.length > 0
+            ? Object.keys(preview[0]).map((col) => ({
+                 column_name: col,
+                 data_type: typeof (preview[0] as any)[col],
+              }))
+            : [];
+
+      const totalPages = Math.ceil(total / limit);
+
+      const result = {
+         name: panel.name,
+         router: panel.router,
+         schema: columns,
+         preview,
+         meta: {
+            total,
+            page,
+            limit,
+            totalPages,
+         },
+      };
+
+      res.status(200).json(result);
    } catch (err) {
       console.error("Admin schema fetch failed:", err);
       return next(ApiError.internal("Could not fetch schema and preview data"));

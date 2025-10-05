@@ -1,20 +1,28 @@
 import { useState } from "react";
-import { IAdminData } from "../../Services/Admin/getOverview";
 import { AdminAuth } from "./AdminAuth";
 import { AdminMenu } from "./AdminMenu";
 
+export interface IAdminForm {
+   name: string;
+   password: string;
+   isDataSend: boolean;
+   errors?: { name: string; password: string };
+}
+
 export const Admin = (): JSX.Element => {
-   const [isAuth, setIsAuth] = useState(false);
+   const [userData, setUserData] = useState<IAdminForm>({
+      name: "",
+      password: "",
+      isDataSend: false,
+   });
 
-   const [overviewData, setOverviewData] = useState<IAdminData | null>(null);
-
-   if (isAuth) {
+   if (userData.isDataSend) {
       return (
          <div>
-            <AdminMenu data={overviewData} />
+            <AdminMenu userData={userData} setUserData={setUserData} />
          </div>
       );
    }
 
-   return <AdminAuth setOverviewData={setOverviewData} setIsAuth={setIsAuth} />;
+   return <AdminAuth userData={userData} setUserData={setUserData} />;
 };

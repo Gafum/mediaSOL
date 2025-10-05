@@ -1,7 +1,10 @@
-import { getAdminSchemaWithData } from "./get/getAdminSchemaWithData";
+import { getAdminSchemaWithData } from "./Get/getData";
+import { getSchema } from "./Get/getSchema";
 
 export class AdminService {
-   // Get Schema
-   static getAdminSchemaWithData: typeof getAdminSchemaWithData =
-      getAdminSchemaWithData;
+   // Get Ddata
+   static getData: typeof getAdminSchemaWithData = getAdminSchemaWithData;
+
+   //Get Schema
+   static getSchema: typeof getSchema = getSchema;
 }
