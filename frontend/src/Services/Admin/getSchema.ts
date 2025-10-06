@@ -1,9 +1,16 @@
 import axios from "axios";
 import { logError } from "../../MainTypes/ErrorMessage";
 
+export interface IAdminSchema {
+   name: string;
+   database: string;
+   router: string;
+   editable: boolean;
+}
+
 export async function getSchema(password: string) {
    try {
-      const response = await axios.get(
+      const response = await axios.get<IAdminSchema[]>(
          import.meta.env.VITE_BACKEND_URL + `/admin/schema/`,
          {
             headers: {

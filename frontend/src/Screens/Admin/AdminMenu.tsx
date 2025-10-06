@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { splitWordsSmart } from "../../Function/splitWords";
 import { AdminTable } from "./AdminTable";
 import { IAdminForm } from "./Admin";
 import { useGetSchema } from "../../Hooks/Query/Admin/useGetSchema";
@@ -46,12 +45,11 @@ export const AdminMenu = ({
 
    return (
       <div>
-         {adminSchema.toString()}
          {/* Tabs */}
-         {/* <div className="flex overflow-x-auto border-b border-gray-300 pb-3">
-            {sortedEntries.map(([tableName], index) => (
+         <div className="flex overflow-x-auto border-b border-gray-300 pb-3">
+            {adminSchema.map(({ name }, index) => (
                <button
-                  key={tableName}
+                  key={name}
                   onClick={() => setActiveTab(index)}
                   className={`px-4 py-2 text-sm capitalize font-medium whitespace-nowrap ${
                      activeTab === index
@@ -59,23 +57,11 @@ export const AdminMenu = ({
                         : "text-gray-500 hover:text-black"
                   }`}
                >
-                  {splitWordsSmart(tableName)} ({data[tableName].preview.length}
-                  )
+                  {name}
                </button>
             ))}
          </div>
-
-         {sortedEntries.map(([tableName, table], index) => {
-            if (index !== activeTab) return "";
-
-            return (
-               <AdminTable
-                  tableName={tableName}
-                  table={table}
-                  key={tableName}
-               />
-            );
-         })} */}
+         <AdminTable adminSchema={adminSchema} userData={userData} />
       </div>
    );
 };
