@@ -3,7 +3,7 @@ import { logError } from "../../MainTypes/ErrorMessage";
 
 export interface IAdminSchema {
    name: string;
-   database: string;
+   key: string;
    router: string;
    editable: boolean;
 }

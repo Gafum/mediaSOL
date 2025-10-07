@@ -1,6 +1,6 @@
 import axios from "axios";
 import { logError } from "../../MainTypes/ErrorMessage";
-import { IGetOverviewProps } from "../../Hooks/Query/Admin/useGetOverview";
+import { IGetOverviewProps } from "../../Hooks/Query/Admin/useGetData";
 
 export interface ISchemaColumn {
    column_name: string;

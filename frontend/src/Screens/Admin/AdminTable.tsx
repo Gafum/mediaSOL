@@ -1,5 +1,5 @@
 import { formatDate } from "../../Function/fotmatDate";
-import { ISchemaColumn, ITableData } from "../../Services/Admin/getOverview";
+import { ISchemaColumn, ITableData } from "../../Services/Admin/getData";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 import { splitWordsSmart } from "../../Function/splitWords";
 import { useState } from "react";

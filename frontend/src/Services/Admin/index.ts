@@ -1,4 +1,4 @@
-import { getOverview } from "./getOverview";
+import { getOverview } from "./getData";
 import { getSchema } from "./getSchema";
 
 export class AdminService {

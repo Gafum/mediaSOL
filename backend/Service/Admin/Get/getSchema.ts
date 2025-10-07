@@ -1,6 +1,46 @@
 import { Request, Response, NextFunction } from "express";
 import { ApiError } from "../../../error/ApiError";
 import { routersPath } from "../../../routes";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export const adminDataPanel = () => {
+   return [
+      {
+         name: "Items",
+         key: "items",
+         router: routersPath.items,
+         editable: true,
+         orderBy: { createdAt: "desc" },
+         database: prisma.item,
+      },
+      {
+         name: "Types",
+         key: "itemTypes",
+         router: routersPath.types,
+         editable: true,
+         orderBy: { name: "asc" },
+         database: prisma.itemType,
+      },
+      {
+         name: "Reviews",
+         key: "reviews",
+         router: routersPath.reviews,
+         editable: false,
+         orderBy: { createdAt: "desc" },
+         database: prisma.review,
+      },
+      {
+         name: "Emails",
+         key: "contactForms",
+         router: routersPath.emails,
+         editable: false,
+         orderBy: { createdAt: "desc" },
+         database: prisma.contactForm,
+      },
+   ];
+};
 
 export async function getSchema(
    req: Request,
@@ -14,40 +54,9 @@ export async function getSchema(
          return next(ApiError.forbidden("Access denied"));
       }
 
-      const adminDataPanel = [
-         {
-            name: "Items",
-            database: "item",
-            router: routersPath.items,
-            editable: true,
-            orderBy: { createdAt: "desc" },
-         },
-         {
-            name: "Types",
-            database: "itemType",
-            router: routersPath.types,
-            editable: true,
-            orderBy: { name: "asc" },
-         },
-         {
-            name: "Reviews",
-            database: "review",
-            router: routersPath.reviews,
-            editable: false,
-            orderBy: { createdAt: "desc" },
-         },
-         {
-            name: "Emails",
-            database: "contactForm",
-            router: routersPath.emails,
-            editable: false,
-            orderBy: { createdAt: "desc" },
-         },
-      ];
-
       res.status(200).json(
-         adminDataPanel.map(({ name, database, editable, router }) => {
-            return { name, database, editable, router };
+         adminDataPanel().map(({ name, key, editable, router }) => {
+            return { name, key, editable, router };
          })
       );
    } catch (err) {
