@@ -61,7 +61,10 @@ export const AdminMenu = ({
                </button>
             ))}
          </div>
-         <AdminTable adminSchema={adminSchema} userData={userData} />
+         <AdminTable
+            activeTableKey={adminSchema[activeTab].key}
+            userData={userData}
+         />
       </div>
    );
 };

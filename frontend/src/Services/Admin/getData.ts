@@ -5,32 +5,42 @@ import { IGetOverviewProps } from "../../Hooks/Query/Admin/useGetData";
 export interface ISchemaColumn {
    column_name: string;
    data_type: string;
+   isShown?: boolean;
 }
 
-export interface ITableData {
+export interface IAdminMeta {
+   name: string;
+   key: string;
+   router: string;
+   editable: boolean;
+   total: number;
+   page: number;
+   limit: number;
+   totalPages: number;
+}
+
+export interface IAdminDataResponse {
    schema: ISchemaColumn[];
+
    preview: Record<string, any>[];
-   shown?: boolean;
+
+   meta: IAdminMeta;
 }
 
-export interface IAdminData {
-   [tableName: string]: ITableData;
-}
-
-export async function getOverview({
+export async function getData({
    password,
    pageParam,
    limit,
-   name,
-}: IGetOverviewProps): Promise<IAdminData> {
+   key,
+}: IGetOverviewProps): Promise<IAdminDataResponse> {
    try {
       if (!Boolean(password) || password.trim().length == 0) {
          throw new Error("Passwort is required");
       }
-      const response = await axios.get<IAdminData>(
-         import.meta.env.VITE_BACKEND_URL + "/admin/overview",
+      const response = await axios.get<IAdminDataResponse>(
+         import.meta.env.VITE_BACKEND_URL + "/admin/data",
          {
-            params: { name, page: pageParam, limit },
+            params: { key, page: pageParam, limit },
             headers: {
                "x-admin-secret": password,
             },
@@ -38,6 +48,10 @@ export async function getOverview({
       );
 
       const data = response.data;
+
+      if (response.status > 400 && response.status < 500) {
+         throw new Error("404");
+      }
 
       if (response.status > 300) {
          logError(data);

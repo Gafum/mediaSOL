@@ -18,7 +18,7 @@ export async function getSchema(password: string) {
             },
          }
       );
-      const data = await response.data;
+      const data = response.data;
 
       if (response.status > 400 && response.status < 500) {
          throw new Error("404");

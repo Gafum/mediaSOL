@@ -55,8 +55,8 @@ export async function getSchema(
       }
 
       res.status(200).json(
-         adminDataPanel().map(({ name, key, editable, router }) => {
-            return { name, key, editable, router };
+         adminDataPanel().map(({ name, key, router }) => {
+            return { name, key, router };
          })
       );
    } catch (err) {
