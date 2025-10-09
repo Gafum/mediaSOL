@@ -8,13 +8,13 @@ export interface IGetOverviewProps {
    limit?: number;
 }
 
-const ADMIN_LIMIT = 10;
+const ADMIN_LIMIT = 3;
 
 export function useAdminGetData({ password, key }: IGetOverviewProps) {
    const response = useInfiniteQuery({
       queryKey: ["admin", key, password],
       queryFn: ({ pageParam = 1 }) =>
-         AdminService.getData({ password, key, pageParam }),
+         AdminService.getData({ password, key, pageParam, limit: ADMIN_LIMIT }),
       getNextPageParam: (lastPage, allPages) => {
          if (lastPage.preview.length < ADMIN_LIMIT) return undefined;
          return allPages.length;
@@ -23,14 +23,10 @@ export function useAdminGetData({ password, key }: IGetOverviewProps) {
       enabled: !!password && !!key,
    });
 
-   const adminDataPreview = response.data?.pages[0].preview ?? [];
-   const adminDataSchema =
-      response.data?.pages[0].schema
-         .filter((col) => col.column_name !== "id")
-         .map((elem) => {
-            return { ...elem, isShown: true };
-         }) ?? [];
-   const adminDataMeta = response.data?.pages[0].meta ?? [];
+   const adminDataPreview =
+      response.data?.pages.flatMap((page) => page.preview) ?? [];
+   const adminDataSchema = response.data?.pages[0].schema ?? [];
+   const adminDataMeta = response.data?.pages[0].meta;
 
    return { adminDataPreview, adminDataSchema, adminDataMeta, ...response };
 }
