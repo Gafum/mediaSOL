@@ -24,7 +24,7 @@ export interface IAdminDataResponse {
 
    preview: Record<string, any>[];
 
-   meta: IAdminMeta;
+   meta?: IAdminMeta;
 }
 
 export async function getData({
