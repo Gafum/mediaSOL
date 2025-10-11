@@ -18,6 +18,9 @@ itemsRouter.post("/createDB", contactLimiter, ItemsService.createDB);
 // get all Types
 itemsRouter.get("/types", ItemsService.getTypes);
 
+//Delete one type
+itemsRouter.delete("/types/:id", ItemsService.deleteType);
+
 /*
       Items
 ======================================================>
@@ -37,5 +40,5 @@ itemsRouter.post("/", ItemsService.createOne);
 // update Items Data
 itemsRouter.put("/:id", ItemsService.updateOne);
 
-//Delete review
+//Delete one item
 itemsRouter.delete("/:id", ItemsService.deleteOne);

@@ -6,6 +6,8 @@ import { getAll } from "./Get/getAll";
 import { updateOne } from "./Update/updateOne";
 import { deleteOne } from "./Delete/deleteOne";
 import { getTypes } from "./Types/getTypes";
+import { deleteType } from "./Types/deleteType";
+import { createType } from "./Types/createType";
 
 export class ItemsService {
    static createDB: typeof createDB = createDB;
@@ -22,4 +24,6 @@ export class ItemsService {
 
    // Types
    static getTypes: typeof getTypes = getTypes;
+   static deleteType: typeof deleteType = deleteType;
+   static createType: typeof createType = createType;
 }

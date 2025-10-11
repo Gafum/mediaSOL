@@ -27,6 +27,7 @@ export const AdminPageSettings = ({
    };
 
    if (schemaState.length < 2) {
+      //Ther is only one coloum in the table
       return <></>;
    }
 

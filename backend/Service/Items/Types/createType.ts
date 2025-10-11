@@ -14,7 +14,7 @@ const createItemTypeSchema = z.object({
       .max(50, "Type name is too long"),
 });
 
-export async function createOneItemType(
+export async function createType(
    req: Request,
    res: Response,
    next: NextFunction

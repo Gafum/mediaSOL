@@ -12,7 +12,7 @@ export const adminDataPanel = () => {
          key: "items",
          router: routersPath.items,
          editable: true,
-         orderBy: { createdAt: "desc" },
+         orderBy: { updatedAt: "desc" },
          database: prisma.item,
       },
       {

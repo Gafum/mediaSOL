@@ -7,3 +7,4 @@ export const emailRouter = Router();
 // Contact
 emailRouter.get("/contact", EmailService.getContactForms);
 emailRouter.post("/contact", contactLimiter, EmailService.sendContact);
+emailRouter.delete("/:id", EmailService.deleteContactForm);
