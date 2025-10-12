@@ -20,11 +20,7 @@ export async function createDB(
       }
 
       const itemType = await prisma.itemType.createMany({
-         data: [
-            ...ItemsTypesArray.map((typeName) => {
-               return { name: typeName };
-            }),
-         ],
+         data: ItemsTypesArray,
       });
 
       const items = await prisma.item.createMany({

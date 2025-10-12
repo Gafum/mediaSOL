@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { AdminTable } from "./AdminTable";
-import { IAdminForm } from "./Admin";
-import { useGetSchema } from "../../Hooks/Query/Admin/useGetSchema";
-import { SimpleError } from "../../Components/Errors/SimpleError";
-import { LoadingBlock } from "../../Components/LoadingBlock/LoadingBlock";
+import { IAdminForm } from "../Admin";
+import { useGetSchema } from "../../../Hooks/Query/Admin/useGetSchema";
+import { SimpleError } from "../../../Components/Errors/SimpleError";
+import { LoadingBlock } from "../../../Components/LoadingBlock/LoadingBlock";
 
 interface IAdminMenuProps {
    userData: IAdminForm;

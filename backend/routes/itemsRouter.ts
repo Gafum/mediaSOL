@@ -5,13 +5,6 @@ import { contactLimiter } from "../middleware/ContactLimiter";
 export const itemsRouter = Router();
 
 /*
-      ALL DATA 
-======================================================>
-*/
-// create one item
-itemsRouter.post("/createDB", contactLimiter, ItemsService.createDB);
-
-/*
       Types
 ======================================================>
 */

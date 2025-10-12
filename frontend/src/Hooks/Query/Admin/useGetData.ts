@@ -8,7 +8,7 @@ export interface IGetOverviewProps {
    limit?: number;
 }
 
-const ADMIN_LIMIT = 3;
+const ADMIN_LIMIT = 10;
 
 export function useAdminGetData({ password, key }: IGetOverviewProps) {
    const response = useInfiniteQuery({

@@ -19,7 +19,7 @@ export async function deleteType(
          return next(ApiError.badRequest("Bad Request"));
       }
 
-      const { name } = req.params;
+      const { id: name } = req.params;
 
       if (!name) {
          return next(ApiError.badRequest("Bad Request"));

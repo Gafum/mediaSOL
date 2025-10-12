@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AdminAuth } from "./AdminAuth";
-import { AdminMenu } from "./AdminMenu";
+import { AdminAuth } from "./MyComponents/AdminAuth";
+import { AdminMenu } from "./MyComponents/AdminMenu";
 
 export interface IAdminForm {
    name: string;

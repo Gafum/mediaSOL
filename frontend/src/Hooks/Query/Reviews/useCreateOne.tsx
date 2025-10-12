@@ -10,7 +10,7 @@ export function useCreateOne(itemId: string | undefined) {
          ReviewsService.createOne(reviewData),
       onSettled: () => {
          if (!itemId) {
-            return console.log("item is not found");
+            return console.log("Item is not found!");
          }
          queryClient.invalidateQueries({ queryKey: ["items", itemId] });
       },

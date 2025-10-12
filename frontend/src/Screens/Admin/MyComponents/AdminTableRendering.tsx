@@ -1,17 +1,24 @@
-import { formatDate } from "../../Function/fotmatDate";
-import { splitWordsSmart } from "../../Function/splitWords";
-import { IAdminDataResponse } from "../../Services/Admin/getData";
-import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
+import { UseMutateFunction } from "@tanstack/react-query";
+import { formatDate } from "../../../Function/fotmatDate";
+import { splitWordsSmart } from "../../../Function/splitWords";
+import { IAdminDataResponse } from "../../../Services/Admin/getData";
+import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 import {
    StandartDialog,
    useStandartDialog,
-} from "../../UI/CustomDialog/Standart/StandartDialog";
+} from "../../../UI/CustomDialog/Standart/StandartDialog";
+import { IDeleteDataProps } from "../../../Services/Admin/deleteData";
+
+interface IAdminTableRenderingProps extends IAdminDataResponse {
+   deleteElement: UseMutateFunction<any, Error, IDeleteDataProps, unknown>;
+}
 
 export const AdminTableRendering = ({
    preview: adminDataPreview,
    schema: adminSchemaState,
    meta: adminDataMeta,
-}: IAdminDataResponse): JSX.Element => {
+   deleteElement,
+}: IAdminTableRenderingProps): JSX.Element => {
    const { modalData, setModalData } = useStandartDialog();
 
    function checkAllowance(callback: () => void) {
@@ -30,7 +37,11 @@ export const AdminTableRendering = ({
       checkAllowance(() => {
          setModalData({
             isOpen: true,
-            onOkeyClick: () => console.log(`Delete ${id} from ${table}`),
+            onOkeyClick: () =>
+               deleteElement({
+                  route: adminDataMeta?.router,
+                  elementId: id,
+               }),
             content: `Delete ${id} from ${table}`,
             headlineText: "Soll ich das löschen?!",
          });
@@ -92,12 +103,16 @@ export const AdminTableRendering = ({
                            <CustomBtn
                               btnText={"Edit"}
                               bgColor="primaryBlue"
-                              onClick={() => handleEdit("tableName", row)}
+                              onClick={() =>
+                                 handleEdit(adminDataMeta?.name ?? "", row)
+                              }
                            />
                            <CustomBtn
                               btnText={"Delete"}
                               bgColor="primaryPink"
-                              onClick={() => handleDelete("tableName", row.id)}
+                              onClick={() =>
+                                 handleDelete(adminDataMeta?.name ?? "", row.id)
+                              }
                            />
                         </div>
                      </td>

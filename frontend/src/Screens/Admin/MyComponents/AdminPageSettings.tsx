@@ -1,4 +1,4 @@
-import { splitWordsSmart } from "../../Function/splitWords";
+import { splitWordsSmart } from "../../../Function/splitWords";
 import { ISchemaState } from "./AdminTable";
 
 interface IAdminPageSettings {

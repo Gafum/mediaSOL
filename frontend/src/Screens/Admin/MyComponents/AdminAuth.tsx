@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 import { useEffect } from "react";
-import { IAdminForm } from "./Admin";
+import { IAdminForm } from "../Admin";
+import { CustomBtn } from "../../../UI/CustomBtn/CustomBtn";
 
 interface IAdminAuthProps {
    userData: IAdminForm;
