@@ -60,6 +60,8 @@ export const AdminTableRendering = ({
       });
    };
 
+   console.log(adminDataMeta?.additive);
+
    return (
       <>
          <table className="min-w-full text-sm border border-gray-300 table-auto rounded-md border-collapse">
@@ -83,30 +85,34 @@ export const AdminTableRendering = ({
             </thead>
 
             <tbody>
-               <tr className="p-2 h-full border align-top w-full">
-                  <td
-                     colSpan={100000}
-                     className="px-2 py-1 border align-top whitespace-pre-wrap break-words max-w-md w-full bg-red-50"
-                  >
-                     <button
-                        className="w-full bg-transparent hover:opacity-70 text-lg"
-                        onClick={addNewElement}
+               {adminDataMeta?.additive && (
+                  <tr className="p-2 h-full border align-top w-full">
+                     <td
+                        colSpan={100000}
+                        className="px-2 py-1 border align-top whitespace-pre-wrap break-words max-w-md w-full bg-red-50"
                      >
-                        Add new +
-                     </button>
-                  </td>
-               </tr>
+                        <button
+                           className="w-full bg-transparent hover:opacity-70 text-lg"
+                           onClick={addNewElement}
+                        >
+                           Add new +
+                        </button>
+                     </td>
+                  </tr>
+               )}
                {adminDataPreview.map((row, rowIndex) => (
                   <tr key={rowIndex} className="even:bg-gray-100 border">
                      <td className="p-2 h-full border align-top">
                         <div className="h-full w-full flex flex-col gap-1">
-                           <CustomBtn
-                              btnText={"Edit"}
-                              bgColor="primaryBlue"
-                              onClick={() =>
-                                 handleEdit(adminDataMeta?.name ?? "", row)
-                              }
-                           />
+                           {adminDataMeta?.additive && (
+                              <CustomBtn
+                                 btnText={"Edit"}
+                                 bgColor="primaryBlue"
+                                 onClick={() =>
+                                    handleEdit(adminDataMeta?.name ?? "", row)
+                                 }
+                              />
+                           )}
                            <CustomBtn
                               btnText={"Delete"}
                               bgColor="primaryPink"

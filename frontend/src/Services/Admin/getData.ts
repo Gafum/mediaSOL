@@ -13,6 +13,7 @@ export interface IAdminMeta {
    key: string;
    router: string;
    editable: boolean;
+   additive: boolean;
    total: number;
    page: number;
    limit: number;

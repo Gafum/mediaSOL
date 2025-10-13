@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { ApiError } from "../../../error/ApiError";
-import { adminDataPanel } from "./getSchema";
+import { adminDataPanel } from "../Data/adminDataPanel";
 
 type PrismaModel = {
    findMany: (args?: any) => Promise<any[]>;
@@ -61,6 +61,7 @@ export async function getAdminSchemaWithData(
             key: panel.key,
             router: panel.router,
             editable: panel.editable,
+            additive: panel.additive,
             total,
             page,
             limit,

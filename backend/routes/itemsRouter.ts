@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { ItemsService } from "../Service/Items/itemsService";
-import { contactLimiter } from "../middleware/ContactLimiter";
 
 export const itemsRouter = Router();
 
@@ -13,6 +12,9 @@ itemsRouter.get("/types", ItemsService.getTypes);
 
 //Delete one type
 itemsRouter.delete("/types/:id", ItemsService.deleteType);
+
+// create One Type
+itemsRouter.post("/types", ItemsService.createType);
 
 /*
       Items

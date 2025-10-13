@@ -1,46 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { ApiError } from "../../../error/ApiError";
-import { routersPath } from "../../../routes";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
-
-export const adminDataPanel = () => {
-   return [
-      {
-         name: "Items",
-         key: "items",
-         router: routersPath.items,
-         editable: true,
-         orderBy: { updatedAt: "desc" },
-         database: prisma.item,
-      },
-      {
-         name: "Types",
-         key: "itemTypes",
-         router: routersPath.types,
-         editable: true,
-         orderBy: { name: "asc" },
-         database: prisma.itemType,
-      },
-      {
-         name: "Reviews",
-         key: "reviews",
-         router: routersPath.reviews,
-         editable: false,
-         orderBy: { createdAt: "desc" },
-         database: prisma.review,
-      },
-      {
-         name: "Emails",
-         key: "contactForms",
-         router: routersPath.emails,
-         editable: false,
-         orderBy: { createdAt: "desc" },
-         database: prisma.contactForm,
-      },
-   ];
-};
+import { adminDataPanel } from "../Data/adminDataPanel";
 
 export async function getSchema(
    req: Request,

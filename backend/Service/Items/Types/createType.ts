@@ -39,7 +39,7 @@ export async function createType(
          data: { name: sanitizeHtml(name.toString().trim()) },
       });
 
-      return res.status(201).json(newType);
+      res.status(201).json(newType);
    } catch (error) {
       if ((error as any)?.code === "P2002") {
          // P2002: Unique constraint failed
