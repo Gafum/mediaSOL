@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AdminAuth } from "./MyComponents/AdminAuth";
 import { AdminMenu } from "./MyComponents/AdminMenu";
 
@@ -16,12 +16,17 @@ export const Admin = (): JSX.Element => {
       isDataSend: false,
    });
 
+   useEffect(() => {
+      let adminData: string | null = sessionStorage.getItem("adminData");
+      if (adminData) {
+         if (typeof JSON.parse(adminData) == typeof userData) {
+            setUserData(JSON.parse(adminData));
+         }
+      }
+   }, []);
+
    if (userData.isDataSend) {
-      return (
-         <div>
-            <AdminMenu userData={userData} setUserData={setUserData} />
-         </div>
-      );
+      return <AdminMenu userData={userData} setUserData={setUserData} />;
    }
 
    return <AdminAuth userData={userData} setUserData={setUserData} />;

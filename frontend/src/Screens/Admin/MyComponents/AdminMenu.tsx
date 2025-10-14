@@ -32,8 +32,18 @@ export const AdminMenu = ({
                name: "false",
             },
          });
+         sessionStorage.removeItem("adminData");
+      } else {
+         if (
+            !isLoading &&
+            !!adminSchema &&
+            !error &&
+            !sessionStorage.getItem("adminData")
+         ) {
+            sessionStorage.setItem("adminData", JSON.stringify(userData));
+         }
       }
-   }, [error]);
+   }, [isLoading, error, adminSchema]);
 
    if (isLoading) {
       return <LoadingBlock />;

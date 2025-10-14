@@ -60,8 +60,6 @@ export const AdminTableRendering = ({
       });
    };
 
-   console.log(adminDataMeta?.additive);
-
    return (
       <>
          <table className="min-w-full text-sm border border-gray-300 table-auto rounded-md border-collapse">
