@@ -29,7 +29,7 @@ export async function getOne(req: Request, res: Response, next: NextFunction) {
       if (req?.query?.withSimilary) {
          similaryGadgets = await prisma.item.findMany({
             where: {
-               typeName: elementData.typeName,
+               idItemType: elementData.idItemType,
                NOT: {
                   id: elementData.id,
                },

@@ -11,7 +11,7 @@ model ItemType {
    id   String @id @default(cuid())
    name String @unique
 
-   Item Item[]
+   items Item[]
 }
 
 model Item {
@@ -21,11 +21,13 @@ model Item {
    name         String
    price        Float
    description  String
-   typeName     String
-   type         ItemType @relation(fields: [typeName], references: [name])
+   idItemType   String
+   type         ItemType @relation(fields: [idItemType], references: [id])
    commentsList Review[]
    img          String?
    action       Int?
+
+   @@map("Item")
 }
 
 model Review {

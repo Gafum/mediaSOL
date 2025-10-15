@@ -17,7 +17,7 @@ export const adminDataPanel = (): IAdminDataPanel[] => {
    return [
       {
          name: "Items",
-         key: "items",
+         key: "Item",
          router: routersPath.items,
          editable: true,
          orderBy: { updatedAt: "desc" },
@@ -26,7 +26,7 @@ export const adminDataPanel = (): IAdminDataPanel[] => {
       },
       {
          name: "Types",
-         key: "itemTypes",
+         key: "ItemType",
          router: routersPath.types,
          editable: true,
          orderBy: { name: "asc" },
@@ -35,7 +35,7 @@ export const adminDataPanel = (): IAdminDataPanel[] => {
       },
       {
          name: "Reviews",
-         key: "reviews",
+         key: "Review",
          router: routersPath.reviews,
          editable: false,
          orderBy: { createdAt: "desc" },
@@ -44,7 +44,7 @@ export const adminDataPanel = (): IAdminDataPanel[] => {
       },
       {
          name: "Emails",
-         key: "contactForms",
+         key: "ContactForm",
          router: routersPath.emails,
          editable: false,
          orderBy: { createdAt: "desc" },

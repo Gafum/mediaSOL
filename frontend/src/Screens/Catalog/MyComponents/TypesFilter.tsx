@@ -21,7 +21,10 @@ export const TypesFilter = ({
    if (typesError) {
       return <p className="text-red-500">Error loading types</p>;
    }
-   let typesList = ["", "action"];
+   let typesList = [
+      { name: "Alle", id: "" },
+      { name: "Angebote", id: "action" },
+   ];
    if (!!types) {
       typesList = [...typesList, ...types];
    }
@@ -29,19 +32,19 @@ export const TypesFilter = ({
    return (
       <div className="overflow-x-auto mb-3">
          <div className="flex gap-2 sm:gap-3 w-max sm:w-auto pb-2">
-            {typesList?.map((type: string) => (
+            {typesList?.map((type) => (
                <button
-                  key={type}
+                  key={type.id}
                   className={`text-sm px-3 py-0.5 sm:text-base sm:px-4 sm:py-1 md:px-4 md:py-1.5 rounded-full text-nowrap whitespace-nowrap ${
-                     selectedType === type
+                     selectedType === type.id
                         ? "bg-primaryBlue text-white"
-                        : type == "action"
+                        : type.id == "action"
                           ? "bg-primaryPink text-white"
                           : "bg-primaryLightGrey"
                   }`}
-                  onClick={() => setSelectedType(type)}
+                  onClick={() => setSelectedType(type.id)}
                >
-                  {!type ? "Alle" : type == "action" ? "Angebote" : type}
+                  {type.name}
                </button>
             ))}
          </div>

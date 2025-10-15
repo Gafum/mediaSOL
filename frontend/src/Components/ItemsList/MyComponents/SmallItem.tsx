@@ -15,7 +15,7 @@ interface SmallItemProps extends IGadget {
 export const SmallItem = ({
    id,
    name,
-   typeName: mytype,
+   type: mytype,
    price,
    action,
    img,
@@ -74,7 +74,7 @@ export const SmallItem = ({
             <h4 className="text-sm sm500:text-base font-medium sm500:font-semibold sm:font-bold overflow-clip text-ellipsis whitespace-nowrap">
                {name}
             </h4>
-            <h6 className="text-xs sm500:text-sm">{mytype}</h6>
+            <h6 className="text-xs sm500:text-sm">{mytype?.name}</h6>
             <h4 className="font-semibold text-sm sm500:text-base mt-1 max-h-[1.25rem] overflow-hidden text-clip">
                <PriceShower
                   price={price}

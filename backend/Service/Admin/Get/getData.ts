@@ -1,10 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import { ApiError } from "../../../error/ApiError";
 import { adminDataPanel } from "../Data/adminDataPanel";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 type PrismaModel = {
    findMany: (args?: any) => Promise<any[]>;
    count?: (args?: any) => Promise<number>;
+   $queryRaw: any;
 };
 
 export async function getAdminSchemaWithData(
@@ -43,18 +47,26 @@ export async function getAdminSchemaWithData(
          db.count ? db.count() : Promise.resolve(0),
       ]);
 
-      const columns =
-         preview.length > 0
-            ? Object.keys(preview[0]).map((col) => ({
-                 column_name: col,
-                 data_type: typeof (preview[0] as any)[col],
-              }))
-            : [];
+      const columns = await prisma.$queryRaw<
+         { column_name: string; data_type: string }[]
+      >`
+   SELECT 
+      column_name,
+      data_type
+   FROM information_schema.columns
+   WHERE LOWER(table_name) = LOWER(${panel.key}) AND table_schema = 'public'
+   ORDER BY table_name, ordinal_position
+`;
 
       const totalPages = total > 0 ? Math.ceil(total / limit) : 1;
 
       const result = {
-         schema: columns,
+         schema: columns.map(
+            (col: { column_name: string; data_type: string }) => ({
+               column_name: col.column_name,
+               data_type: col.data_type,
+            })
+         ),
          preview,
          meta: {
             name: panel.name,

@@ -34,7 +34,8 @@ export const ItemsList = ({
                description=""
                price={0}
                id="tester"
-               typeName="PC"
+               type={{ name: "PC", id: "computer" }}
+               idItemType="computer"
                isOnFavorites={false}
                toggleToFavorites={() => {}}
             />

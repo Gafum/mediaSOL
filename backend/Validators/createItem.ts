@@ -22,7 +22,7 @@ export const createItemSchema = z.object({
       .trim()
       .url({ message: "Image must be a valid URL" })
       .optional(),
-   typeName: z
+   idItemType: z
       .string({ message: "Type is required" })
       .trim()
       .min(1, "Type cannot be empty"),
@@ -45,7 +45,7 @@ export function validateAndSanitizeItem(
       throw ApiError.badRequest(messages);
    }
 
-   const { name, price, description, img, typeName, action } = parsed.data;
+   const { name, price, description, img, idItemType, action } = parsed.data;
 
    return {
       name: sanitizeHtml(name, { allowedTags: [], allowedAttributes: {} }),
@@ -68,7 +68,7 @@ export function validateAndSanitizeItem(
       img: img
          ? sanitizeHtml(img, { allowedTags: [], allowedAttributes: {} })
          : null,
-      typeName: sanitizeHtml(typeName, {
+      idItemType: sanitizeHtml(idItemType, {
          allowedTags: [],
          allowedAttributes: {},
       }),

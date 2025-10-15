@@ -11,13 +11,10 @@ export async function getTypes(
 ) {
    try {
       const categories = await prisma.itemType.findMany({
-         select: { name: true },
          orderBy: { name: "asc" },
       });
 
-      const namesArray = categories.map((cat) => cat.name);
-      
-      res.status(200).json(namesArray);
+      res.status(200).json(categories);
    } catch (error) {
       console.log(error);
       return next(ApiError.internal("Error on server"));

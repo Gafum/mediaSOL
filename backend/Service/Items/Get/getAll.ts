@@ -28,7 +28,7 @@ export async function getAll(req: Request, res: Response, next: NextFunction) {
          if (type === "action") {
             where.AND = [{ action: { not: 0 } }, { action: { not: null } }];
          } else {
-            where.typeName = {
+            where.idItemType = {
                equals: type.toString(),
                mode: "insensitive",
             };
@@ -56,6 +56,7 @@ export async function getAll(req: Request, res: Response, next: NextFunction) {
          where,
          skip: pageNum * limitNum,
          take: limitNum,
+         include: { type: true },
       });
 
       res.status(200).json({

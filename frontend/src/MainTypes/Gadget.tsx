@@ -5,7 +5,8 @@ export interface IGadget {
    name: string;
    price: number;
    description: string;
-   typeName: string;
+   idItemType: string;
+   type?: { name: string; id: string };
    img?: string;
    commentsList?: IReviews[];
    action?: number;

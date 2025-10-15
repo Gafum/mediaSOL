@@ -3,9 +3,9 @@ import { IErrorMessage, logError } from "../../MainTypes/ErrorMessage";
 
 export async function getTypes() {
    try {
-      const response = await axios.get<string[] | IErrorMessage>(
-         import.meta.env.VITE_BACKEND_URL + `/items/types`
-      );
+      const response = await axios.get<
+         { name: string; id: string } | IErrorMessage
+      >(import.meta.env.VITE_BACKEND_URL + `/items/types`);
       const data = response.data;
 
       if (response.status > 300) {

@@ -61,7 +61,7 @@ export async function updateOne(
 
       if (error.code === "P2003") {
          return next(
-            ApiError.badRequest("Invalid typeName: related type not found")
+            ApiError.badRequest("Invalid idItemType: related type not found")
          );
       }
 

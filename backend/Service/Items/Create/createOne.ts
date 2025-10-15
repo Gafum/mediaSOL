@@ -35,7 +35,7 @@ export async function createOne(
 
       if ((error as unknown as { code: string }).code === "P2003") {
          // Foreign key constraint failed
-         return next(ApiError.badRequest("Invalid typeName: type not found"));
+         return next(ApiError.badRequest("Invalid idItemType: type not found"));
       }
       console.log(error);
       return next(ApiError.internal("Error on server"));
