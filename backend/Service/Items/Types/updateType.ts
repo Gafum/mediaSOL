@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import { ApiError } from "../../../error/ApiError";
+import { createTypeSchema } from "../../../Validators/createType";
+import { sanitizeHtmlInput } from "../../../functions/sanitizeHtmlInput";
+import { IItemType } from "../../../Data/ItemsTypesArray";
 
 const prisma = new PrismaClient();
 
@@ -22,11 +25,21 @@ export async function updateType(
    const typeId = req.params.id;
 
    if (!typeId || typeof typeId !== "string") {
-      return next(ApiError.badRequest("Missing or invalid item ID"));
+      return next(ApiError.badRequest("Missing or invalid type ID"));
    }
 
    try {
-      const cleanData = req.body;
+      const updateItemSchema = createTypeSchema.partial();
+
+      const parsed = updateItemSchema.safeParse(req.body);
+
+      if (!parsed.success) {
+         const firstError =
+            parsed.error.errors[0]?.message || "Validation error";
+         return next(ApiError.badRequest(firstError));
+      }
+
+      const cleanData: Partial<IItemType> = sanitizeHtmlInput(parsed.data);
 
       const updatedType = await prisma.itemType.update({
          where: { id: typeId },

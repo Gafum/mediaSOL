@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import { ApiError } from "../../../error/ApiError";
 import { createItemSchema } from "../../../Validators/createItem";
 import { sanitizeHtmlInput } from "../../../functions/sanitizeHtmlInput";
+import { IGadget } from "../../../Data/items";
 
 const prisma = new PrismaClient();
 
@@ -38,7 +39,7 @@ export async function updateOne(
          return next(ApiError.badRequest(firstError));
       }
 
-      const cleanData = sanitizeHtmlInput(parsed.data);
+      const cleanData: Partial<IGadget> = sanitizeHtmlInput(parsed.data);
 
       if ("action" in cleanData && cleanData.action === 0) {
          cleanData.action = null;

@@ -7,6 +7,7 @@ import { deleteOne } from "./Delete/deleteOne";
 import { getTypes } from "./Types/getTypes";
 import { deleteType } from "./Types/deleteType";
 import { createType } from "./Types/createType";
+import { updateType } from "./Types/updateType";
 
 export class ItemsService {
    static createOne: typeof createOne = createOne;
@@ -23,4 +24,5 @@ export class ItemsService {
    static getTypes: typeof getTypes = getTypes;
    static deleteType: typeof deleteType = deleteType;
    static createType: typeof createType = createType;
+   static updateType: typeof updateType = updateType;
 }
