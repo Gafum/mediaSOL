@@ -1,7 +1,7 @@
 import z from "zod";
 import sanitizeHtml from "sanitize-html";
-import { Item } from "@prisma/client";
 import { ApiError } from "../error/ApiError";
+import { IGadget } from "../Data/items";
 
 export const createItemSchema = z.object({
    name: z
@@ -37,7 +37,7 @@ export const createItemSchema = z.object({
 
 export function validateAndSanitizeItem(
    input: unknown
-): Omit<Item, "id" | "createdAt" | "updatedAt"> {
+): Omit<IGadget, "id" | "createdAt" | "updatedAt"> {
    const parsed = createItemSchema.safeParse(input);
 
    if (!parsed.success) {

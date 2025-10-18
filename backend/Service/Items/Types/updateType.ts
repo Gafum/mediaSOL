@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import { ApiError } from "../../../error/ApiError";
-import { createTypeSchema } from "../../../Validators/createType";
+import { createItemTypeSchema } from "../../../Validators/createType";
 import { sanitizeHtmlInput } from "../../../functions/sanitizeHtmlInput";
 import { IItemType } from "../../../Data/ItemsTypesArray";
 
@@ -29,7 +29,7 @@ export async function updateType(
    }
 
    try {
-      const updateItemSchema = createTypeSchema.partial();
+      const updateItemSchema = createItemTypeSchema.partial();
 
       const parsed = updateItemSchema.safeParse(req.body);
 

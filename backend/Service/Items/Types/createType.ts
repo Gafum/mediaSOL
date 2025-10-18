@@ -1,18 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import { ApiError } from "../../../error/ApiError";
-import z from "zod";
 import sanitizeHtml from "sanitize-html";
+import { validateAndSanitizeItemType } from "../../../Validators/createType";
 
 const prisma = new PrismaClient();
-
-const createItemTypeSchema = z.object({
-   name: z
-      .string()
-      .trim()
-      .min(1, "Type name is required")
-      .max(50, "Type name is too long"),
-});
 
 export async function createType(
    req: Request,
@@ -26,17 +18,10 @@ export async function createType(
          return next(ApiError.forbidden("Access denied"));
       }
 
-      const parsed = createItemTypeSchema.safeParse(req.body);
-
-      if (!parsed.success) {
-         const messages = parsed.error.errors[0].message ?? "Validation failed";
-         return next(ApiError.badRequest(messages));
-      }
-
-      const { name } = parsed.data;
+      const cleanData = validateAndSanitizeItemType(req.body);
 
       const newType = await prisma.itemType.create({
-         data: { name: sanitizeHtml(name.toString().trim()) },
+         data: cleanData,
       });
 
       res.status(201).json(newType);

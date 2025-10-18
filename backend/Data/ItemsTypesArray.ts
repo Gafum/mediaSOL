@@ -1,7 +1,6 @@
-export interface IItemType {
-   id: string;
-   name: string;
-}
+import { ItemType } from "@prisma/client";
+
+export type IItemType = ItemType;
 
 export const ItemsTypesArray: IItemType[] = [
    { id: "computer", name: "Computer" }, // 0

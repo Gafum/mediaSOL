@@ -1,6 +1,7 @@
 import z from "zod";
 import sanitizeHtml from "sanitize-html";
 import { ApiError } from "../error/ApiError";
+import { IReviews } from "../Data/ReviewsList";
 
 const createReviewSchema = z.object({
    stars: z.number({ message: "Give the feadbeak" }).int().min(0).max(4),
@@ -17,7 +18,9 @@ const createReviewSchema = z.object({
    itemId: z.string({ message: "Bad request" }).trim().min(1),
 });
 
-export function validateAndSanitizeReview(input: unknown) {
+export function validateAndSanitizeReview(
+   input: unknown
+): Omit<IReviews, "id"> {
    const parsed = createReviewSchema.safeParse(input);
 
    if (!parsed.success) {

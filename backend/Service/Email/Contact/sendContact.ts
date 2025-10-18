@@ -1,11 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { contactEmail } from "../../../utils/mailer";
 import { ApiError } from "../../../error/ApiError";
-import { PrismaClient } from "@prisma/client";
-import {
-   validateAndSanitizeContact,
-   IEmailContact,
-} from "../../../Validators/emailContact";
+import { ContactForm, PrismaClient } from "@prisma/client";
+import { validateAndSanitizeContact } from "../../../Validators/emailContact";
+
+export type IEmailContact = Omit<ContactForm, "id" | "createdAt">;
 
 const prisma = new PrismaClient();
 

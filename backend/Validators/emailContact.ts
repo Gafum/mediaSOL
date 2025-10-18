@@ -1,6 +1,7 @@
 import z from "zod";
 import sanitizeHtml from "sanitize-html";
 import { ApiError } from "../error/ApiError";
+import { IEmailContact } from "../Service/Email/Contact/sendContact";
 
 const contactSchema = z.object({
    name: z.string().trim().min(1, { message: "Name is required" }).max(100),
@@ -33,10 +34,4 @@ export function validateAndSanitizeContact(input: unknown): IEmailContact {
          allowedAttributes: {},
       }),
    };
-}
-
-export interface IEmailContact {
-   name: string;
-   email: string;
-   message: string;
 }
