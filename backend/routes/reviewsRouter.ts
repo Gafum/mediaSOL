@@ -16,3 +16,6 @@ reviewsRouter.post("/", contactLimiter, ReviewService.createOne);
 
 //Delete review
 reviewsRouter.delete("/:id", ReviewService.deleteOne);
+
+//Update review
+reviewsRouter.put("/:id", ReviewService.updateOne);

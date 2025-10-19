@@ -29,7 +29,7 @@ export async function updateOne(
    }
 
    try {
-      const updateItemSchema = createItemSchema.partial();
+      const updateItemSchema = createItemSchema.partial(); // All is optionall because it is not important to have all
 
       const parsed = updateItemSchema.safeParse(req.body);
 

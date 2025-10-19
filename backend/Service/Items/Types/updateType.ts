@@ -29,9 +29,7 @@ export async function updateType(
    }
 
    try {
-      const updateItemSchema = createItemTypeSchema.partial();
-
-      const parsed = updateItemSchema.safeParse(req.body);
+      const parsed = createItemTypeSchema.safeParse(req.body);
 
       if (!parsed.success) {
          const firstError =

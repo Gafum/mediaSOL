@@ -17,7 +17,7 @@ itemsRouter.delete("/types/:id", ItemsService.deleteType);
 itemsRouter.post("/types", ItemsService.createType);
 
 // update Type Data
-itemsRouter.put("/types:id", ItemsService.updateType);
+itemsRouter.put("/types/:id", ItemsService.updateType);
 
 /*
       Items

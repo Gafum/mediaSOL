@@ -3,8 +3,12 @@ import sanitizeHtml from "sanitize-html";
 import { ApiError } from "../error/ApiError";
 import { IReviews } from "../Data/ReviewsList";
 
-const createReviewSchema = z.object({
-   stars: z.number({ message: "Give the feadbeak" }).int().min(0).max(4),
+export const createReviewSchema = z.object({
+   stars: z
+      .number({ message: "Give the feadbeak" })
+      .int()
+      .min(0, { message: "Bad request" })
+      .max(4, { message: "A lot of stars" }),
    userName: z
       .string({ message: "Name is required" })
       .trim()
