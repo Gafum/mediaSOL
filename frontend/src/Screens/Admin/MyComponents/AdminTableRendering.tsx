@@ -8,6 +8,8 @@ import {
    useStandartDialog,
 } from "../../../UI/CustomDialog/Standart/StandartDialog";
 import { IDeleteDataProps } from "../../../Services/Admin/deleteData";
+import { useState } from "react";
+import { AdminCreateForm } from "./AdminCreateForm/AdminCreateForm";
 
 interface IAdminTableRenderingProps extends IAdminDataResponse {
    deleteElement: UseMutateFunction<any, Error, IDeleteDataProps, unknown>;
@@ -20,6 +22,8 @@ export const AdminTableRendering = ({
    deleteElement,
 }: IAdminTableRenderingProps): JSX.Element => {
    const { modalData, setModalData } = useStandartDialog();
+
+   const [isEditFormVisible, setIsEditFormVisible] = useState<boolean>(false);
 
    function checkAllowance(callback: () => void) {
       if (!adminDataMeta?.editable) {
@@ -56,12 +60,19 @@ export const AdminTableRendering = ({
 
    const addNewElement = () => {
       checkAllowance(() => {
-         console.log(`adding`);
+         setIsEditFormVisible(true);
       });
    };
 
    return (
       <>
+         {isEditFormVisible && (
+            <AdminCreateForm
+               adminDataSchema={adminSchemaState}
+               submitCallback={() => console.log("submit")}
+               setIsEditFormVisible={setIsEditFormVisible}
+            />
+         )}
          <table className="min-w-full text-sm border border-gray-300 table-auto rounded-md border-collapse">
             <thead className="bg-gray-100">
                <tr className="border">
