@@ -58,8 +58,6 @@ export const AdminTable = ({
    if (isLoading) return <LoadingBlock />;
    if (error) return <SimpleError />;
 
-   
-
    return (
       <div className="mt-3">
          <AdminPageSettings

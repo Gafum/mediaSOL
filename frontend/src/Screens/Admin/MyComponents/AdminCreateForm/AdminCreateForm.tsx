@@ -1,10 +1,11 @@
 import { splitWordsSmart } from "../../../../Function/splitWords";
 import { ISchemaColumn } from "../../../../Services/Admin/getData";
 import { CustomBtn } from "../../../../UI/CustomBtn/CustomBtn";
+import { useAdminCreateForm } from "./useAdminCreateForm";
 
 interface IAdminCreateFormProps {
    adminDataSchema: ISchemaColumn[];
-   submitCallback: () => void;
+   submitCallback: (data: Record<string, any>) => void;
    setIsEditFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -13,81 +14,79 @@ export const AdminCreateForm = ({
    submitCallback,
    setIsEditFormVisible,
 }: IAdminCreateFormProps): JSX.Element => {
-   // const {
-   //    onSubmit,
-   //    register,
-   //    handleSubmit,
-   //    errors,
-   //    isSubmitting,
-   //    control,
-   //    isPending,
-   // } = useReviewForm({ submitCallback });
+   const { register, onSubmit, errors, isSubmitting, isPending } =
+      useAdminCreateForm({ adminDataSchema, submitCallback });
+
+   const getInputType = (dataType: string): string => {
+      switch (true) {
+         case dataType.includes("int") ||
+            dataType.includes("float") ||
+            dataType.includes("double"):
+            return "number";
+         case dataType.includes("bool"):
+            return "checkbox";
+         case dataType.includes("date"):
+            return "date";
+         default:
+            return "text";
+      }
+   };
 
    return (
-      <form
-         onSubmit={(event) => {
-            event.preventDefault();
-            submitCallback();
-         }}
-      >
+      <form onSubmit={onSubmit} className="mb-6 py-3 border-y">
+         <h1 className="font-semibold text-md">Create New Element</h1>
          {adminDataSchema.map((e) => {
+            const inputType = getInputType(e.data_type);
             return (
                <div className="inputes" key={e.column_name}>
-                  <textarea
-                     style={{ resize: "vertical" }}
-                     required={true}
-                     autoComplete="off"
-                     rows={1}
-                     id={e.column_name + "_inputID"}
-                     // {...register("text", { required: "Geben Sie den Text" })}
-                  ></textarea>
-                  <label htmlFor={e.column_name + "_inputID"}>
+                  {inputType === "checkbox" ? (
+                     <input
+                        type="checkbox"
+                        id={e.column_name + "_inputID"}
+                        {...register(e.column_name)}
+                     />
+                  ) : (
+                     <input
+                        type={inputType}
+                        required
+                        autoComplete="off"
+                        id={e.column_name + "_inputID"}
+                        {...register(e.column_name, {
+                           required: `${splitWordsSmart(e.column_name)} is required`,
+                        })}
+                     />
+                  )}
+
+                  <label
+                     htmlFor={e.column_name + "_inputID"}
+                     className="capitalize"
+                  >
                      {splitWordsSmart(e.column_name)}
                   </label>
-                  {/* {errors.userName && (
-                  <p className="text-red-500 text-sm pl-1">
-                     {errors.userName.message}
-                  </p>
-               )} */}
+
+                  {errors[e.column_name] && (
+                     <p className="text-red-500 text-sm pl-1">
+                        {(errors[e.column_name]?.message as string) ||
+                           "Invalid input"}
+                     </p>
+                  )}
                </div>
             );
          })}
 
-         {/* 
-         {errors.stars && (
-            <p className="text-red-500 text-base font-bold pl-1">
-               {errors.stars.message}!!!
-            </p>
-         )} 
-         */}
-
          <CustomBtn
-            type="submit"
-            // disabled={isSubmitting}
+            type="button"
             className="w-full mt-2"
-            // btnText={
-            //    isPending
-            //       ? "Loading..."
-            //       : isSubmitting
-            //         ? "Wird gesendet..."
-            //         : "Nachricht senden"
-            // }
             onClick={() => setIsEditFormVisible(false)}
-            btnText={"Cancel"}
-         ></CustomBtn>
+            btnText="Cancel"
+            bgColor="primaryPink"
+         />
          <CustomBtn
             type="submit"
-            // disabled={isSubmitting}
             className="w-full mt-2"
-            // btnText={
-            //    isPending
-            //       ? "Loading..."
-            //       : isSubmitting
-            //         ? "Wird gesendet..."
-            //         : "Nachricht senden"
-            // }
-            btnText={"Add"}
-         ></CustomBtn>
+            disabled={isPending || isSubmitting}
+            btnText={isPending ? "Loading..." : "Add"}
+         />
       </form>
    );
 };

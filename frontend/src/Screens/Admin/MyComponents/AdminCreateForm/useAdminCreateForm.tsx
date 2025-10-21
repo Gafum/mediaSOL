@@ -1,101 +1,51 @@
-// import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { ISchemaColumn } from "../../../../Services/Admin/getData"; // приклад імпорту, зміни шлях під себе
 
-// interface IReviewFormData extends Omit<IReviews, "id" | "itemId"> {}
+interface UseAdminFormProps {
+   adminDataSchema: ISchemaColumn[];
+   submitCallback: (data: Record<string, any>) => Promise<void> | void;
+}
 
-// export const useReviewForm = ({ itemId, submitCallback }: IReviewFormProps) => {
-//    // Backend Requests ===>
-//    const { createReview, isPending } = useCreateOne(itemId);
+export const useAdminCreateForm = ({
+   adminDataSchema,
+   submitCallback,
+}: UseAdminFormProps) => {
+   const [isPending, setIsPending] = useState(false);
 
-//    // Form =====>
-//    const {
-//       register,
-//       handleSubmit,
-//       formState: { errors, isSubmitting },
-//       reset,
-//       control,
-//       setError,
-//    } = useForm<IReviewFormData>({
-//       defaultValues: {
-//          userName: "",
-//          text: "",
-//          stars: 4,
-//       },
-//    });
+   const {
+      register,
+      handleSubmit,
+      formState: { errors, isSubmitting },
+      reset,
+      control,
+   } = useForm<Record<string, any>>({
+      defaultValues: adminDataSchema.reduce(
+         (acc, field) => {
+            acc[field.column_name] = "";
+            return acc;
+         },
+         {} as Record<string, any>
+      ),
+   });
 
-//    // Form Submit ====>
-//    async function onSubmit(reviewData: IReviewFormData) {
-//       // Checker =====>
-//       if (!itemId) {
-//          console.log("itemId is not found");
+   const onSubmit = handleSubmit(async (data) => {
+      setIsPending(true);
+      try {
+         await submitCallback(data);
+         reset();
+      } finally {
+         setIsPending(false);
+      }
+   });
 
-//          setError("stars", {
-//             type: "required",
-//             message: "Request not found",
-//          });
-//          return;
-//       }
-
-//       const trimmedData: IReviewFormData = {
-//          ...reviewData,
-//          userName: reviewData.userName.trim(),
-//          text: reviewData.text.trim(),
-//       };
-
-//       if (!trimmedData.userName) {
-//          console.log("Username is required");
-//          setError("userName", {
-//             type: "required",
-//             message: "Username is required",
-//          });
-//          return;
-//       }
-
-//       if (!trimmedData.text) {
-//          console.log("Message is required");
-//          setError("text", {
-//             type: "required",
-//             message: "Message is required",
-//          });
-//          return;
-//       }
-//       try {
-//          // Backend Request =====>
-//          createReview(
-//             { ...trimmedData, itemId: itemId },
-//             {
-//                onError(data) {
-//                   console.log(data);
-//                },
-//                onSettled(data) {
-//                   if (data.id) {
-//                      reset();
-//                      if (submitCallback) {
-//                         submitCallback();
-//                      }
-//                      return;
-//                   }
-//                   if ("message" in data) {
-//                      setError("stars", {
-//                         type: "required",
-//                         message: data.message,
-//                      });
-//                   }
-//                   console.log(data);
-//                },
-//             }
-//          );
-//       } catch (err) {
-//          console.log(err);
-//       }
-//    }
-
-//    return {
-//       onSubmit,
-//       register,
-//       handleSubmit,
-//       errors,
-//       isSubmitting,
-//       control,
-//       isPending,
-//    };
-// };
+   return {
+      register,
+      handleSubmit,
+      onSubmit,
+      errors,
+      isSubmitting,
+      isPending,
+      control,
+   };
+};

@@ -8,7 +8,7 @@ import {
    useStandartDialog,
 } from "../../../UI/CustomDialog/Standart/StandartDialog";
 import { IDeleteDataProps } from "../../../Services/Admin/deleteData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AdminCreateForm } from "./AdminCreateForm/AdminCreateForm";
 
 interface IAdminTableRenderingProps extends IAdminDataResponse {
@@ -24,6 +24,10 @@ export const AdminTableRendering = ({
    const { modalData, setModalData } = useStandartDialog();
 
    const [isEditFormVisible, setIsEditFormVisible] = useState<boolean>(false);
+
+   useEffect(() => {
+      setIsEditFormVisible(false);
+   }, [adminDataPreview]);
 
    function checkAllowance(callback: () => void) {
       if (!adminDataMeta?.editable) {
@@ -68,8 +72,18 @@ export const AdminTableRendering = ({
       <>
          {isEditFormVisible && (
             <AdminCreateForm
-               adminDataSchema={adminSchemaState}
-               submitCallback={() => console.log("submit")}
+               adminDataSchema={adminSchemaState.filter(
+                  ({ column_name: name }) =>
+                     Boolean(
+                        name != "createdAt" &&
+                           name != "updatedAt" &&
+                           name != "id"
+                     )
+               )}
+               submitCallback={() => {
+                  console.log("submit");
+                  setIsEditFormVisible(false);
+               }}
                setIsEditFormVisible={setIsEditFormVisible}
             />
          )}
