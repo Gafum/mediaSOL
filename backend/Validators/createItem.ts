@@ -9,9 +9,10 @@ export const createItemSchema = z.object({
       .trim()
       .min(1, "Name cannot be empty")
       .max(150, "Name is too long"),
-   price: z
+   price: z.coerce
       .number({ message: "Price is required" })
-      .positive({ message: "Price must be positive" }),
+      .positive({ message: "Price must be positive" })
+      .refine((val) => !isNaN(val), { message: "Price must be a number" }),
    description: z
       .string({ message: "Description is required" })
       .trim()
@@ -21,12 +22,13 @@ export const createItemSchema = z.object({
       .string()
       .trim()
       .url({ message: "Image must be a valid URL" })
-      .optional(),
+      .optional()
+      .or(z.literal("")),
    idItemType: z
       .string({ message: "Type is required" })
       .trim()
       .min(1, "Type cannot be empty"),
-   action: z
+   action: z.coerce
       .number()
       .int({ message: "Action must be integer" })
       .min(0)

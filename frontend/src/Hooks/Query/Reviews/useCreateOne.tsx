@@ -8,7 +8,8 @@ export function useCreateOne(itemId: string | undefined) {
       mutationKey: ["add post"],
       mutationFn: (reviewData: Omit<IReviews, "id">) =>
          ReviewsService.createOne(reviewData),
-      onSettled: () => {
+      onSettled: (_data, error) => {
+         if (error) return;
          if (!itemId) {
             return console.log("Item is not found!");
          }

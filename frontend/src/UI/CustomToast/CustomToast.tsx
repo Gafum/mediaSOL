@@ -17,7 +17,7 @@ export const ToastBlock = ({ message }: { message: string }): JSX.Element => {
 
 const Toast = ({ message, onClose }: ToastProps) => {
    useEffect(() => {
-      const timer = setTimeout(onClose, 2000);
+      const timer = setTimeout(onClose, 5000);
       return () => clearTimeout(timer);
    }, [onClose]);
 

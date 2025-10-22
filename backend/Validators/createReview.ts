@@ -4,11 +4,12 @@ import { ApiError } from "../error/ApiError";
 import { IReviews } from "../Data/ReviewsList";
 
 export const createReviewSchema = z.object({
-   stars: z
+   stars: z.coerce
       .number({ message: "Give the feadbeak" })
       .int()
       .min(0, { message: "Bad request" })
-      .max(4, { message: "A lot of stars" }),
+      .max(4, { message: "A lot of stars" })
+      .refine((val) => !isNaN(val), { message: "Price must be a number" }),
    userName: z
       .string({ message: "Name is required" })
       .trim()

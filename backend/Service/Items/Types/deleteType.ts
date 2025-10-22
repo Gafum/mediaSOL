@@ -19,15 +19,15 @@ export async function deleteType(
          return next(ApiError.badRequest("Bad Request"));
       }
 
-      const { id: name } = req.params;
+      const { id } = req.params;
 
-      if (!name) {
+      if (!id) {
          return next(ApiError.badRequest("Bad Request"));
       }
 
       const response = await prisma.itemType.delete({
          where: {
-            name,
+            id,
          },
       });
 

@@ -7,8 +7,6 @@ import { LoadingBlock } from "../../../Components/LoadingBlock/LoadingBlock";
 import { SimpleError } from "../../../Components/Errors/SimpleError";
 import { AdminPageSettings } from "./AdminPageSettings";
 import { AdminTableRendering } from "./AdminTableRendering";
-import { useDeleteElement } from "../../../Hooks/Query/Admin/useDeleteElement";
-import { ToastBlock } from "../../../UI/CustomToast/CustomToast";
 
 interface IAdminTableProps {
    userData: IAdminForm;
@@ -23,6 +21,11 @@ export const AdminTable = ({
    userData,
    activeTableKey,
 }: IAdminTableProps): JSX.Element => {
+   const encryptedData = {
+      key: activeTableKey,
+      password: userData.password,
+   };
+
    const {
       adminDataSchema,
       adminDataPreview,
@@ -31,15 +34,7 @@ export const AdminTable = ({
       isLoading,
       fetchNextPage,
       hasNextPage,
-   } = useAdminGetData({
-      key: activeTableKey,
-      password: userData.password,
-   });
-
-   const { deleteElement, isPending } = useDeleteElement({
-      key: activeTableKey,
-      password: userData.password,
-   });
+   } = useAdminGetData(encryptedData);
 
    const [adminSchemaState, setAdminSchemaState] = useState<ISchemaState[]>([]);
 
@@ -70,7 +65,7 @@ export const AdminTable = ({
                meta={adminDataMeta}
                preview={adminDataPreview}
                schema={adminSchemaState}
-               deleteElement={deleteElement}
+               encryptedData={encryptedData}
             />
             {hasNextPage && (
                <button
@@ -81,8 +76,6 @@ export const AdminTable = ({
                   <Download size={20} />
                </button>
             )}
-
-            {(isPending || isLoading) && <ToastBlock message={"Pending..."} />}
          </div>
       </div>
    );

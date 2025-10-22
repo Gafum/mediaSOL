@@ -1,28 +1,35 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { ISchemaColumn } from "../../../../Services/Admin/getData"; // приклад імпорту, зміни шлях під себе
+import { IEncryptedData } from "../AdminTableRendering";
+import { useCreateElement } from "../../../../Hooks/Query/Admin/useCreateElemenet";
 
 interface UseAdminFormProps {
    adminDataSchema: ISchemaColumn[];
-   submitCallback: (data: Record<string, any>) => Promise<void> | void;
+   encryptedData: IEncryptedData;
+   setIsEditFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
+   showThisToast: (message: string) => void;
+   adminDataMeta: any;
 }
 
 export const useAdminCreateForm = ({
    adminDataSchema,
-   submitCallback,
+   encryptedData,
+   setIsEditFormVisible,
+   showThisToast,
+   adminDataMeta,
 }: UseAdminFormProps) => {
-   const [isPending, setIsPending] = useState(false);
+   const { createElement } = useCreateElement(encryptedData);
 
    const {
       register,
       handleSubmit,
       formState: { errors, isSubmitting },
-      reset,
       control,
+      setError,
    } = useForm<Record<string, any>>({
       defaultValues: adminDataSchema.reduce(
          (acc, field) => {
-            acc[field.column_name] = "";
+            acc[field.column_name] = field.isRequired ? "" : undefined;
             return acc;
          },
          {} as Record<string, any>
@@ -30,13 +37,38 @@ export const useAdminCreateForm = ({
    });
 
    const onSubmit = handleSubmit(async (data) => {
-      setIsPending(true);
-      try {
-         await submitCallback(data);
-         reset();
-      } finally {
-         setIsPending(false);
+      for (const elem in data) {
+         if (data[elem] == "") {
+            delete data[elem];
+         }
       }
+
+      createElement(
+         {
+            newElement: data,
+            route: adminDataMeta?.router,
+         },
+         {
+            onSettled(data, error) {
+               if (Boolean(error)) {
+                  setError("root", { message: error?.message ?? "error" });
+                  showThisToast("error during the adding " + error?.message);
+               } else if ("message" in data) {
+                  setError("root", {
+                     type: "required",
+                     message: data.message,
+                  });
+                  showThisToast("error during the adding " + data.message);
+               } else {
+                  showThisToast("Elemment is Added");
+                  setIsEditFormVisible(false);
+               }
+            },
+            onError(error) {
+               console.log(error);
+            },
+         }
+      );
    });
 
    return {
@@ -45,7 +77,6 @@ export const useAdminCreateForm = ({
       onSubmit,
       errors,
       isSubmitting,
-      isPending,
       control,
    };
 };

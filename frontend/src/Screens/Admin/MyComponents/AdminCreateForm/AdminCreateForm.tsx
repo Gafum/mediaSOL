@@ -1,21 +1,31 @@
 import { splitWordsSmart } from "../../../../Function/splitWords";
 import { ISchemaColumn } from "../../../../Services/Admin/getData";
 import { CustomBtn } from "../../../../UI/CustomBtn/CustomBtn";
+import { showToast } from "../../../../UI/CustomToast/CustomToast";
+import { IEncryptedData } from "../AdminTableRendering";
 import { useAdminCreateForm } from "./useAdminCreateForm";
 
 interface IAdminCreateFormProps {
    adminDataSchema: ISchemaColumn[];
-   submitCallback: (data: Record<string, any>) => void;
    setIsEditFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
+   encryptedData: IEncryptedData;
+   adminDataMeta: any;
 }
 
 export const AdminCreateForm = ({
    adminDataSchema,
-   submitCallback,
    setIsEditFormVisible,
+   encryptedData,
+   adminDataMeta,
 }: IAdminCreateFormProps): JSX.Element => {
-   const { register, onSubmit, errors, isSubmitting, isPending } =
-      useAdminCreateForm({ adminDataSchema, submitCallback });
+   const { ToastContainer, showThisToast } = showToast;
+   const { register, onSubmit, errors, isSubmitting } = useAdminCreateForm({
+      showThisToast,
+      adminDataSchema,
+      encryptedData,
+      setIsEditFormVisible,
+      adminDataMeta,
+   });
 
    const getInputType = (dataType: string): string => {
       switch (true) {
@@ -45,14 +55,29 @@ export const AdminCreateForm = ({
                         id={e.column_name + "_inputID"}
                         {...register(e.column_name)}
                      />
+                  ) : inputType === "text" ? (
+                     <textarea
+                        style={{ resize: "vertical" }}
+                        required={e.isRequired}
+                        autoComplete="off"
+                        rows={1}
+                        id={e.column_name + "_inputID"}
+                        {...register(e.column_name, {
+                           required: e.isRequired
+                              ? `${splitWordsSmart(e.column_name)} is required`
+                              : false,
+                        })}
+                     ></textarea>
                   ) : (
                      <input
                         type={inputType}
-                        required
+                        required={e.isRequired}
                         autoComplete="off"
                         id={e.column_name + "_inputID"}
                         {...register(e.column_name, {
-                           required: `${splitWordsSmart(e.column_name)} is required`,
+                           required: e.isRequired
+                              ? `${splitWordsSmart(e.column_name)} is required`
+                              : false,
                         })}
                      />
                   )}
@@ -74,6 +99,12 @@ export const AdminCreateForm = ({
             );
          })}
 
+         {errors.root && (
+            <p className="text-red-500 text-sm pl-1">
+               {(errors.root?.message as string) || "Invalid input"}
+            </p>
+         )}
+
          <CustomBtn
             type="button"
             className="w-full mt-2"
@@ -81,12 +112,14 @@ export const AdminCreateForm = ({
             btnText="Cancel"
             bgColor="primaryPink"
          />
+
          <CustomBtn
             type="submit"
             className="w-full mt-2"
-            disabled={isPending || isSubmitting}
-            btnText={isPending ? "Loading..." : "Add"}
+            disabled={isSubmitting}
+            btnText={"Add"}
          />
+         <ToastContainer />
       </form>
    );
 };

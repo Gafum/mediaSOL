@@ -48,11 +48,12 @@ export async function getAdminSchemaWithData(
       ]);
 
       const columns = await prisma.$queryRaw<
-         { column_name: string; data_type: string }[]
+         { column_name: string; data_type: string; is_nullable: string }[]
       >`
    SELECT 
       column_name,
-      data_type
+      data_type,
+      is_nullable
    FROM information_schema.columns
    WHERE LOWER(table_name) = LOWER(${panel.key}) AND table_schema = 'public'
    ORDER BY table_name, ordinal_position
@@ -62,9 +63,14 @@ export async function getAdminSchemaWithData(
 
       const result = {
          schema: columns.map(
-            (col: { column_name: string; data_type: string }) => ({
+            (col: {
+               is_nullable: string;
+               column_name: string;
+               data_type: string;
+            }) => ({
                column_name: col.column_name,
                data_type: col.data_type,
+               isRequired: col.is_nullable === "NO",
             })
          ),
          preview,

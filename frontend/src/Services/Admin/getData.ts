@@ -5,6 +5,7 @@ import { IGetOverviewProps } from "../../Hooks/Query/Admin/useGetData";
 export interface ISchemaColumn {
    column_name: string;
    data_type: string;
+   isRequired: boolean;
    isShown?: boolean;
 }
 

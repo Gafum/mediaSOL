@@ -18,15 +18,15 @@ export async function deleteOne(
          return next(ApiError.badRequest("Bad Request"));
       }
 
-      const { id: elementId } = req.params;
+      const { id: reviewId } = req.params;
 
-      if (!elementId) {
+      if (!reviewId) {
          return next(ApiError.badRequest("Bad Request"));
       }
 
       const response = await prisma.review.delete({
          where: {
-            id: elementId,
+            id: reviewId,
          },
       });
 

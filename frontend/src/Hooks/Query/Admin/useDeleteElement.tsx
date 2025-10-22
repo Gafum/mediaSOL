@@ -11,7 +11,8 @@ export function useDeleteElement({ password, key }: IGetOverviewProps) {
       mutationKey: queryKeyDelete,
       mutationFn: (data: IDeleteDataProps) =>
          AdminService.deleteData({ ...data, password }),
-      onSettled: () => {
+      onSettled: (_data, error) => {
+         if (error) return;
          if (key) queryClient.invalidateQueries({ queryKey: queryKeyDelete });
       },
    });

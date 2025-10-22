@@ -25,8 +25,7 @@ export const ContactForm = () => {
 
    const onSubmit = async (formData: IContactForm) => {
       sendContact(formData, {
-         onSettled(data, error) {
-            console.log(data);
+         onSettled(_data, error) {
             if (Boolean(error)) {
                setModalData({
                   isOpen: true,

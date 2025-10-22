@@ -69,7 +69,7 @@ export const useReviewForm = ({ itemId, submitCallback }: IReviewFormProps) => {
                onError(data) {
                   console.log(data);
                },
-               onSettled(data) {
+               onSettled: (data) => {
                   if (data.id) {
                      reset();
                      if (submitCallback) {

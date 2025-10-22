@@ -1,4 +1,3 @@
-import { UseMutateFunction } from "@tanstack/react-query";
 import { formatDate } from "../../../Function/fotmatDate";
 import { splitWordsSmart } from "../../../Function/splitWords";
 import { IAdminDataResponse } from "../../../Services/Admin/getData";
@@ -7,27 +6,35 @@ import {
    StandartDialog,
    useStandartDialog,
 } from "../../../UI/CustomDialog/Standart/StandartDialog";
-import { IDeleteDataProps } from "../../../Services/Admin/deleteData";
 import { useEffect, useState } from "react";
 import { AdminCreateForm } from "./AdminCreateForm/AdminCreateForm";
+import { useDeleteElement } from "../../../Hooks/Query/Admin/useDeleteElement";
+import { ToastBlock } from "../../../UI/CustomToast/CustomToast";
+
+export interface IEncryptedData {
+   key: string;
+   password: string;
+}
 
 interface IAdminTableRenderingProps extends IAdminDataResponse {
-   deleteElement: UseMutateFunction<any, Error, IDeleteDataProps, unknown>;
+   encryptedData: IEncryptedData;
 }
 
 export const AdminTableRendering = ({
    preview: adminDataPreview,
    schema: adminSchemaState,
    meta: adminDataMeta,
-   deleteElement,
+   encryptedData,
 }: IAdminTableRenderingProps): JSX.Element => {
    const { modalData, setModalData } = useStandartDialog();
 
    const [isEditFormVisible, setIsEditFormVisible] = useState<boolean>(false);
 
+   const { deleteElement, isPending } = useDeleteElement(encryptedData);
+
    useEffect(() => {
       setIsEditFormVisible(false);
-   }, [adminDataPreview]);
+   }, [encryptedData.key]);
 
    function checkAllowance(callback: () => void) {
       if (!adminDataMeta?.editable) {
@@ -80,10 +87,8 @@ export const AdminTableRendering = ({
                            name != "id"
                      )
                )}
-               submitCallback={() => {
-                  console.log("submit");
-                  setIsEditFormVisible(false);
-               }}
+               adminDataMeta={adminDataMeta}
+               encryptedData={encryptedData}
                setIsEditFormVisible={setIsEditFormVisible}
             />
          )}
@@ -169,7 +174,10 @@ export const AdminTableRendering = ({
                ))}
             </tbody>
          </table>
+
          <StandartDialog modalData={modalData} setModalData={setModalData} />
+
+         {isPending && <ToastBlock message={"Pending..."} />}
       </>
    );
 };
