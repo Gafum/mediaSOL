@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IAdminData } from "../../Services/Admin/getOverview";
-import { AdminTable } from "./AdminTable";
 import { AdminAuth } from "./AdminAuth";
+import { AdminMenu } from "./AdminMenu";
 
 export const Admin = (): JSX.Element => {
    const [isAuth, setIsAuth] = useState(false);
@@ -11,7 +11,7 @@ export const Admin = (): JSX.Element => {
    if (isAuth) {
       return (
          <div>
-            <AdminTable data={overviewData} />
+            <AdminMenu data={overviewData} />
          </div>
       );
    }
