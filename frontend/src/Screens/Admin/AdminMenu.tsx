@@ -42,7 +42,13 @@ export const AdminMenu = ({ data }: IAdminMenuProps): JSX.Element => {
          {sortedEntries.map(([tableName, table], index) => {
             if (index !== activeTab) return "";
 
-            return <AdminTable tableName={tableName} table={table} />;
+            return (
+               <AdminTable
+                  tableName={tableName}
+                  table={table}
+                  key={tableName}
+               />
+            );
          })}
       </div>
    );

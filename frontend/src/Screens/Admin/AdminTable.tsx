@@ -1,11 +1,16 @@
 import { formatDate } from "../../Function/fotmatDate";
-import { ITableData } from "../../Services/Admin/getOverview";
+import { ISchemaColumn, ITableData } from "../../Services/Admin/getOverview";
 import { CustomBtn } from "../../UI/CustomBtn/CustomBtn";
 import { splitWordsSmart } from "../../Function/splitWords";
+import { useState } from "react";
 
 interface IAdminTableProps {
    tableName: string;
    table: ITableData;
+}
+
+interface ISchemaState extends ISchemaColumn {
+   isShown: boolean;
 }
 
 export const AdminTable = ({
@@ -20,55 +25,44 @@ export const AdminTable = ({
       console.log(`Edit ${table}:`, row);
    };
 
-   const filteredSchema = table.schema.filter(
-      (col) => col.column_name !== "id"
+   const [schemaState, setSchemaState] = useState<ISchemaState[]>(
+      table.schema
+         .filter((col) => col.column_name !== "id")
+         .map((elem) => {
+            return { ...elem, isShown: true };
+         })
    );
 
-   // const handleToggle = (col: string) => {
-   //    setSortedEntries((prev) => {
-   //       let locallist = JSON.parse(JSON.stringify(prev));
-   //       locallist[index][1].shown = !locallist[index][1].shown;
-   //       return locallist;
-   //    });
-   // };
+   const handleToggle = (index: number) => {
+      console.log(index);
+
+      setSchemaState((prev) => {
+         let locallist: ISchemaState[] = JSON.parse(JSON.stringify(prev));
+         locallist[index].isShown = !prev[index].isShown;
+         return locallist;
+      });
+   };
+
+   console.log(schemaState);
 
    return (
       <div key={tableName} className="mt-3">
          <h2>What Data:</h2>
 
          <ul>
-            {filteredSchema.map((col) => (
-               <ol key={col.column_name} className="flex items-center gap-2">
-                  <input
-                     type="checkbox"
-                     id={col.column_name + "_ID"}
-                     // checked={visibleCols[col.column_name]}
-                     // onChange={() => handleToggle(col.column_name)}
-                     className="hidden peer"
-                  />
-                  <label
-                     htmlFor={col.column_name + "_ID"}
-                     className="flex items-center gap-2 cursor-pointer select-none"
-                  >
-                     <span
-                        className="w-4 h-4 border rounded flex items-center justify-center 
-                         peer-checked:bg-blue-500 peer-checked:border-blue-500"
-                     >
-                        <svg
-                           className="w-3 h-3 text-white hidden peer-checked:block"
-                           xmlns="http://www.w3.org/2000/svg"
-                           viewBox="0 0 20 20"
-                           fill="currentColor"
-                        >
-                           <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 
-                     1 0 00-1.414 1.414l4 4a1 1 0 
-                     001.414 0l8-8a1 1 0 000-1.414z"
-                              clipRule="evenodd"
-                           />
-                        </svg>
-                     </span>
+            {schemaState.map((col, index) => (
+               <ol key={col.column_name} className="checkbox-wrapper">
+                  <label className="checkbox">
+                     <input
+                        type="checkbox"
+                        id={col.column_name + "_ID"}
+                        checked={col.isShown}
+                        onChange={() => handleToggle(index)}
+                        className="hidden peer checkbox__input"
+                        key={col.column_name}
+                     />
+                     <span className="checkbox__label"></span>
+
                      <span className="capitalize">
                         {splitWordsSmart(col.column_name)}
                      </span>
@@ -84,7 +78,7 @@ export const AdminTable = ({
             <table className="min-w-full text-sm border border-gray-300 table-auto">
                <thead className="bg-gray-100">
                   <tr>
-                     {filteredSchema.map((col) => (
+                     {schemaState.map((col) => (
                         <th
                            key={col.column_name}
                            className="px-4 py-2 border text-left capitalize"
@@ -95,10 +89,11 @@ export const AdminTable = ({
                      <th className="px-4 py-2 border">Actions</th>
                   </tr>
                </thead>
+
                <tbody>
                   {table.preview.map((row, rowIndex) => (
                      <tr key={rowIndex} className="even:bg-gray-50">
-                        {filteredSchema.map((col) => {
+                        {schemaState.map((col) => {
                            const val = row[col.column_name];
                            const content =
                               col.column_name === "createdAt" ||
@@ -115,6 +110,7 @@ export const AdminTable = ({
                               </td>
                            );
                         })}
+
                         <td className="p-2 h-full border align-top">
                            <div className="h-full w-full flex flex-col gap-1">
                               <CustomBtn
